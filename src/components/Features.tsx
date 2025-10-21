@@ -49,10 +49,10 @@ export const Features = () => {
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Built for <span className="gradient-text">Performance</span>
+            Enterprise-Grade <span className="gradient-text">AI Platform</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Every feature designed to accelerate your AI development lifecycle from prototype to production.
+            Production-ready infrastructure trusted by the world's leading companies to deploy AI at scale.
           </p>
         </motion.div>
 

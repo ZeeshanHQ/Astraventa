@@ -8,11 +8,11 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Ultra-luxury AI SaaS Design System */
-    --background: 240 7% 6%;
+    /* Pure Black Premium Design System */
+    --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 
-    --card: 240 8% 10%;
+    --card: 0 0% 3%;
     --card-foreground: 0 0% 100%;
 
     --popover: 240 8% 10%;
@@ -32,14 +32,14 @@ All colors MUST be HSL.
     --accent: 172 100% 50%;
     --accent-foreground: 240 7% 6%;
 
-    --muted: 240 5% 20%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 60%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 15%;
-    --input: 240 6% 15%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
     --ring: 228 87% 63%;
 
     --radius: 1rem;

@@ -34,10 +34,10 @@ export const CodeEditor = () => {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Code That <span className="gradient-text">Feels Magic</span>
+            Developer-First <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Intuitive APIs that make complex AI workflows feel simple and elegant.
+            Powerful APIs and SDKs designed for production-scale ML deployment.
           </p>
         </motion.div>
 

@@ -4,52 +4,51 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Starter",
-    price: "$29",
-    period: "/month",
-    description: "Perfect for individual developers and small projects",
-    features: [
-      "Up to 100K predictions/month",
-      "3 active models",
-      "Community support",
-      "Basic analytics",
-      "99.9% uptime SLA",
-    ],
-    cta: "Start Free Trial",
-    variant: "glass" as const,
-  },
-  {
     name: "Professional",
-    price: "$199",
+    price: "$2,499",
     period: "/month",
     description: "For growing teams and production workloads",
     features: [
-      "Up to 5M predictions/month",
-      "Unlimited active models",
+      "Up to 10M predictions/month",
+      "Dedicated infrastructure",
       "Priority support",
       "Advanced analytics & monitoring",
       "99.95% uptime SLA",
-      "Custom model optimization",
     ],
-    cta: "Start Free Trial",
+    cta: "Contact Sales",
+    variant: "glass" as const,
+  },
+  {
+    name: "Enterprise",
+    price: "$9,999",
+    period: "/month",
+    description: "Mission-critical AI infrastructure",
+    features: [
+      "Unlimited predictions",
+      "Dedicated account team",
+      "24/7 white-glove support",
+      "Custom SLA guarantees",
+      "99.99% uptime SLA",
+      "On-premise deployment options",
+    ],
+    cta: "Contact Sales",
     variant: "hero" as const,
     featured: true,
   },
   {
-    name: "Enterprise",
-    price: "Custom",
+    name: "Custom",
+    price: "Let's Talk",
     period: "",
-    description: "Dedicated infrastructure for mission-critical AI",
+    description: "Tailored solutions for unique business needs",
     features: [
-      "Unlimited predictions",
-      "Unlimited models",
-      "24/7 dedicated support",
-      "On-premise deployment",
-      "99.99% uptime SLA",
-      "Custom integrations",
-      "SLA guarantees",
+      "Custom infrastructure design",
+      "Dedicated engineering team",
+      "Custom integrations & APIs",
+      "Compliance & security reviews",
+      "Strategic partnership",
+      "White-label options",
     ],
-    cta: "Contact Sales",
+    cta: "Schedule Call",
     variant: "glass" as const,
   },
 ];
@@ -69,10 +68,10 @@ export const Pricing = () => {
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Simple, <span className="gradient-text">Transparent Pricing</span>
+            Enterprise <span className="gradient-text">Solutions</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your AI journey. Scale up or down anytime.
+            Flexible pricing that scales with your business. Trusted by Fortune 500 companies.
           </p>
         </motion.div>
 

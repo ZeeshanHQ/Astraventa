@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "TensorFlow", color: "#FF6F00" },
-  { name: "PyTorch", color: "#EE4C2C" },
-  { name: "Scikit-Learn", color: "#F7931E" },
-  { name: "Hugging Face", color: "#FFD21E" },
   { name: "OpenAI", color: "#10A37F" },
-  { name: "LangChain", color: "#1C3C3C" },
+  { name: "Anthropic", color: "#D97706" },
+  { name: "Zapier", color: "#FF4A00" },
+  { name: "Microsoft", color: "#0078D4" },
+  { name: "Google AI", color: "#4285F4" },
+  { name: "Salesforce", color: "#00A1E0" },
 ];
 
 export const AIStack = () => {
@@ -21,10 +21,10 @@ export const AIStack = () => {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Your <span className="gradient-text">Entire AI Stack</span>
+            Seamless <span className="gradient-text">Integrations</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Seamlessly integrate with every tool and framework in your AI workflow.
+            Connect with your favorite AI tools and automation platforms.
           </p>
         </motion.div>
 
@@ -71,7 +71,7 @@ export const AIStack = () => {
               className="mt-12 text-center"
             >
               <p className="text-muted-foreground">
-                + hundreds more integrations available through our API
+                + hundreds more AI tools and automation platforms available
               </p>
             </motion.div>
           </div>

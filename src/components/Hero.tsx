@@ -35,8 +35,8 @@ export const Hero = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
           >
-            Enterprise AI{" "}
-            <span className="gradient-text">Infrastructure</span>
+            <span className="gradient-text">Astraventa</span>{" "}
+            AI Solutions
           </motion.h1>
 
           {/* Subtitle */}
@@ -46,8 +46,8 @@ export const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Transform your business with production-ready AI solutions. 
-            Trusted by Fortune 500 companies to scale their ML operations.
+            Empowering innovation through intelligent automation & AI-driven solutions.
+            Next-generation technology for the future of business.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -58,11 +58,11 @@ export const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Button variant="hero" size="xl" className="group">
-              Request Access
+              Get Started
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button variant="neon" size="xl">
-              Book a Demo
+              Explore Solutions
             </Button>
           </motion.div>
 
@@ -74,9 +74,9 @@ export const Hero = () => {
             className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
           >
             {[
-              { label: "Businesses Transformed", value: "500+" },
-              { label: "Revenue Generated", value: "$2.5B+" },
-              { label: "Global Reach", value: "45 Countries" },
+              { label: "AI Solutions Deployed", value: "1000+" },
+              { label: "Automation Efficiency", value: "95%" },
+              { label: "Global Reach", value: "50+ Countries" },
             ].map((stat, index) => (
               <div key={index} className="glass-card p-6 rounded-2xl">
                 <div className="text-4xl font-bold gradient-text mb-2">{stat.value}</div>

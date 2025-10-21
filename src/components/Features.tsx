@@ -1,36 +1,36 @@
 import { motion } from "framer-motion";
-import { Brain, Zap, Shield, Database, GitBranch, Layers } from "lucide-react";
+import { Brain, Bot, Zap, Shield, Database, GitBranch, Layers, Cpu, MessageSquare, Workflow } from "lucide-react";
 
 const features = [
   {
     icon: Brain,
-    title: "Neural Architecture Search",
-    description: "Automatically discover optimal model architectures with our advanced AutoML engine.",
+    title: "AI Chatbots",
+    description: "Intelligent conversational AI that understands context and provides human-like responses.",
+  },
+  {
+    icon: Bot,
+    title: "Web Automation",
+    description: "Automate repetitive tasks with smart bots that learn and adapt to your workflows.",
   },
   {
     icon: Zap,
-    title: "Lightning-Fast Inference",
-    description: "Deploy models with sub-50ms latency powered by optimized edge computing infrastructure.",
+    title: "AI Integrations",
+    description: "Seamlessly integrate AI capabilities into your existing systems and applications.",
   },
   {
-    icon: Shield,
-    title: "Enterprise Security",
-    description: "SOC 2 Type II compliant with end-to-end encryption and private cloud options.",
+    icon: Cpu,
+    title: "Custom Development",
+    description: "Tailored AI solutions built specifically for your unique business requirements.",
   },
   {
-    icon: Database,
-    title: "Intelligent Data Pipeline",
-    description: "Automated data versioning, validation, and preprocessing at any scale.",
+    icon: Workflow,
+    title: "Process Automation",
+    description: "Streamline operations with intelligent automation that reduces manual work by 95%.",
   },
   {
-    icon: GitBranch,
-    title: "Model Version Control",
-    description: "Track, compare, and rollback model versions with Git-like workflow integration.",
-  },
-  {
-    icon: Layers,
-    title: "Multi-Cloud Deploy",
-    description: "Deploy seamlessly across AWS, GCP, Azure, or your own private infrastructure.",
+    icon: MessageSquare,
+    title: "Smart Analytics",
+    description: "Transform data into actionable insights with AI-powered analytics and reporting.",
   },
 ];
 
@@ -49,10 +49,10 @@ export const Features = () => {
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Enterprise-Grade <span className="gradient-text">AI Platform</span>
+            Our <span className="gradient-text">AI Solutions</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Production-ready infrastructure trusted by the world's leading companies to deploy AI at scale.
+            Cutting-edge AI and automation services that transform how businesses operate and scale.
           </p>
         </motion.div>
 

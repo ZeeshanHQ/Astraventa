@@ -4,47 +4,47 @@ import { TrendingUp, Users, Globe, Award } from "lucide-react";
 const successMetrics = [
   {
     icon: TrendingUp,
-    value: "$2.5B+",
-    label: "Revenue Generated",
-    description: "Driving measurable business outcomes",
+    value: "95%",
+    label: "Efficiency Gain",
+    description: "Average automation improvement",
   },
   {
     icon: Users,
-    value: "500+",
-    label: "Enterprise Clients",
-    description: "Fortune 500 companies trust us",
+    value: "1000+",
+    label: "AI Solutions",
+    description: "Successfully deployed",
   },
   {
     icon: Globe,
-    value: "45",
+    value: "50+",
     label: "Countries",
-    description: "Global AI infrastructure",
+    description: "Global automation reach",
   },
   {
     icon: Award,
-    value: "98%",
-    label: "Client Retention",
-    description: "Industry-leading satisfaction",
+    value: "99%",
+    label: "Uptime",
+    description: "Reliable AI performance",
   },
 ];
 
 const testimonials = [
   {
-    quote: "This platform transformed our ML operations. We reduced deployment time from weeks to hours.",
+    quote: "Astraventa's AI automation reduced our manual processes by 90%. Our team can now focus on strategic work.",
     author: "Sarah Chen",
-    role: "VP of Engineering",
+    role: "VP of Operations",
     company: "Fortune 100 Tech Company",
   },
   {
-    quote: "The most robust AI infrastructure we've ever used. Scaled seamlessly from prototype to 10M users.",
+    quote: "The chatbot integration was seamless. Customer satisfaction increased by 40% with 24/7 AI support.",
     author: "Marcus Williams",
-    role: "Chief Data Officer",
+    role: "Customer Success Director",
     company: "Global Financial Services",
   },
   {
-    quote: "Game-changing performance. Our AI models now run 10x faster with 40% cost reduction.",
+    quote: "Incredible automation results. We saved 200+ hours per month and improved accuracy by 95%.",
     author: "Emily Rodriguez",
-    role: "Head of AI Research",
+    role: "Head of Process Innovation",
     company: "Leading Healthcare Provider",
   },
 ];
@@ -68,7 +68,7 @@ export const ClientSuccess = () => {
             Trusted by <span className="gradient-text">Industry Leaders</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Empowering enterprises worldwide to unlock the full potential of AI
+            Empowering enterprises worldwide with intelligent automation solutions
           </p>
         </motion.div>
 

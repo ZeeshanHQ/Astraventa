@@ -39,10 +39,10 @@ export const Footer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold gradient-text mb-4">NexusAI</h3>
+              <h3 className="text-2xl font-bold gradient-text mb-4">Astraventa</h3>
               <p className="text-muted-foreground mb-6 max-w-sm">
-                Building the future of AI and machine learning infrastructure. 
-                Enterprise-grade tools for the next generation of intelligent applications.
+                Empowering innovation through intelligent automation & AI-driven solutions.
+                Next-generation technology for the future of business.
               </p>
               
               {/* Social Links */}
@@ -101,7 +101,7 @@ export const Footer = () => {
           className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p className="text-sm text-muted-foreground">
-            © 2025 NexusAI. All rights reserved.
+            © 2025 Astraventa. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground smooth-transition">Privacy Policy</a>

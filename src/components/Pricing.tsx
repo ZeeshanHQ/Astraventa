@@ -4,49 +4,49 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Professional",
-    price: "$2,499",
+    name: "Starter",
+    price: "$999",
     period: "/month",
-    description: "For growing teams and production workloads",
+    description: "Perfect for small teams getting started with AI automation",
     features: [
-      "Up to 10M predictions/month",
-      "Dedicated infrastructure",
-      "Priority support",
-      "Advanced analytics & monitoring",
-      "99.95% uptime SLA",
+      "Up to 5 AI chatbots",
+      "Basic automation workflows",
+      "Email support",
+      "Standard integrations",
+      "99.9% uptime SLA",
     ],
-    cta: "Contact Sales",
+    cta: "Get Started",
     variant: "glass" as const,
   },
   {
-    name: "Enterprise",
-    price: "$9,999",
+    name: "Professional",
+    price: "$2,999",
     period: "/month",
-    description: "Mission-critical AI infrastructure",
+    description: "For growing businesses with advanced automation needs",
     features: [
-      "Unlimited predictions",
-      "Dedicated account team",
-      "24/7 white-glove support",
-      "Custom SLA guarantees",
-      "99.99% uptime SLA",
-      "On-premise deployment options",
+      "Unlimited AI chatbots",
+      "Advanced automation workflows",
+      "Priority support",
+      "Custom integrations",
+      "99.95% uptime SLA",
+      "Analytics dashboard",
     ],
     cta: "Contact Sales",
     variant: "hero" as const,
     featured: true,
   },
   {
-    name: "Custom",
-    price: "Let's Talk",
+    name: "Enterprise",
+    price: "Custom",
     period: "",
-    description: "Tailored solutions for unique business needs",
+    description: "Tailored solutions for large-scale automation",
     features: [
-      "Custom infrastructure design",
-      "Dedicated engineering team",
-      "Custom integrations & APIs",
-      "Compliance & security reviews",
-      "Strategic partnership",
-      "White-label options",
+      "Custom AI development",
+      "Dedicated account manager",
+      "24/7 white-glove support",
+      "Custom SLA guarantees",
+      "99.99% uptime SLA",
+      "On-premise deployment",
     ],
     cta: "Schedule Call",
     variant: "glass" as const,
@@ -68,10 +68,10 @@ export const Pricing = () => {
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Enterprise <span className="gradient-text">Solutions</span>
+            AI Automation <span className="gradient-text">Plans</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Flexible pricing that scales with your business. Trusted by Fortune 500 companies.
+            Choose the perfect plan for your automation needs. Scale as you grow.
           </p>
         </motion.div>
 

@@ -1,12 +1,18 @@
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "OpenAI", color: "#10A37F" },
-  { name: "Anthropic", color: "#D97706" },
-  { name: "Zapier", color: "#FF4A00" },
-  { name: "Microsoft", color: "#0078D4" },
-  { name: "Google AI", color: "#4285F4" },
-  { name: "Salesforce", color: "#00A1E0" },
+  { name: "OpenAI", color: "#10A37F", icon: "🤖" },
+  { name: "Anthropic", color: "#D97706", icon: "🧠" },
+  { name: "Zapier", color: "#FF4A00", icon: "⚡" },
+  { name: "Microsoft", color: "#0078D4", icon: "🔷" },
+  { name: "Google AI", color: "#4285F4", icon: "🔍" },
+  { name: "Salesforce", color: "#00A1E0", icon: "☁️" },
+  { name: "AWS", color: "#FF9900", icon: "☁️" },
+  { name: "Azure", color: "#0078D4", icon: "🔵" },
+  { name: "Slack", color: "#4A154B", icon: "💬" },
+  { name: "HubSpot", color: "#FF7A59", icon: "📊" },
+  { name: "Stripe", color: "#635BFF", icon: "💳" },
+  { name: "Shopify", color: "#96BF48", icon: "🛒" },
 ];
 
 export const AIStack = () => {
@@ -49,12 +55,14 @@ export const AIStack = () => {
                 >
                   <div className="text-center">
                     <div 
-                      className="w-12 h-12 rounded-lg mb-3 mx-auto glow-pulse"
+                      className="w-12 h-12 rounded-lg mb-3 mx-auto glow-pulse flex items-center justify-center text-2xl"
                       style={{ 
                         background: `linear-gradient(135deg, ${logo.color}40, ${logo.color}20)`,
                         boxShadow: `0 0 20px ${logo.color}40`
                       }}
-                    />
+                    >
+                      {logo.icon}
+                    </div>
                     <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground smooth-transition">
                       {logo.name}
                     </span>

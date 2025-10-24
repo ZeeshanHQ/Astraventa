@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Twitter, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { AstraventaLogo } from "./AstraventaLogo";
+import { useState, useEffect } from "react";
 
 const socialLinks = [
   { icon: Github, href: "#", label: "GitHub" },
@@ -10,20 +12,59 @@ const socialLinks = [
 
 const footerLinks = [
   {
-    title: "Product",
-    links: ["Features", "Pricing", "Documentation", "API Reference", "Changelog"],
+    title: "Services",
+    links: [
+      { name: "AI Chatbots", section: "services" },
+      { name: "Web Automation", section: "services" },
+      { name: "AI Integrations", section: "services" },
+      { name: "Custom Development", section: "services" },
+      { name: "Smart Analytics", section: "services" },
+      { name: "AI Security", section: "services" }
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Blog", "Careers", "Press", "Partners"],
+    links: [
+      { name: "Portfolio", section: "portfolio" },
+      { name: "Our Team", section: "team" },
+      { name: "Our Process", section: "process" },
+      { name: "Contact Us", section: "contact" },
+      { name: "Careers", href: "mailto:careers@astraventa.com" }
+    ],
   },
   {
     title: "Resources",
-    links: ["Community", "Contact", "Support", "Status", "Terms of Service"],
+    links: [
+      { name: "Case Studies", section: "portfolio" },
+      { name: "Support", section: "contact" },
+      { name: "Privacy Policy", href: "/privacy" },
+      { name: "Terms of Service", href: "/terms" }
+    ],
   },
 ];
 
 export const Footer = () => {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <footer className="relative py-20 border-t border-border/50">
       {/* Gradient Line */}
@@ -39,7 +80,7 @@ export const Footer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold gradient-text mb-4">Astraventa</h3>
+              <AstraventaLogo size="lg" />
               <p className="text-muted-foreground mb-6 max-w-sm">
                 Empowering innovation through intelligent automation & AI-driven solutions.
                 Next-generation technology for the future of business.
@@ -79,12 +120,21 @@ export const Footer = () => {
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-foreground smooth-transition text-sm"
-                    >
-                      {link}
-                    </a>
+                    {link.section ? (
+                      <button
+                        onClick={() => scrollToSection(link.section)}
+                        className="text-muted-foreground hover:text-foreground smooth-transition text-sm text-left"
+                      >
+                        {link.name}
+                      </button>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-muted-foreground hover:text-foreground smooth-transition text-sm"
+                      >
+                        {link.name}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -104,12 +154,30 @@ export const Footer = () => {
             © 2025 Astraventa. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground smooth-transition">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground smooth-transition">Terms of Service</a>
-            <a href="#" className="hover:text-foreground smooth-transition">Cookie Policy</a>
+            <a href="/privacy" className="hover:text-foreground smooth-transition">Privacy Policy</a>
+            <a href="/terms" className="hover:text-foreground smooth-transition">Terms of Service</a>
+            <a href="/cookies" className="hover:text-foreground smooth-transition">Cookie Policy</a>
           </div>
         </motion.div>
       </div>
+      
+      {/* Back to Top Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 left-6 w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow-lg z-50"
+            aria-label="Back to top"
+          >
+            <ArrowUp className="w-6 h-6 text-white" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </footer>
   );
 };

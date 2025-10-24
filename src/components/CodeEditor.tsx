@@ -30,7 +30,7 @@ workflow = av.create_workflow([
 
 export const CodeEditor = () => {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section id="automation" className="py-32 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-3xl" />
       

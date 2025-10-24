@@ -7,6 +7,10 @@ All colors MUST be HSL.
 */
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   :root {
     /* Pure Black Premium Design System */
     --background: 0 0% 0%;
@@ -165,6 +169,23 @@ All colors MUST be HSL.
     will-change: opacity;
   }
 
+  .will-change-auto {
+    will-change: auto;
+  }
+
+  /* GPU acceleration for 3D transforms */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimize animations */
+  .optimize-animations {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
@@ -184,7 +205,504 @@ All colors MUST be HSL.
     border-radius: 4px;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary-glow));
+  /* Advanced Robot Styles */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .robot-container {
+    transform-style: preserve-3d;
+  }
+
+  .robot-body {
+    width: 120px;
+    height: 180px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 20px;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.6), 0 0 60px rgba(74, 144, 226, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .robot-head {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #6BB6FF, #8CC8FF);
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 25px rgba(107, 182, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .robot-eye {
+    width: 12px;
+    height: 12px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+    box-shadow: 0 0 15px #00FF88, 0 0 30px rgba(0, 255, 136, 0.5);
+  }
+
+  .robot-eye.left-eye {
+    left: 25px;
+  }
+
+  .robot-eye.right-eye {
+    right: 25px;
+  }
+
+  .robot-antenna {
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(to top, #FF6B9D, #FF8BB3);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+  }
+
+  .antenna-tip {
+    width: 8px;
+    height: 8px;
+    background: #FF6B9D;
+    border-radius: 50%;
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px #FF6B9D;
+  }
+
+  .robot-arm {
+    width: 20px;
+    height: 80px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+  }
+
+  .robot-arm.left-arm {
+    left: -25px;
+    transform-origin: right center;
+  }
+
+  .robot-arm.right-arm {
+    right: -25px;
+    transform-origin: left center;
+  }
+
+  .robot-leg {
+    width: 25px;
+    height: 100px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 12px;
+    position: absolute;
+    bottom: -100px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+  }
+
+  .robot-leg.left-leg {
+    left: 25px;
+  }
+
+  .robot-leg.right-leg {
+    right: 25px;
+  }
+
+  .floating-particle {
+    width: 4px;
+    height: 4px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 10px #00FF88;
+    pointer-events: none;
+  }
+
+  .energy-field {
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(74, 144, 226, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .energy-field::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(107, 182, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  /* Advanced AI Visual Styles */
+  .ai-visual-container {
+    transform-style: preserve-3d;
+  }
+
+  .ai-core {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF, #8CC8FF);
+    border-radius: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 40px rgba(74, 144, 226, 0.7), 0 0 80px rgba(74, 144, 226, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .orbiting-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .element-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(74, 144, 226, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+  }
+
+  .neural-network {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .data-particle {
+    width: 3px;
+    height: 3px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 8px #00FF88;
+    pointer-events: none;
+  }
+
+  .energy-field {
+    width: 250px;
+    height: 250px;
+    border: 2px solid rgba(74, 144, 226, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .energy-field::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(107, 182, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  /* Interactive AI Robot Styles */
+  .interactive-robot-container {
+    transform-style: preserve-3d;
+  }
+
+  .interactive-robot-body {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 40px rgba(74, 144, 226, 0.7), 0 0 80px rgba(74, 144, 226, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .interactive-robot-head {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6BB6FF, #8CC8FF);
+    border-radius: 50%;
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 25px rgba(107, 182, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .interactive-robot-eye {
+    width: 10px;
+    height: 10px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    box-shadow: 0 0 15px #00FF88, 0 0 30px rgba(0, 255, 136, 0.5);
+  }
+
+  .interactive-robot-eye.left-eye {
+    left: 20px;
+  }
+
+  .interactive-robot-eye.right-eye {
+    right: 20px;
+  }
+
+  .interactive-robot-antenna {
+    width: 3px;
+    height: 30px;
+    background: linear-gradient(to top, #FF6B9D, #FF8BB3);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+  }
+
+  .interactive-antenna-tip {
+    width: 6px;
+    height: 6px;
+    background: #FF6B9D;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px #FF6B9D;
+  }
+
+  .interactive-robot-arm {
+    width: 15px;
+    height: 60px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 8px;
+    position: absolute;
+    top: 15px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+  }
+
+  .interactive-robot-arm.left-arm {
+    left: -20px;
+    transform-origin: right center;
+  }
+
+  .interactive-robot-arm.right-arm {
+    right: -20px;
+    transform-origin: left center;
+  }
+
+  .floating-ai-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-element-icon {
+    width: 30px;
+    height: 30px;
+    background: rgba(74, 144, 226, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+  }
+
+  .interactive-energy-field {
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(74, 144, 226, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .interactive-energy-field::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(107, 182, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  /* Robot Image Styles */
+  .robot-image-container {
+    transform-style: preserve-3d;
+  }
+
+  .robot-image-body {
+    width: 200px;
+    height: 250px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 50px 50px 30px 30px;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 212, 255, 0.3);
+    border: 3px solid rgba(0, 212, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+
+  .robot-image-head {
+    width: 120px;
+    height: 100px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 50px 50px 20px 20px;
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .robot-image-eyes {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 40px;
+    background: #00D4FF;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+  }
+
+  .robot-image-eye {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  .robot-image-ears {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .robot-image-ear {
+    width: 20px;
+    height: 30px;
+    background: #20B2AA;
+    border-radius: 10px 10px 5px 5px;
+    position: relative;
+  }
+
+  .robot-image-ear::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+
+  .robot-image-chest {
+    width: 60px;
+    height: 40px;
+    background: #20B2AA;
+    border-radius: 15px;
+    margin-top: 10px;
+    position: relative;
+  }
+
+  .robot-image-chest::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: #333333;
+    border-radius: 1px;
+  }
+
+  .robot-image-arm {
+    position: absolute;
+    top: 60px;
+    width: 20px;
+    height: 60px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 10px;
+    transform-origin: top center;
+  }
+
+  .robot-image-arm.left {
+    left: -10px;
+  }
+
+  .robot-image-arm.right {
+    right: -10px;
   }
 }

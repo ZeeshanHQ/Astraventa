@@ -144,7 +144,7 @@ export const RobotImage = ({ mousePosition }: RobotImageProps) => {
             exit={{ scale: 0, opacity: 0, y: 20 }}
             className="absolute -top-12 left-1/2 -translate-x-1/2 bg-cyan-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
           >
-            Hello! 👋
+            Hello!
           </motion.div>
         )}
       </motion.div>

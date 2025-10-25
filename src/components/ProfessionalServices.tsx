@@ -151,6 +151,21 @@ const processSteps = [
 
 export const ProfessionalServices = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent, index: number) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+    
+    setMousePosition({ x: rotateY, y: rotateX });
+    setHoveredCard(index);
+  };
 
   return (
     <section id="services" className="py-32 relative overflow-hidden">
@@ -192,21 +207,36 @@ export const ProfessionalServices = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                whileHover={{ 
-                  scale: 1.02,
-                  rotateX: hoveredCard === index ? 5 : 0,
-                  rotateY: hoveredCard === index ? 5 : 0,
-                  z: 50
+                onMouseMove={(e) => handleMouseMove(e, index)}
+                onMouseLeave={() => {
+                  setHoveredCard(null);
+                  setMousePosition({ x: 0, y: 0 });
                 }}
-                style={{ transformStyle: "preserve-3d" }}
+                style={{ 
+                  transformStyle: "preserve-3d",
+                  transform: hoveredCard === index 
+                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.02)` 
+                    : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+                  transition: 'transform 0.1s ease-out'
+                }}
               >
-                <Card className="h-full glass-card border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-glow-lg">
-                  <CardHeader className="pb-4">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-8 h-8 text-white" />
+                <Card className="h-full glass-card border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-glow-lg overflow-hidden">
+                  {/* Service Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
                     </div>
+                  </div>
+                  
+                  <CardHeader className="pb-4">
                     <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
                       {service.description}

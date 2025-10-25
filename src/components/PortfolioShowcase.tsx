@@ -131,6 +131,21 @@ const testimonials = [
 
 export const PortfolioShowcase = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent, index: number) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    
+    setMousePosition({ x: rotateY, y: rotateX });
+    setHoveredCard(index);
+  };
 
   return (
     <section id="portfolio" className="py-32 relative overflow-hidden">
@@ -172,15 +187,18 @@ export const PortfolioShowcase = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                whileHover={{ 
-                  scale: 1.01,
-                  rotateX: hoveredCard === index ? 3 : 0,
-                  rotateY: hoveredCard === index ? 3 : 0,
-                  z: 30
+                onMouseMove={(e) => handleMouseMove(e, index)}
+                onMouseLeave={() => {
+                  setHoveredCard(null);
+                  setMousePosition({ x: 0, y: 0 });
                 }}
-                style={{ transformStyle: "preserve-3d" }}
+                style={{ 
+                  transformStyle: "preserve-3d",
+                  transform: hoveredCard === index 
+                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)` 
+                    : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+                  transition: 'transform 0.1s ease-out'
+                }}
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
                   index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                 }`}
@@ -189,13 +207,18 @@ export const PortfolioShowcase = () => {
                 <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                   <div className="relative group">
                     <div className="aspect-video bg-gradient-to-br from-card to-card/50 rounded-2xl border border-border/50 overflow-hidden">
-                      <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                        <div className={`w-24 h-24 rounded-2xl bg-gradient-to-r ${project.color} flex items-center justify-center`}>
-                          <Icon className="w-12 h-12 text-white" />
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                      <div className="absolute top-4 left-4">
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${project.color} flex items-center justify-center shadow-lg`}>
+                          <Icon className="w-8 h-8 text-white" />
                         </div>
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
                   </div>
                 </div>
 

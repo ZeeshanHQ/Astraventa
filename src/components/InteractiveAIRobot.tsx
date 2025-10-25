@@ -212,7 +212,7 @@ export const InteractiveAIRobot = ({ mousePosition }: InteractiveAIRobotProps) =
             exit={{ scale: 0, opacity: 0 }}
             className="absolute -top-8 left-1/2 -translate-x-1/2 bg-accent text-white px-2 py-1 rounded-full text-xs font-bold"
           >
-            Hey! 👋
+            Hey!
           </motion.div>
         )}
       </motion.div>

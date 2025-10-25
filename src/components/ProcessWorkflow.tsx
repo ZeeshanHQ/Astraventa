@@ -144,6 +144,21 @@ const communicationPlan = [
 
 export const ProcessWorkflow = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent, index: number) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+    
+    setMousePosition({ x: rotateY, y: rotateX });
+    setHoveredCard(index);
+  };
 
   return (
     <section id="process" className="py-32 relative overflow-hidden">
@@ -184,15 +199,18 @@ export const ProcessWorkflow = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                whileHover={{ 
-                  scale: 1.01,
-                  rotateX: hoveredCard === index ? 2 : 0,
-                  rotateY: hoveredCard === index ? 2 : 0,
-                  z: 20
+                onMouseMove={(e) => handleMouseMove(e, index)}
+                onMouseLeave={() => {
+                  setHoveredCard(null);
+                  setMousePosition({ x: 0, y: 0 });
                 }}
-                style={{ transformStyle: "preserve-3d" }}
+                style={{ 
+                  transformStyle: "preserve-3d",
+                  transform: hoveredCard === index 
+                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)` 
+                    : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+                  transition: 'transform 0.1s ease-out'
+                }}
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
                   index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                 }`}

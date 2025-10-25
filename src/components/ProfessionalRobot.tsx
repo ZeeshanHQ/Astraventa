@@ -8,150 +8,370 @@ interface ProfessionalRobotProps {
 export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isWaving, setIsWaving] = useState(false);
+  const [breathingPhase, setBreathingPhase] = useState(0);
+  const [energyLevel, setEnergyLevel] = useState(0);
 
-  // Calculate eye movement based on mouse position - PERFECT ROTATION
+  // Calculate eye movement based on mouse position - ENHANCED PRECISION
   const eyeMovement = {
-    left: Math.min(Math.max((mousePosition.x - window.innerWidth / 2) / 50, -20), 20),
-    right: Math.min(Math.max((mousePosition.x - window.innerWidth / 2) / 50, -20), 20),
-    vertical: Math.min(Math.max((mousePosition.y - window.innerHeight / 2) / 80, -15), 15),
+    left: Math.min(Math.max((mousePosition.x - window.innerWidth / 2) / 40, -25), 25),
+    right: Math.min(Math.max((mousePosition.x - window.innerWidth / 2) / 40, -25), 25),
+    vertical: Math.min(Math.max((mousePosition.y - window.innerHeight / 2) / 60, -20), 20),
   };
+
+  // Breathing animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBreathingPhase(prev => (prev + 1) % 100);
+      setEnergyLevel(Math.sin(Date.now() * 0.003) * 0.5 + 0.5);
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleClick = () => {
     setIsWaving(true);
     setTimeout(() => setIsWaving(false), 2000);
   };
 
+  const breathingScale = 1 + Math.sin(breathingPhase * 0.1) * 0.02;
+
   return (
     <div className="relative h-full w-full flex items-center justify-center">
       <motion.div
-        className="relative w-[300px] h-[380px] md:w-[350px] md:h-[420px] flex items-center justify-center cursor-pointer"
+        className="relative w-[320px] h-[400px] md:w-[380px] md:h-[450px] flex items-center justify-center cursor-pointer"
         initial={{ opacity: 0, scale: 0.8, y: 50 }}
-        animate={{ opacity: 1, scale: 1, y: [0, -12, 0] }}
+        animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }}
         transition={{
           opacity: { duration: 0.8 },
           scale: { duration: 0.8 },
           y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
         }}
-        whileHover={{ scale: 1.03 }}
+        whileHover={{ scale: 1.05 }}
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         onClick={handleClick}
         style={{ transformStyle: "preserve-3d" }}
       >
-        {/* Main Robot Body - Smart Design with Fat Belly */}
+        {/* Enhanced Energy Field Background */}
         <motion.div
-          className="absolute w-full h-full bg-white rounded-[45%_45%_70%_70%/55%_55%_45%_45%] shadow-2xl"
+          className="absolute inset-0 bg-gradient-radial from-cyan-500/20 via-blue-500/10 to-transparent rounded-full"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+            rotate: [0, 360],
+          }}
+          transition={{
+            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+          }}
+        />
+
+        {/* Main Robot Body - SLIMMER & MORE ELEGANT */}
+        <motion.div
+          className="absolute w-full h-full bg-white rounded-[35%_35%_65%_65%/50%_50%_50%_50%] shadow-2xl"
+          animate={{ scale: breathingScale }}
           style={{
-            background: "linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 25%, #E9ECEF 60%, #DEE2E6 85%, #CED4DA 100%)",
-            boxShadow: "0 25px 60px rgba(0,0,0,0.2), 0 0 100px rgba(0, 212, 255, 0.3), inset 0 3px 0 rgba(255,255,255,0.9)"
+            background: "linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 20%, #E9ECEF 50%, #DEE2E6 80%, #CED4DA 100%)",
+            boxShadow: `
+              0 30px 80px rgba(0,0,0,0.25), 
+              0 0 120px rgba(0, 212, 255, 0.4), 
+              inset 0 4px 0 rgba(255,255,255,0.9),
+              0 0 0 1px rgba(255,255,255,0.1)
+            `
           }}
         >
-          {/* Head/Antenna - Enhanced */}
-          <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[16%] h-[3%] bg-white rounded-t-full shadow-md" />
+          {/* Enhanced Head/Antenna with Holographic Effect */}
+          <div className="absolute top-[2%] left-1/2 -translate-x-1/2 w-[18%] h-[4%] bg-white rounded-t-full shadow-lg" />
           
-          {/* Antenna Tip */}
-          <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[4%] h-[2%] bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full shadow-glow" />
+          {/* Holographic Antenna Tip */}
+          <motion.div
+            className="absolute top-[0.5%] left-1/2 -translate-x-1/2 w-[5%] h-[3%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.8, 1, 0.8],
+              boxShadow: [
+                "0 0 10px #00D4FF",
+                "0 0 20px #00D4FF, 0 0 30px #3B82F6",
+                "0 0 10px #00D4FF"
+              ]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
 
-          {/* Face Screen - Enhanced */}
-          <div className="absolute top-[16%] left-1/2 -translate-x-1/2 w-[56%] h-[20%] bg-gray-900 rounded-full flex items-center justify-center overflow-hidden shadow-inner">
-            {/* Eyes - PERFECT ROTATION with Crescent Shape */}
+          {/* Enhanced Face Screen with Holographic Display */}
+          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[60%] h-[22%] bg-gray-900 rounded-full flex items-center justify-center overflow-hidden shadow-inner">
+            {/* Holographic Grid Background */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10" />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(0,212,255,0.1)_50%,transparent_100%)] bg-[length:20px_20px]" />
+              <div className="absolute inset-0 bg-[linear-gradient(0deg,transparent_0%,rgba(0,212,255,0.1)_50%,transparent_100%)] bg-[length:20px_20px]" />
+            </div>
+
+            {/* Enhanced Eyes with Advanced Tracking */}
             <motion.div
-              className="absolute w-[24%] h-[30%] bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
+              className="absolute w-[26%] h-[35%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
               style={{ 
-                left: '22%', 
-                top: '36%', 
+                left: '20%', 
+                top: '32%', 
                 transform: `translate(${eyeMovement.left}px, ${eyeMovement.vertical}px)`,
-                clipPath: 'polygon(0% 0%, 100% 0%, 100% 75%, 0% 100%)',
-                boxShadow: "0 0 20px #00D4FF, 0 0 40px #00D4FF, inset 0 0 10px rgba(255,255,255,0.3)"
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%)',
+                boxShadow: `
+                  0 0 25px #00D4FF, 
+                  0 0 50px #00D4FF, 
+                  0 0 75px #3B82F6,
+                  inset 0 0 15px rgba(255,255,255,0.4)
+                `
               }}
               animate={{
-                scale: isHovered ? 1.15 : 1,
+                scale: isHovered ? 1.2 : 1,
                 opacity: [0.9, 1, 0.9],
+                filter: isHovered ? "brightness(1.3)" : "brightness(1)",
               }}
               transition={{ 
                 scale: { duration: 0.2 },
-                opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                filter: { duration: 0.3 }
               }}
             />
             <motion.div
-              className="absolute w-[24%] h-[30%] bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
+              className="absolute w-[26%] h-[35%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
               style={{ 
-                right: '22%', 
-                top: '36%', 
+                right: '20%', 
+                top: '32%', 
                 transform: `translate(${eyeMovement.right}px, ${eyeMovement.vertical}px)`,
-                clipPath: 'polygon(0% 0%, 100% 0%, 100% 75%, 0% 100%)',
-                boxShadow: "0 0 20px #00D4FF, 0 0 40px #00D4FF, inset 0 0 10px rgba(255,255,255,0.3)"
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%)',
+                boxShadow: `
+                  0 0 25px #00D4FF, 
+                  0 0 50px #00D4FF, 
+                  0 0 75px #3B82F6,
+                  inset 0 0 15px rgba(255,255,255,0.4)
+                `
               }}
               animate={{
-                scale: isHovered ? 1.15 : 1,
+                scale: isHovered ? 1.2 : 1,
                 opacity: [0.9, 1, 0.9],
+                filter: isHovered ? "brightness(1.3)" : "brightness(1)",
               }}
               transition={{ 
                 scale: { duration: 0.2 },
-                opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                filter: { duration: 0.3 }
               }}
             />
             
-            {/* AI Processing Lines */}
+            {/* Enhanced AI Processing Lines */}
             <motion.div
-              className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[40%] h-[1%] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
+              className="absolute bottom-[6%] left-1/2 -translate-x-1/2 w-[45%] h-[1.5%] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
               animate={{
                 opacity: [0, 1, 0],
+                scaleX: [0, 1, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            
+            {/* Additional Processing Indicators */}
+            <motion.div
+              className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[35%] h-[0.5%] bg-gradient-to-r from-transparent via-blue-400 to-transparent"
+              animate={{
+                opacity: [0, 0.7, 0],
                 scaleX: [0, 1, 0],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut",
+                delay: 0.5,
               }}
             />
           </div>
 
-          {/* Ears/Antennae - Enhanced Teal */}
-          <div className="absolute top-[20%] left-[3%] w-[7%] h-[10%] bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full rotate-12 shadow-md" />
-          <div className="absolute top-[20%] right-[3%] w-[7%] h-[10%] bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full -rotate-12 shadow-md" />
-
-          {/* Torso Detail - Enhanced Teal Pouch */}
-          <div className="absolute top-[50%] left-1/2 -translate-x-1/2 w-[32%] h-[10%] bg-gradient-to-r from-teal-400/90 to-cyan-400/90 rounded-full shadow-md" />
-
-          {/* Lower Body Line - Enhanced Dark Blue */}
-          <div className="absolute bottom-[10%] left-0 w-full h-[3%] bg-gradient-to-r from-blue-700 to-blue-800 shadow-sm" />
-
-          {/* Arms - Enhanced with Wave Animation */}
+          {/* Enhanced Ears/Antennae with Energy Flow */}
           <motion.div
-            className="absolute w-[16%] h-[26%] bg-white rounded-full shadow-lg"
-            style={{ left: '-3%', top: '36%', transformOrigin: 'top right' }}
+            className="absolute top-[18%] left-[2%] w-[8%] h-[12%] bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full rotate-12 shadow-lg"
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute top-[18%] right-[2%] w-[8%] h-[12%] bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full -rotate-12 shadow-lg"
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.3,
+            }}
+          />
+
+          {/* Enhanced Torso Detail with Energy Core */}
+          <motion.div
+            className="absolute top-[48%] left-1/2 -translate-x-1/2 w-[35%] h-[12%] bg-gradient-to-r from-teal-400/90 via-cyan-400/90 to-blue-500/90 rounded-full shadow-lg"
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0.9, 1, 0.9],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* Enhanced Lower Body with Energy Strip */}
+          <div className="absolute bottom-[8%] left-0 w-full h-[4%] bg-gradient-to-r from-blue-700 via-blue-800 to-purple-800 shadow-lg" />
+
+          {/* Enhanced Arms with Advanced Animation */}
+          <motion.div
+            className="absolute w-[18%] h-[28%] bg-white rounded-full shadow-xl"
+            style={{ left: '-4%', top: '34%', transformOrigin: 'top right' }}
             animate={{ 
-              rotate: isWaving ? [0, -25, 0, -25, 0] : (isHovered ? [0, -8, 0] : 0),
-              y: isHovered ? -2 : 0
+              rotate: isWaving ? [0, -30, 0, -30, 0] : (isHovered ? [0, -10, 0] : [0, 2, -2, 0]),
+              y: isHovered ? -3 : 0,
+              scale: isHovered ? 1.05 : 1,
             }}
             transition={{ 
-              duration: isWaving ? 2 : 0.6, 
+              duration: isWaving ? 2 : 0.8, 
               ease: "easeInOut",
               repeat: isWaving ? 1 : Infinity
             }}
           />
           <motion.div
-            className="absolute w-[16%] h-[26%] bg-white rounded-full shadow-lg"
-            style={{ right: '-3%', top: '36%', transformOrigin: 'top left' }}
+            className="absolute w-[18%] h-[28%] bg-white rounded-full shadow-xl"
+            style={{ right: '-4%', top: '34%', transformOrigin: 'top left' }}
             animate={{ 
-              rotate: isWaving ? [0, 25, 0, 25, 0] : (isHovered ? [0, 8, 0] : 0),
-              y: isHovered ? -2 : 0
+              rotate: isWaving ? [0, 30, 0, 30, 0] : (isHovered ? [0, 10, 0] : [0, -2, 2, 0]),
+              y: isHovered ? -3 : 0,
+              scale: isHovered ? 1.05 : 1,
             }}
             transition={{ 
-              duration: isWaving ? 2 : 0.6, 
+              duration: isWaving ? 2 : 0.8, 
               ease: "easeInOut",
               repeat: isWaving ? 1 : Infinity
+            }}
+          />
+
+          {/* Energy Flow Lines */}
+          <motion.div
+            className="absolute top-[25%] left-[15%] w-[2%] h-[15%] bg-gradient-to-b from-cyan-400 to-transparent rounded-full"
+            animate={{
+              opacity: [0, 1, 0],
+              scaleY: [0, 1, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.2,
+            }}
+          />
+          <motion.div
+            className="absolute top-[25%] right-[15%] w-[2%] h-[15%] bg-gradient-to-b from-cyan-400 to-transparent rounded-full"
+            animate={{
+              opacity: [0, 1, 0],
+              scaleY: [0, 1, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.8,
             }}
           />
         </motion.div>
 
-        {/* Enhanced Glow Effect */}
+        {/* Enhanced Multi-Layer Glow Effect */}
         <motion.div
-          className="absolute inset-0 bg-gradient-radial from-primary/15 via-transparent to-transparent rounded-[50%_50%_60%_60%/60%_60%_40%_40%]"
+          className="absolute inset-0 bg-gradient-radial from-cyan-500/20 via-blue-500/10 to-transparent rounded-full"
           animate={{
-            scale: [1, 1.08, 1],
-            opacity: [0.2, 0.4, 0.2],
+            scale: [1, 1.15, 1],
+            opacity: [0.3, 0.6, 0.3],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Advanced Floating Particles System */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-sm"
+              animate={{
+                x: Math.sin(i * 0.5 + Date.now() * 0.001) * (50 + i * 4),
+                y: Math.cos(i * 0.5 + Date.now() * 0.001) * (50 + i * 4),
+                opacity: [0, 0.9, 0],
+                scale: [0.3, 1.5, 0.3],
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 5 + i * 0.4,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.2,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Holographic Data Streams */}
+        <motion.div
+          className="absolute -top-8 left-1/2 -translate-x-1/2 w-1 h-12 bg-gradient-to-b from-transparent via-cyan-400 to-transparent"
+          animate={{
+            opacity: [0, 1, 0],
+            scaleY: [0, 1, 0],
+            rotate: [0, 5, -5, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Enhanced Speech Bubble with Holographic Effect */}
+        {isWaving && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+            className="absolute -top-20 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-md px-6 py-3 rounded-2xl border border-cyan-400/50 shadow-glow whitespace-nowrap"
+            style={{
+              boxShadow: "0 0 30px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1)"
+            }}
+          >
+            <span className="text-sm font-medium text-foreground">Hello! 👋</span>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-6 border-r-6 border-t-6 border-card/95 border-l-transparent border-r-transparent"></div>
+          </motion.div>
+        )}
+
+        {/* Energy Pulse Rings */}
+        <motion.div
+          className="absolute inset-0 border-2 border-cyan-400/30 rounded-full"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.5, 0, 0.5],
           }}
           transition={{
             duration: 3,
@@ -159,42 +379,19 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
             ease: "easeInOut",
           }}
         />
-
-        {/* Floating Particles - Subtle */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1.5 h-1.5 bg-primary/40 rounded-full blur-sm"
-              animate={{
-                x: Math.sin(i * 0.8 + Date.now() * 0.001) * (40 + i * 3),
-                y: Math.cos(i * 0.8 + Date.now() * 0.001) * (40 + i * 3),
-                opacity: [0, 0.8, 0],
-                scale: [0.5, 1.2, 0.5],
-              }}
-              transition={{
-                duration: 4 + i * 0.3,
-                repeat: Infinity,
-                ease: "linear",
-                delay: i * 0.3,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Speech Bubble */}
-        {isWaving && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            className="absolute -top-16 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm px-4 py-2 rounded-xl border border-primary/50 shadow-glow whitespace-nowrap"
-          >
-            <span className="text-sm font-medium text-foreground">Hello! 👋</span>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-card/95 border-l-transparent border-r-transparent"></div>
-          </motion.div>
-        )}
+        <motion.div
+          className="absolute inset-0 border border-blue-400/20 rounded-full"
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 0, 0.3],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
       </motion.div>
     </div>
   );

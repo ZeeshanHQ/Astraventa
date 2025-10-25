@@ -1,18 +1,19 @@
 import { motion } from "framer-motion";
+import { Bot, Brain, Zap, Square, Search, Cloud, Circle, MessageSquare, BarChart3, CreditCard, ShoppingCart } from "lucide-react";
 
 const logos = [
-  { name: "OpenAI", color: "#10A37F", icon: "🤖" },
-  { name: "Anthropic", color: "#D97706", icon: "🧠" },
-  { name: "Zapier", color: "#FF4A00", icon: "⚡" },
-  { name: "Microsoft", color: "#0078D4", icon: "🔷" },
-  { name: "Google AI", color: "#4285F4", icon: "🔍" },
-  { name: "Salesforce", color: "#00A1E0", icon: "☁️" },
-  { name: "AWS", color: "#FF9900", icon: "☁️" },
-  { name: "Azure", color: "#0078D4", icon: "🔵" },
-  { name: "Slack", color: "#4A154B", icon: "💬" },
-  { name: "HubSpot", color: "#FF7A59", icon: "📊" },
-  { name: "Stripe", color: "#635BFF", icon: "💳" },
-  { name: "Shopify", color: "#96BF48", icon: "🛒" },
+  { name: "OpenAI", color: "#10A37F", icon: Bot },
+  { name: "Anthropic", color: "#D97706", icon: Brain },
+  { name: "Zapier", color: "#FF4A00", icon: Zap },
+  { name: "Microsoft", color: "#0078D4", icon: Square },
+  { name: "Google AI", color: "#4285F4", icon: Search },
+  { name: "Salesforce", color: "#00A1E0", icon: Cloud },
+  { name: "AWS", color: "#FF9900", icon: Cloud },
+  { name: "Azure", color: "#0078D4", icon: Circle },
+  { name: "Slack", color: "#4A154B", icon: MessageSquare },
+  { name: "HubSpot", color: "#FF7A59", icon: BarChart3 },
+  { name: "Stripe", color: "#635BFF", icon: CreditCard },
+  { name: "Shopify", color: "#96BF48", icon: ShoppingCart },
 ];
 
 export const AIStack = () => {
@@ -55,13 +56,13 @@ export const AIStack = () => {
                 >
                   <div className="text-center">
                     <div 
-                      className="w-12 h-12 rounded-lg mb-3 mx-auto glow-pulse flex items-center justify-center text-2xl"
+                      className="w-12 h-12 rounded-lg mb-3 mx-auto glow-pulse flex items-center justify-center"
                       style={{ 
                         background: `linear-gradient(135deg, ${logo.color}40, ${logo.color}20)`,
                         boxShadow: `0 0 20px ${logo.color}40`
                       }}
                     >
-                      {logo.icon}
+                      <logo.icon className="w-6 h-6" style={{ color: logo.color }} />
                     </div>
                     <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground smooth-transition">
                       {logo.name}

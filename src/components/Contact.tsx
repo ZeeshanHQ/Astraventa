@@ -488,7 +488,7 @@ export const Contact = () => {
                 transition={{ duration: 0.4 }}
                 className="absolute -top-24 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm px-6 py-3 rounded-xl border border-primary/50 shadow-glow"
               >
-                <p className="text-sm text-foreground font-medium">Hello! I'm here to help! 👋</p>
+                <p className="text-sm text-foreground font-medium">Hello! I'm here to help!</p>
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-card/95"></div>
               </motion.div>
             </motion.div>

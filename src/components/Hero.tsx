@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { ProfessionalRobot } from "./ProfessionalRobot";
 import { TypingAnimation } from "./TypingAnimation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 
 export const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

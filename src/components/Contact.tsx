@@ -5,8 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Send, Bot, Sparkles, Zap, Phone, MapPin, Clock, CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { Mail, Send, Bot, Sparkles, Zap, Phone, MapPin, Clock, CheckCircle, Keyboard } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ChatbotModal } from "./ChatbotModal";
 
@@ -26,6 +26,24 @@ export const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Keyboard shortcut for AI chatbot
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Ctrl+Shift+A to open AI chatbot
+      if (event.ctrlKey && event.shiftKey && event.key === 'A') {
+        event.preventDefault();
+        setIsChatbotOpen(true);
+        toast({
+          title: "AI Assistant Activated!",
+          description: "Press Ctrl+Shift+A anytime to open the AI chatbot.",
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [toast]);
 
   const services = [
     "AI Chatbots & Virtual Assistants",
@@ -506,7 +524,11 @@ export const Contact = () => {
               >
                 <div className="text-center">
                   <p className="text-sm text-foreground font-medium mb-1">🤖 AI Assistant</p>
-                  <p className="text-xs text-muted-foreground">Click to start chatting!</p>
+                  <p className="text-xs text-muted-foreground mb-1">Click to start chatting!</p>
+                  <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
+                    <Keyboard className="w-3 h-3" />
+                    <span>Ctrl+Shift+A</span>
+                  </div>
                 </div>
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-card/95"></div>
               </motion.div>

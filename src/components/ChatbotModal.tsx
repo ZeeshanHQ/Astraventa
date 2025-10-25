@@ -183,6 +183,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end justify-end p-4 md:p-6"
+          style={{ zIndex: 9999 }}
           onClick={onClose}
         >
           <motion.div
@@ -190,34 +191,34 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="w-full max-w-sm bg-card rounded-2xl shadow-glow-lg border border-border/50 overflow-hidden"
+            className="w-full max-w-xs bg-card rounded-2xl shadow-glow-lg border border-border/50 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Enhanced Header */}
-            <div className="bg-gradient-to-r from-primary to-secondary p-3 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-white" />
+            <div className="bg-gradient-to-r from-primary to-secondary p-2.5 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">Astraventa AI</h3>
+                  <h3 className="font-semibold text-white text-sm">Astraventa AI</h3>
                   <p className="text-xs text-white/80 flex items-center gap-1">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                     Online now
                   </p>
                 </div>
               </div>
               <button
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+                className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
               >
-                <X className="w-4 h-4 text-white" />
+                <X className="w-3.5 h-3.5 text-white" />
               </button>
             </div>
 
             {/* Enhanced Messages */}
             <div 
-              className="h-72 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-background to-muted/20"
+              className="h-64 overflow-y-auto p-3 space-y-3 bg-gradient-to-b from-background to-muted/20"
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
             >
@@ -229,27 +230,27 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
                   className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}
                 >
                   <div
-                    className={`max-w-[85%] p-3 rounded-2xl ${
+                    className={`max-w-[80%] p-2.5 rounded-xl ${
                       msg.isBot
                         ? 'bg-muted/50 text-foreground border border-border/30'
                         : 'bg-gradient-to-r from-primary to-secondary text-white'
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-line">{msg.text}</p>
+                    <p className="text-xs whitespace-pre-line leading-relaxed">{msg.text}</p>
                     <p className="text-xs opacity-70 mt-1">
                       {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                     
                     {/* Action Buttons */}
                     {msg.actions && (
-                      <div className="flex flex-wrap gap-2 mt-3">
+                      <div className="flex flex-wrap gap-1.5 mt-2">
                         {msg.actions.map((action, index) => {
                           const Icon = action.icon;
                           return (
                             <button
                               key={index}
                               onClick={() => handleAction(action.action)}
-                              className="flex items-center gap-1 text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+                              className="flex items-center gap-1 text-xs px-2 py-1 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
                             >
                               <Icon className="w-3 h-3" />
                               {action.text}
@@ -286,14 +287,14 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
             </div>
 
             {/* Enhanced Quick Questions */}
-            <div className="p-3 border-t border-border/50 bg-muted/20">
+            <div className="p-2.5 border-t border-border/50 bg-muted/20">
               <p className="text-xs text-muted-foreground mb-2 font-medium">Quick questions:</p>
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                {quickQuestions.map((question, index) => (
+              <div className="flex flex-wrap gap-1 mb-2.5">
+                {quickQuestions.slice(0, 4).map((question, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickQuestion(question)}
-                    className="text-xs px-2.5 py-1.5 rounded-full bg-card/80 hover:bg-primary/10 hover:text-primary border border-border/30 text-foreground transition-all duration-200"
+                    className="text-xs px-2 py-1 rounded-full bg-card/80 hover:bg-primary/10 hover:text-primary border border-border/30 text-foreground transition-all duration-200"
                   >
                     {question}
                   </button>
@@ -301,26 +302,26 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
               </div>
 
               {/* Enhanced Input */}
-              <div className="flex gap-2 items-end">
+              <div className="flex gap-1.5 items-end">
                 <Input
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Type your message..."
-                  className="flex-1 bg-card/50 border-primary/30 focus:border-primary h-10"
+                  className="flex-1 bg-card/50 border-primary/30 focus:border-primary h-9 text-sm"
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                 />
                 <Button
                   onClick={handleSendMessage}
                   size="sm"
-                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 h-10 w-10 p-0"
+                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 h-9 w-9 p-0"
                   disabled={!message.trim()}
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-3.5 h-3.5" />
                 </Button>
               </div>
               
               {/* Footer */}
-              <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+              <div className="flex items-center gap-1.5 mt-1.5 text-xs text-muted-foreground">
                 <CheckCircle className="w-3 h-3 text-green-500" />
                 <span>We respond within 2 hours</span>
               </div>

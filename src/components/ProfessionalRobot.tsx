@@ -37,7 +37,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
   return (
     <div className="relative h-full w-full flex items-center justify-center">
       <motion.div
-        className="relative w-[320px] h-[400px] md:w-[380px] md:h-[450px] flex items-center justify-center cursor-pointer"
+        className="relative w-[280px] h-[350px] md:w-[320px] md:h-[380px] flex items-center justify-center cursor-pointer"
         initial={{ opacity: 0, scale: 0.8, y: 50 }}
         animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }}
         transition={{
@@ -66,16 +66,16 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
           }}
         />
 
-        {/* Main Robot Body - SLIMMER & MORE ELEGANT */}
+        {/* Main Robot Body - HANDSOME & AESTHETIC */}
         <motion.div
-          className="absolute w-full h-full bg-white rounded-[35%_35%_65%_65%/50%_50%_50%_50%] shadow-2xl"
+          className="absolute w-full h-full bg-white rounded-[30%_30%_70%_70%/45%_45%_55%_55%] shadow-2xl"
           animate={{ scale: breathingScale }}
           style={{
-            background: "linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 20%, #E9ECEF 50%, #DEE2E6 80%, #CED4DA 100%)",
+            background: "linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 15%, #E9ECEF 40%, #DEE2E6 70%, #CED4DA 100%)",
             boxShadow: `
-              0 30px 80px rgba(0,0,0,0.25), 
-              0 0 120px rgba(0, 212, 255, 0.4), 
-              inset 0 4px 0 rgba(255,255,255,0.9),
+              0 25px 60px rgba(0,0,0,0.2), 
+              0 0 80px rgba(0, 212, 255, 0.3), 
+              inset 0 3px 0 rgba(255,255,255,0.9),
               0 0 0 1px rgba(255,255,255,0.1)
             `
           }}
@@ -103,7 +103,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
           />
 
           {/* Enhanced Face Screen with Holographic Display */}
-          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[60%] h-[22%] bg-gray-900 rounded-full flex items-center justify-center overflow-hidden shadow-inner">
+          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[55%] h-[20%] bg-gray-900 rounded-full flex items-center justify-center overflow-hidden shadow-inner">
             {/* Holographic Grid Background */}
             <div className="absolute inset-0 opacity-20">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10" />
@@ -113,23 +113,23 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
 
             {/* Enhanced Eyes with Advanced Tracking */}
             <motion.div
-              className="absolute w-[26%] h-[35%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
+              className="absolute w-[24%] h-[32%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
               style={{ 
-                left: '20%', 
-                top: '32%', 
+                left: '22%', 
+                top: '34%', 
                 transform: `translate(${eyeMovement.left}px, ${eyeMovement.vertical}px)`,
-                clipPath: 'polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%)',
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%)',
                 boxShadow: `
-                  0 0 25px #00D4FF, 
-                  0 0 50px #00D4FF, 
-                  0 0 75px #3B82F6,
-                  inset 0 0 15px rgba(255,255,255,0.4)
+                  0 0 20px #00D4FF, 
+                  0 0 40px #00D4FF, 
+                  0 0 60px #3B82F6,
+                  inset 0 0 12px rgba(255,255,255,0.4)
                 `
               }}
               animate={{
-                scale: isHovered ? 1.2 : 1,
+                scale: isHovered ? 1.15 : 1,
                 opacity: [0.9, 1, 0.9],
-                filter: isHovered ? "brightness(1.3)" : "brightness(1)",
+                filter: isHovered ? "brightness(1.2)" : "brightness(1)",
               }}
               transition={{ 
                 scale: { duration: 0.2 },
@@ -138,23 +138,23 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
               }}
             />
             <motion.div
-              className="absolute w-[26%] h-[35%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
+              className="absolute w-[24%] h-[32%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
               style={{ 
-                right: '20%', 
-                top: '32%', 
+                right: '22%', 
+                top: '34%', 
                 transform: `translate(${eyeMovement.right}px, ${eyeMovement.vertical}px)`,
-                clipPath: 'polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%)',
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%)',
                 boxShadow: `
-                  0 0 25px #00D4FF, 
-                  0 0 50px #00D4FF, 
-                  0 0 75px #3B82F6,
-                  inset 0 0 15px rgba(255,255,255,0.4)
+                  0 0 20px #00D4FF, 
+                  0 0 40px #00D4FF, 
+                  0 0 60px #3B82F6,
+                  inset 0 0 12px rgba(255,255,255,0.4)
                 `
               }}
               animate={{
-                scale: isHovered ? 1.2 : 1,
+                scale: isHovered ? 1.15 : 1,
                 opacity: [0.9, 1, 0.9],
-                filter: isHovered ? "brightness(1.3)" : "brightness(1)",
+                filter: isHovered ? "brightness(1.2)" : "brightness(1)",
               }}
               transition={{ 
                 scale: { duration: 0.2 },
@@ -195,9 +195,9 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
 
           {/* Enhanced Ears/Antennae with Energy Flow */}
           <motion.div
-            className="absolute top-[18%] left-[2%] w-[8%] h-[12%] bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full rotate-12 shadow-lg"
+            className="absolute top-[16%] left-[3%] w-[7%] h-[10%] bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full rotate-12 shadow-lg"
             animate={{
-              scale: [1, 1.1, 1],
+              scale: [1, 1.05, 1],
               opacity: [0.8, 1, 0.8],
             }}
             transition={{
@@ -207,9 +207,9 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
             }}
           />
           <motion.div
-            className="absolute top-[18%] right-[2%] w-[8%] h-[12%] bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full -rotate-12 shadow-lg"
+            className="absolute top-[16%] right-[3%] w-[7%] h-[10%] bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full -rotate-12 shadow-lg"
             animate={{
-              scale: [1, 1.1, 1],
+              scale: [1, 1.05, 1],
               opacity: [0.8, 1, 0.8],
             }}
             transition={{
@@ -239,12 +239,12 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
 
           {/* Enhanced Arms with Advanced Animation */}
           <motion.div
-            className="absolute w-[18%] h-[28%] bg-white rounded-full shadow-xl"
-            style={{ left: '-4%', top: '34%', transformOrigin: 'top right' }}
+            className="absolute w-[16%] h-[25%] bg-white rounded-full shadow-xl"
+            style={{ left: '-3%', top: '36%', transformOrigin: 'top right' }}
             animate={{ 
-              rotate: isWaving ? [0, -30, 0, -30, 0] : (isHovered ? [0, -10, 0] : [0, 2, -2, 0]),
-              y: isHovered ? -3 : 0,
-              scale: isHovered ? 1.05 : 1,
+              rotate: isWaving ? [0, -25, 0, -25, 0] : (isHovered ? [0, -8, 0] : [0, 1, -1, 0]),
+              y: isHovered ? -2 : 0,
+              scale: isHovered ? 1.03 : 1,
             }}
             transition={{ 
               duration: isWaving ? 2 : 0.8, 
@@ -253,12 +253,12 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
             }}
           />
           <motion.div
-            className="absolute w-[18%] h-[28%] bg-white rounded-full shadow-xl"
-            style={{ right: '-4%', top: '34%', transformOrigin: 'top left' }}
+            className="absolute w-[16%] h-[25%] bg-white rounded-full shadow-xl"
+            style={{ right: '-3%', top: '36%', transformOrigin: 'top left' }}
             animate={{ 
-              rotate: isWaving ? [0, 30, 0, 30, 0] : (isHovered ? [0, 10, 0] : [0, -2, 2, 0]),
-              y: isHovered ? -3 : 0,
-              scale: isHovered ? 1.05 : 1,
+              rotate: isWaving ? [0, 25, 0, 25, 0] : (isHovered ? [0, 8, 0] : [0, -1, 1, 0]),
+              y: isHovered ? -2 : 0,
+              scale: isHovered ? 1.03 : 1,
             }}
             transition={{ 
               duration: isWaving ? 2 : 0.8, 

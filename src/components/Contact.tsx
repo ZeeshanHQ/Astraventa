@@ -389,6 +389,8 @@ export const Contact = () => {
                   transition={{ duration: 0.4 }}
                   className="w-40 h-40 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow-lg relative overflow-hidden cursor-pointer"
                   onClick={() => setIsChatbotOpen(true)}
+                  onMouseDown={() => setIsChatbotOpen(true)}
+                  onTouchStart={() => setIsChatbotOpen(true)}
                 >
                   <Bot className="w-20 h-20 text-white z-10" />
                   

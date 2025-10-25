@@ -186,6 +186,31 @@ All colors MUST be HSL.
     will-change: transform, opacity;
   }
 
+  /* Hardware acceleration for all interactive elements */
+  .glass-card, .motion-div, [data-framer-motion] {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimize image loading */
+  img {
+    content-visibility: auto;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Critical CSS for above-the-fold content */
+  .hero-section {
+    contain: layout style paint;
+  }
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;

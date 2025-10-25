@@ -15,7 +15,9 @@ import {
   Users,
   TrendingUp
 } from "lucide-react";
-import { useState } from "react";
+import { memo } from "react";
+import { OptimizedImage } from "./OptimizedImage";
+import { useTiltEffect } from "@/hooks/usePerformance";
 
 const services = [
   {
@@ -149,23 +151,93 @@ const processSteps = [
   }
 ];
 
-export const ProfessionalServices = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const ServiceCard = memo(({ service, index }: {
+  service: any;
+  index: number;
+}) => {
+  const Icon = service.icon;
+  const { handleMouseMove, handleMouseLeave, tiltStyle, getTiltTransform } = useTiltEffect();
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      onMouseMove={(e) => handleMouseMove(e, index)}
+      onMouseLeave={handleMouseLeave}
+      style={{ 
+        ...tiltStyle,
+        transform: getTiltTransform(index)
+      }}
+    >
+      <Card className="h-full glass-card border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-glow-lg overflow-hidden">
+        {/* Service Image */}
+        <div className="relative h-48 overflow-hidden">
+          <OptimizedImage
+            src={service.image}
+            alt={service.title}
+            width={400}
+            height={192}
+            className="w-full h-full group-hover:scale-110 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="absolute top-4 left-4">
+            <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}>
+              <Icon className="w-6 h-6 text-white" />
+            </div>
+          </div>
+        </div>
+        
+        <CardHeader className="pb-4">
+          <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
+          <CardDescription className="text-base leading-relaxed">
+            {service.description}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Features */}
+          <div className="space-y-3">
+            {service.features.map((feature: string, featureIndex: number) => (
+              <div key={featureIndex} className="flex items-center gap-3">
+                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                <span className="text-sm text-muted-foreground">{feature}</span>
+              </div>
+            ))}
+          </div>
 
-  const handleMouseMove = (e: React.MouseEvent, index: number) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = ((y - centerY) / centerY) * -10;
-    const rotateY = ((x - centerX) / centerX) * 10;
-    
-    setMousePosition({ x: rotateY, y: rotateX });
-    setHoveredCard(index);
-  };
+          {/* Info */}
+          <div className="pt-4 border-t border-border/50 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">Delivery Time:</span>
+              <span className="font-semibold">{service.delivery}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">Successfully Deployed:</span>
+              <span className="font-semibold text-green-500">{service.clients}</span>
+            </div>
+          </div>
+
+          <Button 
+            className="w-full group" 
+            variant="outline"
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+          >
+            Get Started
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+});
+
+export const ProfessionalServices = () => {
 
   return (
     <section id="services" className="py-32 relative overflow-hidden">
@@ -198,91 +270,13 @@ export const ProfessionalServices = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onMouseMove={(e) => handleMouseMove(e, index)}
-                onMouseLeave={() => {
-                  setHoveredCard(null);
-                  setMousePosition({ x: 0, y: 0 });
-                }}
-                style={{ 
-                  transformStyle: "preserve-3d",
-                  transform: hoveredCard === index 
-                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.02)` 
-                    : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-                  transition: 'transform 0.1s ease-out'
-                }}
-              >
-                <Card className="h-full glass-card border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-glow-lg overflow-hidden">
-                  {/* Service Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}>
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <CardHeader className="pb-4">
-                    <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
-                    <CardDescription className="text-base leading-relaxed">
-                      {service.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    {/* Features */}
-                    <div className="space-y-3">
-                      {service.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-3">
-                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Info */}
-                    <div className="pt-4 border-t border-border/50 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Delivery Time:</span>
-                        <span className="font-semibold">{service.delivery}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Successfully Deployed:</span>
-                        <span className="font-semibold text-green-500">{service.clients}</span>
-                      </div>
-                    </div>
-
-                    <Button 
-                      className="w-full group" 
-                      variant="outline"
-                      onClick={() => {
-                        const element = document.getElementById('contact');
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                      }}
-                    >
-                      Get Started
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              service={service}
+              index={index}
+            />
+          ))}
         </div>
 
         {/* Process Section */}

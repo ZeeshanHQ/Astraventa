@@ -216,7 +216,11 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
             </div>
 
             {/* Enhanced Messages */}
-            <div className="h-72 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-background to-muted/20">
+            <div 
+              className="h-72 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-background to-muted/20"
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}

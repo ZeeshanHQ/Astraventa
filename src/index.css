@@ -211,9 +211,95 @@ All colors MUST be HSL.
     contain: layout style paint;
   }
 
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
+  /* Device-specific optimizations */
+  .low-end-device {
+    /* Disable expensive effects */
+    * {
+      animation-duration: 0.1s !important;
+      transition-duration: 0.1s !important;
+      backdrop-filter: none !important;
+    }
+    
+    .glass-card {
+      background: rgba(0, 0, 0, 0.1) !important;
+      backdrop-filter: none !important;
+    }
+    
+    .neon-glow, .neon-glow-lg {
+      box-shadow: none !important;
+    }
+    
+    /* Reduce image quality */
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+
+  .mobile-device {
+    /* Mobile-specific optimizations */
+    .glass-card {
+      backdrop-filter: blur(10px);
+    }
+    
+    /* Touch-friendly sizing */
+    button, .clickable {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Optimize scrolling */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  .slow-connection {
+    /* Disable non-essential features */
+    .animated-gradient {
+      animation: none;
+    }
+    
+    .float-animation {
+      animation: none;
+    }
+    
+    .glow-pulse {
+      animation: none;
+    }
+    
+    /* Reduce image loading */
+    img {
+      loading: lazy;
+    }
+  }
+
+  /* Progressive enhancement */
+  @supports (backdrop-filter: blur(10px)) {
+    .glass-card {
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  @supports not (backdrop-filter: blur(10px)) {
+    .glass-card {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Memory optimization */
+  .memory-optimized {
+    contain: layout style paint;
+    content-visibility: auto;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* Custom scrollbar */

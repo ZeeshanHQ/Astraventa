@@ -13,6 +13,7 @@ import { ChatbotModal } from "./ChatbotModal";
 export const Contact = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -383,14 +384,27 @@ export const Contact = () => {
                 <motion.div
                   animate={{
                     y: isHovered ? -15 : 0,
-                    scale: isHovered ? 1.15 : 1,
+                    scale: isClicked ? 0.95 : (isHovered ? 1.15 : 1),
                     rotateY: isHovered ? 10 : 0,
                   }}
-                  transition={{ duration: 0.4 }}
-                  className="w-40 h-40 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow-lg relative overflow-hidden cursor-pointer"
-                  onClick={() => setIsChatbotOpen(true)}
-                  onMouseDown={() => setIsChatbotOpen(true)}
-                  onTouchStart={() => setIsChatbotOpen(true)}
+                  transition={{ duration: 0.2 }}
+                  className="w-40 h-40 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow-lg relative overflow-hidden cursor-pointer select-none"
+                  onClick={() => {
+                    setIsClicked(true);
+                    setIsChatbotOpen(true);
+                    setTimeout(() => setIsClicked(false), 200);
+                  }}
+                  onMouseDown={() => {
+                    setIsClicked(true);
+                    setIsChatbotOpen(true);
+                    setTimeout(() => setIsClicked(false), 200);
+                  }}
+                  onTouchStart={() => {
+                    setIsClicked(true);
+                    setIsChatbotOpen(true);
+                    setTimeout(() => setIsClicked(false), 200);
+                  }}
+                  style={{ touchAction: 'manipulation' }}
                 >
                   <Bot className="w-20 h-20 text-white z-10" />
                   
@@ -488,9 +502,12 @@ export const Contact = () => {
                   y: isHovered ? -10 : 0,
                 }}
                 transition={{ duration: 0.4 }}
-                className="absolute -top-24 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm px-6 py-3 rounded-xl border border-primary/50 shadow-glow"
+                className="absolute -top-28 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm px-6 py-4 rounded-xl border border-primary/50 shadow-glow"
               >
-                <p className="text-sm text-foreground font-medium">Hello! I'm here to help!</p>
+                <div className="text-center">
+                  <p className="text-sm text-foreground font-medium mb-1">🤖 AI Assistant</p>
+                  <p className="text-xs text-muted-foreground">Click to start chatting!</p>
+                </div>
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-card/95"></div>
               </motion.div>
             </motion.div>

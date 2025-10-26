@@ -18,25 +18,14 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Performance optimizations
     target: 'esnext',
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        passes: 2,
-      },
-      mangle: {
-        safari10: true,
-      },
-    },
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           framer: ['framer-motion'],
           ui: ['lucide-react'],
-          utils: ['lodash-es', 'date-fns'],
+          utils: ['date-fns'],
         },
         // Optimize chunk names
         chunkFileNames: (chunkInfo) => {

@@ -28,7 +28,7 @@ export const FloatingButtons = () => {
     "See our portfolio!"
   ];
 
-  const whatsappNumber = "+1234567890"; // Replace with your WhatsApp number
+  const whatsappNumber = "+923055255838"; // Your WhatsApp number
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,18 +54,18 @@ export const FloatingButtons = () => {
 
   return (
     <div className="fixed right-6 bottom-6 z-40">
-      {/* Notification above chatbot */}
+      {/* Horizontal Smart WhatsApp Popup */}
       <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+        initial={{ opacity: 0, x: 20, scale: 0.9 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
         key={currentNotification}
-        className="absolute -top-20 right-0 bg-gradient-to-r from-primary/20 to-secondary/20 backdrop-blur-md px-4 py-3 rounded-2xl border border-primary/30 shadow-glow-lg text-sm text-foreground max-w-xs"
+        className="absolute -top-16 right-0 bg-gradient-to-r from-green-500/90 to-green-600/90 backdrop-blur-md px-3 py-2 rounded-full border border-green-400/30 shadow-lg text-xs text-white max-w-xs"
       >
         <div className="flex items-center gap-2">
-          <Bell className="w-4 h-4 text-accent animate-pulse" />
-          <span className="font-medium">{notifications[currentNotification]}</span>
+          <WhatsAppIcon className="w-3 h-3 text-white" />
+          <span className="font-medium truncate">{notifications[currentNotification]}</span>
         </div>
-        <div className="absolute bottom-0 right-6 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-primary/20"></div>
+        <div className="absolute bottom-0 right-4 translate-y-full w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-green-500/90"></div>
       </motion.div>
 
       <div className="glass-card rounded-full px-2 py-2 flex items-center gap-2 border border-border/60">
@@ -106,11 +106,11 @@ export const FloatingButtons = () => {
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.96 }}
           onClick={() => window.open(`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`, '_blank')}
-          className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white shadow-glow relative"
+          className="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white shadow-glow relative"
           aria-label="WhatsApp Chat"
         >
           {/* Professional Lucid WhatsApp Icon */}
-          <WhatsAppIcon className="w-6 h-6" />
+          <WhatsAppIcon className="w-7 h-7" />
           {/* Live indicator */}
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}

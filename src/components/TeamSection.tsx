@@ -101,7 +101,7 @@ const achievements = [
 
 export const TeamSection = () => {
   return (
-    <section id="team" className="py-32 relative overflow-hidden">
+    <section id="team" className="py-20 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/5 to-background" />
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />

@@ -17,8 +17,8 @@ const Contact = lazy(() => import("@/components/Contact").then(module => ({ defa
 
 // Optimized loading component
 const ComponentLoader = () => (
-  <div className="flex items-center justify-center py-16">
-    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+  <div className="flex items-center justify-center py-8">
+    <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
 

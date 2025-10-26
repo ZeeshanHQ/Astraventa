@@ -71,7 +71,7 @@ export const Hero = () => {
         />
       </div>
       
-      <div className="container relative z-10 mx-auto px-4 pt-20 pb-32">
+      <div className="container relative z-10 mx-auto px-4 pt-8 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Left Side - Content */}
           <motion.div
@@ -98,7 +98,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight tracking-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight"
             >
               <span className="gradient-text">Astraventa</span>{" "}
               <br className="sm:hidden" />
@@ -120,7 +120,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
             >
               Transform your business with custom AI chatbots, web automation, and intelligent integrations. 
               We deliver enterprise-grade solutions that increase efficiency by 95% and reduce operational costs by 60%.
@@ -168,7 +168,7 @@ export const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[600px] lg:h-[700px]"
+            className="relative h-[500px] lg:h-[600px]"
           >
             <ProfessionalRobot mousePosition={mousePosition} />
           </motion.div>

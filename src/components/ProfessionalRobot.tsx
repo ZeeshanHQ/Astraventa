@@ -226,13 +226,13 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
             animate={{
               scale: [1, 1.05, 1],
               opacity: [0.9, 1, 0.9],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
 
           {/* Enhanced Lower Body with Energy Strip */}
           <div className="absolute bottom-[8%] left-0 w-full h-[4%] bg-gradient-to-r from-blue-700 via-blue-800 to-purple-800 shadow-lg" />

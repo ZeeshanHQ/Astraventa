@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Twitter, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
 import { AstraventaLogo } from "./AstraventaLogo";
 import { useState, useEffect } from "react";
 
@@ -154,9 +155,9 @@ export const Footer = () => {
             © 2025 Astraventa. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="/privacy" className="hover:text-foreground smooth-transition">Privacy Policy</a>
-            <a href="/terms" className="hover:text-foreground smooth-transition">Terms of Service</a>
-            <a href="/cookies" className="hover:text-foreground smooth-transition">Cookie Policy</a>
+            <Link to="/privacy" className="hover:text-foreground smooth-transition">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-foreground smooth-transition">Terms of Service</Link>
+            <Link to="/cookies" className="hover:text-foreground smooth-transition">Cookie Policy</Link>
           </div>
         </motion.div>
       </div>

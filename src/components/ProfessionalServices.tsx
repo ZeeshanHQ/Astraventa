@@ -253,7 +253,7 @@ export const ProfessionalServices = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
             <Zap className="w-4 h-4 mr-2" />
@@ -269,7 +269,7 @@ export const ProfessionalServices = () => {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
@@ -285,7 +285,7 @@ export const ProfessionalServices = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <h3 className="text-4xl font-bold mb-6">
             Our <span className="gradient-text">5-Step Process</span>

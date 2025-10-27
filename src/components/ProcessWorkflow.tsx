@@ -174,7 +174,7 @@ export const ProcessWorkflow = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
             <FileText className="w-4 h-4 mr-2" />

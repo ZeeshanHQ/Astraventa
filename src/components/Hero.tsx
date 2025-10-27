@@ -72,7 +72,7 @@ export const Hero = () => {
       </div>
       
       <div className="container relative z-10 mx-auto px-4 pt-8 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-8xl mx-auto">
           {/* Left Side - Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -98,7 +98,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight tracking-tight"
             >
               <span className="gradient-text">Astraventa</span>{" "}
               <br className="sm:hidden" />

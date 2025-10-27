@@ -78,9 +78,6 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    /* Premium zoom-out effect for platform feeling */
-    transform: scale(0.95);
-    transform-origin: top center;
   }
 
   /* Premium Glass Card */

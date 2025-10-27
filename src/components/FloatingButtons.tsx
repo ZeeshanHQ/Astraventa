@@ -28,7 +28,7 @@ export const FloatingButtons = () => {
     "See our portfolio!"
   ];
 
-  const whatsappNumber = "+923055255838"; // Your WhatsApp number
+  const whatsappNumber = "+923055255838"; // WhatsApp number
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,16 +54,16 @@ export const FloatingButtons = () => {
 
   return (
     <div className="fixed right-6 bottom-6 z-40">
-      {/* Horizontal Smart WhatsApp Popup */}
+      {/* Smart Horizontal WhatsApp Popup */}
       <motion.div
         initial={{ opacity: 0, x: 20, scale: 0.9 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         key={currentNotification}
-        className="absolute -top-16 right-0 bg-gradient-to-r from-green-500/90 to-green-600/90 backdrop-blur-md px-3 py-2 rounded-full border border-green-400/30 shadow-lg text-xs text-white max-w-xs"
+        className="absolute -top-16 right-0 bg-gradient-to-r from-green-500/90 to-green-600/90 backdrop-blur-sm px-3 py-2 rounded-full border border-green-400/30 shadow-lg text-xs text-white max-w-xs whitespace-nowrap"
       >
         <div className="flex items-center gap-2">
           <WhatsAppIcon className="w-3 h-3 text-white" />
-          <span className="font-medium truncate">{notifications[currentNotification]}</span>
+          <span className="font-medium">{notifications[currentNotification]}</span>
         </div>
         <div className="absolute bottom-0 right-4 translate-y-full w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-green-500/90"></div>
       </motion.div>

@@ -29,21 +29,16 @@ export const Contact = () => {
 
   // Keyboard shortcut for AI chatbot
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      // Ctrl+Shift+A to open AI chatbot
-      if (event.ctrlKey && event.shiftKey && event.key === 'A') {
-        event.preventDefault();
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
         setIsChatbotOpen(true);
-        toast({
-          title: "AI Assistant Activated!",
-          description: "Press Ctrl+Shift+A anytime to open the AI chatbot.",
-        });
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [toast]);
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   const services = [
     "AI Chatbots & Virtual Assistants",
@@ -80,34 +75,62 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('company', formData.company);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('service', formData.service);
+      formDataToSend.append('budget', formData.budget);
+      formDataToSend.append('timeline', formData.timeline);
+      formDataToSend.append('message', formData.message);
 
-    toast({
-      title: "Message Sent Successfully!",
-      description: "We'll get back to you within 2 hours during business hours.",
-    });
+      const response = await fetch('https://formspree.io/f/xpwoaolv', {
+        method: 'POST',
+        body: formDataToSend,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      service: "",
-      budget: "",
-      timeline: "",
-      message: ""
-    });
-
-    setIsSubmitting(false);
+      if (response.ok) {
+        toast({
+          title: "Message Sent Successfully!",
+          description: "We'll get back to you within 2 hours.",
+          variant: "default",
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          service: "",
+          budget: "",
+          timeline: "",
+          message: ""
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Phone,
-      title: "Phone",
-      value: "+1 (555) 123-4567",
+      title: "WhatsApp",
+      value: "+923055255838",
       description: "Mon-Fri 9AM-6PM EST"
     },
     {
@@ -143,7 +166,7 @@ export const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
             <Mail className="w-4 h-4 mr-2" />
@@ -157,194 +180,146 @@ export const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-2"
           >
-            <Card className="glass-card border border-border/50 shadow-glow-lg">
+            <Card className="glass-card border-border/50">
               <CardHeader>
-                <CardTitle className="text-3xl mb-2">Start Your AI Journey</CardTitle>
-                <CardDescription className="text-lg">
+                <CardTitle className="text-2xl mb-2">Start Your AI Journey</CardTitle>
+                <CardDescription>
                   Fill out the form below and we'll get back to you within 2 hours.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Personal Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                    >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
                       <label className="block text-sm font-medium mb-2">Full Name *</label>
-                      <Input 
-                        type="text" 
-                        placeholder="Your full name" 
+                      <Input
+                        type="text"
+                        name="name"
+                        placeholder="Your full name"
                         value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        className="h-12 bg-card/50 border-primary/30 focus:border-primary smooth-transition" 
+                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
                         required
                       />
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.4 }}
-                    >
+                    </div>
+                    <div>
                       <label className="block text-sm font-medium mb-2">Email Address *</label>
-                      <Input 
-                        type="email" 
-                        placeholder="your@email.com" 
+                      <Input
+                        type="email"
+                        name="email"
+                        placeholder="your@email.com"
                         value={formData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
-                        className="h-12 bg-card/50 border-primary/30 focus:border-primary smooth-transition" 
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
                         required
                       />
-                    </motion.div>
+                    </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.5 }}
-                    >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
                       <label className="block text-sm font-medium mb-2">Company Name</label>
-                      <Input 
-                        type="text" 
-                        placeholder="Your company" 
+                      <Input
+                        type="text"
+                        name="company"
+                        placeholder="Your company"
                         value={formData.company}
-                        onChange={(e) => handleInputChange("company", e.target.value)}
-                        className="h-12 bg-card/50 border-primary/30 focus:border-primary smooth-transition" 
+                        onChange={(e) => handleInputChange('company', e.target.value)}
+                        className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
                       />
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.6 }}
-                    >
+                    </div>
+                    <div>
                       <label className="block text-sm font-medium mb-2">Phone Number</label>
-                      <Input 
-                        type="tel" 
-                        placeholder="+1 (555) 123-4567" 
+                      <Input
+                        type="tel"
+                        name="phone"
+                        placeholder="+1 (555) 123-4567"
                         value={formData.phone}
-                        onChange={(e) => handleInputChange("phone", e.target.value)}
-                        className="h-12 bg-card/50 border-primary/30 focus:border-primary smooth-transition" 
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
                       />
-                    </motion.div>
+                    </div>
                   </div>
 
-                  {/* Project Details */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.7 }}
-                    >
-                      <label className="block text-sm font-medium mb-2">Service Needed *</label>
-                      <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
-                        <SelectTrigger className="h-12 bg-card/50 border-primary/30 focus:border-primary">
-                          <SelectValue placeholder="Select a service" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {services.map((service, index) => (
-                            <SelectItem key={index} value={service}>{service}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.8 }}
-                    >
-                      <label className="block text-sm font-medium mb-2">Budget Range</label>
-                      <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
-                        <SelectTrigger className="h-12 bg-card/50 border-primary/30 focus:border-primary">
-                          <SelectValue placeholder="Select budget range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {budgetRanges.map((budget, index) => (
-                            <SelectItem key={index} value={budget}>{budget}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </motion.div>
-                  </div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.9 }}
-                  >
-                    <label className="block text-sm font-medium mb-2">Project Timeline</label>
-                    <Select value={formData.timeline} onValueChange={(value) => handleInputChange("timeline", value)}>
-                      <SelectTrigger className="h-12 bg-card/50 border-primary/30 focus:border-primary">
-                        <SelectValue placeholder="When do you need this completed?" />
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Service Needed *</label>
+                    <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
+                      <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
+                        <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent>
-                        {timelines.map((timeline, index) => (
-                          <SelectItem key={index} value={timeline}>{timeline}</SelectItem>
+                        {services.map((service) => (
+                          <SelectItem key={service} value={service}>
+                            {service}
+                          </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 1.0 }}
-                  >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Budget Range</label>
+                      <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
+                        <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
+                          <SelectValue placeholder="Select budget range" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {budgetRanges.map((range) => (
+                            <SelectItem key={range} value={range}>
+                              {range}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Project Timeline</label>
+                      <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
+                        <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
+                          <SelectValue placeholder="When do you need this completed?" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {timelines.map((timeline) => (
+                            <SelectItem key={timeline} value={timeline}>
+                              {timeline}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div>
                     <label className="block text-sm font-medium mb-2">Project Details *</label>
                     <Textarea 
+                      name="message"
                       placeholder="Tell us about your project requirements, goals, and any specific needs..." 
                       rows={5} 
                       value={formData.message}
-                      onChange={(e) => handleInputChange("message", e.target.value)}
+                      onChange={(e) => handleInputChange('message', e.target.value)}
                       className="bg-card/50 border-primary/30 focus:border-primary smooth-transition" 
                       required
                     />
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 1.1 }}
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    disabled={isSubmitting}
+                    className="w-full group bg-gradient-primary hover:bg-gradient-to-r hover:from-primary hover:to-secondary smooth-transition"
                   >
-                    <Button 
-                      type="submit" 
-                      size="lg" 
-                      className="w-full group bg-gradient-primary hover:bg-gradient-to-r hover:from-primary hover:to-secondary smooth-transition"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                          Sending Message...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5 mr-2 group-hover:-rotate-12 transition-transform" />
-                          Send Message
-                        </>
-                      )}
-                    </Button>
-                  </motion.div>
+                    <Send className="w-5 h-5 mr-2 group-hover:-rotate-12 transition-transform" />
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
 
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <CheckCircle className="w-4 h-4 text-green-500" />
@@ -402,136 +377,51 @@ export const Contact = () => {
                 <motion.div
                   animate={{
                     y: isHovered ? -15 : 0,
-                    scale: isClicked ? 0.95 : (isHovered ? 1.15 : 1),
+                    scale: isHovered ? 1.15 : 1,
                     rotateY: isHovered ? 10 : 0,
                   }}
-                  transition={{ duration: 0.2 }}
-                  className="w-40 h-40 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow-lg relative overflow-hidden cursor-pointer select-none"
-                  onClick={() => {
-                    setIsClicked(true);
-                    setIsChatbotOpen(true);
-                    setTimeout(() => setIsClicked(false), 200);
-                  }}
-                  onMouseDown={() => {
-                    setIsClicked(true);
-                    setIsChatbotOpen(true);
-                    setTimeout(() => setIsClicked(false), 200);
-                  }}
-                  onTouchStart={() => {
-                    setIsClicked(true);
-                    setIsChatbotOpen(true);
-                    setTimeout(() => setIsClicked(false), 200);
-                  }}
-                  style={{ touchAction: 'manipulation' }}
+                  transition={{ duration: 0.4 }}
+                  className="w-40 h-40 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow-lg relative overflow-hidden cursor-pointer"
+                  onClick={() => setIsChatbotOpen(true)}
                 >
-                  <Bot className="w-20 h-20 text-white z-10" />
+                  <Bot className="w-20 h-20 text-white" />
                   
-                  {/* Energy Rings */}
+                  {/* Floating Elements */}
                   <motion.div
-                    animate={{
-                      rotate: 360,
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 border-2 border-white/20 rounded-full"
+                  />
+                  
+                  <motion.div
+                    animate={{ 
                       scale: [1, 1.2, 1],
+                      opacity: [0.5, 1, 0.5]
                     }}
-                    transition={{
-                      rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                      scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                    }}
-                    className="absolute inset-0 border-2 border-primary/40 rounded-full"
-                  />
-                  
-                  <motion.div
-                    animate={{
-                      rotate: -360,
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      rotate: { duration: 6, repeat: Infinity, ease: "linear" },
-                      scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                    }}
-                    className="absolute inset-4 border border-secondary/40 rounded-full"
-                  />
-
-                  {/* Pulse Effect */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.3, 0, 0.3],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute inset-0 bg-primary/30 rounded-full"
-                  />
-
-                  {/* Floating Icons */}
-                  <motion.div
-                    animate={{
-                      rotate: 360,
-                      y: [0, -10, 0],
-                    }}
-                    transition={{
-                      rotate: { duration: 10, repeat: Infinity, ease: "linear" },
-                      y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                    }}
-                    className="absolute -top-6 -right-6"
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center"
                   >
-                    <Sparkles className="w-8 h-8 text-accent" />
-                  </motion.div>
-
-                  <motion.div
-                    animate={{
-                      rotate: -360,
-                      y: [0, -15, 0],
-                    }}
-                    transition={{
-                      rotate: { duration: 12, repeat: Infinity, ease: "linear" },
-                      y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                    }}
-                    className="absolute -bottom-6 -left-6"
-                  >
-                    <Zap className="w-8 h-8 text-secondary" />
+                    <Sparkles className="w-4 h-4 text-white" />
                   </motion.div>
                 </motion.div>
 
-                {/* Energy Field */}
+                {/* Speech Bubble */}
                 <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.2, 0.4, 0.2],
-                    rotate: [0, 180, 360],
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ 
+                    opacity: isHovered ? 1 : 0,
+                    scale: isHovered ? 1 : 0.8,
+                    y: isHovered ? -10 : 0
                   }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent rounded-full"
-                />
+                  transition={{ duration: 0.3 }}
+                  className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-lg border border-white/20"
+                >
+                  <p className="text-sm font-medium text-gray-800 whitespace-nowrap">
+                    Ask me anything! <Keyboard className="w-3 h-3 inline ml-1" />
+                  </p>
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white/90"></div>
+                </motion.div>
               </div>
-
-              {/* Speech Bubble */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: isHovered ? 1 : 0, 
-                  scale: isHovered ? 1 : 0,
-                  y: isHovered ? -10 : 0,
-                }}
-                transition={{ duration: 0.4 }}
-                className="absolute -top-28 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-sm px-6 py-4 rounded-xl border border-primary/50 shadow-glow"
-              >
-                <div className="text-center">
-                  <p className="text-sm text-foreground font-medium mb-1">🤖 AI Assistant</p>
-                  <p className="text-xs text-muted-foreground mb-1">Click to start chatting!</p>
-                  <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                    <Keyboard className="w-3 h-3" />
-                    <span>Ctrl+Shift+A</span>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-card/95"></div>
-              </motion.div>
             </motion.div>
           </motion.div>
         </div>

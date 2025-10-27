@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, Phone, Bell } from "lucide-react";
+import { ArrowUp, Phone, Bell, Bot } from "lucide-react";
 import { useState, useEffect } from "react";
 
 // Professional Lucid WhatsApp Icon Component
@@ -116,6 +116,31 @@ export const FloatingButtons = () => {
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-background"
+          />
+        </motion.button>
+
+        {/* Beautiful AI Chatbot Button */}
+        <motion.button
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.96 }}
+          onClick={() => {
+            const element = document.getElementById('contact');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
+          className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white shadow-lg hover:shadow-purple-500/25 relative ml-2"
+          aria-label="AI Chatbot"
+        >
+          <Bot className="w-6 h-6" />
+          {/* AI indicator */}
+          <motion.div
+            animate={{ 
+              scale: [1, 1.3, 1],
+              opacity: [0.7, 1, 0.7]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full border-2 border-background"
           />
         </motion.button>
       </div>

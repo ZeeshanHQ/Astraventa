@@ -365,64 +365,6 @@ export const Contact = () => {
                 );
               })}
             </div>
-
-            {/* AI Bot Animation */}
-            <motion.div
-              className="relative h-[400px] flex items-center justify-center"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              <div className="relative">
-                {/* AI Bot */}
-                <motion.div
-                  animate={{
-                    y: isHovered ? -15 : 0,
-                    scale: isHovered ? 1.15 : 1,
-                    rotateY: isHovered ? 10 : 0,
-                  }}
-                  transition={{ duration: 0.4 }}
-                  className="w-40 h-40 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow-lg relative overflow-hidden cursor-pointer"
-                  onClick={() => setIsChatbotOpen(true)}
-                >
-                  <Bot className="w-20 h-20 text-white" />
-                  
-                  {/* Floating Elements */}
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 border-2 border-white/20 rounded-full"
-                  />
-                  
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      opacity: [0.5, 1, 0.5]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center"
-                  >
-                    <Sparkles className="w-4 h-4 text-white" />
-                  </motion.div>
-                </motion.div>
-
-                {/* Speech Bubble */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ 
-                    opacity: isHovered ? 1 : 0,
-                    scale: isHovered ? 1 : 0.8,
-                    y: isHovered ? -10 : 0
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-lg border border-white/20"
-                >
-                  <p className="text-sm font-medium text-gray-800 whitespace-nowrap">
-                    Ask me anything! <Keyboard className="w-3 h-3 inline ml-1" />
-                  </p>
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white/90"></div>
-                </motion.div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

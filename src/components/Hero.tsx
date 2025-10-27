@@ -136,7 +136,7 @@ export const Hero = () => {
               <Button 
                 variant="hero" 
                 size="xl" 
-                className="group"
+                className="group bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:via-indigo-700 hover:to-blue-700 text-white shadow-2xl hover:shadow-purple-500/25 border-0 rounded-xl px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
                 onClick={() => {
                   const element = document.getElementById('contact');
                   if (element) {
@@ -144,12 +144,13 @@ export const Hero = () => {
                   }
                 }}
               >
-                Get Started
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Book Demo
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform ml-2" />
               </Button>
               <Button 
-                variant="neon" 
+                variant="outline"
                 size="xl"
+                className="border-2 border-purple-500/50 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 rounded-xl px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
                 onClick={() => {
                   const element = document.getElementById('services');
                   if (element) {

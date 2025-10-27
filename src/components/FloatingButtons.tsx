@@ -59,7 +59,7 @@ export const FloatingButtons = () => {
         initial={{ opacity: 0, x: 20, scale: 0.9 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         key={currentNotification}
-        className="absolute -top-16 right-0 bg-gradient-to-r from-green-500/90 to-green-600/90 backdrop-blur-sm px-3 py-2 rounded-full border border-green-400/30 shadow-lg text-xs text-white max-w-xs whitespace-nowrap"
+        className="absolute -top-12 right-0 bg-gradient-to-r from-green-500/90 to-green-600/90 backdrop-blur-sm px-3 py-2 rounded-full border border-green-400/30 shadow-lg text-xs text-white max-w-xs whitespace-nowrap"
       >
         <div className="flex items-center gap-2">
           <WhatsAppIcon className="w-3 h-3 text-white" />

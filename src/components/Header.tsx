@@ -80,9 +80,9 @@ export const Header = () => {
           {/* CTA Button */}
           <Button
             onClick={() => scrollToSection('contact')}
-            className="hidden sm:flex"
+            className="hidden sm:flex bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:via-indigo-700 hover:to-blue-700 text-white shadow-lg hover:shadow-purple-500/25 border-0 rounded-lg px-6 py-2 font-semibold transition-all duration-300 hover:scale-105"
           >
-            Get Started
+            Book Demo
           </Button>
         </div>
       </div>

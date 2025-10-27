@@ -53,7 +53,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
       >
         {/* Enhanced Energy Field Background */}
         <motion.div
-          className="absolute inset-0 bg-gradient-radial from-cyan-500/20 via-blue-500/10 to-transparent rounded-full"
+          className="absolute inset-0 bg-gradient-radial from-purple-500/20 via-indigo-500/10 to-transparent rounded-full"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
@@ -74,7 +74,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
             background: "linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 15%, #E9ECEF 40%, #DEE2E6 70%, #CED4DA 100%)",
             boxShadow: `
               0 25px 60px rgba(0,0,0,0.2), 
-              0 0 80px rgba(0, 212, 255, 0.3), 
+              0 0 80px rgba(147, 51, 234, 0.3), 
               inset 0 3px 0 rgba(255,255,255,0.9),
               0 0 0 1px rgba(255,255,255,0.1)
             `
@@ -85,14 +85,14 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
           
           {/* Holographic Antenna Tip */}
           <motion.div
-            className="absolute top-[0.5%] left-1/2 -translate-x-1/2 w-[5%] h-[3%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
+            className="absolute top-[0.5%] left-1/2 -translate-x-1/2 w-[5%] h-[3%] bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 rounded-full"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.8, 1, 0.8],
               boxShadow: [
-                "0 0 10px #00D4FF",
-                "0 0 20px #00D4FF, 0 0 30px #3B82F6",
-                "0 0 10px #00D4FF"
+                "0 0 10px #8B5CF6",
+                "0 0 20px #8B5CF6, 0 0 30px #EC4899",
+                "0 0 10px #8B5CF6"
               ]
             }}
             transition={{

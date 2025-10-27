@@ -95,8 +95,6 @@ export const RobotImage = ({ mousePosition }: RobotImageProps) => {
           {/* Torso Details - Light teal/cyan pouch-like detail */}
           <div className="absolute top-40 left-1/2 transform -translate-x-1/2 w-24 h-16 bg-cyan-300 rounded-xl shadow-sm" />
           
-          {/* Dark blue horizontal line around lower body */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-blue-600 rounded-full" />
         </motion.div>
         
         {/* Floating Elements */}

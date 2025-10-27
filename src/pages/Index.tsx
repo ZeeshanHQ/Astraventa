@@ -7,6 +7,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { AdvancedScrollAnimations } from "@/components/AdvancedScrollAnimations";
 import { FloatingButtons } from "@/components/FloatingButtons";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
+import { TrustedCompanies } from "@/components/TrustedCompanies";
 
 // Lazy load heavy components with optimized loading
 const ProfessionalServices = lazy(() => import("@/components/ProfessionalServices").then(module => ({ default: module.ProfessionalServices })));
@@ -64,6 +65,9 @@ const Index = () => {
 
       {/* Perfect Section Order */}
       <Hero />
+      
+      {/* Trusted Companies */}
+      <TrustedCompanies />
       
       <Suspense fallback={<ComponentLoader />}>
         <ProfessionalServices />

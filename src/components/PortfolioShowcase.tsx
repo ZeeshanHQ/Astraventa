@@ -42,7 +42,7 @@ const portfolioProjects = [
     title: "Automated Data Processing System",
     client: "FinanceCorp Global",
     industry: "Financial Services",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "RPA solution that automates invoice processing, reducing manual work by 80% and processing 50,000+ documents monthly.",
     technologies: ["Python", "Selenium", "PostgreSQL", "AWS"],
     results: [
@@ -82,7 +82,7 @@ const portfolioProjects = [
     title: "Multi-Platform Web Application",
     client: "HealthCare Plus",
     industry: "Healthcare",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "Comprehensive patient management system with AI-powered appointment scheduling and medical record automation.",
     technologies: ["Next.js", "TypeScript", "Prisma", "OpenAI", "PostgreSQL"],
     results: [

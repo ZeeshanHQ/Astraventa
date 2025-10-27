@@ -147,3 +147,109 @@ export const FloatingButtons = () => {
     </div>
   );
 };
+
+        <AnimatePresence>
+
+          {open && (
+
+            <motion.div
+
+              initial={{ opacity: 0, x: 20 }}
+
+              animate={{ opacity: 1, x: 0 }}
+
+              exit={{ opacity: 0, x: 20 }}
+
+              className="flex items-center gap-2 pr-2"
+
+            >
+
+              <motion.button
+
+                onClick={scrollToContact}
+
+                whileHover={{ scale: 1.06 }}
+
+                whileTap={{ scale: 0.96 }}
+
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-primary/90 hover:bg-primary text-white"
+
+                aria-label="Contact Us"
+
+              >
+
+                <Phone className="w-5 h-5" />
+
+              </motion.button>
+
+
+
+              {showBackToTop && (
+
+                <motion.button
+
+                  whileHover={{ scale: 1.06 }}
+
+                  whileTap={{ scale: 0.96 }}
+
+                  onClick={scrollToTop}
+
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-primary text-white"
+
+                  aria-label="Back to top"
+
+                >
+
+                  <ArrowUp className="w-5 h-5" />
+
+                </motion.button>
+
+              )}
+
+            </motion.div>
+
+          )}
+
+        </AnimatePresence>
+
+
+
+        <motion.button
+
+          whileHover={{ scale: 1.06 }}
+
+          whileTap={{ scale: 0.96 }}
+
+          onClick={() => window.open(`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`, '_blank')}
+
+          className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white shadow-glow relative"
+
+          aria-label="WhatsApp Chat"
+
+        >
+
+          {/* Professional Lucid WhatsApp Icon */}
+          <WhatsAppIcon className="w-6 h-6" />
+          {/* Live indicator */}
+
+          <motion.div
+
+            animate={{ scale: [1, 1.2, 1] }}
+
+            transition={{ duration: 2, repeat: Infinity }}
+
+            className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-background"
+
+          />
+
+        </motion.button>
+
+      </div>
+
+    </div>
+
+  );
+
+};
+
+

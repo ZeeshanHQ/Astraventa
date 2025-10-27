@@ -177,20 +177,6 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
               }}
             />
             
-            {/* Additional Processing Indicators */}
-            <motion.div
-              className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[35%] h-[0.5%] bg-gradient-to-r from-transparent via-blue-400 to-transparent"
-              animate={{
-                opacity: [0, 0.7, 0],
-                scaleX: [0, 1, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
-            />
           </div>
 
           {/* Enhanced Ears/Antennae with Energy Flow */}
@@ -235,7 +221,6 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
             />
 
           {/* Enhanced Lower Body with Energy Strip */}
-          <div className="absolute bottom-[8%] left-0 w-full h-[4%] bg-gradient-to-r from-blue-700 via-blue-800 to-purple-800 shadow-lg" />
 
           {/* Enhanced Arms with Advanced Animation */}
           <motion.div

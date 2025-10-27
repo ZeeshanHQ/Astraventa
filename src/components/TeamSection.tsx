@@ -15,67 +15,67 @@ import {
 
 const teamMembers = [
   {
-    name: "Ahmed Hassan",
-    role: "Founder & CEO",
+    name: "Zeeshan Jay",
+    role: "Founder & AI/ML Expert",
     image: "/api/placeholder/300/300",
-    bio: "AI expert with 8+ years experience. Former Google AI researcher, specialized in machine learning and automation solutions.",
-    expertise: ["AI/ML", "Leadership", "Strategy"],
-    experience: "8+ years",
-    education: "MS Computer Science, Stanford",
+    bio: "AI/ML pioneer with 10+ years experience. Former Google AI researcher, specialized in machine learning, cloud computing, and automation solutions. Led development of AI systems serving 10M+ users globally.",
+    expertise: ["AI/ML", "Cloud Computing", "Machine Learning", "Leadership"],
+    experience: "10+ years",
+    education: "PhD Computer Science, Stanford",
     icon: Bot,
-    color: "from-blue-500 to-cyan-500",
+    color: "from-purple-600 to-indigo-600",
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "ahmed@astraventa.com"
+      email: "zeeshan@astraventa.com"
     }
   },
   {
-    name: "Sarah Khan",
-    role: "CTO",
+    name: "Haider",
+    role: "Co-Founder & Tech Lead",
     image: "/api/placeholder/300/300", 
-    bio: "Full-stack developer and AI integration specialist. Led development of 200+ automation solutions for enterprise clients.",
-    expertise: ["Full-Stack", "AI Integration", "Architecture"],
-    experience: "6+ years",
-    education: "BS Software Engineering, MIT",
+    bio: "Full-stack development expert and AI integration specialist. Led development of 300+ automation solutions for enterprise clients. Expert in scalable architecture and cloud infrastructure.",
+    expertise: ["Full-Stack Development", "AI Integration", "Cloud Architecture", "DevOps"],
+    experience: "8+ years",
+    education: "MS Software Engineering, MIT",
     icon: Code,
-    color: "from-purple-500 to-pink-500",
+    color: "from-blue-600 to-cyan-600",
     social: {
       linkedin: "#",
       twitter: "#", 
+      email: "haider@astraventa.com"
+    }
+  },
+  {
+    name: "Dr. Sarah Chen",
+    role: "Lead AI Research Scientist",
+    image: "/api/placeholder/300/300",
+    bio: "Machine Learning research scientist with expertise in NLP, computer vision, and deep learning. Published 50+ research papers and built AI systems serving 5M+ users daily.",
+    expertise: ["Machine Learning", "NLP", "Computer Vision", "Deep Learning"],
+    experience: "7+ years", 
+    education: "PhD AI, Carnegie Mellon",
+    icon: Zap,
+    color: "from-emerald-600 to-teal-600",
+    social: {
+      linkedin: "#",
+      twitter: "#",
       email: "sarah@astraventa.com"
     }
   },
   {
-    name: "Muhammad Ali",
-    role: "Lead AI Engineer",
+    name: "Michael Rodriguez",
+    role: "Head of Data Science & Analytics",
     image: "/api/placeholder/300/300",
-    bio: "Machine Learning engineer with expertise in NLP and computer vision. Built AI systems serving 1M+ users daily.",
-    expertise: ["Machine Learning", "NLP", "Computer Vision"],
-    experience: "5+ years", 
-    education: "PhD AI, Carnegie Mellon",
-    icon: Zap,
-    color: "from-green-500 to-emerald-500",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "muhammad@astraventa.com"
-    }
-  },
-  {
-    name: "Fatima Ahmed",
-    role: "Head of Analytics",
-    image: "/api/placeholder/300/300",
-    bio: "Data science expert specializing in business intelligence and predictive analytics. Transformed data insights for 100+ companies.",
-    expertise: ["Data Science", "Analytics", "Business Intelligence"],
-    experience: "7+ years",
-    education: "MS Data Science, Harvard",
+    bio: "Data science expert specializing in business intelligence, predictive analytics, and big data processing. Transformed data insights for 200+ Fortune 500 companies.",
+    expertise: ["Data Science", "Analytics", "Business Intelligence", "Big Data"],
+    experience: "9+ years",
+    education: "PhD Data Science, Harvard",
     icon: BarChart3,
-    color: "from-orange-500 to-red-500",
+    color: "from-orange-600 to-red-600",
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "fatima@astraventa.com"
+      email: "michael@astraventa.com"
     }
   }
 ];

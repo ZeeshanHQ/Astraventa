@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Send, Bot, Sparkles, Zap, Phone, MapPin, Clock, CheckCircle, Keyboard } from "lucide-react";
+import { Mail, Send, Bot, Sparkles, Zap, Phone, MapPin, Clock, BadgeCheck, Keyboard } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ChatbotModal } from "./ChatbotModal";
@@ -322,7 +322,7 @@ export const Contact = () => {
                     </Button>
 
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <BadgeCheck className="w-4 h-4 text-green-500" />
                     <span>We'll respond within 2 hours during business hours</span>
                   </div>
                 </form>

@@ -138,7 +138,7 @@ export const FloatingButtons = () => {
           <img
             src="/chatbot.png"
             alt="Chatbot"
-            className="w-7 h-7 object-contain"
+            className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
             onError={(e) => {
               const target = e.currentTarget as HTMLImageElement;
               target.style.display = 'none';

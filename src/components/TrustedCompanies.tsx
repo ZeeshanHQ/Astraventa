@@ -1,30 +1,15 @@
 import { motion } from "framer-motion";
 
+// Medium-level AI/cyber/SaaS brands with reliable SVGs
 const companies = [
-  {
-    name: "Microsoft",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-  },
-  {
-    name: "Google",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-  },
-  {
-    name: "Amazon",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-  },
-  {
-    name: "Meta",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
-  },
-  {
-    name: "Netflix",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-  },
-  {
-    name: "Spotify",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg",
-  }
+  { name: "Shopify", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Shopify_logo_2018.svg" },
+  { name: "Slack", logo: "https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" },
+  { name: "Mailchimp", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Mailchimp_Logo.svg" },
+  { name: "HubSpot", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/HubSpot_Logo.svg" },
+  { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" },
+  { name: "Linear", logo: "https://seeklogo.com/images/L/linear-logo-0F0C3C7AEB-seeklogo.com.svg" },
+  { name: "Loom", logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/Loom_logo.svg" },
+  { name: "DigitalOcean", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" }
 ];
 
 export const TrustedCompanies = () => {
@@ -42,11 +27,8 @@ export const TrustedCompanies = () => {
           className="text-center mb-8"
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">
-            Trusted by Leading Companies
+            Trusted by 500+ companies worldwide
           </h2>
-          <p className="text-sm text-gray-400 max-w-xl mx-auto">
-            We've helped industry leaders transform their operations with AI automation
-          </p>
         </motion.div>
 
         {/* Moving Companies Logos */}
@@ -69,12 +51,12 @@ export const TrustedCompanies = () => {
             {companies.map((company, index) => (
               <div
                 key={`first-${index}`}
-                className="flex-shrink-0 flex items-center justify-center p-4 bg-black/10 backdrop-blur-sm rounded-lg border border-white/10 hover:border-purple-500/30 transition-all duration-300"
+                className="flex-shrink-0 flex items-center justify-center mx-8"
               >
                 <img 
                   src={company.logo} 
                   alt={company.name}
-                  className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                  className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                 />
               </div>
             ))}
@@ -83,12 +65,12 @@ export const TrustedCompanies = () => {
             {companies.map((company, index) => (
               <div
                 key={`second-${index}`}
-                className="flex-shrink-0 flex items-center justify-center p-4 bg-black/10 backdrop-blur-sm rounded-lg border border-white/10 hover:border-purple-500/30 transition-all duration-300"
+                className="flex-shrink-0 flex items-center justify-center mx-8"
               >
                 <img 
                   src={company.logo} 
                   alt={company.name}
-                  className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                  className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                 />
               </div>
             ))}
@@ -98,3 +80,4 @@ export const TrustedCompanies = () => {
     </section>
   );
 };
+

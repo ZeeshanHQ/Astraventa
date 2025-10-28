@@ -14,7 +14,8 @@ import {
   Users,
   FileText,
   Zap,
-  Shield
+  Shield,
+  BadgeCheck
 } from "lucide-react";
 import { useState } from "react";
 
@@ -229,7 +230,9 @@ export const ProcessWorkflow = () => {
                         </Badge>
                         <h3 className="text-3xl font-bold">{step.title}</h3>
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <Clock className="w-4 h-4" />
+                          <motion.span animate={{ opacity: [0.8, 1, 0.8] }} transition={{ duration: 2, repeat: Infinity }}>
+                            <Clock className="w-4 h-4" />
+                          </motion.span>
                           <span>{step.duration}</span>
                         </div>
                       </div>
@@ -245,7 +248,7 @@ export const ProcessWorkflow = () => {
                       <div className="space-y-2">
                         {step.deliverables.map((deliverable, deliverableIndex) => (
                           <div key={deliverableIndex} className="flex items-center gap-3">
-                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                            <BadgeCheck className="w-4 h-4 text-green-500 flex-shrink-0" />
                             <span className="text-sm text-muted-foreground">{deliverable}</span>
                           </div>
                         ))}

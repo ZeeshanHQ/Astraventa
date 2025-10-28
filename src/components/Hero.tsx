@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { ProfessionalRobot } from "./ProfessionalRobot";
@@ -6,6 +6,7 @@ import { TypingAnimation } from "./TypingAnimation";
 import { useState, useEffect, memo } from "react";
 
 export const Hero = () => {
+  const prefersReducedMotion = useReducedMotion();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -29,46 +30,29 @@ export const Hero = () => {
       
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/20 rounded-full"
-          animate={{
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {!prefersReducedMotion && (
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/20 rounded-full"
+            animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.5, 1] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+        )}
         
-        <motion.div
-          className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-secondary/20 rounded-full"
-          animate={{
-            opacity: [0.3, 0.7, 0.3],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
+        {!prefersReducedMotion && (
+          <motion.div
+            className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-secondary/20 rounded-full"
+            animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.3, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
+        )}
         
-        <motion.div
-          className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-accent/20 rounded-full"
-          animate={{
-            opacity: [0.2, 0.5, 0.2],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
+        {!prefersReducedMotion && (
+          <motion.div
+            className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-accent/20 rounded-full"
+            animate={{ opacity: [0.2, 0.5, 0.2], scale: [1, 1.2, 1] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+        )}
       </div>
       
       <div className="container relative z-10 mx-auto px-4 pt-8 pb-16">

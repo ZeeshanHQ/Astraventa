@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, Phone, Bell, Bot } from "lucide-react";
+import { ArrowUp, Phone, Bell } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 // Professional Lucid WhatsApp Icon Component
@@ -15,6 +16,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export const FloatingButtons = () => {
+  const prefersReducedMotion = useReducedMotion();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [open, setOpen] = useState(false);
   const [currentNotification, setCurrentNotification] = useState(0);
@@ -121,48 +123,47 @@ export const FloatingButtons = () => {
 
         {/* Beautiful AI Chatbot Button */}
         <motion.button
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.96 }}
+          whileHover={prefersReducedMotion ? undefined : { scale: 1.06 }}
+          whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
           onClick={() => {
             const element = document.getElementById('contact');
             if (element) {
               element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }}
-          className="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white shadow-lg hover:shadow-purple-500/25 relative ml-2"
+          className="w-14 h-14 flex items-center justify-center bg-transparent text-white shadow-none relative ml-2"
           aria-label="AI Chatbot"
         >
-          {/* Premium animated chatbot mark */}
-          <motion.svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            animate={{ scale: [1, 1.05, 1], rotate: [0, -2, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <defs>
-              <linearGradient id="g1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#a855f7"/>
-                <stop offset="50%" stopColor="#6366f1"/>
-                <stop offset="100%" stopColor="#3b82f6"/>
-              </linearGradient>
-            </defs>
-            <path d="M4 9a6 6 0 016-6h4a6 6 0 016 6v2a6 6 0 01-6 6h-3l-3.5 2.5c-.8.6-1.5.2-1.5-.8V17A6 6 0 014 11V9z" fill="url(#g1)" opacity="0.9"/>
-            <motion.circle cx="10" cy="12" r="1.4" fill="#ecfeff" animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 1.8, repeat: Infinity }}/>
-            <motion.circle cx="14" cy="12" r="1.4" fill="#f5f3ff" animate={{ opacity: [0.7, 1, 0.7], delay: 0.2 }} transition={{ duration: 1.8, repeat: Infinity }}/>
-            <motion.path d="M9.5 14.5c1.5 1.2 3.5 1.2 5 0" stroke="#e9d5ff" strokeWidth="1.5" strokeLinecap="round" fill="none" animate={{ pathLength: [0.6, 1, 0.6] }} transition={{ duration: 2.2, repeat: Infinity }}/>
-          </motion.svg>
-          {/* AI indicator */}
-          <motion.div
-            animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [0.7, 1, 0.7]
+          {/* Try to render external PNG with transparent background at /chatbot.png. Fallback to SVG if missing. */}
+          <img
+            src="/chatbot.png"
+            alt="Chatbot"
+            className="w-7 h-7 object-contain"
+            onError={(e) => {
+              const target = e.currentTarget as HTMLImageElement;
+              target.style.display = 'none';
+              const fallback = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+              fallback.setAttribute('width', '28');
+              fallback.setAttribute('height', '28');
+              fallback.setAttribute('viewBox', '0 0 24 24');
+              const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+              path.setAttribute('d', 'M4 9a6 6 0 016-6h4a6 6 0 016 6v2a6 6 0 01-6 6h-3l-3.5 2.5c-.8.6-1.5.2-1.5-.8V17A6 6 0 014 11V9z');
+              path.setAttribute('fill', 'currentColor');
+              fallback.appendChild(path);
+              target.parentElement?.appendChild(fallback);
             }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full border-2 border-background"
           />
+          {/* AI indicator */}
+          {!prefersReducedMotion && (
+            <motion.div
+              animate={{ 
+                scale: [1, 1.3, 1],
+                opacity: [0.7, 1, 0.7]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full border-2 border-background"
+            />
+          )}
         </motion.button>
       </div>
     </div>

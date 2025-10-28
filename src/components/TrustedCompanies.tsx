@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 // Medium-level AI/cyber/SaaS brands with reliable logos
 // Use Simple Icons CDN for reliable, lightweight SVG logos
@@ -16,6 +16,7 @@ const companies = [
 ];
 
 export const TrustedCompanies = () => {
+  const prefersReducedMotion = useReducedMotion();
   return (
     <section className="py-12 relative overflow-hidden bg-black/5">
       {/* Background Elements */}
@@ -38,17 +39,8 @@ export const TrustedCompanies = () => {
         <div className="relative overflow-hidden">
           <motion.div
             className="flex items-center gap-12 whitespace-nowrap"
-            animate={{
-              x: [0, -100 * companies.length],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 20,
-                ease: "linear",
-              },
-            }}
+            animate={prefersReducedMotion ? undefined : { x: [0, -100 * companies.length] }}
+            transition={prefersReducedMotion ? undefined : { x: { repeat: Infinity, repeatType: "loop", duration: 20, ease: "linear" } }}
           >
             {/* First set of logos */}
             {companies.map((company, index) => (

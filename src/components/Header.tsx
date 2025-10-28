@@ -47,31 +47,31 @@ export const Header = () => {
           <nav className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection('services')}
-              className="text-muted-foreground hover:text-primary smooth-transition font-medium"
+              className="text-white/80 hover:text-white smooth-transition font-semibold tracking-wide"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection('portfolio')}
-              className="text-muted-foreground hover:text-primary smooth-transition font-medium"
+              className="text-white/80 hover:text-white smooth-transition font-semibold tracking-wide"
             >
               Portfolio
             </button>
             <button
               onClick={() => scrollToSection('team')}
-              className="text-muted-foreground hover:text-primary smooth-transition font-medium"
+              className="text-white/80 hover:text-white smooth-transition font-semibold tracking-wide"
             >
               Team
             </button>
             <button
               onClick={() => scrollToSection('process')}
-              className="text-muted-foreground hover:text-primary smooth-transition font-medium"
+              className="text-white/80 hover:text-white smooth-transition font-semibold tracking-wide"
             >
               Process
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-muted-foreground hover:text-primary smooth-transition font-medium"
+              className="text-white/80 hover:text-white smooth-transition font-semibold tracking-wide"
             >
               Contact
             </button>

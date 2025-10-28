@@ -106,11 +106,11 @@ export const FloatingButtons = () => {
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.96 }}
           onClick={() => window.open(`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`, '_blank')}
-          className="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white shadow-glow relative"
+          className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white shadow-glow relative"
           aria-label="WhatsApp Chat"
         >
           {/* Professional Lucid WhatsApp Icon */}
-          <WhatsAppIcon className="w-7 h-7" />
+          <WhatsAppIcon className="w-6 h-6" />
           {/* Live indicator */}
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}
@@ -129,10 +129,10 @@ export const FloatingButtons = () => {
               element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }}
-          className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white shadow-lg hover:shadow-purple-500/25 relative ml-2"
+          className="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white shadow-lg hover:shadow-purple-500/25 relative ml-2"
           aria-label="AI Chatbot"
         >
-          <Bot className="w-6 h-6" />
+          <Bot className="w-7 h-7" />
           {/* AI indicator */}
           <motion.div
             animate={{ 

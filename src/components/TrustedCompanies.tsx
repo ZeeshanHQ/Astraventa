@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 
-// Medium-level AI/cyber/SaaS brands with reliable SVGs
+// Medium-level AI/cyber/SaaS brands with reliable logos
 const companies = [
   { name: "Shopify", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Shopify_logo_2018.svg" },
-  { name: "Slack", logo: "https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" },
   { name: "Mailchimp", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Mailchimp_Logo.svg" },
   { name: "HubSpot", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/HubSpot_Logo.svg" },
   { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" },
-  { name: "Linear", logo: "https://seeklogo.com/images/L/linear-logo-0F0C3C7AEB-seeklogo.com.svg" },
-  { name: "Loom", logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/Loom_logo.svg" },
-  { name: "DigitalOcean", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" }
+  { name: "DigitalOcean", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" },
+  { name: "Algolia", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Algolia-logo.svg" },
+  { name: "Supabase", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Supabase_logo.svg" },
+  { name: "Vercel", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Vercel_logo_black.svg" }
 ];
 
 export const TrustedCompanies = () => {
@@ -56,7 +56,7 @@ export const TrustedCompanies = () => {
                 <img 
                   src={company.logo} 
                   alt={company.name}
-                  className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                  className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}
@@ -70,7 +70,7 @@ export const TrustedCompanies = () => {
                 <img 
                   src={company.logo} 
                   alt={company.name}
-                  className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                  className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}

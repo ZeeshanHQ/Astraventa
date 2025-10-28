@@ -9,7 +9,9 @@ const companies = [
   { name: "DigitalOcean", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" },
   { name: "Algolia", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Algolia-logo.svg" },
   { name: "Supabase", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Supabase_logo.svg" },
-  { name: "Vercel", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Vercel_logo_black.svg" }
+  { name: "Vercel", logo: "https://assets.vercel.com/image/upload/front/press/logo/vercel/v-logo-dark.svg" },
+  { name: "Snyk", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Snyk_logo.svg" },
+  { name: "CrowdStrike", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/CrowdStrike_logo.svg" }
 ];
 
 export const TrustedCompanies = () => {

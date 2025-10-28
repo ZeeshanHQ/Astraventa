@@ -70,23 +70,23 @@ const Index = () => {
       <TrustedCompanies />
       
       <Suspense fallback={<ComponentLoader />}>
-        <ProfessionalServices />
+      <ProfessionalServices />
       </Suspense>
       
       <Suspense fallback={<ComponentLoader />}>
-        <PortfolioShowcase />
+      <PortfolioShowcase />
       </Suspense>
       
       <Suspense fallback={<ComponentLoader />}>
-        <TeamSection />
+      <TeamSection />
       </Suspense>
       
       <Suspense fallback={<ComponentLoader />}>
-        <ProcessWorkflow />
+      <ProcessWorkflow />
       </Suspense>
       
       <Suspense fallback={<ComponentLoader />}>
-        <Contact />
+      <Contact />
       </Suspense>
       
       <Footer />

@@ -95,23 +95,23 @@ export const Contact = () => {
       });
 
       if (response.ok) {
-        toast({
-          title: "Message Sent Successfully!",
+    toast({
+      title: "Message Sent Successfully!",
           description: "We'll get back to you within 2 hours.",
           variant: "default",
-        });
-        
-        // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          phone: "",
-          service: "",
-          budget: "",
-          timeline: "",
-          message: ""
-        });
+    });
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      phone: "",
+      service: "",
+      budget: "",
+      timeline: "",
+      message: ""
+    });
       } else {
         throw new Error('Form submission failed');
       }
@@ -122,7 +122,7 @@ export const Contact = () => {
         variant: "destructive",
       });
     } finally {
-      setIsSubmitting(false);
+    setIsSubmitting(false);
     }
   };
 
@@ -200,10 +200,10 @@ export const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-2">Full Name *</label>
-                      <Input
-                        type="text"
+                      <Input 
+                        type="text" 
                         name="name"
-                        placeholder="Your full name"
+                        placeholder="Your full name" 
                         value={formData.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
@@ -212,10 +212,10 @@ export const Contact = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Email Address *</label>
-                      <Input
-                        type="email"
+                      <Input 
+                        type="email" 
                         name="email"
-                        placeholder="your@email.com"
+                        placeholder="your@email.com" 
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
                         className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
@@ -227,10 +227,10 @@ export const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-2">Company Name</label>
-                      <Input
-                        type="text"
+                      <Input 
+                        type="text" 
                         name="company"
-                        placeholder="Your company"
+                        placeholder="Your company" 
                         value={formData.company}
                         onChange={(e) => handleInputChange('company', e.target.value)}
                         className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
@@ -238,10 +238,10 @@ export const Contact = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Phone Number</label>
-                      <Input
-                        type="tel"
+                      <Input 
+                        type="tel" 
                         name="phone"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder="+1 (555) 123-4567" 
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
                         className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
@@ -250,19 +250,19 @@ export const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Service Needed *</label>
+                      <label className="block text-sm font-medium mb-2">Service Needed *</label>
                     <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
                       <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
-                        <SelectValue placeholder="Select a service" />
-                      </SelectTrigger>
-                      <SelectContent>
+                          <SelectValue placeholder="Select a service" />
+                        </SelectTrigger>
+                        <SelectContent>
                         {services.map((service) => (
                           <SelectItem key={service} value={service}>
                             {service}
                           </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                          ))}
+                        </SelectContent>
+                      </Select>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -280,21 +280,21 @@ export const Contact = () => {
                           ))}
                         </SelectContent>
                       </Select>
-                    </div>
+                  </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">Project Timeline</label>
+                    <label className="block text-sm font-medium mb-2">Project Timeline</label>
                       <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
                         <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
-                          <SelectValue placeholder="When do you need this completed?" />
-                        </SelectTrigger>
-                        <SelectContent>
+                        <SelectValue placeholder="When do you need this completed?" />
+                      </SelectTrigger>
+                      <SelectContent>
                           {timelines.map((timeline) => (
                             <SelectItem key={timeline} value={timeline}>
                               {timeline}
                             </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     </div>
                   </div>
 
@@ -311,15 +311,15 @@ export const Contact = () => {
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    size="lg" 
+                    <Button 
+                      type="submit" 
+                      size="lg" 
                     disabled={isSubmitting}
-                    className="w-full group bg-gradient-primary hover:bg-gradient-to-r hover:from-primary hover:to-secondary smooth-transition"
+                      className="w-full group bg-gradient-primary hover:bg-gradient-to-r hover:from-primary hover:to-secondary smooth-transition"
                   >
-                    <Send className="w-5 h-5 mr-2 group-hover:-rotate-12 transition-transform" />
+                          <Send className="w-5 h-5 mr-2 group-hover:-rotate-12 transition-transform" />
                     {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
+                    </Button>
 
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <CheckCircle className="w-4 h-4 text-green-500" />

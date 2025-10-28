@@ -132,23 +132,27 @@ export const FloatingButtons = () => {
           className="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white shadow-lg hover:shadow-purple-500/25 relative ml-2"
           aria-label="AI Chatbot"
         >
-          {/* Lightweight animated robot SVG */}
+          {/* Premium animated chatbot mark */}
           <motion.svg
             width="28"
             height="28"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            animate={{ y: [0, -2, 0] }}
+            animate={{ scale: [1, 1.05, 1], rotate: [0, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <rect x="5" y="8" width="14" height="10" rx="3" fill="currentColor"/>
-            <circle cx="10" cy="13" r="1.5" fill="#0ea5e9"/>
-            <circle cx="14" cy="13" r="1.5" fill="#a78bfa"/>
-            <rect x="11" y="4" width="2" height="3" rx="1" fill="currentColor"/>
-            <motion.circle cx="12" cy="4" r="1.2" fill="#22d3ee"
-              animate={{ opacity: [0.6, 1, 0.6] }} transition={{ duration: 1.6, repeat: Infinity }}
-            />
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#a855f7"/>
+                <stop offset="50%" stopColor="#6366f1"/>
+                <stop offset="100%" stopColor="#3b82f6"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 9a6 6 0 016-6h4a6 6 0 016 6v2a6 6 0 01-6 6h-3l-3.5 2.5c-.8.6-1.5.2-1.5-.8V17A6 6 0 014 11V9z" fill="url(#g1)" opacity="0.9"/>
+            <motion.circle cx="10" cy="12" r="1.4" fill="#ecfeff" animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 1.8, repeat: Infinity }}/>
+            <motion.circle cx="14" cy="12" r="1.4" fill="#f5f3ff" animate={{ opacity: [0.7, 1, 0.7], delay: 0.2 }} transition={{ duration: 1.8, repeat: Infinity }}/>
+            <motion.path d="M9.5 14.5c1.5 1.2 3.5 1.2 5 0" stroke="#e9d5ff" strokeWidth="1.5" strokeLinecap="round" fill="none" animate={{ pathLength: [0.6, 1, 0.6] }} transition={{ duration: 2.2, repeat: Infinity }}/>
           </motion.svg>
           {/* AI indicator */}
           <motion.div

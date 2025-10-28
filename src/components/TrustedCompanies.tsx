@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 
 // Medium-level AI/cyber/SaaS brands with reliable logos
+// Use Simple Icons CDN for reliable, lightweight SVG logos
 const companies = [
-  { name: "Shopify", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Shopify_logo_2018.svg" },
-  { name: "Mailchimp", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Mailchimp_Logo.svg" },
-  { name: "HubSpot", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/HubSpot_Logo.svg" },
-  { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" },
-  { name: "DigitalOcean", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" },
-  { name: "Algolia", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Algolia-logo.svg" },
-  { name: "Supabase", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Supabase_logo.svg" },
-  { name: "Vercel", logo: "https://assets.vercel.com/image/upload/front/press/logo/vercel/v-logo-dark.svg" },
-  { name: "Snyk", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Snyk_logo.svg" },
-  { name: "CrowdStrike", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/CrowdStrike_logo.svg" }
+  { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify/ffffff" },
+  { name: "Mailchimp", logo: "https://cdn.simpleicons.org/mailchimp/ffffff" },
+  { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/ffffff" },
+  { name: "Notion", logo: "https://cdn.simpleicons.org/notion/ffffff" },
+  { name: "DigitalOcean", logo: "https://cdn.simpleicons.org/digitalocean/ffffff" },
+  { name: "Algolia", logo: "https://cdn.simpleicons.org/algolia/ffffff" },
+  { name: "Supabase", logo: "https://cdn.simpleicons.org/supabase/ffffff" },
+  { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel/ffffff" },
+  { name: "Snyk", logo: "https://cdn.simpleicons.org/snyk/ffffff" },
+  { name: "HashiCorp", logo: "https://cdn.simpleicons.org/hashicorp/ffffff" }
 ];
 
 export const TrustedCompanies = () => {
@@ -58,7 +59,8 @@ export const TrustedCompanies = () => {
                 <img 
                   src={company.logo} 
                   alt={company.name}
-                  className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  loading="lazy"
+                  className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}
@@ -72,7 +74,8 @@ export const TrustedCompanies = () => {
                 <img 
                   src={company.logo} 
                   alt={company.name}
-                  className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  loading="lazy"
+                  className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}

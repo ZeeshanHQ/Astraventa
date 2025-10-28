@@ -132,7 +132,24 @@ export const FloatingButtons = () => {
           className="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white shadow-lg hover:shadow-purple-500/25 relative ml-2"
           aria-label="AI Chatbot"
         >
-          <Bot className="w-7 h-7" />
+          {/* Lightweight animated robot SVG */}
+          <motion.svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            animate={{ y: [0, -2, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <rect x="5" y="8" width="14" height="10" rx="3" fill="currentColor"/>
+            <circle cx="10" cy="13" r="1.5" fill="#0ea5e9"/>
+            <circle cx="14" cy="13" r="1.5" fill="#a78bfa"/>
+            <rect x="11" y="4" width="2" height="3" rx="1" fill="currentColor"/>
+            <motion.circle cx="12" cy="4" r="1.2" fill="#22d3ee"
+              animate={{ opacity: [0.6, 1, 0.6] }} transition={{ duration: 1.6, repeat: Infinity }}
+            />
+          </motion.svg>
           {/* AI indicator */}
           <motion.div
             animate={{ 

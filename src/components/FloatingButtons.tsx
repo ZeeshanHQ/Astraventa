@@ -142,6 +142,7 @@ export const FloatingButtons = () => {
           className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white shadow-glow relative"
           aria-label="WhatsApp Chat"
           title="Chat on WhatsApp"
+          title="Chat on WhatsApp"
         >
           {/* Professional Lucid WhatsApp Icon */}
           <WhatsAppIcon className="w-6 h-6" />

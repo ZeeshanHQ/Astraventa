@@ -1,0 +1,819 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  :root {
+    /* Pure Black Premium Design System */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 240 8% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Electric Blue Primary */
+    --primary: 228 87% 63%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 228 87% 73%;
+
+    /* Neon Violet Secondary */
+    --secondary: 264 100% 71%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 264 100% 81%;
+
+    /* Cyan Highlight */
+    --accent: 172 100% 50%;
+    --accent-foreground: 240 7% 6%;
+
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 60%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 228 87% 63%;
+
+    --radius: 1rem;
+
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(228, 87%, 63%), hsl(264, 100%, 71%));
+    --gradient-cosmic: linear-gradient(90deg, hsl(228, 87%, 63%), hsl(264, 100%, 71%), hsl(172, 100%, 50%));
+    --gradient-radial: radial-gradient(circle at 50% 50%, hsl(228, 87%, 63% / 0.15), transparent 70%);
+
+    /* Luxury Shadows */
+    --shadow-glow: 0 0 40px hsl(228 87% 63% / 0.4);
+    --shadow-glow-lg: 0 0 60px hsl(228 87% 63% / 0.5);
+    --shadow-neon: 0 0 30px hsl(264 100% 71% / 0.6);
+    --shadow-depth: 0 20px 60px -15px hsl(240 7% 0% / 0.8);
+    --shadow-elevation: 0 10px 30px -10px hsl(240 7% 0% / 0.6);
+
+    /* Glass Morphism */
+    --glass-bg: hsl(240 8% 10% / 0.4);
+    --glass-border: hsl(0 0% 100% / 0.1);
+
+    /* Animation */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* Premium Glass Card */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-elevation);
+  }
+
+  /* Neon Glow Effect */
+  .neon-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .neon-glow-lg {
+    box-shadow: var(--shadow-glow-lg);
+  }
+
+  .neon-border {
+    border: 1px solid transparent;
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+                var(--gradient-cosmic) border-box;
+  }
+
+  /* Smooth Transitions */
+  .smooth-transition {
+    transition: var(--transition-smooth);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-cosmic);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated Gradient Background */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animated-gradient {
+    background: var(--gradient-cosmic);
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  /* Floating Animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Glow Pulse */
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(228 87% 63% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(228 87% 63% / 0.6);
+    }
+  }
+
+  .glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  .will-change-auto {
+    will-change: auto;
+  }
+
+  /* GPU acceleration for 3D transforms */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimize animations */
+  .optimize-animations {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  /* Hardware acceleration for all interactive elements */
+  .glass-card, .motion-div, [data-framer-motion] {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimize image loading */
+  img {
+    content-visibility: auto;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Critical CSS for above-the-fold content */
+  .hero-section {
+    contain: layout style paint;
+  }
+
+  /* Device-specific optimizations */
+  .low-end-device {
+    /* Disable expensive effects */
+    * {
+      animation-duration: 0.1s !important;
+      transition-duration: 0.1s !important;
+      backdrop-filter: none !important;
+    }
+    
+    .glass-card {
+      background: rgba(0, 0, 0, 0.1) !important;
+      backdrop-filter: none !important;
+    }
+    
+    .neon-glow, .neon-glow-lg {
+      box-shadow: none !important;
+    }
+    
+    /* Reduce image quality */
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+
+  .mobile-device {
+    /* Mobile-specific optimizations */
+    .glass-card {
+      backdrop-filter: blur(10px);
+    }
+    
+    /* Touch-friendly sizing */
+    button, .clickable {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Optimize scrolling */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  .slow-connection {
+    /* Disable non-essential features */
+    .animated-gradient {
+      animation: none;
+    }
+    
+    .float-animation {
+      animation: none;
+    }
+    
+    .glow-pulse {
+      animation: none;
+    }
+    
+    /* Reduce image loading */
+    img {
+      loading: lazy;
+    }
+  }
+
+  /* Progressive enhancement */
+  @supports (backdrop-filter: blur(10px)) {
+    .glass-card {
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  @supports not (backdrop-filter: blur(10px)) {
+    .glass-card {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Memory optimization */
+  .memory-optimized {
+    contain: layout style paint;
+    content-visibility: auto;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  /* Advanced Robot Styles */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .robot-container {
+    transform-style: preserve-3d;
+  }
+
+  .robot-body {
+    width: 120px;
+    height: 180px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 20px;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.6), 0 0 60px rgba(74, 144, 226, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .robot-head {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #6BB6FF, #8CC8FF);
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 25px rgba(107, 182, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .robot-eye {
+    width: 12px;
+    height: 12px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+    box-shadow: 0 0 15px #00FF88, 0 0 30px rgba(0, 255, 136, 0.5);
+  }
+
+  .robot-eye.left-eye {
+    left: 25px;
+  }
+
+  .robot-eye.right-eye {
+    right: 25px;
+  }
+
+  .robot-antenna {
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(to top, #FF6B9D, #FF8BB3);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+  }
+
+  .antenna-tip {
+    width: 8px;
+    height: 8px;
+    background: #FF6B9D;
+    border-radius: 50%;
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px #FF6B9D;
+  }
+
+  .robot-arm {
+    width: 20px;
+    height: 80px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+  }
+
+  .robot-arm.left-arm {
+    left: -25px;
+    transform-origin: right center;
+  }
+
+  .robot-arm.right-arm {
+    right: -25px;
+    transform-origin: left center;
+  }
+
+  .robot-leg {
+    width: 25px;
+    height: 100px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 12px;
+    position: absolute;
+    bottom: -100px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+  }
+
+  .robot-leg.left-leg {
+    left: 25px;
+  }
+
+  .robot-leg.right-leg {
+    right: 25px;
+  }
+
+  .floating-particle {
+    width: 4px;
+    height: 4px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 10px #00FF88;
+    pointer-events: none;
+  }
+
+  .energy-field {
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(74, 144, 226, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .energy-field::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(107, 182, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  /* Advanced AI Visual Styles */
+  .ai-visual-container {
+    transform-style: preserve-3d;
+  }
+
+  .ai-core {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF, #8CC8FF);
+    border-radius: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 40px rgba(74, 144, 226, 0.7), 0 0 80px rgba(74, 144, 226, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .orbiting-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .element-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(74, 144, 226, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+  }
+
+  .neural-network {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .data-particle {
+    width: 3px;
+    height: 3px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 8px #00FF88;
+    pointer-events: none;
+  }
+
+  .energy-field {
+    width: 250px;
+    height: 250px;
+    border: 2px solid rgba(74, 144, 226, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .energy-field::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(107, 182, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  /* Interactive AI Robot Styles */
+  .interactive-robot-container {
+    transform-style: preserve-3d;
+  }
+
+  .interactive-robot-body {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 40px rgba(74, 144, 226, 0.7), 0 0 80px rgba(74, 144, 226, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .interactive-robot-head {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6BB6FF, #8CC8FF);
+    border-radius: 50%;
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 25px rgba(107, 182, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .interactive-robot-eye {
+    width: 10px;
+    height: 10px;
+    background: #00FF88;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    box-shadow: 0 0 15px #00FF88, 0 0 30px rgba(0, 255, 136, 0.5);
+  }
+
+  .interactive-robot-eye.left-eye {
+    left: 20px;
+  }
+
+  .interactive-robot-eye.right-eye {
+    right: 20px;
+  }
+
+  .interactive-robot-antenna {
+    width: 3px;
+    height: 30px;
+    background: linear-gradient(to top, #FF6B9D, #FF8BB3);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+  }
+
+  .interactive-antenna-tip {
+    width: 6px;
+    height: 6px;
+    background: #FF6B9D;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px #FF6B9D;
+  }
+
+  .interactive-robot-arm {
+    width: 15px;
+    height: 60px;
+    background: linear-gradient(135deg, #4A90E2, #6BB6FF);
+    border-radius: 8px;
+    position: absolute;
+    top: 15px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+  }
+
+  .interactive-robot-arm.left-arm {
+    left: -20px;
+    transform-origin: right center;
+  }
+
+  .interactive-robot-arm.right-arm {
+    right: -20px;
+    transform-origin: left center;
+  }
+
+  .floating-ai-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-element-icon {
+    width: 30px;
+    height: 30px;
+    background: rgba(74, 144, 226, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+  }
+
+  .interactive-energy-field {
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(74, 144, 226, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .interactive-energy-field::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(107, 182, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  /* Robot Image Styles */
+  .robot-image-container {
+    transform-style: preserve-3d;
+  }
+
+  .robot-image-body {
+    width: 200px;
+    height: 250px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 50px 50px 30px 30px;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 212, 255, 0.3);
+    border: 3px solid rgba(0, 212, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+
+  .robot-image-head {
+    width: 120px;
+    height: 100px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 50px 50px 20px 20px;
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .robot-image-eyes {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 40px;
+    background: #00D4FF;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+  }
+
+  .robot-image-eye {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  .robot-image-ears {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .robot-image-ear {
+    width: 20px;
+    height: 30px;
+    background: #20B2AA;
+    border-radius: 10px 10px 5px 5px;
+    position: relative;
+  }
+
+  .robot-image-ear::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+
+  .robot-image-chest {
+    width: 60px;
+    height: 40px;
+    background: #20B2AA;
+    border-radius: 15px;
+    margin-top: 10px;
+    position: relative;
+  }
+
+  .robot-image-chest::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: #333333;
+    border-radius: 1px;
+  }
+
+  .robot-image-arm {
+    position: absolute;
+    top: 60px;
+    width: 20px;
+    height: 60px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 10px;
+    transform-origin: top center;
+  }
+
+  .robot-image-arm.left {
+    left: -10px;
+  }
+
+  .robot-image-arm.right {
+    right: -10px;
+  }
+}

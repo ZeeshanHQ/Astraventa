@@ -138,13 +138,13 @@ export const FloatingButtons = () => {
           <img
             src="/chatbot.png"
             alt="Chatbot"
-            className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
+            className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
             onError={(e) => {
               const target = e.currentTarget as HTMLImageElement;
               target.style.display = 'none';
               const fallback = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-              fallback.setAttribute('width', '28');
-              fallback.setAttribute('height', '28');
+              fallback.setAttribute('width', '40');
+              fallback.setAttribute('height', '40');
               fallback.setAttribute('viewBox', '0 0 24 24');
               const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
               path.setAttribute('d', 'M4 9a6 6 0 016-6h4a6 6 0 016 6v2a6 6 0 01-6 6h-3l-3.5 2.5c-.8.6-1.5.2-1.5-.8V17A6 6 0 014 11V9z');

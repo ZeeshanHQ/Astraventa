@@ -23,7 +23,7 @@ const services = [
   {
     icon: Bot,
     title: "AI Chatbots & Virtual Assistants",
-    description: "Intelligent conversational AI that understands context, handles complex queries, and provides 24/7 customer support.",
+    description: "Intelligent conversational AI that understands context, handles complex queries, and provides 24/7 customer support. Successfully deployed for restaurants, e-commerce, and enterprise clients.",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     features: [
       "Natural Language Processing",

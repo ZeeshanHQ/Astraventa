@@ -16,10 +16,10 @@ import {
 const teamMembers = [
   {
     name: "Zeeshan Jay",
-    role: "Founder & AI/ML Expert",
+    role: "Founder & CEO (AI/ML)",
     image: "/api/placeholder/300/300",
-    bio: "AI/ML pioneer with 10+ years experience. Former Google AI researcher, specialized in machine learning, cloud computing, and automation solutions. Led development of AI systems serving 10M+ users globally.",
-    expertise: ["AI/ML", "Cloud Computing", "Machine Learning", "Leadership"],
+    bio: "AI/ML leader with 10+ years building production AI systems. Former Google AI researcher; leads strategy, architecture, and product delivery with a focus on reliability at scale.",
+    expertise: ["AI/ML", "Cloud Computing", "Product Leadership", "Architecture"],
     experience: "10+ years",
     education: "PhD Computer Science, Stanford",
     icon: Bot,
@@ -32,10 +32,10 @@ const teamMembers = [
   },
   {
     name: "Haider",
-    role: "Co-Founder & Tech Lead",
+    role: "Co-Founder & CTO",
     image: "/api/placeholder/300/300", 
-    bio: "Full-stack development expert and AI integration specialist. Led development of 300+ automation solutions for enterprise clients. Expert in scalable architecture and cloud infrastructure.",
-    expertise: ["Full-Stack Development", "AI Integration", "Cloud Architecture", "DevOps"],
+    bio: "Engineering leader focused on scalable systems and AI integrations. Delivered 300+ automation solutions for enterprise clients; drives technical excellence, security, and performance.",
+    expertise: ["Systems Architecture", "AI Integration", "Cloud & DevOps", "Performance Engineering"],
     experience: "8+ years",
     education: "MS Software Engineering, MIT",
     icon: Code,

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Hero } from "@/components/Hero";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,39 +8,20 @@ import { AdvancedScrollAnimations } from "@/components/AdvancedScrollAnimations"
 import { FloatingButtons } from "@/components/FloatingButtons";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TrustedCompanies } from "@/components/TrustedCompanies";
-
-// Lazy load heavy components with optimized loading
-const ProfessionalServices = lazy(() => import("@/components/ProfessionalServices").then(module => ({ default: module.ProfessionalServices })));
-const PortfolioShowcase = lazy(() => import("@/components/PortfolioShowcase").then(module => ({ default: module.PortfolioShowcase })));
-const TeamSection = lazy(() => import("@/components/TeamSection").then(module => ({ default: module.TeamSection })));
-const ProcessWorkflow = lazy(() => import("@/components/ProcessWorkflow").then(module => ({ default: module.ProcessWorkflow })));
-const Contact = lazy(() => import("@/components/Contact").then(module => ({ default: module.Contact })));
-
-// Optimized loading component
-const ComponentLoader = () => (
-  <div className="flex items-center justify-center py-16">
-    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-  </div>
-);
+import { ProfessionalServices } from "@/components/ProfessionalServices";
+import { PortfolioShowcase } from "@/components/PortfolioShowcase";
+import { TeamSection } from "@/components/TeamSection";
+import { ProcessWorkflow } from "@/components/ProcessWorkflow";
+import { Contact } from "@/components/Contact";
 
 const Index = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
-    // Preload critical resources
-    const preloadResources = async () => {
-      // Preload critical fonts
-      const fontLink = document.createElement('link');
-      fontLink.rel = 'preload';
-      fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap';
-      fontLink.as = 'style';
-      document.head.appendChild(fontLink);
-
-      // Mark as loaded after a short delay
-      setTimeout(() => setIsLoaded(true), 100);
-    };
-
-    preloadResources();
+    // Preload critical fonts
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'preload';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap';
+    fontLink.as = 'style';
+    document.head.appendChild(fontLink);
   }, []);
 
   return (
@@ -69,25 +50,12 @@ const Index = () => {
       {/* Trusted Companies */}
       <TrustedCompanies />
       
-      <Suspense fallback={<ComponentLoader />}>
+      {/* All components eagerly loaded - no delays, no loading spinners */}
       <ProfessionalServices />
-      </Suspense>
-      
-      <Suspense fallback={<ComponentLoader />}>
       <PortfolioShowcase />
-      </Suspense>
-      
-      <Suspense fallback={<ComponentLoader />}>
       <TeamSection />
-      </Suspense>
-      
-      <Suspense fallback={<ComponentLoader />}>
       <ProcessWorkflow />
-      </Suspense>
-      
-      <Suspense fallback={<ComponentLoader />}>
       <Contact />
-      </Suspense>
       
       <Footer />
       

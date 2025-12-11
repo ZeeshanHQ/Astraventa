@@ -29,7 +29,10 @@ const quickQuestions = [
   "Can I see examples?",
   "How long does it take?",
   "Do you offer support?",
-  "What's your experience?"
+  "What's your experience?",
+  "Can you build WhatsApp chatbots?",
+  "Do you offer web automation?",
+  "How do we start a project?"
 ];
 
 const aiResponses = {

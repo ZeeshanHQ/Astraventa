@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, Phone, Bell } from "lucide-react";
+import { ArrowUp, Phone, Bell, X } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { ChatbotModal } from "./ChatbotModal";
 
 // Professional Lucid WhatsApp Icon Component
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -20,6 +21,7 @@ export const FloatingButtons = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [open, setOpen] = useState(false);
   const [currentNotification, setCurrentNotification] = useState(0);
+  const [showShortcutHint, setShowShortcutHint] = useState(true);
 
   const notifications = [
     "Need help with AI automation?",
@@ -45,6 +47,35 @@ export const FloatingButtons = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Restore hint dismissed state
+  useEffect(() => {
+    try {
+      const dismissed = localStorage.getItem('astraventa_chatbot_hint_dismissed');
+      if (dismissed === '1') {
+        setShowShortcutHint(false);
+      }
+    } catch {}
+  }, []);
+
+  // Global shortcut: Ctrl+K opens chatbot
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+        e.preventDefault();
+        setOpen(true);
+        setShowShortcutHint(false);
+        try { localStorage.setItem('astraventa_chatbot_hint_dismissed', '1'); } catch {}
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  const dismissHint = () => {
+    setShowShortcutHint(false);
+    try { localStorage.setItem('astraventa_chatbot_hint_dismissed', '1'); } catch {}
+  };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const scrollToContact = () => {
@@ -110,6 +141,8 @@ export const FloatingButtons = () => {
           onClick={() => window.open(`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`, '_blank')}
           className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white shadow-glow relative"
           aria-label="WhatsApp Chat"
+          title="Chat on WhatsApp"
+          title="Chat on WhatsApp"
         >
           {/* Professional Lucid WhatsApp Icon */}
           <WhatsAppIcon className="w-6 h-6" />
@@ -122,50 +155,81 @@ export const FloatingButtons = () => {
         </motion.button>
 
         {/* Beautiful AI Chatbot Button */}
-        <motion.button
-          whileHover={prefersReducedMotion ? undefined : { scale: 1.06 }}
-          whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
-          onClick={() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }}
-          className="w-14 h-14 flex items-center justify-center bg-transparent text-white shadow-none relative ml-2"
-          aria-label="AI Chatbot"
-        >
-          {/* Try to render external PNG with transparent background at /chatbot.png. Fallback to SVG if missing. */}
-          <img
-            src="/chatbot.png"
-            alt="Chatbot"
-            className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
-            onError={(e) => {
-              const target = e.currentTarget as HTMLImageElement;
-              target.style.display = 'none';
-              const fallback = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-              fallback.setAttribute('width', '40');
-              fallback.setAttribute('height', '40');
-              fallback.setAttribute('viewBox', '0 0 24 24');
-              const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-              path.setAttribute('d', 'M4 9a6 6 0 016-6h4a6 6 0 016 6v2a6 6 0 01-6 6h-3l-3.5 2.5c-.8.6-1.5.2-1.5-.8V17A6 6 0 014 11V9z');
-              path.setAttribute('fill', 'currentColor');
-              fallback.appendChild(path);
-              target.parentElement?.appendChild(fallback);
-            }}
-          />
-          {/* AI indicator */}
-          {!prefersReducedMotion && (
-            <motion.div
-              animate={{ 
-                scale: [1, 1.3, 1],
-                opacity: [0.7, 1, 0.7]
+        <div className="relative">
+          <motion.button
+            whileHover={prefersReducedMotion ? undefined : { scale: 1.06 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
+            onClick={() => { setOpen(true); dismissHint(); }}
+            className="w-14 h-14 flex items-center justify-center bg-transparent text-white shadow-none relative ml-2"
+            aria-label="AI Chatbot (Ctrl+K)"
+            title="Open chatbot (Ctrl+K)"
+          >
+            {/* Try to render external PNG with transparent background at /chatbot.png. Fallback to SVG if missing. */}
+            <img
+              src="/chatbot.png"
+              alt="Chatbot"
+              className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement;
+                target.style.display = 'none';
+                const fallback = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                fallback.setAttribute('width', '40');
+                fallback.setAttribute('height', '40');
+                fallback.setAttribute('viewBox', '0 0 24 24');
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', 'M4 9a6 6 0 016-6h4a6 6 0 016 6v2a6 6 0 01-6 6h-3l-3.5 2.5c-.8.6-1.5.2-1.5-.8V17A6 6 0 014 11V9z');
+                path.setAttribute('fill', 'currentColor');
+                fallback.appendChild(path);
+                target.parentElement?.appendChild(fallback);
               }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full border-2 border-background"
             />
-          )}
-        </motion.button>
+            {/* AI indicator */}
+            {!prefersReducedMotion && (
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.3, 1],
+                  opacity: [0.7, 1, 0.7]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full border-2 border-background"
+              />
+            )}
+          </motion.button>
+
+          {/* Always-visible small keycap */}
+          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-2 py-[2px] rounded-full text-[10px] bg-background/90 border border-border/40 text-foreground shadow-sm">
+            Ctrl+K
+          </div>
+
+          {/* Shortcut hint bubble (dismissible) */}
+          <AnimatePresence>
+            {showShortcutHint && (
+              <motion.div
+                initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                transition={{ duration: 0.25 }}
+                className="absolute -top-14 left-1/2 -translate-x-1/2 bg-black/80 text-white border border-white/10 px-3 py-1.5 rounded-lg text-[11px] whitespace-nowrap shadow-lg z-50"
+              >
+                <div className="flex items-center gap-2">
+                  <span>Press Ctrl+K to open chatbot</span>
+                  <button
+                    onClick={dismissHint}
+                    className="w-4 h-4 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center"
+                    aria-label="Dismiss hint"
+                  >
+                    <X className="w-3 h-3 text-white" />
+                  </button>
+                </div>
+                <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 rotate-45 bg-black/80 border-b border-r border-white/10" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
+
+      {/* Chatbot modal controlled here */}
+      <ChatbotModal isOpen={open} onClose={() => setOpen(false)} />
     </div>
   );
 };

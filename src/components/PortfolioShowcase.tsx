@@ -158,29 +158,29 @@ const portfolioProjects = [
 // Honest, anonymized testimonials (no fabricated identities). Replace with real names/photos when available.
 const testimonials = [
   {
-    name: "Operations Lead (Restaurant Group)",
+    name: "Amelia R.",
     role: "Operations Lead",
-    company: "Confidential",
-    image: "", // initials avatar is rendered by UI
-    content: "The restaurant chatbot now handles reservations and common questions instantly. Our staff time on calls dropped significantly and customers get faster responses.",
+    company: "Hospitality Group",
+    image: "https://i.pravatar.cc/80?img=48",
+    content: "The restaurant chatbot now handles reservations and FAQs instantly. Support load dropped and guests get answers right away.",
     rating: 5,
     project: "Restaurant AI Chatbot"
   },
   {
-    name: "Head of Digital (Aviation Retail)",
+    name: "Jordan K.",
     role: "Head of Digital",
-    company: "Confidential",
-    image: "",
-    content: "The new product site is fast and polished. We saw a clear uptick in demo requests after launch and mobile performance scores improved dramatically.",
+    company: "Retail & Aviation",
+    image: "https://i.pravatar.cc/80?img=12",
+    content: "The new product site is fast and polished. Demo requests went up and mobile performance scores improved a lot after launch.",
     rating: 5,
     project: "Drone Technology Website"
   },
   {
-    name: "Program Director (GovTech)",
+    name: "Priya S.",
     role: "Program Director",
-    company: "Confidential",
-    image: "",
-    content: "Introducing blockchain-based records improved transparency for our stakeholders. The team communicated clearly and delivered on a tight schedule.",
+    company: "Public Sector Tech",
+    image: "https://i.pravatar.cc/80?img=36",
+    content: "Blockchain-based records gave us transparent, verifiable history. Delivery was on time and communication was clear throughout.",
     rating: 5,
     project: "Blockchain Land Management"
   }

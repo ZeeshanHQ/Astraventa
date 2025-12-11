@@ -25,7 +25,7 @@ const teamMembers = [
     icon: Bot,
     color: "from-purple-600 to-indigo-600",
     social: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/zeeshanjay",
       twitter: "#",
       email: "zeeshan@astraventa.com"
     }

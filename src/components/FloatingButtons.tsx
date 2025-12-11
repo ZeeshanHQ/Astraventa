@@ -196,35 +196,6 @@ export const FloatingButtons = () => {
             )}
           </motion.button>
 
-          {/* Always-visible small keycap */}
-          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-2 py-[2px] rounded-full text-[10px] bg-background/90 border border-border/40 text-foreground shadow-sm">
-            Ctrl+K
-          </div>
-
-          {/* Shortcut hint bubble (dismissible) */}
-          <AnimatePresence>
-            {showShortcutHint && (
-              <motion.div
-                initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                transition={{ duration: 0.25 }}
-                className="absolute -top-14 left-1/2 -translate-x-1/2 bg-black/80 text-white border border-white/10 px-3 py-1.5 rounded-lg text-[11px] whitespace-nowrap shadow-lg z-50"
-              >
-                <div className="flex items-center gap-2">
-                  <span>Press Ctrl+K to open chatbot</span>
-                  <button
-                    onClick={dismissHint}
-                    className="w-4 h-4 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center"
-                    aria-label="Dismiss hint"
-                  >
-                    <X className="w-3 h-3 text-white" />
-                  </button>
-                </div>
-                <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 rotate-45 bg-black/80 border-b border-r border-white/10" />
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </div>
 

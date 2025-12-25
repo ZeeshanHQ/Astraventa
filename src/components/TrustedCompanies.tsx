@@ -39,8 +39,8 @@ export const TrustedCompanies = () => {
         <div className="relative overflow-hidden">
           <motion.div
             className="flex items-center"
-            animate={prefersReducedMotion ? undefined : { x: [0, -100 * companies.length] }}
-            transition={prefersReducedMotion ? undefined : { x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" } }}
+            animate={prefersReducedMotion ? undefined : { x: [0, -200 * companies.length] }}
+            transition={prefersReducedMotion ? undefined : { x: { repeat: Infinity, repeatType: "loop", duration: 25, ease: "linear" } }}
           >
             {/* First set of logos */}
             {companies.map((company, index) => (

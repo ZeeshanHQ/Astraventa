@@ -162,11 +162,13 @@ export const ProcessWorkflow = () => {
   };
 
   return (
-    <section id="process" className="py-20 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/5 to-background" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+    <section id="process" className="py-24 relative overflow-hidden bg-black">
+      {/* Background Elements - Premium Blobs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] bg-accent/10 rounded-full blur-[100px]" />
+      </div>
 
       <div className="container relative z-10 mx-auto px-4">
         {/* Section Header */}
@@ -175,114 +177,118 @@ export const ProcessWorkflow = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-20"
         >
-          <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
-            <FileText className="w-4 h-4 mr-2" />
-            Our Process
+          <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm">
+            <Zap className="w-4 h-4 mr-2" />
+            Our Protocol
           </Badge>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            How We <span className="gradient-text">Deliver Success</span>
+          <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
+            Our <span className="gradient-text">5-Step</span> Process
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Our proven 5-step methodology ensures successful project delivery,
-            maximum ROI, and long-term success for your AI initiatives.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
+            A high-speed methodology designed for rapid deployment and maximum efficiency.
+            We turn complex AI requirements into robust business solutions in record time.
           </p>
         </motion.div>
 
         {/* Workflow Steps */}
-        <div className="space-y-16 mb-20">
+        <div className="space-y-32 mb-20 relative">
+          {/* Vertical Progress Line (Desktop) */}
+          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 top-0 opacity-20" />
+
           {workflowSteps.map((step, index) => {
+            const isEven = index % 2 === 0;
             return (
               <motion.div
                 key={step.step}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onMouseMove={(e) => handleMouseMove(e, index)}
-                onMouseLeave={() => {
-                  setHoveredCard(null);
-                  setMousePosition({ x: 0, y: 0 });
-                }}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transform: hoveredCard === index
-                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)`
-                    : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-                  transition: 'transform 0.1s ease-out'
-                }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className={`flex flex-col lg:flex-row gap-16 items-center ${!isEven ? 'lg:flex-row-reverse' : ''
                   }`}
               >
                 {/* Step Content */}
-                <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <div className="space-y-6">
+                <div className="flex-1 w-full order-2 lg:order-none">
+                  <div className="space-y-8 glass-card p-10 rounded-[2.5rem] border border-white/5 relative group hover:border-primary/20 transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,212,255,0.1)]">
+                    {/* Glowing Accent */}
+                    <div className={`absolute -top-10 ${isEven ? '-right-10' : '-left-10'} w-40 h-40 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700`} />
+
                     {/* Step Header */}
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${step.color} flex items-center justify-center`}>
-                        <span className="text-2xl font-bold text-white">{step.step}</span>
+                    <div className="flex items-center gap-6">
+                      <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${step.color} shadow-lg shadow-black/20 flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}>
+                        <span className="text-3xl font-black text-white relative z-10">{step.step}</span>
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-white/10" />
                       </div>
                       <div>
-                        <Badge variant="secondary" className="mb-2">
-                          Step {step.step}
-                        </Badge>
-                        <h3 className="text-3xl font-bold">{step.title}</h3>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <motion.span animate={{ opacity: [0.8, 1, 0.8] }} transition={{ duration: 2, repeat: Infinity }}>
-                            <Clock className="w-4 h-4" />
-                          </motion.span>
-                          <span>{step.duration}</span>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Badge variant="outline" className="border-primary/20 text-[10px] tracking-[0.2em] uppercase text-primary/80">
+                            PHASE 0{step.step}
+                          </Badge>
+                        </div>
+                        <h3 className="text-4xl font-bold tracking-tight">{step.title}</h3>
+                        <div className="flex items-center gap-2 text-primary font-medium mt-1">
+                          <Clock className="w-4 h-4 animate-pulse" />
+                          <span className="text-sm">Timeline: {step.duration}</span>
                         </div>
                       </div>
                     </div>
 
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-muted-foreground/90 leading-relaxed font-light">
                       {step.description}
                     </p>
 
-                    {/* Deliverables */}
-                    <div>
-                      <h4 className="text-lg font-semibold mb-3">Key Deliverables:</h4>
-                      <div className="space-y-2">
-                        {step.deliverables.map((deliverable, deliverableIndex) => (
-                          <div key={deliverableIndex} className="flex items-center gap-3">
-                            <BadgeCheck className="w-4 h-4 text-green-500 flex-shrink-0" />
-                            <span className="text-sm text-muted-foreground">{deliverable}</span>
-                          </div>
-                        ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+                      {/* Deliverables */}
+                      <div className="space-y-4">
+                        <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">Key Deliverables</h4>
+                        <ul className="space-y-3">
+                          {step.deliverables.slice(0, 3).map((item, i) => (
+                            <li key={i} className="flex items-start gap-3 group/item">
+                              <div className="mt-1 w-1.5 h-1.5 rounded-full bg-primary/50 group-hover/item:scale-150 transition-transform" />
+                              <span className="text-sm text-foreground/70">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    </div>
-
-                    {/* Team */}
-                    <div>
-                      <h4 className="text-lg font-semibold mb-3">Team Members:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {step.team.map((member, memberIndex) => (
-                          <Badge key={memberIndex} variant="outline" className="text-xs">
-                            {member}
-                          </Badge>
-                        ))}
+                      {/* Squad */}
+                      <div className="space-y-4">
+                        <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-primary/60">Expert Squad</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {step.team.map((member, i) => (
+                            <Badge key={i} variant="secondary" className="bg-white/5 hover:bg-white/10 text-[9px] px-2 py-0 border-white/5 uppercase font-medium">
+                              {member}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
+                {/* Step Connector Node (Lg only) */}
+                <div className="hidden lg:flex flex-shrink-0 w-16 h-16 rounded-full border-[6px] border-black bg-white z-20 items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                  <div className={`w-4 h-4 rounded-full bg-gradient-to-br ${step.color} animate-pulse`} />
+                </div>
+
                 {/* Step Visual */}
-                <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                  <div className="relative">
-                    <div className="aspect-square bg-gradient-to-br from-card to-card/50 rounded-3xl border border-border/50 overflow-hidden">
+                <div className="flex-1 w-full order-1 lg:order-none">
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-[3.5rem] blur-3xl group-hover:scale-110 transition-transform duration-700 opacity-40" />
+                    <div className="aspect-[16/10] bg-card rounded-[3.5rem] border border-white/10 overflow-hidden relative z-10 shadow-2xl transition-transform duration-700 group-hover:-translate-y-2">
                       <img
                         src={step.image}
                         alt={step.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    </div>
-
-                    {/* Step Number */}
-                    <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg">
-                      {step.step}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90" />
+                      <div className={`absolute top-8 right-8 w-14 h-14 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center`}>
+                        <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${step.color} animate-ping`} />
+                      </div>
+                      <div className="absolute bottom-10 left-10">
+                        <span className="text-7xl font-black text-white/5 select-none tracking-tighter italic">STEP.0{step.step}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

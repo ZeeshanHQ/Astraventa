@@ -21,7 +21,7 @@ export const TrustedCompanies = () => {
     <section className="py-12 relative overflow-hidden bg-black/5">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
+
       <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,7 +31,7 @@ export const TrustedCompanies = () => {
           className="text-center mb-8"
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">
-            Trusted by 500+ companies worldwide
+            Trusted by Global Industry Leaders
           </h2>
         </motion.div>
 
@@ -48,23 +48,23 @@ export const TrustedCompanies = () => {
                 key={`first-${index}`}
                 className="flex-shrink-0 flex items-center justify-center mx-8"
               >
-                <img 
-                  src={company.logo} 
+                <img
+                  src={company.logo}
                   alt={company.name}
                   loading="lazy"
                   className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}
-            
+
             {/* Second set of logos for seamless loop */}
             {companies.map((company, index) => (
               <div
                 key={`second-${index}`}
                 className="flex-shrink-0 flex items-center justify-center mx-8"
               >
-                <img 
-                  src={company.logo} 
+                <img
+                  src={company.logo}
                   alt={company.name}
                   loading="lazy"
                   className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"

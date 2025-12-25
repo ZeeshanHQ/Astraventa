@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Search, 
-  Lightbulb, 
-  Code, 
-  Rocket, 
+import {
+  Search,
+  Lightbulb,
+  Code,
+  Rocket,
   Headphones,
   ArrowRight,
   CheckCircle,
@@ -23,13 +23,13 @@ const workflowSteps = [
   {
     step: 1,
     title: "Discovery & Analysis",
-    description: "We analyze your business needs, current systems, and goals to create a tailored solution strategy.",
-    duration: "1-2 days",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "We analyze your business needs and create a tailored solution strategy in record time.",
+    duration: "Same Day",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
     color: "from-blue-500 to-cyan-500",
     deliverables: [
       "Business Requirements Document",
-      "Technical Architecture Plan", 
+      "Technical Architecture Plan",
       "Project Timeline & Milestones",
       "Resource Allocation Plan"
     ],
@@ -38,9 +38,9 @@ const workflowSteps = [
   {
     step: 2,
     title: "Solution Design",
-    description: "Our experts design the optimal AI solution architecture and create detailed implementation plans.",
-    duration: "3-5 days",
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Our experts design the optimal AI solution architecture and create detailed implementation plans within 24 hours.",
+    duration: "24 Hours",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
     color: "from-purple-500 to-pink-500",
     deliverables: [
       "System Architecture Design",
@@ -53,9 +53,9 @@ const workflowSteps = [
   {
     step: 3,
     title: "Development & Testing",
-    description: "We build, test, and refine your AI solution with rigorous quality assurance and performance optimization.",
-    duration: "2-6 weeks",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "We build, test, and refine your AI solution with rapid development cycles and rigorous quality assurance.",
+    duration: "1-2 Weeks",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
     color: "from-green-500 to-emerald-500",
     deliverables: [
       "Fully Functional AI System",
@@ -68,9 +68,9 @@ const workflowSteps = [
   {
     step: 4,
     title: "Deployment & Training",
-    description: "We deploy your solution, provide comprehensive training, and ensure smooth integration with your systems.",
-    duration: "1-2 weeks",
-    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "We deploy your solution and provide rapid training to ensure your team is ready within 24 hours.",
+    duration: "Next Day",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
     color: "from-orange-500 to-red-500",
     deliverables: [
       "Live Production System",
@@ -83,9 +83,9 @@ const workflowSteps = [
   {
     step: 5,
     title: "Support & Optimization",
-    description: "Ongoing monitoring, maintenance, and continuous improvement to maximize your ROI and performance.",
-    duration: "Ongoing",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Instant monitoring and continuous improvement to maximize your ROI and performance from day one.",
+    duration: "Instant",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
     color: "from-indigo-500 to-purple-500",
     deliverables: [
       "24/7 System Monitoring",
@@ -127,7 +127,7 @@ const communicationPlan = [
     frequency: "Every Friday"
   },
   {
-    phase: "Sprint Reviews", 
+    phase: "Sprint Reviews",
     description: "Demo sessions and feedback collection",
     frequency: "Every 2 weeks"
   },
@@ -153,10 +153,10 @@ export const ProcessWorkflow = () => {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -6;
     const rotateY = ((x - centerX) / centerX) * 6;
-    
+
     setMousePosition({ x: rotateY, y: rotateX });
     setHoveredCard(index);
   };
@@ -167,7 +167,7 @@ export const ProcessWorkflow = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/5 to-background" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-      
+
       <div className="container relative z-10 mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -185,7 +185,7 @@ export const ProcessWorkflow = () => {
             How We <span className="gradient-text">Deliver Success</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Our proven 5-step methodology ensures successful project delivery, 
+            Our proven 5-step methodology ensures successful project delivery,
             maximum ROI, and long-term success for your AI initiatives.
           </p>
         </motion.div>
@@ -205,16 +205,15 @@ export const ProcessWorkflow = () => {
                   setHoveredCard(null);
                   setMousePosition({ x: 0, y: 0 });
                 }}
-                style={{ 
+                style={{
                   transformStyle: "preserve-3d",
-                  transform: hoveredCard === index 
-                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)` 
+                  transform: hoveredCard === index
+                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)`
                     : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
                   transition: 'transform 0.1s ease-out'
                 }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                }`}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
+                  }`}
               >
                 {/* Step Content */}
                 <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
@@ -280,7 +279,7 @@ export const ProcessWorkflow = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     </div>
-                    
+
                     {/* Step Number */}
                     <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg">
                       {step.step}
@@ -386,8 +385,8 @@ export const ProcessWorkflow = () => {
               Let's discuss your project requirements and create a customized roadmap for success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="group"
                 onClick={() => {
                   const element = document.getElementById('contact');
@@ -399,8 +398,8 @@ export const ProcessWorkflow = () => {
                 Start Your Project
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 onClick={() => {
                   const element = document.getElementById('services');

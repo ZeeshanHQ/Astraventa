@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  ExternalLink, 
-  ArrowRight, 
-  TrendingUp, 
-  Users, 
+import {
+  ExternalLink,
+  ArrowRight,
+  TrendingUp,
+  Users,
   Clock,
   CheckCircle,
   Bot,
@@ -102,7 +102,7 @@ const portfolioProjects = [
       { metric: "Cost Reduction", value: "85%", improvement: "Lower transaction fees" },
       { metric: "Security", value: "100%", improvement: "Immutable records" },
       { metric: "Transparency", value: "Real-time", improvement: "Public ledger verification" },
-      { metric: "User Adoption", value: "500+", improvement: "Active users" }
+      { metric: "User Adoption", value: "100+", improvement: "Verified users" }
     ],
     duration: "8-10 weeks",
     team: "5-6 developers",
@@ -196,10 +196,10 @@ export const PortfolioShowcase = () => {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -8;
     const rotateY = ((x - centerX) / centerX) * 8;
-    
+
     setMousePosition({ x: rotateY, y: rotateX });
     setHoveredCard(index);
   };
@@ -210,7 +210,7 @@ export const PortfolioShowcase = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/5 to-background" />
       <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-      
+
       <div className="container relative z-10 mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -228,7 +228,7 @@ export const PortfolioShowcase = () => {
             Real Results for <span className="gradient-text">Real Businesses</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            See how we've helped companies across industries transform their operations, 
+            See how we've helped companies across industries transform their operations,
             reduce costs, and drive growth with our AI solutions.
           </p>
         </motion.div>
@@ -249,16 +249,15 @@ export const PortfolioShowcase = () => {
                   setHoveredCard(null);
                   setMousePosition({ x: 0, y: 0 });
                 }}
-                style={{ 
+                style={{
                   transformStyle: "preserve-3d",
-                  transform: hoveredCard === index 
-                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)` 
+                  transform: hoveredCard === index
+                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)`
                     : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
                   transition: 'transform 0.1s ease-out'
                 }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                }`}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
+                  }`}
               >
                 {/* Project Image */}
                 <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
@@ -357,7 +356,7 @@ export const PortfolioShowcase = () => {
 
                     <div className="flex flex-wrap gap-3">
                       {(project as any).liveUrl && (project as any).liveUrl !== "#" && (
-                        <Button 
+                        <Button
                           variant="outline"
                           className="group"
                           onClick={() => window.open((project as any).liveUrl, '_blank')}
@@ -368,7 +367,7 @@ export const PortfolioShowcase = () => {
                         </Button>
                       )}
                       {(project as any).githubUrl && (project as any).githubUrl !== "#" && (
-                        <Button 
+                        <Button
                           variant="outline"
                           className="group"
                           onClick={() => window.open((project as any).githubUrl, '_blank')}
@@ -378,7 +377,7 @@ export const PortfolioShowcase = () => {
                           <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       )}
-                      <Button 
+                      <Button
                         className="group"
                         onClick={() => {
                           const element = document.getElementById('contact');
@@ -469,8 +468,8 @@ export const PortfolioShowcase = () => {
               Let's discuss how we can help your business achieve similar results with our proven AI solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="group"
                 onClick={() => {
                   const element = document.getElementById('contact');
@@ -482,8 +481,8 @@ export const PortfolioShowcase = () => {
                 Start Your Project
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 onClick={() => {
                   const element = document.getElementById('services');

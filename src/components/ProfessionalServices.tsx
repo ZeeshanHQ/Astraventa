@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Bot, 
-  Zap, 
-  Code, 
-  BarChart3, 
-  Globe, 
+import {
+  Bot,
+  Zap,
+  Code,
+  BarChart3,
+  Globe,
   Shield,
   ArrowRight,
   CheckCircle,
@@ -27,7 +27,7 @@ const services = [
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     features: [
       "Natural Language Processing",
-      "Multi-language Support", 
+      "Multi-language Support",
       "Integration with CRM/ERP",
       "Analytics & Insights",
       "Custom Training & Fine-tuning"
@@ -48,7 +48,7 @@ const services = [
       "Workflow Automation",
       "API Integration"
     ],
-    delivery: "1-3 weeks", 
+    delivery: "1-3 weeks",
     clients: "200+ automations",
     color: "from-purple-500 to-pink-500"
   },
@@ -126,7 +126,7 @@ const processSteps = [
     duration: "1-2 days"
   },
   {
-    step: "02", 
+    step: "02",
     title: "Solution Design",
     description: "Our experts design the optimal AI solution architecture and create detailed implementation plans.",
     duration: "3-5 days"
@@ -157,7 +157,7 @@ const ServiceCard = memo(({ service, index }: {
 }) => {
   const Icon = service.icon;
   const { handleMouseMove, handleMouseLeave, tiltStyle, getTiltTransform } = useTiltEffect();
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -166,7 +166,7 @@ const ServiceCard = memo(({ service, index }: {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseMove={(e) => handleMouseMove(e, index)}
       onMouseLeave={handleMouseLeave}
-      style={{ 
+      style={{
         ...tiltStyle,
         transform: getTiltTransform(index)
       }}
@@ -188,7 +188,7 @@ const ServiceCard = memo(({ service, index }: {
             </div>
           </div>
         </div>
-        
+
         <CardHeader className="pb-4">
           <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
           <CardDescription className="text-base leading-relaxed">
@@ -218,8 +218,8 @@ const ServiceCard = memo(({ service, index }: {
             </div>
           </div>
 
-          <Button 
-            className="w-full group" 
+          <Button
+            className="w-full group"
             variant="outline"
             onClick={() => {
               const element = document.getElementById('contact');
@@ -245,7 +245,7 @@ export const ProfessionalServices = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/5 to-background" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-      
+
       <div className="container relative z-10 mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -263,7 +263,7 @@ export const ProfessionalServices = () => {
             AI Solutions That <span className="gradient-text">Drive Results</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            From AI chatbots to web automation, we deliver enterprise-grade solutions that transform 
+            From AI chatbots to web automation, we deliver enterprise-grade solutions that transform
             how businesses operate. Each service is backed by our 98% client satisfaction guarantee.
           </p>
         </motion.div>
@@ -291,7 +291,7 @@ export const ProfessionalServices = () => {
             Our <span className="gradient-text">5-Step Process</span>
           </h3>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            From initial consultation to ongoing support, we follow a proven methodology 
+            From initial consultation to ongoing support, we follow a proven methodology
             that ensures successful project delivery and maximum ROI.
           </p>
         </motion.div>
@@ -337,11 +337,11 @@ export const ProfessionalServices = () => {
               Ready to Transform Your Business?
             </h3>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join 500+ companies that have already automated their processes and increased efficiency with our AI solutions.
+              Join leading global companies that have already automated their processes and increased efficiency with our AI solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="group"
                 onClick={() => {
                   const element = document.getElementById('contact');
@@ -354,8 +354,8 @@ export const ProfessionalServices = () => {
                 Schedule Free Consultation
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 onClick={() => {
                   const element = document.getElementById('portfolio');

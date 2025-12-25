@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Linkedin, 
-  Twitter, 
+import {
+  Linkedin,
+  Twitter,
   Mail,
   Award,
   Code,
@@ -33,7 +33,7 @@ const teamMembers = [
   {
     name: "Haider",
     role: "Co-Founder & CTO",
-    image: "/api/placeholder/300/300", 
+    image: "/api/placeholder/300/300",
     bio: "Engineering leader focused on scalable systems and AI integrations. Delivered 300+ automation solutions for enterprise clients; drives technical excellence, security, and performance.",
     expertise: ["Systems Architecture", "AI Integration", "Cloud & DevOps", "Performance Engineering"],
     experience: "8+ years",
@@ -42,7 +42,7 @@ const teamMembers = [
     color: "from-blue-600 to-cyan-600",
     social: {
       linkedin: "#",
-      twitter: "#", 
+      twitter: "#",
       email: "haider@astraventa.com"
     }
   },
@@ -52,7 +52,7 @@ const teamMembers = [
     image: "/api/placeholder/300/300",
     bio: "Machine Learning research scientist with expertise in NLP, computer vision, and deep learning. Published 50+ research papers and built AI systems serving 5M+ users daily.",
     expertise: ["Machine Learning", "NLP", "Computer Vision", "Deep Learning"],
-    experience: "7+ years", 
+    experience: "7+ years",
     education: "PhD AI, Carnegie Mellon",
     icon: Zap,
     color: "from-emerald-600 to-teal-600",
@@ -82,7 +82,7 @@ const teamMembers = [
 
 const achievements = [
   {
-    title: "500+ Projects Delivered",
+    title: "100+ Projects Delivered",
     description: "Successfully completed AI solutions for clients worldwide"
   },
   {
@@ -106,7 +106,7 @@ export const TeamSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/5 to-background" />
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-      
+
       <div className="container relative z-10 mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -124,7 +124,7 @@ export const TeamSection = () => {
             Expert <span className="gradient-text">AI Professionals</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Our team combines deep technical expertise with business acumen to deliver 
+            Our team combines deep technical expertise with business acumen to deliver
             AI solutions that drive real results for your organization.
           </p>
         </motion.div>
@@ -250,8 +250,8 @@ export const TeamSection = () => {
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Ready to transform your business with AI? Our team of experts is here to help you succeed.
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="group"
               onClick={() => {
                 const element = document.getElementById('contact');

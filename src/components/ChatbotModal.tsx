@@ -37,18 +37,18 @@ const quickQuestions = [
 
 const aiResponses = {
   "services": "We offer comprehensive AI solutions including:\n\n🤖 AI Chatbots & Virtual Assistants\n⚡ Web Automation & RPA\n🧠 Custom AI Integration\n📊 Smart Analytics & Insights\n🛒 E-commerce Development\n🔒 AI Security & Compliance\n\nEach service is tailored to your specific business needs. Would you like details about any specific service?",
-  
+
   "pricing": "Our pricing is flexible and based on your project requirements:\n\n💰 **Basic Projects**: $5,000 - $15,000\n💼 **Standard Projects**: $15,000 - $50,000\n🚀 **Enterprise Solutions**: $50,000+\n\nWe offer:\n✅ Free consultation\n✅ No hidden fees\n✅ 30-day money-back guarantee\n\nWould you like a custom quote for your project?",
-  
+
   "process": "Our proven 5-step process:\n\n1️⃣ **Discovery** - Understanding your needs\n2️⃣ **Strategy** - Custom AI roadmap\n3️⃣ **Development** - Building your solution\n4️⃣ **Testing** - Quality assurance\n5️⃣ **Launch** - Go-live with support\n\nWe maintain 95% client satisfaction and deliver on time. Ready to start your AI journey?",
-  
+
   "examples": "Here are some success stories:\n\n🏢 **E-commerce**: 300% increase in sales with AI chatbots\n🏭 **Manufacturing**: 60% cost reduction with automation\n🏪 **Retail**: 24/7 customer support with AI assistants\n\n📞 **Schedule a demo** to see live examples\n📧 **Get case studies** sent to your email\n\nWhich industry interests you most?",
-  
+
   "timeline": "Typical project timelines:\n\n⚡ **Quick Solutions**: 1-2 weeks\n🚀 **Standard Projects**: 1-3 months\n🏢 **Enterprise**: 3-6 months\n\nWe can also do:\n✅ Rush projects (ASAP)\n✅ Phased delivery\n✅ Flexible timelines\n\nWhat's your preferred timeline?",
-  
+
   "support": "We provide comprehensive support:\n\n🕐 **24/7 Technical Support**\n📞 **Dedicated Account Manager**\n📚 **Training & Documentation**\n🔄 **Regular Updates & Maintenance**\n🛡️ **99.9% Uptime Guarantee**\n\nPlus free consultation and ongoing optimization!",
-  
-  "experience": "With 5+ years of AI expertise:\n\n✅ **500+ Successful Projects**\n✅ **50+ Enterprise Clients**\n✅ **95% Client Satisfaction**\n✅ **Certified AI Engineers**\n✅ **Industry Recognition**\n\nWe've worked with startups to Fortune 500 companies across various industries."
+
+  "experience": "With 5+ years of AI expertise:\n\n✅ **100+ Successful Projects**\n✅ **50+ Enterprise Clients**\n✅ **95% Client Satisfaction**\n✅ **Certified AI Engineers**\n✅ **Industry Recognition**\n\nWe've worked with startups to Fortune 500 companies across various industries."
 };
 
 export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
@@ -75,7 +75,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
 
   const getAIResponse = (userMessage: string): string => {
     const message = userMessage.toLowerCase();
-    
+
     if (message.includes('service') || message.includes('offer') || message.includes('what do you do')) {
       return aiResponses.services;
     } else if (message.includes('cost') || message.includes('price') || message.includes('budget') || message.includes('how much')) {
@@ -154,7 +154,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
   const handleAction = (action: string) => {
     let responseText = "";
     let actionType = 'text';
-    
+
     switch (action) {
       case 'call':
         responseText = "📞 Perfect! I'll connect you with our AI experts.\n\n**Next Steps:**\n✅ Free 30-minute consultation\n✅ Custom AI strategy\n✅ No-obligation quote\n\n**Available Times:**\n🕐 Today: 2:00 PM - 6:00 PM\n🕐 Tomorrow: 9:00 AM - 5:00 PM\n\nWould you like me to schedule a call?";
@@ -166,7 +166,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
         responseText = "🎨 Here are some amazing examples:\n\n**Recent Projects:**\n🏢 E-commerce AI Chatbot (300% sales increase)\n🏭 Manufacturing Automation (60% cost reduction)\n🏪 Retail AI Assistant (24/7 support)\n\n**View Live Demos:**\n🔗 astraventa.com/portfolio\n📧 Request case studies\n\nWhich industry interests you most?";
         break;
     }
-    
+
     const actionResponse: Message = {
       id: messages.length + 1,
       text: responseText,
@@ -174,7 +174,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
       timestamp: new Date(),
       type: actionType
     };
-    
+
     setMessages(prev => [...prev, actionResponse]);
   };
 
@@ -220,7 +220,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
             </div>
 
             {/* Enhanced Messages */}
-            <div 
+            <div
               className="h-64 overflow-y-auto p-3 space-y-3 bg-gradient-to-b from-background to-muted/20"
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
@@ -233,17 +233,16 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
                   className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}
                 >
                   <div
-                    className={`max-w-[80%] p-2.5 rounded-xl ${
-                      msg.isBot
+                    className={`max-w-[80%] p-2.5 rounded-xl ${msg.isBot
                         ? 'bg-muted/50 text-foreground border border-border/30'
                         : 'bg-gradient-to-r from-primary to-secondary text-white'
-                    }`}
+                      }`}
                   >
                     <p className="text-xs whitespace-pre-line leading-relaxed">{msg.text}</p>
                     <p className="text-xs opacity-70 mt-1">
                       {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
-                    
+
                     {/* Action Buttons */}
                     {msg.actions && (
                       <div className="flex flex-wrap gap-1.5 mt-2">
@@ -265,7 +264,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
                   </div>
                 </motion.div>
               ))}
-              
+
               {/* Typing Indicator */}
               {isTyping && (
                 <motion.div
@@ -285,7 +284,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
                   </div>
                 </motion.div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -322,7 +321,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
                   <Send className="w-3.5 h-3.5" />
                 </Button>
               </div>
-              
+
               {/* Footer */}
               <div className="flex items-center gap-1.5 mt-1.5 text-xs text-muted-foreground">
                 <CheckCircle className="w-3 h-3 text-green-500" />

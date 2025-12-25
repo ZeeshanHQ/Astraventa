@@ -12,7 +12,7 @@ const features = [
   {
     icon: Zap,
     title: "API Integrations",
-    description: "Connect with 500+ popular tools and platforms",
+    description: "Connect with 100+ popular tools and platforms",
   },
   {
     icon: Shield,
@@ -62,7 +62,7 @@ export const WebAutomation = () => {
               Smart <span className="gradient-text">Web Automation</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Automate repetitive tasks, streamline workflows, and boost productivity 
+              Automate repetitive tasks, streamline workflows, and boost productivity
               with intelligent web automation solutions that adapt to your business needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

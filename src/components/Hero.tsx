@@ -73,7 +73,7 @@ export const Hero = () => {
             >
               <Sparkles className="w-4 h-4 text-accent" />
               <span className="text-sm font-medium text-muted-foreground">
-                Trusted by 500+ companies worldwide
+                Trusted by Leading Industry Partners
               </span>
             </motion.div>
 

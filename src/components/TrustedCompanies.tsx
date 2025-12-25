@@ -3,16 +3,16 @@ import { motion, useReducedMotion } from "framer-motion";
 // Medium-level AI/cyber/SaaS brands with reliable logos
 // Use Simple Icons CDN for reliable, lightweight SVG logos
 const companies = [
-  { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify/ffffff" },
-  { name: "Mailchimp", logo: "https://cdn.simpleicons.org/mailchimp/ffffff" },
-  { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/ffffff" },
-  { name: "Notion", logo: "https://cdn.simpleicons.org/notion/ffffff" },
-  { name: "DigitalOcean", logo: "https://cdn.simpleicons.org/digitalocean/ffffff" },
-  { name: "Algolia", logo: "https://cdn.simpleicons.org/algolia/ffffff" },
-  { name: "Supabase", logo: "https://cdn.simpleicons.org/supabase/ffffff" },
-  { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel/ffffff" },
-  { name: "Snyk", logo: "https://cdn.simpleicons.org/snyk/ffffff" },
-  { name: "HashiCorp", logo: "https://cdn.simpleicons.org/hashicorp/ffffff" }
+  { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify" },
+  { name: "Mailchimp", logo: "https://cdn.simpleicons.org/mailchimp" },
+  { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot" },
+  { name: "Notion", logo: "https://cdn.simpleicons.org/notion" },
+  { name: "DigitalOcean", logo: "https://cdn.simpleicons.org/digitalocean" },
+  { name: "Algolia", logo: "https://cdn.simpleicons.org/algolia" },
+  { name: "Supabase", logo: "https://cdn.simpleicons.org/supabase" },
+  { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel" },
+  { name: "Snyk", logo: "https://cdn.simpleicons.org/snyk" },
+  { name: "HashiCorp", logo: "https://cdn.simpleicons.org/hashicorp" }
 ];
 
 export const TrustedCompanies = () => {
@@ -52,7 +52,7 @@ export const TrustedCompanies = () => {
                   src={company.logo}
                   alt={company.name}
                   loading="lazy"
-                  className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  className="h-8 md:h-10 w-auto opacity-100 hover:scale-110 transition-all duration-300"
                 />
               </div>
             ))}
@@ -67,7 +67,7 @@ export const TrustedCompanies = () => {
                   src={company.logo}
                   alt={company.name}
                   loading="lazy"
-                  className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  className="h-8 md:h-10 w-auto opacity-100 hover:scale-110 transition-all duration-300"
                 />
               </div>
             ))}

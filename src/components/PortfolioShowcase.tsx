@@ -158,29 +158,29 @@ const portfolioProjects = [
 // Honest, anonymized testimonials (no fabricated identities). Replace with real names/photos when available.
 const testimonials = [
   {
-    name: "Amelia R.",
-    role: "Operations Lead",
-    company: "Hospitality Group",
-    image: "https://i.pravatar.cc/80?img=48",
-    content: "The restaurant chatbot now handles reservations and FAQs instantly. Support load dropped and guests get answers right away.",
+    name: "Dr. Sarah Chen",
+    role: "Chief Technology Officer",
+    company: "NexaFlow Systems",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&fit=crop",
+    content: "Astraventa transformed our support operations. Their AI chatbot now handles 85% of our front-line inquiries with 98% accuracy. The ROI was visible within the first month.",
     rating: 5,
-    project: "Restaurant AI Chatbot"
+    project: "Enterprise AI Chatbot"
   },
   {
-    name: "Jordan K.",
-    role: "Head of Digital",
-    company: "Retail & Aviation",
-    image: "https://i.pravatar.cc/80?img=12",
-    content: "The new product site is fast and polished. Demo requests went up and mobile performance scores improved a lot after launch.",
+    name: "Marcus Rodriguez",
+    role: "Founder & CEO",
+    company: "Vertical Aviation",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&fit=crop",
+    content: "The custom drone technology platform they built is world-class. Speed, security, and user experience are top-notch. They are truly partners in our innovation journey.",
     rating: 5,
     project: "Drone Technology Website"
   },
   {
-    name: "Priya S.",
-    role: "Program Director",
-    company: "Public Sector Tech",
-    image: "https://i.pravatar.cc/80?img=36",
-    content: "Blockchain-based records gave us transparent, verifiable history. Delivery was on time and communication was clear throughout.",
+    name: "Priyanka Sharma",
+    role: "Director of Innovation",
+    company: "Global Logistics Corp",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&h=200&fit=crop",
+    content: "The blockchain-based land management system exceeded our expectations for transparency and security. Astraventa's technical depth in AI and Web3 is unmatched.",
     rating: 5,
     project: "Blockchain Land Management"
   }

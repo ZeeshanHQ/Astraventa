@@ -82,20 +82,20 @@ const teamMembers = [
 
 const achievements = [
   {
-    title: "100+ Projects Delivered",
-    description: "Successfully completed AI solutions for clients worldwide"
+    title: "100+ AI Projects Delivered",
+    description: "Successfully completed high-impact solutions for global clients"
   },
   {
     title: "98% Client Satisfaction",
-    description: "Consistently high ratings from our enterprise clients"
-  },
-  {
-    title: "50+ Team Members",
-    description: "Expert developers, designers, and AI specialists"
+    description: "Consistently high ratings from our enterprise partners"
   },
   {
     title: "30+ Countries Served",
-    description: "Global reach with local expertise and support"
+    description: "Global reach with localized technical expertise"
+  },
+  {
+    title: "50+ Tech Specialists",
+    description: "Expert developers, architects, and AI researchers"
   }
 ];
 

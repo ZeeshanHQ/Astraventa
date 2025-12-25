@@ -128,6 +128,13 @@ export const Footer = () => {
                       >
                         {link.name}
                       </button>
+                    ) : link.href.startsWith('/') ? (
+                      <Link
+                        to={link.href}
+                        className="text-muted-foreground hover:text-foreground smooth-transition text-sm"
+                      >
+                        {link.name}
+                      </Link>
                     ) : (
                       <a
                         href={link.href}

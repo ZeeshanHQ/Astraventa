@@ -234,13 +234,13 @@ export const PortfolioShowcase = () => {
         </motion.div>
 
         {/* Portfolio Projects */}
-        <div className="space-y-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {portfolioProjects.map((project, index) => {
             const Icon = project.icon;
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -249,136 +249,78 @@ export const PortfolioShowcase = () => {
                   setHoveredCard(null);
                   setMousePosition({ x: 0, y: 0 });
                 }}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transform: hoveredCard === index
-                    ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.01)`
-                    : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-                  transition: 'transform 0.1s ease-out'
-                }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                  }`}
+                className="group relative"
               >
-                {/* Project Image */}
-                <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <div className="relative group">
-                    <div className="aspect-video bg-gradient-to-br from-card to-card/50 rounded-2xl border border-border/50 overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                      <div className="absolute top-4 left-4">
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${project.color} flex items-center justify-center shadow-lg`}>
-                          <Icon className="w-8 h-8 text-white" />
-                        </div>
+                {/* Magnetic Hover Card */}
+                <Card
+                  style={{
+                    transform: hoveredCard === index
+                      ? `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(1.02)`
+                      : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+                    transition: 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                  }}
+                  className="h-full overflow-hidden glass-card border-white/5 bg-black/40 backdrop-blur-xl relative z-10 hover:border-primary/30 transition-all duration-500"
+                >
+                  {/* Image Container */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+
+                    {/* Floating Tech Badges */}
+                    <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                      <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.color} shadow-lg shadow-black/40`}>
+                        <Icon className="w-5 h-5 text-white" />
                       </div>
                     </div>
+
+                    {/* Industry Badge */}
+                    <Badge className="absolute top-4 right-4 bg-black/60 backdrop-blur-md border-white/10 text-[10px] uppercase tracking-wider">
+                      {project.industry}
+                    </Badge>
                   </div>
-                </div>
 
-                {/* Project Details */}
-                <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                  <div className="space-y-6">
-                    {/* Project Header */}
-                    <div>
-                      <div className="flex items-center gap-3 mb-4 flex-wrap">
-                        {(project as any).featured && (
-                          <Badge className="text-xs bg-gradient-primary text-white border-0">
-                            ⭐ Featured Project
-                          </Badge>
-                        )}
-                        <Badge variant="secondary" className="text-xs">
-                          {project.category}
-                        </Badge>
-                        <Badge variant="outline" className="text-xs">
-                          {project.industry}
-                        </Badge>
-                      </div>
-                      <h3 className="text-3xl font-bold mb-3">{project.title}</h3>
-                      {(project as any).developers && (
-                        <div className="text-sm text-muted-foreground mb-3">
-                          Built by {(project as any).developers.join(" & ")}
-                        </div>
+                  <CardHeader className="space-y-2 pb-2">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className="text-[10px] tracking-widest uppercase border-primary/20 text-primary/80">
+                        {project.category}
+                      </Badge>
+                      {project.featured && (
+                        <span className="text-yellow-400 group-hover:animate-bounce">★</span>
                       )}
-                      <p className="text-lg text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </p>
                     </div>
+                    <CardTitle className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </CardTitle>
+                  </CardHeader>
 
-                    {/* Project Info */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="glass-card p-4 rounded-xl">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Clock className="w-4 h-4 text-primary" />
-                          <span className="text-sm font-medium">Duration</span>
+                  <CardContent className="space-y-6">
+                    <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed italic">
+                      "{project.description}"
+                    </p>
+
+                    {/* Quick Metrics */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {project.results.slice(0, 2).map((res, i) => (
+                        <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/5 group-hover:border-primary/10 transition-colors">
+                          <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{res.metric}</div>
+                          <div className="text-lg font-bold text-primary">{res.value}</div>
                         </div>
-                        <p className="text-lg font-semibold">{project.duration}</p>
-                      </div>
-                      <div className="glass-card p-4 rounded-xl">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Users className="w-4 h-4 text-primary" />
-                          <span className="text-sm font-medium">Team Size</span>
-                        </div>
-                        <p className="text-lg font-semibold">{project.team}</p>
-                      </div>
+                      ))}
                     </div>
 
-                    {/* Results */}
-                    <div>
-                      <h4 className="text-lg font-semibold mb-4">Key Results:</h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {project.results.map((result, resultIndex) => (
-                          <div key={resultIndex} className="flex items-center gap-3 p-3 rounded-lg bg-card/50">
-                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                            <div className="flex-1">
-                              <div className="text-sm font-medium">{result.metric}</div>
-                              <div className="text-xs text-muted-foreground">{result.improvement}</div>
-                            </div>
-                            <div className="text-sm font-bold text-primary">{result.value}</div>
-                          </div>
-                        ))}
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                        <Clock className="w-3.5 h-3.5" />
+                        {project.duration}
                       </div>
-                    </div>
-
-                    {/* Technologies */}
-                    <div>
-                      <h4 className="text-lg font-semibold mb-3">Technologies Used:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, techIndex) => (
-                          <Badge key={techIndex} variant="outline" className="text-xs">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-3">
-                      {(project as any).liveUrl && (project as any).liveUrl !== "#" && (
-                        <Button
-                          variant="outline"
-                          className="group"
-                          onClick={() => window.open((project as any).liveUrl, '_blank')}
-                        >
-                          <Link2 className="w-4 h-4 mr-2" />
-                          View Live Site
-                          <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                      )}
-                      {(project as any).githubUrl && (project as any).githubUrl !== "#" && (
-                        <Button
-                          variant="outline"
-                          className="group"
-                          onClick={() => window.open((project as any).githubUrl, '_blank')}
-                        >
-                          <Github className="w-4 h-4 mr-2" />
-                          View Code
-                          <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                      )}
                       <Button
-                        className="group"
+                        size="sm"
+                        variant="ghost"
+                        className="group/btn h-8 gap-2 bg-primary/5 hover:bg-primary/20 text-primary border-0"
                         onClick={() => {
                           const element = document.getElementById('contact');
                           if (element) {
@@ -386,12 +328,15 @@ export const PortfolioShowcase = () => {
                           }
                         }}
                       >
-                        Get Similar Solution
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        View Details
+                        <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
                       </Button>
                     </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
+
+                {/* Aesthetic Background Glow */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700 pointer-events-none`} />
               </motion.div>
             );
           })}

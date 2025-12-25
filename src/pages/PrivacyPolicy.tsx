@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Shield, Check, Lock, Mail, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AstraventaLogo } from "@/components/AstraventaLogo";
@@ -7,112 +7,135 @@ import { AstraventaLogo } from "@/components/AstraventaLogo";
 export const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Background Aesthetic */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-secondary/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 glass-card border-b border-border/50"
+        className="sticky top-0 z-50 glass-card border-b border-white/5 bg-black/40 backdrop-blur-xl"
       >
-        <div className="container mx-auto px-4 py-4 flex items-center gap-4">
+        <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <Link to="/">
-            <Button variant="ghost" size="sm" className="gap-2">
+            <Button variant="ghost" size="sm" className="gap-2 hover:bg-white/5">
               <ArrowLeft className="w-4 h-4" />
               Back to Home
             </Button>
           </Link>
           <AstraventaLogo size="md" />
+          <div className="w-24 hidden md:block" />
         </div>
       </motion.div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
+      <div className="container relative z-10 mx-auto px-4 py-20 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="glass-card p-8 md:p-16 rounded-[2.5rem] border-white/5 bg-black/40 backdrop-blur-2xl shadow-2xl"
         >
-          <h1 className="text-5xl font-bold mb-8 gradient-text">Privacy Policy</h1>
-          
-          <div className="prose prose-lg max-w-none">
-            <p className="text-muted-foreground mb-8">
-              Last updated: {new Date().toLocaleDateString()}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-bold uppercase tracking-widest mb-6">
+              <Shield className="w-4 h-4" />
+              Privacy Protection
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+              Privacy <span className="gradient-text">Policy</span>
+            </h1>
+            <p className="text-muted-foreground font-light text-lg">
+              Safeguarding your data since inception. Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </p>
+          </div>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">1. Information We Collect</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                At Astraventa, we collect information you provide directly to us, such as when you create an account, 
-                use our services, or contact us for support. This may include:
+          <div className="space-y-16">
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white font-bold shadow-lg">1</div>
+                <h2 className="text-3xl font-bold tracking-tight">Information Collection</h2>
+              </div>
+              <p className="text-muted-foreground leading-relaxed mb-6 text-lg font-light group-hover:text-foreground transition-colors duration-300">
+                Astraventa collects minimal data required to provide exceptional AI services:
               </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>Name, email address, and contact information</li>
-                <li>Company information and business requirements</li>
-                <li>Usage data and analytics from our AI services</li>
-                <li>Communication preferences and support interactions</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">2. How We Use Your Information</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                We use the information we collect to:
-              </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>Provide, maintain, and improve our AI automation services</li>
-                <li>Process transactions and send related information</li>
-                <li>Send technical notices, updates, and support messages</li>
-                <li>Respond to your comments and questions</li>
-                <li>Develop new products and services</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">3. Information Sharing</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, 
-                except as described in this policy. We may share your information in the following circumstances:
-              </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4 mt-4">
-                <li>With service providers who assist us in operating our business</li>
-                <li>When required by law or to protect our rights</li>
-                <li>In connection with a business transfer or acquisition</li>
-                <li>With your explicit consent</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">4. Data Security</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We implement appropriate security measures to protect your personal information against unauthorized access, 
-                alteration, disclosure, or destruction. This includes encryption, secure servers, and regular security audits.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">5. Your Rights</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                You have the right to:
-              </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>Access and update your personal information</li>
-                <li>Request deletion of your data</li>
-                <li>Opt-out of marketing communications</li>
-                <li>Data portability and transfer</li>
-                <li>Withdraw consent at any time</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">6. Contact Us</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                If you have any questions about this Privacy Policy, please contact us at:
-              </p>
-              <div className="mt-4 p-4 glass-card rounded-xl">
-                <p className="text-foreground font-medium">Astraventa AI Solutions</p>
-                <p className="text-muted-foreground">Email: privacy@astraventa.com</p>
-                <p className="text-muted-foreground">Phone: +1 (555) 123-4567</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  "Basic Contact Details",
+                  "Company & Industry Info",
+                  "Technical AI Requirements",
+                  "Project Specific Metadata",
+                  "Support Communication logs",
+                  "Usage Analytics (Anonymized)"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-secondary/20 transition-all">
+                    <div className="w-2 h-2 rounded-full bg-secondary" />
+                    <span className="text-sm font-medium">{item}</span>
+                  </div>
+                ))}
               </div>
             </section>
+
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white font-bold shadow-lg">2</div>
+                <h2 className="text-3xl font-bold tracking-tight">How We Use Data</h2>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "Training custom AI models for your specific use-case",
+                  "Optimizing automated workflows for maximum efficiency",
+                  "Providing real-time technical support",
+                  "Enhancing system security and threat detection",
+                  "Communicating project updates and innovation news"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4 text-muted-foreground text-lg font-light">
+                    <div className="w-5 h-5 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-3 h-3 text-secondary" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-white font-bold shadow-lg">3</div>
+                <h2 className="text-3xl font-bold tracking-tight">Data Security Protocol</h2>
+              </div>
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/5 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-10">
+                  <Lock className="w-20 h-20" />
+                </div>
+                <p className="text-muted-foreground leading-relaxed text-lg font-light">
+                  We employ military-grade AES-256 encryption for all data at rest and TLS 1.3 for data in transit.
+                  Our AI models are architected with "privacy-by-design" principles, ensuring no personal
+                  identifiable information (PII) is leaked during inference.
+                </p>
+              </div>
+            </section>
+
+            <div className="pt-16 border-t border-white/5">
+              <div className="p-8 md:p-12 rounded-[2rem] bg-gradient-to-r from-secondary/10 to-primary/10 border border-secondary/20 text-center">
+                <h3 className="text-2xl font-bold mb-4">Your Privacy is Sacred</h3>
+                <p className="text-muted-foreground mb-8 font-light text-lg">
+                  Have concerns about how your data is handled? Our Data Protection Officer is ready to assist.
+                </p>
+                <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+                  <div className="flex items-center gap-3 text-secondary font-bold">
+                    <Mail className="w-5 h-5" />
+                    astraventaai@gmail.com
+                  </div>
+                  <div className="flex items-center gap-3 text-primary font-bold">
+                    <Clock className="w-5 h-5" />
+                    Response within 1 hour
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

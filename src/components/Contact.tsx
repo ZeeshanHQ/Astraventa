@@ -136,7 +136,7 @@ export const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@astraventa.com",
+      value: "astraventaai@gmail.com",
       description: "24/7 Support Available"
     },
     {

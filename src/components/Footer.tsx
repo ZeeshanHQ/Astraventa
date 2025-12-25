@@ -30,7 +30,7 @@ const footerLinks = [
       { name: "Our Team", section: "team" },
       { name: "Our Process", section: "process" },
       { name: "Contact Us", section: "contact" },
-      { name: "Careers", href: "mailto:careers@astraventa.com" }
+      { name: "Careers", href: "mailto:astraventaai@gmail.com" }
     ],
   },
   {
@@ -46,7 +46,7 @@ const footerLinks = [
 
 export const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
-  
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -70,7 +70,7 @@ export const Footer = () => {
     <footer className="relative py-20 border-t border-border/50">
       {/* Gradient Line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-cosmic" />
-      
+
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand Section */}
@@ -86,7 +86,7 @@ export const Footer = () => {
                 Empowering innovation through intelligent automation & AI-driven solutions.
                 Next-generation technology for the future of business.
               </p>
-              
+
               {/* Social Links */}
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => {
@@ -161,7 +161,7 @@ export const Footer = () => {
           </div>
         </motion.div>
       </div>
-      
+
       {/* Back to Top Button */}
       <AnimatePresence>
         {showBackToTop && (

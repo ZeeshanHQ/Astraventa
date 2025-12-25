@@ -24,7 +24,7 @@ const workflowSteps = [
     step: 1,
     title: "Discovery & Analysis",
     description: "We analyze your business needs and create a tailored solution strategy in record time.",
-    duration: "Same Day",
+    duration: "Instant",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
     color: "from-blue-500 to-cyan-500",
     deliverables: [
@@ -39,7 +39,7 @@ const workflowSteps = [
     step: 2,
     title: "Solution Design",
     description: "Our experts design the optimal AI solution architecture and create detailed implementation plans within 24 hours.",
-    duration: "24 Hours",
+    duration: "1 Hour",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
     color: "from-purple-500 to-pink-500",
     deliverables: [
@@ -54,7 +54,7 @@ const workflowSteps = [
     step: 3,
     title: "Development & Testing",
     description: "We build, test, and refine your AI solution with rapid development cycles and rigorous quality assurance.",
-    duration: "1-2 Weeks",
+    duration: "24-48 Hours",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
     color: "from-green-500 to-emerald-500",
     deliverables: [
@@ -69,7 +69,7 @@ const workflowSteps = [
     step: 4,
     title: "Deployment & Training",
     description: "We deploy your solution and provide rapid training to ensure your team is ready within 24 hours.",
-    duration: "Next Day",
+    duration: "Instant",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
     color: "from-orange-500 to-red-500",
     deliverables: [
@@ -84,7 +84,7 @@ const workflowSteps = [
     step: 5,
     title: "Support & Optimization",
     description: "Instant monitoring and continuous improvement to maximize your ROI and performance from day one.",
-    duration: "Instant",
+    duration: "Real-time",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
     color: "from-indigo-500 to-purple-500",
     deliverables: [

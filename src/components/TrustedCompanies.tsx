@@ -38,21 +38,21 @@ export const TrustedCompanies = () => {
         {/* Moving Companies Logos */}
         <div className="relative overflow-hidden">
           <motion.div
-            className="flex items-center gap-12 whitespace-nowrap"
+            className="flex items-center"
             animate={prefersReducedMotion ? undefined : { x: [0, -100 * companies.length] }}
-            transition={prefersReducedMotion ? undefined : { x: { repeat: Infinity, repeatType: "loop", duration: 20, ease: "linear" } }}
+            transition={prefersReducedMotion ? undefined : { x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" } }}
           >
             {/* First set of logos */}
             {companies.map((company, index) => (
               <div
                 key={`first-${index}`}
-                className="flex-shrink-0 flex items-center justify-center mx-8"
+                className="w-[200px] flex-shrink-0 flex items-center justify-center px-4"
               >
                 <img
                   src={company.logo}
                   alt={company.name}
                   loading="lazy"
-                  className="h-8 md:h-10 w-auto opacity-100 hover:scale-110 transition-all duration-300"
+                  className="h-8 md:h-12 w-auto object-contain opacity-100 hover:scale-110 transition-all duration-300 pointer-events-none"
                 />
               </div>
             ))}
@@ -61,13 +61,13 @@ export const TrustedCompanies = () => {
             {companies.map((company, index) => (
               <div
                 key={`second-${index}`}
-                className="flex-shrink-0 flex items-center justify-center mx-8"
+                className="w-[200px] flex-shrink-0 flex items-center justify-center px-4"
               >
                 <img
                   src={company.logo}
                   alt={company.name}
                   loading="lazy"
-                  className="h-8 md:h-10 w-auto opacity-100 hover:scale-110 transition-all duration-300"
+                  className="h-8 md:h-12 w-auto object-contain opacity-100 hover:scale-110 transition-all duration-300 pointer-events-none"
                 />
               </div>
             ))}

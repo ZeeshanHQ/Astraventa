@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BadgeCheck, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AstraventaLogo } from "@/components/AstraventaLogo";
@@ -7,131 +7,140 @@ import { AstraventaLogo } from "@/components/AstraventaLogo";
 export const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Background Aesthetic */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 glass-card border-b border-border/50"
+        className="sticky top-0 z-50 glass-card border-b border-white/5 bg-black/40 backdrop-blur-xl"
       >
-        <div className="container mx-auto px-4 py-4 flex items-center gap-4">
+        <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <Link to="/">
-            <Button variant="ghost" size="sm" className="gap-2">
+            <Button variant="ghost" size="sm" className="gap-2 hover:bg-white/5">
               <ArrowLeft className="w-4 h-4" />
               Back to Home
             </Button>
           </Link>
           <AstraventaLogo size="md" />
+          <div className="w-24 hidden md:block" /> {/* Spacer for balance */}
         </div>
       </motion.div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
+      <div className="container relative z-10 mx-auto px-4 py-20 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="glass-card p-8 md:p-16 rounded-[2.5rem] border-white/5 bg-black/40 backdrop-blur-2xl shadow-2xl"
         >
-          <h1 className="text-5xl font-bold mb-8 gradient-text">Terms of Service</h1>
-          
-          <div className="prose prose-lg max-w-none">
-            <p className="text-muted-foreground mb-8">
-              Last updated: {new Date().toLocaleDateString()}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+              <BadgeCheck className="w-4 h-4" />
+              Legal Documents
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+              Terms of <span className="gradient-text">Service</span>
+            </h1>
+            <p className="text-muted-foreground font-light text-lg">
+              Updated on {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </p>
+          </div>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">1. Acceptance of Terms</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                By accessing and using Astraventa's AI automation services, you accept and agree to be bound by the terms 
+          <div className="space-y-16">
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">1</div>
+                <h2 className="text-3xl font-bold tracking-tight">Acceptance of Terms</h2>
+              </div>
+              <p className="text-muted-foreground leading-relaxed text-lg font-light group-hover:text-foreground transition-colors duration-300">
+                By accessing and using Astraventa's AI automation services, you accept and agree to be bound by the terms
                 and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">2. Description of Service</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Astraventa provides AI-powered automation solutions including:
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">2</div>
+                <h2 className="text-3xl font-bold tracking-tight">Description of Service</h2>
+              </div>
+              <p className="text-muted-foreground leading-relaxed mb-6 text-lg font-light group-hover:text-foreground transition-colors duration-300">
+                Astraventa provides premium AI-powered automation solutions including:
               </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>AI Chatbots and conversational interfaces</li>
-                <li>Web automation and process optimization</li>
-                <li>AI integrations and custom development</li>
-                <li>Smart analytics and data processing</li>
-                <li>Technical support and consulting services</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">3. User Responsibilities</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                As a user of our services, you agree to:
-              </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>Provide accurate and complete information</li>
-                <li>Use the services in compliance with applicable laws</li>
-                <li>Not attempt to reverse engineer or compromise our systems</li>
-                <li>Respect intellectual property rights</li>
-                <li>Maintain the confidentiality of your account credentials</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">4. Payment Terms</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Payment terms for our services include:
-              </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>Fees are billed in advance on a monthly or annual basis</li>
-                <li>All payments are non-refundable unless otherwise specified</li>
-                <li>Late payments may result in service suspension</li>
-                <li>Price changes will be communicated 30 days in advance</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">5. Intellectual Property</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                All content, features, and functionality of our services are owned by Astraventa and are protected by 
-                international copyright, trademark, patent, trade secret, and other intellectual property laws. 
-                You may not use our intellectual property without our written permission.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">6. Limitation of Liability</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                In no event shall Astraventa be liable for any indirect, incidental, special, consequential, or punitive 
-                damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, 
-                resulting from your use of the services.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">7. Service Availability</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                While we strive to maintain high service availability, we do not guarantee uninterrupted access to our 
-                services. We may perform maintenance, updates, or modifications that temporarily affect service availability.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">8. Termination</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Either party may terminate this agreement at any time. Upon termination, your right to use the services 
-                will cease immediately. We may terminate or suspend your account if you violate these terms.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-semibold mb-4 text-primary">9. Contact Information</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                For questions about these Terms of Service, please contact us:
-              </p>
-              <div className="mt-4 p-4 glass-card rounded-xl">
-                <p className="text-foreground font-medium">Astraventa AI Solutions</p>
-                <p className="text-muted-foreground">Email: legal@astraventa.com</p>
-                <p className="text-muted-foreground">Phone: +1 (555) 123-4567</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  "AI Chatbots & Assistants",
+                  "Web Process Automation",
+                  "Custom Model Integration",
+                  "Smart Data Analytics",
+                  "Cloud Infrastructure",
+                  "Strategic AI Consulting"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <span className="text-sm font-medium">{item}</span>
+                  </div>
+                ))}
               </div>
             </section>
+
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">3</div>
+                <h2 className="text-3xl font-bold tracking-tight">User Responsibilities</h2>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "Provide accurate business data",
+                  "Non-interference with AI systems",
+                  "Respect for intellectual property",
+                  "Secure handling of API keys",
+                  "Lawful use of automated tools"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4 text-muted-foreground text-lg font-light">
+                    <BadgeCheck className="w-5 h-5 text-primary flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">4</div>
+                <h2 className="text-3xl font-bold tracking-tight">Intellectual Property</h2>
+              </div>
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/5">
+                <p className="text-muted-foreground leading-relaxed text-lg font-light italic">
+                  "All AI architectures, custom designs, and automated workflows developed by Astraventa remain the
+                  intellectual property of the company unless explicitly transferred in writing via a project-specific SLA."
+                </p>
+              </div>
+            </section>
+
+            <div className="pt-16 border-t border-white/5">
+              <div className="p-8 md:p-12 rounded-[2rem] bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 text-center">
+                <h3 className="text-2xl font-bold mb-4">Questions about our terms?</h3>
+                <p className="text-muted-foreground mb-8 font-light">
+                  Our legal and support teams are available 24/7 to clarify any queries.
+                </p>
+                <div className="flex flex-col md:flex-row gap-6 justify-center">
+                  <div className="flex items-center justify-center gap-3 text-primary font-bold">
+                    <Mail className="w-5 h-5" />
+                    astraventaai@gmail.com
+                  </div>
+                  <div className="flex items-center justify-center gap-3 text-secondary font-bold">
+                    <Phone className="w-5 h-5" />
+                    +92 328 4529264
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

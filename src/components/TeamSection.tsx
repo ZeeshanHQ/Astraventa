@@ -7,39 +7,45 @@ import {
   Twitter,
   Mail,
   Award,
-  Code,
-  Bot,
+  Cpu,
+  Globe,
+  ShieldCheck,
   Zap,
-  BarChart3
+  BarChart3,
+  Rocket,
+  Target,
+  Users
 } from "lucide-react";
 
 const teamMembers = [
   {
     name: "Zeeshan Jay",
-    role: "Founder & CEO (AI/ML)",
+    role: "Visionary Strategist & AI Architect",
     image: "/api/placeholder/300/300",
-    bio: "AI/ML leader with 10+ years building production AI systems. Former Google AI researcher; leads strategy, architecture, and product delivery with a focus on reliability at scale.",
-    expertise: ["AI/ML", "Cloud Computing", "Product Leadership", "Architecture"],
-    experience: "10+ years",
+    bio: "Global AI leader orchestrating multi-million dollar digital transformations. Specializes in building high-integrity AI ecosystems that empower industries and enhance human capability through strategic innovation.",
+    expertise: ["Strategic AI Leadership", "Global Infrastructure", "Empowerment Systems", "Cloud Architecture"],
+    experience: "12+ Years",
     education: "PhD Computer Science, Stanford",
-    icon: Bot,
-    color: "from-purple-600 to-indigo-600",
+    icon: Globe,
+    mission: "Empower",
+    color: "from-blue-600 to-violet-600",
     social: {
-      linkedin: "https://www.linkedin.com/in/zeeshanjay",
+      linkedin: "https://www.linkedin.com/in/zeeshanjay/",
       twitter: "#",
       email: "zeeshan@astraventa.com"
     }
   },
   {
     name: "Haider",
-    role: "Co-Founder & CTO",
+    role: "Principal Systems Architect",
     image: "/api/placeholder/300/300",
-    bio: "Engineering leader focused on scalable systems and AI integrations. Delivered 300+ automation solutions for enterprise clients; drives technical excellence, security, and performance.",
-    expertise: ["Systems Architecture", "AI Integration", "Cloud & DevOps", "Performance Engineering"],
-    experience: "8+ years",
+    bio: "The engineering force behind Astraventa's hyper-scalable solutions. Architected 300+ enterprise-grade AI frameworks, ensuring technical excellence and empowering businesses with unbreakable performance.",
+    expertise: ["Core Systems Engineering", "AI Scale Optimization", "Security Architect", "Technical Governance"],
+    experience: "10+ Years",
     education: "MS Software Engineering, MIT",
-    icon: Code,
-    color: "from-blue-600 to-cyan-600",
+    icon: Cpu,
+    mission: "Enhance",
+    color: "from-emerald-600 to-cyan-600",
     social: {
       linkedin: "#",
       twitter: "#",
@@ -48,14 +54,15 @@ const teamMembers = [
   },
   {
     name: "Dr. Sarah Chen",
-    role: "Lead AI Research Scientist",
+    role: "Chief Research Scientist",
     image: "/api/placeholder/300/300",
-    bio: "Machine Learning research scientist with expertise in NLP, computer vision, and deep learning. Published 50+ research papers and built AI systems serving 5M+ users daily.",
-    expertise: ["Machine Learning", "NLP", "Computer Vision", "Deep Learning"],
-    experience: "7+ years",
+    bio: "Pioneering researcher in Neural Language Processing and Predictive Modeling. Translating complex theoretical breakthroughs into systems that enhance decision-making speeds and empower local teams.",
+    expertise: ["Advanced NLP", "Deep Learning Research", "Predictive Synthesis", "Model Governance"],
+    experience: "8+ Years",
     education: "PhD AI, Carnegie Mellon",
-    icon: Zap,
-    color: "from-emerald-600 to-teal-600",
+    icon: ShieldCheck,
+    mission: "Enhance",
+    color: "from-purple-600 to-pink-600",
     social: {
       linkedin: "#",
       twitter: "#",
@@ -64,14 +71,15 @@ const teamMembers = [
   },
   {
     name: "Michael Rodriguez",
-    role: "Head of Data Science & Analytics",
+    role: "Global Growth Orchestrator",
     image: "/api/placeholder/300/300",
-    bio: "Data science expert specializing in business intelligence, predictive analytics, and big data processing. Transformed data insights for 200+ Fortune 500 companies.",
-    expertise: ["Data Science", "Analytics", "Business Intelligence", "Big Data"],
-    experience: "9+ years",
+    bio: "Data-driven expansion expert with a focus on empowering partnerships. Leveraging high-velocity analytics to enhance project delivery and ensure Astraventa's solutions meet the global market's evolving needs.",
+    expertise: ["Strategic Growth", "Market Analytics", "Partnership Ecosystems", "Operational Flow"],
+    experience: "9+ Years",
     education: "PhD Data Science, Harvard",
     icon: BarChart3,
-    color: "from-orange-600 to-red-600",
+    mission: "Empower",
+    color: "from-orange-600 to-yellow-600",
     social: {
       linkedin: "#",
       twitter: "#",
@@ -159,8 +167,13 @@ export const TeamSection = () => {
                     <div className="text-center space-y-4">
                       <div>
                         <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                        <p className="text-primary font-medium">{member.role}</p>
-                        <p className="text-sm text-muted-foreground mt-2">{member.experience}</p>
+                        <div className="flex items-center justify-center gap-2 mb-2">
+                          <p className="text-primary font-medium">{member.role}</p>
+                          <Badge variant="outline" className="text-[10px] py-0 border-primary/30 text-primary animate-pulse">
+                            {member.mission}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{member.experience}</p>
                       </div>
 
                       <p className="text-sm text-muted-foreground leading-relaxed">
@@ -183,9 +196,11 @@ export const TeamSection = () => {
 
                       {/* Social Links */}
                       <div className="flex justify-center gap-3 pt-2">
-                        <Button size="sm" variant="ghost" className="w-8 h-8 p-0">
-                          <Linkedin className="w-4 h-4" />
-                        </Button>
+                        <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" variant="ghost" className="w-8 h-8 p-0 hover:text-primary">
+                            <Linkedin className="w-4 h-4" />
+                          </Button>
+                        </a>
                         <Button size="sm" variant="ghost" className="w-8 h-8 p-0">
                           <Twitter className="w-4 h-4" />
                         </Button>

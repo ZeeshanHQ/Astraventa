@@ -3,16 +3,16 @@ import { motion, useReducedMotion } from "framer-motion";
 // Medium-level AI/cyber/SaaS brands with reliable logos
 // Use Simple Icons CDN for reliable, lightweight SVG logos
 const companies = [
-  { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify" },
-  { name: "Mailchimp", logo: "https://cdn.simpleicons.org/mailchimp" },
-  { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot" },
-  { name: "Notion", logo: "https://cdn.simpleicons.org/notion" },
-  { name: "DigitalOcean", logo: "https://cdn.simpleicons.org/digitalocean" },
-  { name: "Algolia", logo: "https://cdn.simpleicons.org/algolia" },
-  { name: "Supabase", logo: "https://cdn.simpleicons.org/supabase" },
-  { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel" },
-  { name: "Snyk", logo: "https://cdn.simpleicons.org/snyk" },
-  { name: "HashiCorp", logo: "https://cdn.simpleicons.org/hashicorp" }
+  { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify/ffffff" },
+  { name: "Mailchimp", logo: "https://cdn.simpleicons.org/mailchimp/ffffff" },
+  { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/ffffff" },
+  { name: "Notion", logo: "https://cdn.simpleicons.org/notion/ffffff" },
+  { name: "DigitalOcean", logo: "https://cdn.simpleicons.org/digitalocean/ffffff" },
+  { name: "Algolia", logo: "https://cdn.simpleicons.org/algolia/ffffff" },
+  { name: "Supabase", logo: "https://cdn.simpleicons.org/supabase/ffffff" },
+  { name: "Vercel", logo: "https://cdn.simpleicons.org/vercel/ffffff" },
+  { name: "Snyk", logo: "https://cdn.simpleicons.org/snyk/ffffff" },
+  { name: "HashiCorp", logo: "https://cdn.simpleicons.org/hashicorp/ffffff" }
 ];
 
 export const TrustedCompanies = () => {
@@ -48,12 +48,14 @@ export const TrustedCompanies = () => {
                 key={`first-${index}`}
                 className="w-[200px] flex-shrink-0 flex items-center justify-center px-4"
               >
-                <img
-                  src={company.logo}
-                  alt={company.name}
-                  loading="lazy"
-                  className="h-8 md:h-12 w-auto object-contain opacity-100 hover:scale-110 transition-all duration-300 pointer-events-none"
-                />
+                <div className="w-full h-24 glass-card-sm border border-white/5 bg-white/[0.02] backdrop-blur-sm rounded-2xl flex items-center justify-center group/logo hover:border-primary/20 transition-all duration-500">
+                  <img
+                    src={company.logo}
+                    alt={company.name}
+                    loading="lazy"
+                    className="h-7 md:h-9 w-auto object-contain opacity-50 grayscale group-hover/logo:opacity-100 group-hover/logo:grayscale-0 group-hover/logo:scale-110 transition-all duration-500 pointer-events-none filter drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"
+                  />
+                </div>
               </div>
             ))}
 
@@ -63,12 +65,14 @@ export const TrustedCompanies = () => {
                 key={`second-${index}`}
                 className="w-[200px] flex-shrink-0 flex items-center justify-center px-4"
               >
-                <img
-                  src={company.logo}
-                  alt={company.name}
-                  loading="lazy"
-                  className="h-8 md:h-12 w-auto object-contain opacity-100 hover:scale-110 transition-all duration-300 pointer-events-none"
-                />
+                <div className="w-full h-24 glass-card-sm border border-white/5 bg-white/[0.02] backdrop-blur-sm rounded-2xl flex items-center justify-center group/logo hover:border-primary/20 transition-all duration-500">
+                  <img
+                    src={company.logo}
+                    alt={company.name}
+                    loading="lazy"
+                    className="h-7 md:h-9 w-auto object-contain opacity-50 grayscale group-hover/logo:opacity-100 group-hover/logo:grayscale-0 group-hover/logo:scale-110 transition-all duration-500 pointer-events-none filter drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"
+                  />
+                </div>
               </div>
             ))}
           </motion.div>

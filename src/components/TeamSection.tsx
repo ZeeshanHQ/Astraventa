@@ -20,14 +20,13 @@ import {
 const teamMembers = [
   {
     name: "Zeeshan Jay",
-    role: "Visionary Strategist & AI Architect",
+    role: "Founder & Visionary Strategist",
     image: "/api/placeholder/300/300",
-    bio: "Global AI leader orchestrating multi-million dollar digital transformations. Specializes in building high-integrity AI ecosystems that empower industries and enhance human capability through strategic innovation.",
-    expertise: ["Strategic AI Leadership", "Global Infrastructure", "Empowerment Systems", "Cloud Architecture"],
+    bio: "The visionary force behind Astraventa. Global AI strategist orchestrating multi-million dollar transformations. Specializes in building high-integrity AI ecosystems that empower industries and redefine the future of digital interaction.",
+    expertise: ["Strategic AI Leadership", "Global Infrastructure", "Visionary Innovation", "Cloud Architecture"],
     experience: "12+ Years",
     education: "PhD Computer Science, Stanford",
     icon: Globe,
-    mission: "Empower",
     color: "from-blue-600 to-violet-600",
     social: {
       linkedin: "https://www.linkedin.com/in/zeeshanjay/",
@@ -37,14 +36,13 @@ const teamMembers = [
   },
   {
     name: "Haider",
-    role: "Principal Systems Architect",
+    role: "Co-Founder & Principal Technical Engine",
     image: "/api/placeholder/300/300",
-    bio: "The engineering force behind Astraventa's hyper-scalable solutions. Architected 300+ enterprise-grade AI frameworks, ensuring technical excellence and empowering businesses with unbreakable performance.",
-    expertise: ["Core Systems Engineering", "AI Scale Optimization", "Security Architect", "Technical Governance"],
+    bio: "The technical mastermind and engineering engine of Astraventa. Architected hyper-scalable AI frameworks serving millions; his unmatched technical depth drives every innovation, ensuring unbreakable performance and technical supremacy.",
+    expertise: ["Core Systems Engineering", "AI Scale Optimization", "Technical Supremacy", "Unbreakable Architecture"],
     experience: "10+ Years",
     education: "MS Software Engineering, MIT",
     icon: Cpu,
-    mission: "Enhance",
     color: "from-emerald-600 to-cyan-600",
     social: {
       linkedin: "#",
@@ -61,7 +59,6 @@ const teamMembers = [
     experience: "8+ Years",
     education: "PhD AI, Carnegie Mellon",
     icon: ShieldCheck,
-    mission: "Enhance",
     color: "from-purple-600 to-pink-600",
     social: {
       linkedin: "#",
@@ -78,7 +75,6 @@ const teamMembers = [
     experience: "9+ Years",
     education: "PhD Data Science, Harvard",
     icon: BarChart3,
-    mission: "Empower",
     color: "from-orange-600 to-yellow-600",
     social: {
       linkedin: "#",
@@ -167,13 +163,8 @@ export const TeamSection = () => {
                     <div className="text-center space-y-4">
                       <div>
                         <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                        <div className="flex items-center justify-center gap-2 mb-2">
-                          <p className="text-primary font-medium">{member.role}</p>
-                          <Badge variant="outline" className="text-[10px] py-0 border-primary/30 text-primary animate-pulse">
-                            {member.mission}
-                          </Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{member.experience}</p>
+                        <p className="text-primary font-medium">{member.role}</p>
+                        <p className="text-sm text-muted-foreground mt-2">{member.experience}</p>
                       </div>
 
                       <p className="text-sm text-muted-foreground leading-relaxed">

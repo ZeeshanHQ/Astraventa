@@ -63,7 +63,62 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [aiSession, setAiSession] = useState<any>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Initialize Chrome AI AI
+  useEffect(() => {
+    const initAI = async () => {
+      try {
+        // @ts-ignore - Chrome Prompt API is experimental
+        if (typeof window !== 'undefined' && 'ai' in window && 'assistant' in (window as any).ai) {
+          const systemPrompt = `
+            You are Astraventa AI, the official assistant for Astraventa, a premium AI Automation Company.
+            
+            CORE DETAILS:
+            - Company: Astraventa
+            - Leadership: Zeeshan Jay (Founder & Visionary Strategist), Haider (Co-Founder & Principal Technical Engine).
+            - Achievements: 100+ AI Projects Delivered, 30+ Countries Served, 98% Client Satisfaction.
+            - Focus: Empowering businesses through technical supremacy and visionary AI architecture.
+            
+            SERVICES:
+            - AI Chatbots: Intelligent, 24/7 customer engagement.
+            - Web Automation: RPA and custom workflow optimization.
+            - AI Integration: Connecting enterprise systems with custom AI models.
+            - Analytics: Data-driven insights for strategic growth.
+            
+            RULES:
+            - Tone: Extremely professional, prestigious, and helpful.
+            - Constraints: ONLY discuss Astraventa services. NEVER discuss politics, religion, or competitor companies.
+            - Call to Action: If the user is interested in a project, encourage them to "Schedule a Call" or "Get a Quote".
+            - No Off-topic: If asked about general topics (weather, news, etc.), politely steer back to AI automation.
+          `;
+
+          // @ts-ignore
+          const capabilities = await (window as any).ai.assistant.capabilities();
+          if (capabilities.available !== 'no') {
+            // @ts-ignore
+            const session = await (window as any).ai.assistant.create({
+              systemPrompt: systemPrompt
+            });
+            setAiSession(session);
+            console.log("Astraventa Chrome AI Initialized");
+          }
+        }
+      } catch (err) {
+        console.error("Chrome AI failed to initialize, falling back to keyword system:", err);
+      }
+    };
+
+    initAI();
+
+    // Clean up session
+    return () => {
+      if (aiSession) {
+        aiSession.destroy();
+      }
+    };
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -115,8 +170,22 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
     setIsTyping(true);
 
     // Simulate AI thinking and response
-    setTimeout(() => {
-      const aiResponse = getAIResponse(message);
+    setTimeout(async () => {
+      let aiResponse = "";
+
+      try {
+        if (aiSession) {
+          // Use Chrome Built-in AI
+          aiResponse = await aiSession.prompt(message);
+        } else {
+          // Use expert keyword fallback system
+          aiResponse = getAIResponse(message);
+        }
+      } catch (err) {
+        console.error("AI Prompt error, using fallback:", err);
+        aiResponse = getAIResponse(message);
+      }
+
       const botResponse: Message = {
         id: messages.length + 2,
         text: aiResponse,
@@ -234,8 +303,8 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
                 >
                   <div
                     className={`max-w-[80%] p-2.5 rounded-xl ${msg.isBot
-                        ? 'bg-muted/50 text-foreground border border-border/30'
-                        : 'bg-gradient-to-r from-primary to-secondary text-white'
+                      ? 'bg-muted/50 text-foreground border border-border/30'
+                      : 'bg-gradient-to-r from-primary to-secondary text-white'
                       }`}
                   >
                     <p className="text-xs whitespace-pre-line leading-relaxed">{msg.text}</p>

@@ -32,7 +32,7 @@ export const CookiePolicy = () => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl font-bold mb-8 gradient-text">Cookie Policy</h1>
-          
+
           <div className="prose prose-lg max-w-none">
             <p className="text-muted-foreground mb-8">
               Last updated: {new Date().toLocaleDateString()}
@@ -41,7 +41,7 @@ export const CookiePolicy = () => {
             <section className="mb-12">
               <h2 className="text-3xl font-semibold mb-4 text-primary">1. What Are Cookies</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Cookies are small text files that are stored on your device when you visit our website. They help us 
+                Cookies are small text files that are stored on your device when you visit our website. They help us
                 provide you with a better experience by remembering your preferences and enabling certain functionality.
               </p>
             </section>
@@ -52,21 +52,21 @@ export const CookiePolicy = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-primary">Essential Cookies</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    These cookies are necessary for the website to function properly. They enable basic functions like 
+                    These cookies are necessary for the website to function properly. They enable basic functions like
                     page navigation, access to secure areas, and remembering your preferences.
                   </p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-primary">Analytics Cookies</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    These cookies help us understand how visitors interact with our website by collecting and reporting 
+                    These cookies help us understand how visitors interact with our website by collecting and reporting
                     information anonymously. This helps us improve our website's performance and user experience.
                   </p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-primary">Functional Cookies</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    These cookies enable enhanced functionality and personalization, such as remembering your language 
+                    These cookies enable enhanced functionality and personalization, such as remembering your language
                     preferences and providing improved features.
                   </p>
                 </div>
@@ -103,8 +103,8 @@ export const CookiePolicy = () => {
             <section className="mb-12">
               <h2 className="text-3xl font-semibold mb-4 text-primary">5. Third-Party Cookies</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Some cookies on our website are set by third-party services that appear on our pages. These may include 
-                social media platforms, analytics providers, and advertising networks. We do not control these cookies, 
+                Some cookies on our website are set by third-party services that appear on our pages. These may include
+                social media platforms, analytics providers, and advertising networks. We do not control these cookies,
                 and you should check the respective third-party websites for more information about their cookie practices.
               </p>
             </section>
@@ -116,8 +116,8 @@ export const CookiePolicy = () => {
               </p>
               <div className="mt-4 p-4 glass-card rounded-xl">
                 <p className="text-foreground font-medium">Astraventa AI Solutions</p>
-                <p className="text-muted-foreground">Email: privacy@astraventa.com</p>
-                <p className="text-muted-foreground">Phone: +1 (555) 123-4567</p>
+                <p className="text-muted-foreground">Email: privacy@astraventa.online</p>
+                <p className="text-muted-foreground">Phone: +92 328 4529264</p>
               </div>
             </section>
           </div>

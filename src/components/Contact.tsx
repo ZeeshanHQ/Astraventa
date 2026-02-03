@@ -9,6 +9,19 @@ import { Mail, Send, Bot, Sparkles, Zap, Phone, MapPin, Clock, BadgeCheck, Keybo
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ChatbotModal } from "./ChatbotModal";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  company: z.string().optional(),
+  phone: z.string().optional(),
+  service: z.string().min(1, "Please select a service"),
+  budget: z.string().optional(),
+  timeline: z.string().optional(),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+  _honey: z.string().max(0, "Bot detected").optional(),
+});
 
 export const Contact = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -22,8 +35,10 @@ export const Contact = () => {
     service: "",
     budget: "",
     timeline: "",
-    message: ""
+    message: "",
+    _honey: "" // Honeypot field
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -73,23 +88,46 @@ export const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validate with Zod
+    const result = contactSchema.safeParse(formData);
+
+    if (!result.success) {
+      const formattedErrors: Record<string, string> = {};
+      result.error.issues.forEach((issue) => {
+        formattedErrors[issue.path[0]] = issue.message;
+      });
+      setErrors(formattedErrors);
+
+      toast({
+        title: "Validation Error",
+        description: "Please check the form for errors.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check Honeypot
+    if (formData._honey) {
+      console.warn("Honeypot filled, blocking submission");
+      toast({
+        title: "Submission Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('company', formData.company);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('service', formData.service);
-      formDataToSend.append('budget', formData.budget);
-      formDataToSend.append('timeline', formData.timeline);
-      formDataToSend.append('message', formData.message);
 
-      const response = await fetch('https://formspree.io/f/xpwoaolv', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        body: formDataToSend,
+        body: JSON.stringify(formData),
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
       });
@@ -110,9 +148,11 @@ export const Contact = () => {
           service: "",
           budget: "",
           timeline: "",
-          message: ""
+          message: "",
+          _honey: ""
         });
-      } else {
+      }
+      else {
         throw new Error('Form submission failed');
       }
     } catch (error) {
@@ -209,6 +249,7 @@ export const Contact = () => {
                         className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
                         required
                       />
+                      {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Email Address *</label>
@@ -218,10 +259,23 @@ export const Contact = () => {
                         placeholder="your@email.com"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
-                        className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
+                        className={`bg-card/50 border-primary/30 focus:border-primary smooth-transition ${errors.email ? 'border-red-500' : ''}`}
                         required
                       />
+                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
+                  </div>
+
+                  {/* Honeypot Field (Hidden) */}
+                  <div className="hidden" aria-hidden="true">
+                    <Input
+                      type="text"
+                      name="_honey"
+                      value={formData._honey}
+                      onChange={(e) => handleInputChange('_honey', e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -263,6 +317,7 @@ export const Contact = () => {
                         ))}
                       </SelectContent>
                     </Select>
+                    {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service}</p>}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -309,6 +364,7 @@ export const Contact = () => {
                       className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
                       required
                     />
+                    {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                   </div>
 
                   <Button

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Astraventa Playbook</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Geist Sans';
+      src: url('https://cdn.jsdelivr.net/gh/fontsource/fontsource@main/fonts/variable/geist-sans/index.css');
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #0f172a;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Geist Sans', sans-serif;
+      letter-spacing: -0.05em;
+    }
+    .page {
+      width: 8.5in;
+      height: 11in;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+      padding: 1in;
+      box-sizing: border-box;
+      background: white;
+    }
+    .page.dark {
+      background: #0B0F19;
+      color: white;
+    }
+    .page::after {
+      content: "ASTRAVENTA ENGINEERING / VOL. IV / 2026";
+      position: absolute;
+      bottom: 0.5in;
+      left: 1in;
+      font-size: 8pt;
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #94a3b8;
+    }
+    .page.dark::after {
+      color: #475569;
+    }
+    .page.no-footer::after {
+      display: none;
+    }
+    .blueprint-bg {
+      background-image: 
+        linear-gradient(rgba(41, 16, 229, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(41, 16, 229, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .dark .blueprint-bg {
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .accent-primary { color: #2910E5; }
+    .bg-accent-primary { background-color: #2910E5; }
+    .border-accent-primary { border-color: #2910E5; }
+    
+    /* Technical Grid Boxes */
+    .tech-box {
+      border: 1px solid #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      position: relative;
+    }
+    .dark .tech-box {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+    .tech-box::before {
+      content: '';
+      position: absolute;
+      top: -3px; left: -3px;
+      width: 6px; height: 6px;
+      background: #2910E5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1: Cover -->
+  <div class="page dark no-footer blueprint-bg flex flex-col justify-between">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2910E5] opacity-20 blur-[120px] rounded-full -mr-32 -mt-32"></div>
+    <div class="mt-20">
+      <div class="w-16 h-1 bg-[#2910E5] mb-8"></div>
+      <h3 class="text-sm font-mono tracking-[0.3em] text-[#2910E5] mb-4 uppercase">Strategic Resources</h3>
+      <h1 class="text-7xl font-bold leading-[0.9] mb-6">The<br/>Astraventa<br/><span class="text-[#2910E5]">Playbook.</span></h1>
+      <p class="text-xl text-slate-400 font-medium max-w-md">The definitive guide to engineering autonomous, event-driven enterprise systems.</p>
+    </div>
+    <div class="flex justify-between items-end border-t border-slate-800 pt-8 mt-auto">
+      <div>
+        <p class="font-mono text-xs text-slate-500 uppercase tracking-widest">Document Status</p>
+        <p class="font-bold">CLASSIFIED // PARTNER-ACCESS</p>
+      </div>
+      <div class="text-right">
+        <p class="font-mono text-xs text-slate-500 uppercase tracking-widest">Edition</p>
+        <p class="font-bold text-[#2910E5]">VOL. IV / 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 2: Letter from the Founder -->
+  <div class="page flex flex-col justify-center">
+    <div class="max-w-2xl mx-auto">
+      <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">The Executive Thesis</h3>
+      <h2 class="text-5xl font-bold mb-10 leading-tight">Why Basic Automation <br>Is No Longer Enough.</h2>
+      
+      <div class="space-y-6 text-lg text-slate-600 leading-relaxed">
+        <p>Dear Reader,</p>
+        <p>In 2026, the technological landscape has aggressively shifted. The era of static "if-this-then-that" automation is over. As enterprises face unprecedented operational complexity, relying exclusively on rigid triggers creates bottlenecks masked as solutions.</p>
+        <p>What the modern enterprise requires are <strong>Agentic Systems</strong>—autonomous, self-correcting networks of logic that can reason through ambiguity, validate their own data points, and execute non-deterministic workflows with deterministic reliability.</p>
+        <p>We built Astraventa because we saw a gap between commoditized software and the true potential of intelligent cloud infrastructure. The playbook you are reading outlines our exact proprietary methodology for replacing human latency with machine velocity.</p>
+        <p>We don't build apps. We build nervous systems for your business.</p>
+        <br/>
+        <p class="font-bold text-slate-900">— Haider Shabbir and Zeeshan Jay</p>
+        <p class="text-sm font-mono text-slate-400 uppercase tracking-widest">Founders, Astraventa</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 3: The Agentic Stack (Intro) -->
+  <div class="page dark blueprint-bg">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl border border-slate-800 bg-slate-900/50 p-12 backdrop-blur-md tech-box text-center">
+      <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-2 uppercase">The Architecture</h3>
+      <h2 class="text-5xl font-bold mb-6">The Agentic Stack.</h2>
+      <p class="text-lg text-slate-400">To build systems that reason, we deconstruct architecture into four distinct, highly optimized layers. Each layer corresponds to a human cognitive function: Memory, Logic, Execution, and Interface.</p>
+    </div>
+  </div>
+
+  <!-- Page 4: The Agentic Stack (Breakdown) -->
+  <div class="page">
+    <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">System Breakdown</h3>
+    <h2 class="text-4xl font-bold mb-12">The Four Pillars of Autonomy</h2>
+    
+    <div class="grid grid-cols-2 gap-8">
+      <div class="tech-box">
+        <h4 class="text-xl font-bold mb-3 flex items-center gap-3"><span class="w-2 h-2 bg-[#2910E5] rounded-full"></span> 01. Infrastructure Layer</h4>
+        <p class="text-sm text-slate-600 mb-4">The physical manifestation of software. We utilize low-latency edge computing, serverless worker fleets, and globally distributed CDNs to ensure 60ms P99 responses anywhere on earth.</p>
+        <div class="text-xs font-mono text-slate-400 p-2 bg-slate-50 rounded">AWS / Vercel Edge / Cloudflare Workers</div>
+      </div>
+      
+      <div class="tech-box">
+        <h4 class="text-xl font-bold mb-3 flex items-center gap-3"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> 02. Data Intelligence</h4>
+        <p class="text-sm text-slate-600 mb-4">The memory center. We combine traditional relational schemas with high-density Vector databases to implement sophisticated Retrieval-Augmented Generation (RAG) for absolute accuracy.</p>
+        <div class="text-xs font-mono text-slate-400 p-2 bg-slate-50 rounded">PostgreSQL / Pinecone / Supabase</div>
+      </div>
+      
+      <div class="tech-box">
+        <h4 class="text-xl font-bold mb-3 flex items-center gap-3"><span class="w-2 h-2 bg-purple-500 rounded-full"></span> 03. Neural Logic</h4>
+        <p class="text-sm text-slate-600 mb-4">The brain. LLM orchestration using agentic loops. Systems that don't just process data, but make autonomous decisions, self-heal, and request human-in-the-loop review only when necessary.</p>
+        <div class="text-xs font-mono text-slate-400 p-2 bg-slate-50 rounded">OpenAI / Anthropic / LangChain / n8n</div>
+      </div>
+      
+      <div class="tech-box">
+        <h4 class="text-xl font-bold mb-3 flex items-center gap-3"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> 04. Tactical Interfaces</h4>
+        <p class="text-sm text-slate-600 mb-4">The nervous system. High-performance, fully responsive UI built on atomic design principles. It provides humans the control panel to steer the autonomous agents effortlessly.</p>
+        <div class="text-xs font-mono text-slate-400 p-2 bg-slate-50 rounded">Next.js / React / Tailwind / Motion</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 5: Case Study A -->
+  <div class="page dark blueprint-bg">
+    <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">Case Study A - Automation</h3>
+    <h2 class="text-5xl font-bold mb-6">40% Cost Reduction via<br>Operations Automation</h2>
+    
+    <div class="flex gap-12 mt-16">
+      <div class="flex-1 space-y-8">
+        <div>
+          <h4 class="text-xl font-bold text-[#2910E5] mb-2">The Bottleneck</h4>
+          <p class="text-slate-400 leading-relaxed">A global logistics firm possessed an operations unit requiring 50+ hours weekly of manual supply chain data reconciliation across legacy ERP systems and fragmented email threads.</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold text-[#2910E5] mb-2">The Astraventa Deployment</h4>
+          <p class="text-slate-400 leading-relaxed">We deployed an autonomous n8n workflow pipeline that tapped into their email inboxes via IMAP, extracted PDF manifests using OCR/LLM logic, and mapped the variables natively into their cloud ERP via direct API.</p>
+        </div>
+      </div>
+      
+      <div class="w-72 shrink-0 bg-slate-900 border border-slate-800 p-8 rounded-2xl flex flex-col justify-center">
+        <div class="text-6xl font-black text-white mb-2">-40%</div>
+        <div class="text-[10px] font-mono uppercase tracking-widest text-[#2910E5] mb-8">OpEx Reduction</div>
+        
+        <div class="text-5xl font-black text-white mb-2">99.9%</div>
+        <div class="text-[10px] font-mono uppercase tracking-widest text-[#2910E5]">Data Accuracy Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 6: Case Study B -->
+  <div class="page">
+    <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">Case Study B - AI Engineering</h3>
+    <h2 class="text-5xl font-bold mb-6">100% Replacement of<br>Manual Data Parsing</h2>
+    
+    <div class="space-y-8 mt-12 max-w-3xl">
+      <p class="text-xl font-medium text-slate-700 leading-relaxed">
+        <strong>The Scenario:</strong> A financial auditing firm was bottlenecked by analysts spending 70% of their day reading dense compliance PDFs to extract 5 key data metrics for risk assessment tables.
+      </p>
+      
+      <div class="tech-box bg-slate-50 border-slate-200">
+        <h4 class="text-sm font-mono text-[#2910E5] uppercase tracking-widest mb-4">Architecture Solution</h4>
+        <p class="text-slate-600">Built a custom RAG (Retrieval-Augmented Generation) dashboard. Documents are uploaded, chunked, and stored in a Pinecone vector database. An Anthropic Claude model processes the chunks, extracting parameters with semantic understanding rather than rigid regex patterns.</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 mt-8">
+        <div>
+          <div class="text-4xl font-black text-slate-900 mb-1">0 Hrs</div>
+          <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Manual Parsing Needed</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black text-slate-900 mb-1">12 Secs</div>
+          <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Average Audit Time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 7: Case Study C -->
+  <div class="page dark blueprint-bg">
+    <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">Case Study C - UX Architecture</h3>
+    <h2 class="text-5xl font-bold mb-6">Doubling Conversions with<br>High-End Interaction Design</h2>
+    
+    <div class="flex flex-col h-full gap-8 mt-12 pb-20">
+      <div class="flex-1 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(41,16,229,0.2)_0%,transparent_70%)]"></div>
+        <div class="relative z-10 w-full max-w-md p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex gap-1.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+            </div>
+            <div class="text-[10px] font-mono text-slate-500">RENDER_V04.SYSTEM</div>
+          </div>
+          <div class="space-y-4">
+            <div class="h-8 bg-white/5 rounded-lg border border-white/10 flex items-center px-4">
+              <div class="w-1/3 h-2 bg-primary/40 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="h-24 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center items-center gap-2">
+                <div class="w-8 h-8 rounded-full border-2 border-primary/40 flex items-center justify-center">
+                  <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+                </div>
+                <div class="text-[8px] font-mono text-slate-500 uppercase">Neural_Node</div>
+              </div>
+              <div class="h-24 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center items-center gap-2">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <div class="w-4 h-0.5 bg-primary"></div>
+                </div>
+                <div class="text-[8px] font-mono text-slate-500 uppercase">Logic_Grid</div>
+              </div>
+              <div class="h-24 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center font-bold text-emerald-500 text-[10px]">99%</div>
+                <div class="text-[8px] font-mono text-slate-500 uppercase">Efficiency</div>
+              </div>
+            </div>
+            <div class="h-20 bg-white/5 rounded-lg border border-white/10 p-4 space-y-2">
+              <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div class="w-3/4 h-full bg-primary"></div>
+              </div>
+              <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div class="w-1/2 h-full bg-primary/60"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex gap-8">
+        <div class="flex-1">
+          <h4 class="text-xl font-bold text-white mb-2">The Problem</h4>
+          <p class="text-slate-400 text-sm">A B2B SaaS platform suffered a 60% drop-off at their critical onboarding portal due to visual clutter, poor typographic hierarchy, and severe latency (3s+ LCP).</p>
+        </div>
+        <div class="flex-1">
+          <h4 class="text-xl font-bold text-white mb-2">The Execution</h4>
+          <p class="text-slate-400 text-sm">We stripped the React monolith, implemented a sleek Next.js Edge architecture, and built a breathtaking UI featuring micro-interactions and smooth Framer Motion transitions.</p>
+        </div>
+        <div class="w-48 bg-[#2910E5] text-white p-6 rounded-2xl flex flex-col justify-center">
+          <div class="text-4xl font-black mb-1">+104%</div>
+          <div class="text-[10px] font-mono uppercase tracking-widest opacity-80">Conversion Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 8: Technology Matrix & Philosophy -->
+  <div class="page">
+    <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">The Engineering Philosophy</h3>
+    <h2 class="text-5xl font-bold mb-12">"Code is Commodity.<br>Architecture is Art."</h2>
+    
+    <p class="text-xl text-slate-600 mb-12 max-w-2xl leading-relaxed">
+      You can hire anyone to write code. But writing code that scales globally, prevents technical debt, and looks visually stunning requires engineering discipline and architectural mastery.
+    </p>
+
+    <h4 class="font-bold text-lg mb-6">The Astraventa Tech Stack Matrix</h4>
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b-2 border-slate-900">
+          <th class="py-4 px-4 font-mono text-xs uppercase tracking-widest text-slate-500">Domain</th>
+          <th class="py-4 px-4 font-mono text-xs uppercase tracking-widest text-slate-500">Core Technologies</th>
+          <th class="py-4 px-4 font-mono text-xs uppercase tracking-widest text-slate-500">Strategic Purpose</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+        <tr class="border-b border-slate-200">
+          <td class="py-6 px-4 font-bold">Frontend UX</td>
+          <td class="py-6 px-4 text-slate-600">Next.js / React / Vue / Svelte / Tailwind</td>
+          <td class="py-6 px-4 text-slate-600">Universal UI delivery. We are framework-agnostic, choosing the best tool for high-performance responsive interfaces.</td>
+        </tr>
+        <tr class="border-b border-slate-200">
+          <td class="py-6 px-4 font-bold">Backend Logic</td>
+          <td class="py-6 px-4 text-slate-600">Node.js / Python / Go / Rust / PHP / Java</td>
+          <td class="py-6 px-4 text-slate-600">Multi-paradigm backends. From high-speed Rust microservices to robust enterprise Java architectures.</td>
+        </tr>
+        <tr class="border-b border-slate-200">
+          <td class="py-6 px-4 font-bold">AI & Data</td>
+          <td class="py-6 px-4 text-slate-600">PyTorch / TensorFlow / Pinecone / Weaviate / Databricks</td>
+          <td class="py-6 px-4 text-slate-600">Full-spectrum intelligence. RAG implementation, model fine-tuning, and massive-scale data orchestration.</td>
+        </tr>
+        <tr>
+          <td class="py-6 px-4 font-bold">And Beyond</td>
+          <td class="py-6 px-4 text-slate-600 text-xs italic">Astraventa is technology-agnostic. We master current and emerging tech landscapes to solve any complexity.</td>
+          <td class="py-6 px-4 text-slate-600 font-bold uppercase tracking-widest text-xs">UNLIMITED_ENGINEERING_CAPACITY</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Page 9: 30-Day Execution Blueprint (Part 1) -->
+  <div class="page dark blueprint-bg">
+    <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">Execution Blueprint</h3>
+    <h2 class="text-5xl font-bold mb-12">The 30-Day Launch<br>Framework (Phase 1-2)</h2>
+    
+    <div class="space-y-12">
+      <div class="tech-box bg-slate-900 border-slate-800 relative">
+        <div class="absolute -left-4 top-8 text-6xl font-black text-slate-800 pointer-events-none">W1</div>
+        <div class="ml-16">
+          <h4 class="text-2xl font-bold text-white mb-2">Week 1: Discovery & Architecture Audit</h4>
+          <p class="text-slate-400 mb-4">We do not write a single line of code until the logical blueprint is flawless. We map your current bottlenecks and define the data flow architecture.</p>
+          <ul class="flex gap-4 text-xs font-mono text-slate-500">
+            <li class="bg-black/50 px-3 py-1 rounded">System Audits</li>
+            <li class="bg-black/50 px-3 py-1 rounded">API Mapping</li>
+            <li class="bg-black/50 px-3 py-1 rounded">UX Wireframing</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="tech-box bg-slate-900 border-slate-800 relative">
+        <div class="absolute -left-4 top-8 text-6xl font-black text-slate-800 pointer-events-none">W2</div>
+        <div class="ml-16">
+          <h4 class="text-2xl font-bold text-white mb-2">Week 2: Prototype & Core Logic Development</h4>
+          <p class="text-slate-400 mb-4">We spin up the edge infrastructure and build out the database schemas. Visual UI is connected to raw data inputs establishing the structural prototype.</p>
+          <ul class="flex gap-4 text-xs font-mono text-slate-500">
+            <li class="bg-black/50 px-3 py-1 rounded">Database Schemas</li>
+            <li class="bg-black/50 px-3 py-1 rounded">LLM Prompts</li>
+            <li class="bg-black/50 px-3 py-1 rounded">Atomic UI Dev</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 10: 30-Day Execution Blueprint (Part 2) -->
+  <div class="page dark blueprint-bg">
+    <h3 class="text-sm font-mono tracking-[0.2em] text-[#2910E5] mb-4 uppercase">Execution Blueprint</h3>
+    <h2 class="text-5xl font-bold mb-12">The 30-Day Launch<br>Framework (Phase 3-4)</h2>
+    
+    <div class="space-y-12">
+      <div class="tech-box bg-slate-900 border-slate-800 relative">
+        <div class="absolute -left-4 top-8 text-6xl font-black text-slate-800 pointer-events-none">W3</div>
+        <div class="ml-16">
+          <h4 class="text-2xl font-bold text-white mb-2">Week 3: Integration & Stress Testing</h4>
+          <p class="text-slate-400 mb-4">Autonomous agents are deployed to interconnect with your 3rd party APIs (CRMs, ERPs, Mail). We aggressively stress test latency, security and error-handling.</p>
+          <ul class="flex gap-4 text-xs font-mono text-slate-500">
+            <li class="bg-black/50 px-3 py-1 rounded">Webhook Binding</li>
+            <li class="bg-black/50 px-3 py-1 rounded">Load Testing</li>
+            <li class="bg-black/50 px-3 py-1 rounded">Edge Cases</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="tech-box bg-[#2910E5] border-transparent relative">
+        <div class="absolute -left-4 top-8 text-6xl font-black text-white/10 pointer-events-none">W4</div>
+        <div class="ml-16">
+          <h4 class="text-2xl font-bold text-white mb-2">Week 4: Deployment & Autonomous Monitoring</h4>
+          <p class="text-white/80 mb-4">The system is shipped to production. DNS is routed, SSL attached, and autonomous error logging via the Digital Nervous System initiates.</p>
+          <ul class="flex gap-4 text-xs font-mono text-white/60">
+            <li class="bg-black/20 px-3 py-1 rounded border border-white/10">Vercel Deployment</li>
+            <li class="bg-black/20 px-3 py-1 rounded border border-white/10">Analytics Setup</li>
+            <li class="bg-black/20 px-3 py-1 rounded border border-white/10">Handoff</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Page 12: Final CTA -->
+  <div class="page dark no-footer blueprint-bg flex flex-col justify-center items-center text-center">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(41,16,229,0.3)_0%,transparent_70%)]"></div>
+    
+    <div class="relative z-10 w-full">
+      <div class="mb-10 flex items-center justify-center">
+        <img src="/logo-new.png" alt="Astraventa" class="h-16 w-auto brightness-0 invert" />
+      </div>
+      
+      <h2 class="text-6xl font-bold mb-6">Scale Your Vision.</h2>
+      <p class="text-xl text-slate-400 mb-12 max-w-lg mx-auto">
+        You've read the methodology. The next step is execution. Partner with us to deploy the future of your enterprise.
+      </p>
+      
+      <a href="https://astraventa.com/contact" class="inline-block px-10 py-5 bg-[#2910E5] text-white font-bold rounded-full tracking-wide text-lg shadow-[0_0_40px_rgba(41,16,229,0.5)]">
+        Initiate Venture
+      </a>
+      
+      <div class="mt-16 flex gap-8 justify-center text-sm font-mono text-slate-500 uppercase tracking-widest">
+        <span>support@astraventa.com</span>
+        <span>|</span>
+        <span>Pakistan // Global</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

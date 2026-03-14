@@ -1,0 +1,15 @@
+﻿17b2dec Implement security hardening: honeypot, Zod validation, and rate-limited API route
+c01e4e9 seo optimize of astraventa
+205f101 Integrate Chrome Built-in AI with system prompt training and fallback
+499594b updated team section
+b4d72c4 d
+a14840b Enhance team prestige, mission badges, and fix logo visibility with glass cards
+b0e4b43 Fix seamless logo carousel and document form backend
+63a4173 Fix footer navigation 404s and update social proof
+1f26c06 Refine logo spacing, process timings, portfolio UI, and legal pages
+178e97c Enhance Process Workflow UI and fix duplicate title lint error
+520a337 Fix logo visibility, update WhatsApp number, and enhance Process section UI
+54036e6 Refine company stats, process workflow durations, and update process images
+e454380 updated
+57a832b updated
+c8ffb3c update details

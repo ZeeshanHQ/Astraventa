@@ -240,7 +240,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
  </Button>
  <Button 
  variant="ghost" 
- className="h-12 px-6 border border-slate-200 text-slate-600 rounded-full font-bold hover:bg-slate-50 flex items-center gap-2 transition-colors" 
+ className="h-12 px-6 border border-slate-200 text-slate-800 rounded-full font-bold hover:bg-slate-900 hover:text-white flex items-center gap-2 transition-all duration-300" 
  asChild
  >
  <Link to={product.docsUrl}>
@@ -356,7 +356,7 @@ const ProductCatalog = () => {
  <div className="md:flex md:justify-end items-center gap-6">
  <Separator className="w-full my-6 max-w-4xl" />
  <div className="text-xs whitespace-nowrap font-mono text-slate-400 uppercase tracking-[0.2em]">
- ASTRAVENTA — SINCE 2024
+ ASTRAVENTA — SINCE 2026
  </div>
  <div className="flex w-full items-end gap-4 mt-4 md:mt-0">
  <span className="text-2xl md:text-4xl font-thin text-slate-700 uppercase tracking-wider">AUTONOMOUS</span>
@@ -389,7 +389,7 @@ const ProductCatalog = () => {
  <p className="text-sm text-slate-500 font-medium leading-relaxed mb-6 max-w-sm">
  From AI reasoning engines to mobile monitoring tools — every module in the ecosystem is built to autonomous enterprise grade.
  </p>
- <Button className="h-12 px-7 bg-primary hover:bg-primary/90 text-white rounded-full font-bold flex items-center gap-2 shadow-lg shadow-primary/20">
+ <Button className="h-12 px-7 bg-primary hover:bg-primary/90 text-white rounded-full font-bold flex items-center gap-2 shadow-lg shadow-primary/20" asChild>
  <a href="#catalog" className="flex items-center gap-2">Browse Catalog <ArrowRight className="w-4 h-4" /></a>
  </Button>
  </motion.div>
@@ -426,7 +426,7 @@ const ProductCatalog = () => {
  </div>
 
  {/* Product Listing */}
- <section className="px-6">
+ <section id="catalog" className="px-6">
  <div className="max-w-[1400px] mx-auto">
  <div className="space-y-0">
  {filteredProducts.map((product, idx) => (
@@ -447,31 +447,33 @@ const ProductCatalog = () => {
  {/* Can't find what you need? (Footer Transition) */}
  <section className="px-6 pt-16">
  <div className="max-w-[1200px] mx-auto">
- <div className="relative rounded-[2.5rem] p-10 lg:p-16 overflow-hidden border border-slate-100 bg-slate-50/50">
+ <div className="relative rounded-[2.5rem] p-10 lg:p-16 overflow-hidden border border-slate-200/50 bg-white/40 backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
+ {/* Glass effect background */}
+ <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-primary/5 pointer-events-none" />
  <div className="relative z-10 flex flex-col items-center text-center">
- <div className="w-12 h-12 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-6 shadow-sm">
- <Cpu className="w-6 h-6 text-primary" />
+ <div className="w-14 h-14 rounded-2xl bg-[#2910E5]/5 border border-[#2910E5]/10 flex items-center justify-center mb-8 shadow-sm">
+ <Cpu className="w-7 h-7 text-[#2910E5]" />
  </div>
  
- <h2 className="text-2xl md:text-3xl text-slate-900 mb-4 font-black tracking-tight">
+ <h2 className="text-3xl md:text-4xl text-slate-900 mb-6 font-black tracking-tight leading-none group">
  Can't find what you need?
  </h2>
  
- <p className="text-slate-500 text-base max-w-xl mx-auto mb-8 font-medium">
+ <p className="text-slate-600 text-lg max-w-xl mx-auto mb-10 font-medium leading-relaxed">
  We architect bespoke autonomous systems tailored to specialized high-frequency requirements. Partner with us for custom-engineered modules.
  </p>
  
- <div className="flex flex-wrap items-center justify-center gap-6 mb-10 text-[8px] font-bold uppercase tracking-[0.2em] text-slate-400">
- <span className="flex items-center gap-1.5">Dedicated Sprints</span>
- <span className="w-1 h-1 rounded-full bg-slate-200" />
- <span className="flex items-center gap-1.5">Private Source</span>
- <span className="w-1 h-1 rounded-full bg-slate-200" />
- <span className="flex items-center gap-1.5">Enterprise SLA</span>
+ <div className="flex flex-wrap items-center justify-center gap-8 mb-12 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+ <span className="flex items-center gap-2">Dedicated Sprints</span>
+ <span className="w-1.5 h-1.5 rounded-full bg-slate-200" />
+ <span className="flex items-center gap-2">Private Source</span>
+ <span className="w-1.5 h-1.5 rounded-full bg-slate-200" />
+ <span className="flex items-center gap-2">Enterprise SLA</span>
  </div>
 
- <Button className="h-14 px-10 bg-black hover:bg-slate-900 text-white rounded-full font-black text-base flex items-center gap-3 transition-colors border-none" asChild>
+ <Button className="h-16 px-12 bg-black hover:bg-slate-900 text-white rounded-full font-black text-lg flex items-center gap-4 transition-all duration-300 shadow-xl shadow-black/10 border-none group" asChild>
  <Link to="/contact">
- Initialize Project <ArrowRight className="w-5 h-5" />
+ Initialize Project <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
  </Link>
  </Button>
  </div>

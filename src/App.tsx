@@ -83,6 +83,13 @@ import BlogListing from "./pages/blog/BlogListing";
 import BlogPostView from "./pages/blog/BlogPostView";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
+// New Corporate & Resource Pages
+import Careers from "./pages/Careers";
+import Partners from "./pages/Partners";
+import TrustSecurity from "./pages/TrustSecurity";
+import SystemStatus from "./pages/SystemStatus";
+import DeveloperPortal from "./pages/DeveloperPortal";
+
 
 const queryClient = new QueryClient();
 
@@ -142,6 +149,7 @@ const App = () => (
           <Route path="/tools/astra-draft" element={<AstraDraft />} />
           
           <Route path="/docs" element={<AstraDocs />} />
+          <Route path="/docs/api" element={<DeveloperPortal />} />
           <Route path="/docs/:toolId" element={<AstraDocs />} />
           
           {/* Enterprise Solutions */}
@@ -164,17 +172,19 @@ const App = () => (
           
           {/* Generic Pages */}
 
-          <Route path="/status" element={<GenericPage id="status" />} />
+          <Route path="/status" element={<SystemStatus />} />
           <Route path="/blog" element={<BlogListing />} />
           <Route path="/blog/:id" element={<BlogPostView />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/case-studies" element={<GenericPage id="case-studies" />} />
           <Route path="/changelog" element={<GenericPage id="changelog" />} />
           <Route path="/about" element={<About />} />
-          <Route path="/careers" element={<GenericPage id="careers" />} />
+          <Route path="/careers" element={<Careers />} />
           <Route path="/lab" element={<GenericPage id="lab" />} />
           <Route path="/support" element={<GenericPage id="support" />} />
-          <Route path="/security" element={<GenericPage id="security" />} />
+          <Route path="/security" element={<TrustSecurity />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/developers" element={<DeveloperPortal />} />
           <Route path="/portfolio" element={<GenericPage id="portfolio" />} />
           
           <Route path="/why-astraventa/:slug" element={<BrandHighlightDetail />} />

@@ -62,14 +62,14 @@ export const ProfessionalServices = () => {
  transition={{ delay: 0.1 }}
  >
  Our Engineering <br />
- <span className="text-[#2910E5]">Disciplines.</span>
+ <span className="text-[#2910E5] italic">Disciplines.</span>
  </motion.h2>
  <motion.p 
  initial={{ opacity: 0, y: 20 }}
  whileInView={{ opacity: 1, y: 0 }}
  viewport={{ once: true }}
  transition={{ delay: 0.2 }}
- className="text-xl text-slate-500 font-medium max-w-2xl mx-auto font-sans leading-relaxed"
+ className="text-xl text-slate-700 font-medium max-w-2xl mx-auto font-sans leading-relaxed"
  >
  Strategic engineering disciplines designed to bridge the gap between complex technology and business growth.
  </motion.p>

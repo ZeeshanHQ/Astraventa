@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { ProjectShowcase } from "@/components/ui/project-showcase";
 import { Link } from "react-router-dom";
 import { 
-  Zap 
+  Zap,
+  ArrowRight
 } from "lucide-react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -78,9 +79,9 @@ const ServicesHub = () => {
               </div>
               <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
                 Our Engineering <br />
-                <span className="text-primary italic">Capabilities.</span>
+                <span className="text-primary italic">Disciplines.</span>
               </h1>
-              <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+              <p className="text-slate-700 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
                 A high-fidelity directory of Astraventa's technical core. Bridge the gap between AI innovation and scalable business architecture.
               </p>
             </motion.div>
@@ -123,14 +124,10 @@ const ServicesHub = () => {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <Button className="h-20 px-12 bg-primary hover:bg-primary/90 text-white rounded-full font-black text-xl flex items-center gap-4 shadow-[0_20px_60px_-15px_rgba(41,16,229,0.5)] transition-all border-none group/pulse relative">
-                    <span className="relative z-10">Schedule a Strategy Pulse</span>
-                    <Zap className="w-6 h-6 relative z-10 fill-white" />
-                    <div className="absolute inset-0 rounded-full bg-white/20 blur-xl opacity-0 group-hover/pulse:opacity-100 transition-opacity" />
-                  </Button>
                   <Link to="/contact">
-                    <Button variant="ghost" className="h-20 px-12 border border-white/10 text-white hover:bg-white/5 rounded-full font-black text-xl flex items-center gap-4 transition-all transition-colors cursor-pointer">
-                      Get in Touch
+                    <Button className="h-16 px-12 bg-white hover:bg-white/90 text-slate-950 rounded-full font-black text-xl flex items-center gap-4 shadow-[0_20px_60px_-15px_rgba(255,255,255,0.1)] transition-all border-none group relative">
+                      <span className="relative z-10">START A PROJECT</span>
+                      <ArrowRight className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
                 </div>

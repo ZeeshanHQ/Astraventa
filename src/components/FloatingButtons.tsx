@@ -3,6 +3,7 @@ import { ArrowUp, Phone, Bell, X } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChatbotModal } from "./ChatbotModal";
+import chatbotImage from "@/assets/images/chatbot.png";
 
 // Professional Lucid WhatsApp Icon Component
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -165,7 +166,7 @@ export const FloatingButtons = () => {
  >
  {/* Try to render external PNG with transparent background at /chatbot.png. Fallback to SVG if missing. */}
  <img
- src="/chatbot.png"
+ src={chatbotImage}
  alt="Chatbot"
  className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
  onError={(e) => {

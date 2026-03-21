@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import heroImage from "@/assets/images/1.svg";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -38,7 +39,7 @@ const StitchDeviceMockup = () => {
           className="relative z-20 flex items-center justify-center w-full"
         >
           <img
-            src="/1.svg"
+            src={heroImage}
             alt="Native Architecture Protocol"
             className="w-full max-w-[550px] lg:max-w-[850px] h-auto object-contain"
           />

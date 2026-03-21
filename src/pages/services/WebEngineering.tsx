@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import heroImage from "@/assets/images/webdev.svg";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -38,7 +39,7 @@ const StitchHeroVisual = () => {
           className="relative z-20 flex items-center justify-center w-full"
         >
           <img
-            src="/webdev.svg"
+            src={heroImage}
             alt="Web Engineering Architecture"
             className="w-full max-w-[650px] lg:max-w-[950px] h-auto object-contain drop-shadow-2xl"
           />

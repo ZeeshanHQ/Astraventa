@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
+import heroImage from "@/assets/images/backend-dev.svg";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ShinyButton } from "@/components/ui/shiny-button";
@@ -271,7 +272,7 @@ const BackendEngineering = () => {
             >
               <div className="relative">
                 <img
-                  src="/backend-dev.svg"
+                  src={heroImage}
                   alt="Backend Engineering"
                   className="w-full max-w-[550px] lg:max-w-[850px] h-auto object-contain relative z-10"
                 />

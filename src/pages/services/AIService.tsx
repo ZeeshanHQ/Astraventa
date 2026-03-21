@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import heroImage from "@/assets/images/ai-cta.svg";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -421,7 +422,7 @@ const AIService = () => {
 
               {/* SVG Background – fills entire container, no zoom on hover */}
               <img
-                src="/ai-cta.svg"
+                src={heroImage}
                 alt="Astraventa AI Infrastructure Visualization"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />

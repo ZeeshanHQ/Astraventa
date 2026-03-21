@@ -1,4 +1,9 @@
 import { motion } from "framer-motion";
+import launchpactLogo from "@/assets/images/launchpact_logo_new.png";
+import shortscavexaLogo from "@/assets/images/shortscavexa.jpg";
+import complymailLogo from "@/assets/images/complymail.png";
+import vectraxLogo from "@/assets/images/vectrax_logo.png";
+import outrelixLogo from "@/assets/images/outrelix.png";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AstraventaLogo } from "./AstraventaLogo";
@@ -70,16 +75,16 @@ const services = [
 ];
 
 const products = [
-  { title: "LaunchPact AI", href: "https://launchpact.astraventa.online", description: "From Idea to Architecture in Minutes.", icon: <img src="/launchpact_logo_new.png" alt="LaunchPact AI" className="w-5 h-5 object-contain" /> },
-  { title: "Shorts Cavexa", href: "https://shorts.cavexa.online", description: "High-Velocity Content, Zero Effort.", icon: <img src="/shortscavexa.jpg" alt="Shorts Cavexa" className="w-5 h-5 object-contain rounded-sm" /> },
-  { title: "ComplyMail", href: "https://comply.astraventa.online", description: "Enterprise Email Compliance & Security.", icon: <img src="/complymail.png" alt="ComplyMail" className="w-5 h-5 object-contain" /> },
-  { title: "Vectrax", href: "https://vectrax.astraventa.online", description: "AI-powered database management.", icon: <img src="/vectrax_logo.png" alt="Vectrax" className="w-5 h-5 object-contain" /> },
-  { title: "Outrelix", href: "https://outrelix.astraventa.online", description: "Precision Outreach at Global Scale.", icon: <img src="/outrelix.png" alt="Outrelix" className="w-5 h-5 object-contain" /> },
+  { title: "LaunchPact AI", href: "https://launchpact.astraventa.online", description: "From Idea to Architecture in Minutes.", icon: <img src={launchpactLogo} alt="LaunchPact AI" className="w-5 h-5 object-contain" /> },
+  { title: "Shorts Cavexa", href: "https://shorts.cavexa.online", description: "High-Velocity Content, Zero Effort.", icon: <img src={shortscavexaLogo} alt="Shorts Cavexa" className="w-5 h-5 object-contain rounded-sm" /> },
+  { title: "ComplyMail", href: "https://comply.astraventa.online", description: "Enterprise Email Compliance & Security.", icon: <img src={complymailLogo} alt="ComplyMail" className="w-5 h-5 object-contain" /> },
+  { title: "Vectrax", href: "https://vectrax.astraventa.online", description: "AI-powered database management.", icon: <img src={vectraxLogo} alt="Vectrax" className="w-5 h-5 object-contain" /> },
+  { title: "Outrelix", href: "https://outrelix.astraventa.online", description: "Precision Outreach at Global Scale.", icon: <img src={outrelixLogo} alt="Outrelix" className="w-5 h-5 object-contain" /> },
 ];
 
 const venturePortfolio = [
-  { title: "Vectrax", href: "/products/vectrax", description: "Autonomous Database Engineer.", icon: <img src="/vectrax_logo.png" alt="Vectrax" className="w-6 h-6 object-contain" />, tag: "Live" },
-  { title: "LaunchPact", href: "/products/launchpact", description: "30-Day Venture Launcher.", icon: <img src="/launchpact_logo_new.png" alt="LaunchPact" className="w-6 h-6 object-contain" />, tag: "Flagship" },
+  { title: "Vectrax", href: "/products/vectrax", description: "Autonomous Database Engineer.", icon: <img src={vectraxLogo} alt="Vectrax" className="w-6 h-6 object-contain" />, tag: "Live" },
+  { title: "LaunchPact", href: "/products/launchpact", description: "30-Day Venture Launcher.", icon: <img src={launchpactLogo} alt="LaunchPact" className="w-6 h-6 object-contain" />, tag: "Flagship" },
   { title: "Shorts Cavexa", href: "/products/cavexa", description: "YouTube Automation Engine.", icon: <Zap className="w-6 h-6" />, tag: "Viral" },
   { title: "Astra Vibe", href: "/tools/astra-vibe", description: "Visual Intelligence Engine.", icon: <Sparkles className="w-6 h-6" />, tag: "New" },
 ];

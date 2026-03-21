@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import logoNew from "@/assets/images/logo-new.png";
 
 interface AstraventaLogoProps {
  className?: string;
@@ -20,7 +21,7 @@ export const AstraventaLogo = ({ className = "", size = "md", iconOnly = false }
  className={`flex items-center justify-start ${className}`}
  >
  <img 
- src="/logo-new.png" 
+ src={logoNew} 
  alt="Astraventa Logo" 
  className={`${sizeClasses[size]} w-auto object-contain object-left`} 
  />

@@ -88,7 +88,7 @@ export const AdminLayout = ({ children, onLogout }: AdminLayoutProps) => {
                   )}
                 >
                   <div className="flex items-center gap-4 relative z-10">
-                    <item.icon className={cn("w-4 h-4 transition-transform group-hover:scale-110", isActive ? "text-white" : "text-white/20 समूह-hover:text-primary")} />
+                    <item.icon className={cn("w-4 h-4 transition-transform group-hover:scale-110", isActive ? "text-white" : "text-white/20 group-hover:text-primary")} />
                     {item.label}
                   </div>
                   {isActive && (

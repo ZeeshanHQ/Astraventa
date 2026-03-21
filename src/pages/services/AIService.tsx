@@ -421,7 +421,7 @@ const AIService = () => {
 
               {/* SVG Background – fills entire container, no zoom on hover */}
               <img
-                src="/ai%20cta.svg"
+                src="/ai-cta.svg"
                 alt="Astraventa AI Infrastructure Visualization"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />

@@ -39,7 +39,7 @@ const StitchHeroVisual = () => {
           className="relative z-20 flex items-center justify-center w-full"
         >
           <img
-            src="/ui 1.svg"
+            src="/ui-1.svg"
             alt="UI/UX Design Architecture"
             className="w-full max-w-[550px] lg:max-w-[850px] h-auto object-contain"
           />

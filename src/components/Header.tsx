@@ -71,7 +71,7 @@ const services = [
 
 const products = [
   { title: "LaunchPact AI", href: "https://launchpact.astraventa.online", description: "From Idea to Architecture in Minutes.", icon: <img src="/launchpact_logo_new.png" alt="LaunchPact AI" className="w-5 h-5 object-contain" /> },
-  { title: "Shorts Cavexa", href: "https://shorts.cavexa.online", description: "High-Velocity Content, Zero Effort.", icon: <img src="/shortscavexa (1).jpg" alt="Shorts Cavexa" className="w-5 h-5 object-contain rounded-sm" /> },
+  { title: "Shorts Cavexa", href: "https://shorts.cavexa.online", description: "High-Velocity Content, Zero Effort.", icon: <img src="/shortscavexa.jpg" alt="Shorts Cavexa" className="w-5 h-5 object-contain rounded-sm" /> },
   { title: "ComplyMail", href: "https://comply.astraventa.online", description: "Enterprise Email Compliance & Security.", icon: <img src="/complymail.png" alt="ComplyMail" className="w-5 h-5 object-contain" /> },
   { title: "Vectrax", href: "https://vectrax.astraventa.online", description: "AI-powered database management.", icon: <img src="/vectrax_logo.png" alt="Vectrax" className="w-5 h-5 object-contain" /> },
   { title: "Outrelix", href: "https://outrelix.astraventa.online", description: "Precision Outreach at Global Scale.", icon: <img src="/outrelix.png" alt="Outrelix" className="w-5 h-5 object-contain" /> },

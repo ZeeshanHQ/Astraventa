@@ -85,7 +85,7 @@ export const AdvancedAIRobot = ({ mousePosition, currentSection }: AdvancedAIRob
  
  {/* AI Brain Indicator */}
  <motion.div
- className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
+ className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-r from-purple-500 to-primary/5 rounded-full"
  animate={{
  scale: [1, 1.2, 1],
  opacity: [0.7, 1, 0.7],
@@ -101,7 +101,7 @@ export const AdvancedAIRobot = ({ mousePosition, currentSection }: AdvancedAIRob
  <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-12 bg-gray-800 rounded-lg shadow-inner">
  {/* AI Eyes */}
  <motion.div
- className="absolute top-2 left-3 w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
+ className="absolute top-2 left-3 w-3 h-3 bg-gradient-to-r from-primary/10 to-blue-500 rounded-full"
  animate={{
  x: eyeMovement.left,
  scale: isActive ? 1.2 : 1,
@@ -112,7 +112,7 @@ export const AdvancedAIRobot = ({ mousePosition, currentSection }: AdvancedAIRob
  }}
  />
  <motion.div
- className="absolute top-2 right-3 w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
+ className="absolute top-2 right-3 w-3 h-3 bg-gradient-to-r from-primary/10 to-blue-500 rounded-full"
  animate={{
  x: eyeMovement.right,
  scale: isActive ? 1.2 : 1,
@@ -141,8 +141,8 @@ export const AdvancedAIRobot = ({ mousePosition, currentSection }: AdvancedAIRob
  {/* Robot Body Details */}
  <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-20 h-16 bg-gray-100 rounded-lg">
  {/* AI Circuit Pattern */}
- <div className="absolute inset-2 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-md">
- <div className="absolute top-1 left-1 w-1 h-1 bg-cyan-400 rounded-full"></div>
+ <div className="absolute inset-2 bg-gradient-to-r from-purple-500/20 to-primary/5 rounded-md">
+ <div className="absolute top-1 left-1 w-1 h-1 bg-primary/10 rounded-full"></div>
  <div className="absolute top-1 right-1 w-1 h-1 bg-purple-400 rounded-full"></div>
  <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full"></div>
  </div>
@@ -189,7 +189,7 @@ export const AdvancedAIRobot = ({ mousePosition, currentSection }: AdvancedAIRob
 
  {/* Floating AI Elements */}
  <motion.div
- className="absolute -top-4 -right-4 w-6 h-6 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full flex items-center justify-center"
+ className="absolute -top-4 -right-4 w-6 h-6 bg-gradient-to-r from-purple-500 to-primary/5 rounded-full flex items-center justify-center"
  animate={{
  y: [0, -10, 0],
  rotate: [0, 360, 0],
@@ -203,7 +203,7 @@ export const AdvancedAIRobot = ({ mousePosition, currentSection }: AdvancedAIRob
  </motion.div>
 
  <motion.div
- className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center"
+ className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-primary/10 to-blue-500 rounded-full flex items-center justify-center"
  animate={{
  y: [0, -8, 0],
  rotate: [0, -360, 0],

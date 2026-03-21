@@ -337,7 +337,7 @@ export function ArgentLoopInfiniteSlider() {
  }}
  >
  <div className="flex items-center gap-3 mb-2">
- <span className="text-[10px] font-bold text-blue-400 tracking-widest uppercase">{num}</span>
+ <span className="text-[10px] font-bold text-primary tracking-widest uppercase font-['Anonymous_Pro']">{num}</span>
  <div className="h-px bg-white/10 flex-1" />
  </div>
  
@@ -366,8 +366,8 @@ export function ArgentLoopInfiniteSlider() {
  {/* Aesthetic Overlays */}
  <div className="absolute top-12 left-12 z-50">
  <div className="flex flex-col gap-1">
- <span className="text-3xl font-black text-white/10 tracking-tighter uppercase leading-none">Astraventa</span>
- <span className="text-[10px] font-medium text-[#2910E5] tracking-[0.3em] uppercase ml-1">The Engineering Sequence</span>
+ <span className="text-3xl font-heading font-normal text-white uppercase tracking-[0.2em] leading-none">Astraventa</span>
+ <span className="text-[10px] font-bold text-primary tracking-[0.3em] uppercase ml-1 font-['Anonymous_Pro']">The Engineering Sequence</span>
  </div>
  </div>
 

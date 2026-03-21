@@ -7,10 +7,10 @@ export const LetsBuild = () => {
  <div className="container relative z-10 mx-auto px-6 text-center">
  <div className="flex justify-center">
  <LayeredText 
- fontSize="80px" 
- fontSizeMd="42px"
- lineHeight={70}
- lineHeightMd={40}
+ fontSize="60px" 
+ fontSizeMd="36px"
+ lineHeight={60}
+ lineHeightMd={36}
  className="py-12"
  />
  </div>

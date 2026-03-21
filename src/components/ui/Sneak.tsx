@@ -124,7 +124,7 @@ export const Sneak = () => {
  // Base Chrome: High contrast silver/black
  vec3 chromeBase = mix(vec3(0.05), vec3(1.0), smoothstep(0.3, 0.7, matcapUV.y + sin(matcapUV.x * 10.0)*0.1));
  
- // #2910E5 Edge Highlights (rgb: 41, 16, 229 -> 0.16, 0.06, 0.90)
+ // #7E96F6 Edge Highlights (rgb: 126, 150, 246 -> 0.16, 0.06, 0.90)
  vec3 blueGlow = vec3(0.16, 0.06, 0.90) * fresnel * 2.5;
  
  // Center core hotspot

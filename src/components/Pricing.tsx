@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import { Check } from "lucide-react";
 
 const plans = [
@@ -106,13 +107,14 @@ export const Pricing = () => {
  </div>
  </div>
 
- <Button 
- variant={plan.variant} 
- size="lg" 
- className="w-full mb-8"
- >
- {plan.cta}
- </Button>
+  <ShinyButton 
+  className={cn(
+  "w-full h-11 rounded-full font-display font-bold text-[12px] uppercase tracking-[0.15em]",
+  plan.featured && "bg-primary text-white"
+  )}
+  >
+  Get Started with {plan.name}
+  </ShinyButton>
 
  <div className="space-y-4">
  {plan.features.map((feature, featureIndex) => (

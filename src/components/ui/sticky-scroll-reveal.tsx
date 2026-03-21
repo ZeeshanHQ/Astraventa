@@ -46,7 +46,7 @@ export const StickyScroll = ({
 
   const linearGradients = [
     "linear-gradient(to bottom right, #0066FF, #00D4FF)", // blue-600 to cyan-400 (Astra theme)
-    "linear-gradient(to bottom right, #2910E5, #0066FF)", // deep-blue to blue-600
+    "linear-gradient(to bottom right, #7E96F6, #0066FF)", // deep-blue to blue-600
     "linear-gradient(to bottom right, #000000, #1e293b)", // black to slate-800
   ];
 

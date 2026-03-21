@@ -193,7 +193,7 @@ export const ServiceSections = () => {
  <ul className="space-y-2">
  {service.benefits.map((benefit, idx) => (
  <li key={idx} className="flex items-center gap-2 text-muted-foreground">
- <CheckCircle className="w-4 h-4 text-accent" />
+ <CheckCircle className="w-4 h-4 text-primary" />
  {benefit}
  </li>
  ))}

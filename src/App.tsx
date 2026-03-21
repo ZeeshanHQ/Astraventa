@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import ProductDetail from "./pages/ProductDetail";
 import ServiceDetail from "./pages/ServiceDetail";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { TermsOfService } from "./pages/TermsOfService";
@@ -58,9 +57,6 @@ import AstraDraft from "./pages/AstraDraft";
 import AstraDocs from "./pages/AstraDocs";
 
 // Enterprise Solutions
-import AstraConcierge from "./pages/solutions/AstraConcierge";
-import AstraAnalytics from "./pages/solutions/AstraAnalytics";
-import AutonomousOperations from "./pages/solutions/AutonomousOperations";
 import CloudMigrations from "./pages/solutions/CloudMigrations";
 import ProductCatalog from "./pages/ProductCatalog";
 
@@ -88,7 +84,7 @@ import Careers from "./pages/Careers";
 import Partners from "./pages/Partners";
 import TrustSecurity from "./pages/TrustSecurity";
 import SystemStatus from "./pages/SystemStatus";
-import DeveloperPortal from "./pages/DeveloperPortal";
+import ComingSoon from "./pages/ComingSoon";
 
 
 const queryClient = new QueryClient();
@@ -105,7 +101,6 @@ const App = () => (
           <Route path="/services" element={<ServicesHub />} />
           <Route path="/products" element={<ProductCatalog />} />
 
-          <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/products/astra-tools" element={<AstraTools />} />
           <Route path="/tools/astra-reach" element={<AstraReach />} />
           <Route path="/tools/astra-scrape" element={<AstraScrape />} />
@@ -120,7 +115,7 @@ const App = () => (
           <Route path="/tools/astra-vibe" element={<AstraVibe />} />
           <Route path="/tools/astra-blog" element={<AstraBlog />} />
           <Route path="/tools/astra-prompt" element={<AstraPrompt />} />
-          
+
           <Route path="/tools/astra-lead" element={<AstraLead />} />
           <Route path="/tools/astra-pitch" element={<AstraPitch />} />
           <Route path="/tools/astra-review" element={<AstraReview />} />
@@ -133,7 +128,7 @@ const App = () => (
           <Route path="/tools/astra-legal" element={<AstraLegal />} />
           <Route path="/tools/astra-brand" element={<AstraBrand />} />
           <Route path="/tools/astra-finance" element={<AstraFinance />} />
-          
+
           <Route path="/tools/astra-commerce" element={<AstraCommerce />} />
           <Route path="/tools/astra-agent" element={<AstraAgent />} />
           <Route path="/tools/astra-pulse" element={<AstraPulse />} />
@@ -147,17 +142,13 @@ const App = () => (
           <Route path="/tools/astra-ad" element={<AstraAd />} />
           <Route path="/tools/astra-match" element={<AstraMatch />} />
           <Route path="/tools/astra-draft" element={<AstraDraft />} />
-          
+
           <Route path="/docs" element={<AstraDocs />} />
-          <Route path="/docs/api" element={<DeveloperPortal />} />
           <Route path="/docs/:toolId" element={<AstraDocs />} />
-          
+
           {/* Enterprise Solutions */}
-          <Route path="/solutions/ai-concierge" element={<AstraConcierge />} />
-          <Route path="/solutions/analytics" element={<AstraAnalytics />} />
-          <Route path="/solutions/autonomous-operations" element={<AutonomousOperations />} />
           <Route path="/solutions/cloud" element={<CloudMigrations />} />
-          
+
           <Route path="/services/ai" element={<AIService />} />
           <Route path="/services/automation" element={<AutomationService />} />
           <Route path="/services/security" element={<SecurityService />} />
@@ -169,14 +160,13 @@ const App = () => (
           <Route path="/services/chatbots" element={<AIChatbots />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
 
-          
+
           {/* Generic Pages */}
 
           <Route path="/status" element={<SystemStatus />} />
           <Route path="/blog" element={<BlogListing />} />
           <Route path="/blog/:id" element={<BlogPostView />} />
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/case-studies" element={<GenericPage id="case-studies" />} />
           <Route path="/changelog" element={<GenericPage id="changelog" />} />
           <Route path="/about" element={<About />} />
           <Route path="/careers" element={<Careers />} />
@@ -184,22 +174,23 @@ const App = () => (
           <Route path="/support" element={<GenericPage id="support" />} />
           <Route path="/security" element={<TrustSecurity />} />
           <Route path="/partners" element={<Partners />} />
-          <Route path="/developers" element={<DeveloperPortal />} />
           <Route path="/portfolio" element={<GenericPage id="portfolio" />} />
-          
+
+          <Route path="/coming-soon" element={<ComingSoon />} />
+
           <Route path="/why-astraventa/:slug" element={<BrandHighlightDetail />} />
 
           {/* Legacy & Utilities */}
- <Route path="/contact" element={<GetInTouch />} />
- <Route path="/privacy" element={<PrivacyPolicy />} />
- <Route path="/terms" element={<TermsOfService />} />
- <Route path="/cookies" element={<CookiePolicy />} />
- {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
- <Route path="*" element={<NotFound />} />
- </Routes>
- </BrowserRouter>
- </TooltipProvider>
- </QueryClientProvider>
+          <Route path="/contact" element={<GetInTouch />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/cookies" element={<CookiePolicy />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
 );
 
 export default App;

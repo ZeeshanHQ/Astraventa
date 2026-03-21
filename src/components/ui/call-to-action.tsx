@@ -1,39 +1,64 @@
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import { InteractiveRobotSpline } from "@/components/ui/interactive-3d-robot";
 
 function CTA() {
+  const navigate = useNavigate();
+  const ROBOT_SCENE_URL = "https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode";
+
   return (
-    <div className="w-full py-12 lg:py-24">
-      <div className="container mx-auto">
-        <div className="flex flex-col text-center bg-gradient-to-br from-white via-blue-50/20 to-indigo-50/30 backdrop-blur-md border border-slate-200 rounded-[2.5rem] p-8 lg:p-24 gap-12 items-center shadow-[0_40px_100px_rgba(41,16,229,0.08)] relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 blur-[120px] rounded-full -mr-32 -mt-32" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 blur-[120px] rounded-full -ml-32 -mb-32" />
+    <div className="w-full py-8 lg:py-16 overflow-hidden bg-background">
+      <div className="container mx-auto relative px-4 md:px-8 max-w-6xl">
+        <div className="flex flex-col lg:flex-row text-left bg-[#030303] border border-white/5 rounded-[2rem] p-6 lg:p-12 gap-8 items-center shadow-2xl relative min-h-[400px]">
           
-          <div className="relative z-10">
-            <Badge className="bg-primary/10 text-primary border-primary/20 technical-label py-1.5 px-4 mb-2">Get started</Badge>
-          </div>
-          <div className="flex flex-col gap-6 relative z-10">
-            <h3 className="text-4xl md:text-7xl tracking-tighter max-w-3xl font-bold text-slate-900 leading-[1.1]">
-              The Future is Autonomous. <br />
-              <span className="text-primary">Are You?</span>
+          {/* Subtle minimal glow effect, lowered opacity so it doesn't look like a solid card */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[hsl(var(--primary))]/5 blur-[120px] rounded-full -mr-32 -mt-32 pointer-events-none" />
+          
+          <div className="flex flex-col gap-5 relative z-10 lg:w-[50%] pl-2 lg:pl-6">
+            <div className="relative z-10 w-fit">
+              <Badge className="bg-white/5 text-[10px] font-display font-medium text-white/80 border-white/10 py-1 px-3 mb-1 uppercase tracking-[0.2em] backdrop-blur-md">Get started</Badge>
+            </div>
+            <h3 className="font-heading font-normal text-white uppercase leading-[1.15] tracking-[0.2em] text-3xl md:text-4xl lg:text-[40px] xl:text-[48px] max-w-xl">
+              The Future is<br />Autonomous. <br />
+              <span className="text-[hsl(var(--primary))] font-medium">Are You?</span>
             </h3>
-            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-slate-500 max-w-2xl mx-auto font-medium">
+            <p className="text-[14px] text-white/60 font-body font-normal leading-[1.6] max-w-md">
               Turn your complex operational bottlenecks into seamless event-driven pipelines today.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 relative z-10 pt-2 lg:pt-4">
+              <Button className="h-12 px-6 gap-3 border-white/10 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white rounded-full font-display font-semibold text-[12px] uppercase tracking-[0.15em] transition-all shadow-none" variant="outline" asChild>
+                <Link to="/contact">Jump on a call <PhoneCall className="w-4 h-4 text-white/60" /></Link>
+               </Button>
+              <ShinyButton 
+                className="h-12 px-8 rounded-full font-display font-semibold text-[12px] uppercase tracking-[0.15em]"
+                onClick={() => navigate('/contact')}
+              >
+                <span className="relative z-10 flex items-center gap-3 pt-[2px]">Contact Us <MoveRight className="w-4 h-4" /></span>
+              </ShinyButton>
+            </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 relative z-10">
-            <Button className="h-16 px-8 gap-4 border-slate-200 text-slate-600 bg-white hover:bg-slate-50 hover:border-slate-300 hover:text-[#2910E5] rounded-2xl font-semibold text-lg transition-colors shadow-sm" variant="outline" asChild>
-              <Link to="/contact">Jump on a call <PhoneCall className="w-5 h-5" /></Link>
-            </Button>
-            <Button className="relative h-16 px-10 gap-4 bg-[#2910E5] text-white rounded-2xl font-bold text-lg overflow-hidden group shadow-[0_15px_30px_rgba(41,16,229,0.25)] border border-transparent hover:border-white/20 transition-colors" asChild>
-              <Link to="/contact">
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-[150%] skew-x-[-15deg] group-hover:translate-x-[150%] transition-transform duration-1000" />
-                <span className="relative z-10 flex items-center gap-4">Contact Us <MoveRight className="w-5 h-5" /></span>
-              </Link>
-            </Button>
+          
+          <div className="relative z-0 h-[300px] lg:h-[400px] w-full lg:w-[50%] flex justify-end items-center pointer-events-auto shrink-0">
+            {/* The outer div bounds the interactive area and clips overflows */}
+            <div className="relative w-full max-w-[450px] aspect-square lg:aspect-auto lg:h-[100%] overflow-hidden rounded-[2rem] flex items-center justify-center lg:-mr-4">
+                {/* 
+                  Make the Spline container larger but scale it down to visually shrink the robot.
+                  This pushes the Spline watermark toward the very far bottom-right edge.
+                */}
+                <div className="absolute w-[180%] h-[180%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.60] origin-center">
+                  <InteractiveRobotSpline
+                    scene={ROBOT_SCENE_URL}
+                    className="w-full h-full object-contain" 
+                  />
+                  {/* Failsafe patch to impeccably cover the Spline watermark with the exact matching card background */}
+                  <div className="absolute bottom-4 right-4 w-[160px] h-[60px] bg-[#030303] z-[99] pointer-events-none rounded-br-[2rem]" />
+                </div>
+            </div>
           </div>
+          
         </div>
       </div>
     </div>

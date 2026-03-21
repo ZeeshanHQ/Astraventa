@@ -2,18 +2,18 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
-import { 
-  Bot, 
-  MessageSquare, 
-  Zap, 
-  Cpu, 
-  ShieldCheck, 
-  BrainCircuit, 
-  ArrowRight, 
-  Activity, 
-  Layers, 
+import {
+  Bot,
+  MessageSquare,
+  Zap,
+  Cpu,
+  ShieldCheck,
+  BrainCircuit,
+  ArrowRight,
+  Activity,
+  Layers,
   Sparkles,
   Search,
   CheckCircle,
@@ -26,6 +26,7 @@ import {
   Mail
 } from "lucide-react";
 import { AstraEcosystemSync } from "@/components/AstraEcosystemSync";
+import { Marquee } from "@/components/ui/marquee";
 
 const messages = [
   { ts: "16:14:01", msg: "POST /api/v1/query → Vector Search", ok: true },
@@ -35,94 +36,25 @@ const messages = [
   { ts: "16:14:05", msg: "Response stream initialized // 12ms", ok: true },
 ];
 
-const StitchChatMockup = () => {
-  const [logs, setLogs] = useState<{ ts: string, msg: string, ok: boolean }[]>([]);
-  const [index, setIndex] = useState(0);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % (messages.length + 1));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (index === 0) {
-      setLogs([]);
-    } else if (index <= messages.length) {
-      setLogs(prev => [...prev, messages[index - 1]].slice(-3));
-    }
-  }, [index]);
-
+// ─── Stitch Primitive: Hero Visual (Hero Right Side) ────────────
+const StitchHeroVisual = () => {
   return (
-    <div className="relative w-full bg-slate-950 rounded-3xl border border-slate-800 p-0 overflow-hidden flex flex-col shadow-2xl group min-h-[480px]">
-      {/* Header bar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/60">
-        <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
-            <Bot className="w-3.5 h-3.5" /> AI AGENT // V4.0.2
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] font-mono text-slate-500">P99: 14ms</span>
-          <span className="text-[10px] font-mono text-slate-500">TOKENS: 1.2k/s</span>
-        </div>
+    <div className="relative w-full flex flex-col items-center justify-center pointer-events-none bg-transparent shadow-none border-none overflow-visible lg:col-span-5">
+      {/* SVG Container */}
+      <div className="relative z-10 flex items-center justify-center w-full h-full">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-20 flex items-center justify-center w-full"
+        >
+          <img
+            src="/chatbot.svg"
+            alt="AI Chatbot Architecture"
+            className="w-full max-w-[650px] lg:max-w-[1050px] h-auto object-contain drop-shadow-2xl"
+          />
+        </motion.div>
       </div>
-
-      <div className="p-8 space-y-6 flex-1">
-        {/* User Message */}
-        <div className="flex gap-4">
-          <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 shrink-0 flex items-center justify-center">
-            <div className="w-4 h-4 bg-slate-600 rounded-sm" />
-          </div>
-          <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl rounded-tl-none max-w-[85%] text-slate-300 text-xs leading-relaxed font-medium">
-            Analyze our Q4 logistics flow and identify bottlenecks in the last-mile delivery using the vector engine.
-          </div>
-        </div>
-
-        {/* AI Response */}
-        <div className="flex gap-4 flex-row-reverse">
-          <div className="w-8 h-8 rounded-full bg-[#2910E5]/10 border border-[#2910E5]/20 shrink-0 flex items-center justify-center">
-            <Bot className="w-4 h-4 text-[#2910E5]" />
-          </div>
-          <div className="bg-[#2910E5]/5 border border-[#2910E5]/10 p-4 rounded-2xl rounded-tr-none max-w-[85%] text-slate-200 text-xs leading-relaxed relative overflow-hidden font-medium">
-            <motion.div 
-              initial={{ width: 0 }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 2 }}
-              className="absolute top-0 left-0 h-[1px] bg-[#2910E5]/40"
-            />
-            Retrieving Q4 telemetry... I've identified a 22% latency increase in the Northeast hub. I'm cross-referencing this with weather patterns and warehouse throughput.
-          </div>
-        </div>
-      </div>
-
-      {/* Real-time technical log stream */}
-      <div className="border-t border-slate-800 px-6 py-4 space-y-2 bg-slate-950/80 font-mono">
-        {logs.length === 0 ? (
-          <div className="flex items-center gap-3 animate-pulse py-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-            <span className="text-[9px] text-slate-600 uppercase tracking-widest font-bold">Initializing session...</span>
-          </div>
-        ) : (
-          logs.map((log, i) => (
-            <motion.div 
-              key={`${log.ts}-${i}`}
-              initial={{ opacity: 0, x: -5 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3"
-            >
-              <span className="text-[9px] text-slate-600 font-bold">{log.ts}</span>
-              <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${log.ok ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]' : 'bg-red-500'}`} />
-              <span className="text-[9px] text-slate-400 font-bold">{log.msg}</span>
-            </motion.div>
-          ))
-        )}
-      </div>
-
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 bg-[#2910E5]/[0.01] pointer-events-none" style={{ backgroundImage: "radial-gradient(#2910E5 0.5px, transparent 0.5px)", backgroundSize: "24px 24px" }} />
     </div>
   );
 };
@@ -130,40 +62,45 @@ const StitchChatMockup = () => {
 // ─── Tech Stack Marquee ────────────────────────────────────────────────────────
 const TechMarquee = () => {
   const techs = [
-    { name: "OpenAI", color: "text-emerald-500" },
-    { name: "Anthropic", color: "text-orange-500" },
-    { name: "LangChain", color: "text-blue-500" },
-    { name: "Pinecone", color: "text-slate-900" },
-    { name: "LlamaIndex", color: "text-purple-500" },
-    { name: "Vector Database", color: "text-[#2910E5]" },
-    { name: "RAG Engine", color: "text-slate-950" },
-    { name: "NLP / NLU", color: "text-slate-950" },
-    { name: "GPT-4o", color: "text-emerald-600" },
-    { name: "Claude 3.5", color: "text-orange-600" }
+    { name: "OpenAI", url: "https://cdn.simpleicons.org/openai/000000" },
+    { name: "Anthropic", url: "https://cdn.simpleicons.org/anthropic/000000" },
+    { name: "LangChain", url: "https://cdn.simpleicons.org/langchain/000000" },
+    { name: "Pinecone", url: "https://cdn.simpleicons.org/pinecone/000000" },
+    { name: "Meta", url: "https://cdn.simpleicons.org/meta/000000" },
+    { name: "Hugging Face", url: "https://cdn.simpleicons.org/huggingface/000000" },
+    { name: "Mistral AI", url: "https://cdn.simpleicons.org/mistral/000000" },
+    { name: "NVIDIA", url: "https://cdn.simpleicons.org/nvidia/000000" },
+    { name: "Stability.ai", url: "https://cdn.simpleicons.org/stabilitydotai/000000" },
+    { name: "PyTorch", url: "https://cdn.simpleicons.org/pytorch/000000" },
   ];
 
   return (
-    <div className="relative py-12 border-t border-b border-slate-100 overflow-hidden bg-white">
-      <div className="flex animate-marquee whitespace-nowrap gap-16 items-center" style={{ '--gap': '4rem' } as React.CSSProperties}>
-        {[...techs, ...techs].map((tech, i) => (
-          <div key={tech.name + i} className="flex items-center gap-2 group cursor-default">
-            <div className="w-1.5 h-1.5 rounded-full bg-slate-200 group-hover:bg-[#2910E5] transition-colors" />
-            <span className="text-[11px] font-black font-mono uppercase tracking-[0.2em] text-slate-300 group-hover:text-slate-950 transition-colors">
-              {tech.name}
-            </span>
+    <div className="relative py-12 border-y border-black/[0.06] bg-white overflow-hidden">
+      <div className="absolute inset-0 bg-primary/[0.01] pointer-events-none" style={{ backgroundImage: "radial-gradient(var(--primary) 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
+      <Marquee className="[--duration:40s] [--gap:4rem]" pauseOnHover>
+        {techs.map((tech, i) => (
+          <div key={i} className="flex items-center gap-4 group cursor-default px-4">
+            <div className="w-12 h-12 p-3 rounded-2xl bg-black/[0.02] border border-black/[0.06] transition-all group-hover:bg-white group-hover:border-primary/20 group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex items-center justify-center grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-100 duration-500">
+              <img src={tech.url} alt={tech.name} className="w-full h-full object-contain" />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[8px] font-black text-black/10 group-hover:text-primary transition-colors uppercase tracking-[0.2em] font-['Anonymous_Pro']">SYSTEM_NODE</span>
+              <span className="text-[13px] font-bold text-black/40 group-hover:text-black transition-colors uppercase tracking-[0.1em] font-heading">{tech.name}</span>
+            </div>
           </div>
         ))}
-      </div>
+      </Marquee>
     </div>
   );
 };
 
 // ─── Main Component ────────────────────────────────────────────────────────────
 export const AIChatbots = () => {
+  const navigate = useNavigate();
   const [activeService, setActiveService] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  
+
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
@@ -229,100 +166,93 @@ export const AIChatbots = () => {
   // ─── ECOSYSTEM SYNC ───────────────────────────────────────────────────────
   const relatedTools = [
     {
-      title: "AstraReach AI",
-      tagline: "Autonomous Email Operations",
-      icon: Mail,
-      color: "text-blue-500",
-      bg: "bg-blue-500/10",
-      href: "/tools/astra-reach"
-    },
-    {
       title: "AstraPulse AI",
       tagline: "AI Observability & Metrics",
       icon: Activity,
-      color: "text-emerald-500",
-      bg: "bg-emerald-500/10",
+      color: "text-black/60",
+      bg: "bg-black/[0.01]",
       href: "/tools/astra-pulse"
     },
     {
-      title: "AstraVerify AI",
-      tagline: "Deepfake & Identity Shield",
-      icon: ShieldCheck,
-      color: "text-violet-500",
-      bg: "bg-violet-500/10",
-      href: "/tools/astra-verify"
+      title: "AstraMarket AI",
+      tagline: "Competitor Intelligence",
+      icon: Search,
+      color: "text-primary",
+      bg: "bg-primary/10",
+      href: "/tools/astra-market"
+    },
+    {
+      title: "AstraAgent AI",
+      tagline: "Browser Worker Agent",
+      icon: Bot,
+      color: "text-primary",
+      bg: "bg-primary/20",
+      href: "/tools/astra-agent"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-950 selection:bg-[#2910E5]/10 overflow-x-hidden font-sans transition-colors duration-700">
+    <div className="min-h-screen bg-white selection:bg-primary/10 overflow-x-hidden font-sans">
       <Header />
 
-      <main className="pt-20">
-        
+      <main className="pt-12">
+
         {/* ─── HERO Section ──────────────────────────────────────────────────────── */}
-        <section ref={heroRef} className="relative min-h-[90vh] flex items-center px-6 overflow-hidden bg-white">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-70 pointer-events-none" />
-          
-          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-20">
-            
+        <section ref={heroRef} className="relative min-h-[85vh] flex items-center px-6 overflow-hidden bg-white">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50 pointer-events-none" />
+
+          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 max-w-[1300px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center py-24">
+
             {/* Left Content */}
-            <div className="pt-10">
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
+            <div className="lg:col-span-7 pt-12">
+              <motion.div
+                initial={{ opacity: 0, x: -15 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2910E5]/5 border border-[#2910E5]/10 mb-8 shadow-sm"
+                className="inline-flex items-center gap-2 px-2.5 py-1 rounded-2xl bg-black/[0.01] border border-black/[0.06] mb-8"
               >
-                <BrainCircuit className="w-3.5 h-3.5 text-[#2910E5]" />
-                <span className="text-[10px] font-black font-mono text-[#2910E5] tracking-[0.2em] uppercase">Autonomous AI · Core V4</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                <span className="text-[9px] font-black font-['Anonymous_Pro'] text-[#4B5563] tracking-[0.4em] uppercase">SYSTEM_INITIALIZED // CORE_V4</span>
               </motion.div>
-              
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
+
+              <motion.h1
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="mb-8 text-6xl md:text-8xl font-black text-slate-950 tracking-tight leading-[0.88]"
+                transition={{ delay: 0.1, duration: 0.8 }}
+                className="mb-8 text-4xl md:text-5xl lg:text-5xl font-heading font-normal text-black tracking-[0.05em] leading-[1.1] uppercase"
               >
                 Neural<br />Interaction<br />
-                <span className="text-[#2910E5]">Systems.</span>
+                <span className="text-primary select-none">Systems.</span>
               </motion.h1>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
+
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-slate-500 font-medium text-lg leading-relaxed max-w-lg mb-10"
+                className="text-[#4B5563] font-medium text-base leading-relaxed max-w-md mb-10 uppercase tracking-tight"
               >
-                Transform customer interactions with professional-grade AI systems that understand context, execute complex logic, and operate at sub-second latency.
+                Production-grade AI systems that understand context, execute complex logic, and operate at sub-second latency.
               </motion.p>
-              
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
+
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-wrap items-center gap-6"
+                className="flex flex-wrap items-center gap-8"
               >
-                <Button className="h-14 px-8 bg-[#2910E5] hover:bg-[#2910E5]/90 text-white rounded-full font-bold flex items-center gap-3 transition-transform border-none shadow-xl shadow-[#2910E5]/20 group" asChild>
+                <Button className="h-10 px-6 bg-black hover:bg-black/90 text-white rounded-2xl font-black uppercase tracking-widest text-[11px] flex items-center gap-3 transition-all border-none shadow-xl group" asChild>
                   <Link to="/contact">
-                    Initialize System <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    INITIALIZE_SYSTEM <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform group-hover:text-primary" />
                   </Link>
                 </Button>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[11px] font-mono text-slate-400 uppercase tracking-widest font-bold">Neural Link Ready</span>
+                <div className="flex items-center gap-3">
+                  <div className="w-1 h-1 rounded-full bg-primary/40" />
+                  <span className="text-[9px] font-black font-['Anonymous_Pro'] text-black/30 uppercase tracking-[0.3em]">LINK_READY</span>
                 </div>
               </motion.div>
             </div>
 
             {/* Right: Interactive Terminal */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              className="relative w-full"
-            >
-              <StitchChatMockup />
-            </motion.div>
+            <StitchHeroVisual />
 
           </motion.div>
         </section>
@@ -331,28 +261,28 @@ export const AIChatbots = () => {
         <TechMarquee />
 
         {/* ─── CORE SERVICES (Interactive) ────────────────────────────────────── */}
-        <section className="py-32 px-6 bg-white border-t border-slate-100">
-          <div className="max-w-7xl mx-auto">
-            
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+        <section className="py-24 px-6 bg-white border-t border-black/[0.06]">
+          <div className="max-w-[1300px] mx-auto">
+
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
               <motion.div {...fadeUp}>
-                <span className="text-[10px] font-black font-mono text-slate-400 uppercase tracking-[0.2em] mb-3 block">Service Disciplines</span>
-                <h2 className="text-4xl md:text-6xl font-black text-slate-950 tracking-tight leading-[0.92]">
-                  Six Modules of<br /><span className="text-[#2910E5]">Agent Intelligence.</span>
+                <span className="text-[9px] font-black font-['Anonymous_Pro'] text-primary uppercase tracking-[0.4em] mb-4 block">SERVICE_DISCIPLINES</span>
+                <h2 className="text-3xl md:text-5xl font-heading font-normal text-black tracking-[0.1em] leading-[1.1] uppercase">
+                  Six Modules of<br /><span className="text-primary select-none">Agent Intelligence.</span>
                 </h2>
               </motion.div>
-              <motion.p {...fadeUp} className="text-slate-500 text-sm font-medium max-w-xs leading-relaxed mb-2">
+              <motion.p {...fadeUp} className="text-[#4B5563] text-sm font-bold max-w-sm leading-relaxed mb-2 uppercase tracking-tight">
                 Production-grade AI architectures designed for deterministic performance and enterprise security.
               </motion.p>
             </div>
 
             {/* Tab navigation */}
-            <div className="flex flex-wrap gap-2 mb-10 pb-6 border-b border-slate-100">
+            <div className="flex flex-wrap gap-2 mb-10 pb-6 border-b border-black/[0.06]">
               {services.map((s, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveService(i)}
-                  className={`px-5 py-2.5 rounded-xl text-[11px] font-black font-mono uppercase tracking-wider transition-all duration-300 ${i === activeService ? 'bg-slate-950 text-white shadow-lg' : 'bg-transparent text-slate-400 hover:bg-slate-50'}`}
+                  className={`px-4 py-2 rounded-2xl text-[9px] font-black font-['Anonymous_Pro'] uppercase tracking-[0.25em] transition-all duration-300 ${i === activeService ? 'bg-black text-white shadow-xl' : 'bg-black/[0.01] text-[#4B5563] hover:bg-black/10 hover:text-black'}`}
                 >
                   {s.name}
                 </button>
@@ -365,37 +295,37 @@ export const AIChatbots = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-12 bg-slate-50/50 rounded-[3rem] p-10 md:p-14 border border-slate-100 shadow-sm transition-all"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-16 bg-black/[0.01] rounded-2xl p-10 border border-black/[0.06] shadow-sm transition-all"
             >
               <div className="lg:col-span-7">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 rounded-2xl bg-[#2910E5]/5 flex items-center justify-center text-[#2910E5] border border-[#2910E5]/10 shadow-sm">
+                <div className="flex items-center gap-5 mb-8">
+                  <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-primary border border-black/[0.06] shadow-sm">
                     {services[activeService].icon}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-slate-950 tracking-tight">{services[activeService].name}</h3>
-                    <span className="text-[11px] font-mono text-[#2910E5] uppercase tracking-widest font-bold">{services[activeService].tagline}</span>
+                    <h3 className="text-2xl font-heading font-normal text-black tracking-[0.1em] uppercase leading-none mb-3">{services[activeService].name}</h3>
+                    <span className="text-[9px] font-['Anonymous_Pro'] text-primary uppercase tracking-[0.4em] font-black">{services[activeService].tagline}</span>
                   </div>
                 </div>
-                <p className="text-slate-600 font-medium leading-relaxed text-lg mb-10">
+                <p className="text-[#4B5563] font-bold leading-relaxed text-sm mb-10 uppercase tracking-tight">
                   {services[activeService].description}
                 </p>
                 <div className="flex gap-4">
-                  <Button asChild className="h-12 px-8 bg-[#2910E5] text-white font-bold rounded-full group">
-                    <Link to="/contact">Request Details <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" /></Link>
-                  </Button>
+                  <button onClick={() => navigate('/contact')} className="h-10 px-6 bg-black text-white font-black rounded-2xl uppercase tracking-widest text-[10px] group border-none shadow-xl transition-all">
+                    REQUEST_DETAILS <ArrowRight className="ml-2 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-primary inline" />
+                  </button>
                 </div>
               </div>
-              
-              <div className="lg:col-span-5 pt-4">
-                <div className="text-[10px] font-black font-mono text-slate-400 uppercase tracking-widest mb-6">Technical Capabilities</div>
-                <div className="grid grid-cols-1 gap-3">
+
+              <div className="lg:col-span-5 pt-2">
+                <div className="text-[9px] font-black font-['Anonymous_Pro'] text-black/20 uppercase tracking-[0.4em] mb-6">TECHNICAL_CAPABILITIES</div>
+                <div className="grid grid-cols-1 gap-2.5">
                   {services[activeService].specs.map((spec, i) => (
-                    <div key={i} className="flex items-center gap-4 py-3.5 px-5 bg-white border border-slate-100 rounded-2xl group hover:border-[#2910E5]/20 transition-colors">
-                      <div className="p-1 rounded-full bg-emerald-50 text-emerald-500">
-                        <CheckCircle className="w-4 h-4 stroke-[3px]" />
+                    <div key={i} className="flex items-center gap-4 py-3 px-4 bg-white border border-black/[0.06] rounded-2xl group hover:border-primary/20 transition-colors">
+                      <div className="p-0.5 rounded-full bg-primary/10 text-primary">
+                        <CheckCircle className="w-3.5 h-3.5 stroke-[3px]" />
                       </div>
-                      <span className="text-[13px] font-bold text-slate-700 tracking-tight">{spec}</span>
+                      <span className="text-[10px] font-black text-[#4B5563] uppercase tracking-widest font-['Anonymous_Pro']">{spec}</span>
                     </div>
                   ))}
                 </div>
@@ -406,20 +336,20 @@ export const AIChatbots = () => {
         </section>
 
         {/* ─── NEURAL PIPELINE (Architecture) ──────────────────────────────────── */}
-        <section className="py-32 px-6 bg-slate-950 border-t border-slate-100 overflow-hidden relative">
+        <section className="py-24 px-6 bg-background border-t border-black/[0.06] overflow-hidden relative">
           {/* Background effects */}
-          <div className="absolute inset-0 bg-[#2910E5]/[0.02] pointer-events-none panning-grid" style={{ backgroundImage: "radial-gradient(#2910E5 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
-          
-          <div className="max-w-7xl mx-auto relative z-10">
-            <div className="mb-20 text-center">
-              <motion.span {...fadeUp} className="text-[10px] font-black font-mono text-white/40 uppercase tracking-[0.2em] mb-4 block">System Flow</motion.span>
-              <motion.h2 {...fadeUp} transition={{ delay: 0.1 }} className="text-white text-4xl md:text-6xl font-black mb-6 tracking-tight">The Neural Pipeline Architecture.</motion.h2>
-              <motion.p {...fadeUp} transition={{ delay: 0.2 }} className="text-white/40 max-w-2xl mx-auto font-medium">How we architect multi-layered agents for high-fidelity natural language processing and autonomous execution.</motion.p>
+          <div className="absolute inset-0 bg-primary/[0.02] pointer-events-none panning-grid" style={{ backgroundImage: "radial-gradient(hsl(var(--primary)) 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
+
+          <div className="max-w-[1300px] mx-auto relative z-10">
+            <div className="mb-16 text-center">
+              <motion.span {...fadeUp} className="text-[9px] font-black font-['Anonymous_Pro'] text-primary uppercase tracking-[0.4em] mb-4 block">SYSTEM_FLOW</motion.span>
+              <motion.h2 {...fadeUp} transition={{ delay: 0.1 }} className="text-black text-3xl md:text-5xl font-heading font-normal mb-8 tracking-[0.1em] uppercase leading-[1.1]">The Neural <br />Pipeline <span className="text-primary select-none">Architecture.</span></motion.h2>
+              <motion.p {...fadeUp} transition={{ delay: 0.2 }} className="text-[#4B5563] max-w-xl mx-auto font-bold text-sm uppercase tracking-tight">How we architect multi-layered agents for high-fidelity natural language processing and autonomous execution.</motion.p>
             </div>
 
-            <div className="relative bg-slate-900/50 border border-white/5 rounded-[3rem] p-10 md:p-16 overflow-hidden backdrop-blur-sm">
-              <div className="absolute top-1/2 left-10 right-10 h-[0.5px] bg-[#2910E5]/20 hidden lg:block -translate-y-1/2" />
-              
+            <div className="relative bg-white border border-black/[0.06] rounded-2xl p-10 md:p-16 overflow-hidden shadow-xl">
+              <div className="absolute top-1/2 left-16 right-16 h-[0.5px] bg-primary/20 hidden lg:block -translate-y-1/2" />
+
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 relative">
                 {[
                   { step: "01", label: "Ingestion", desc: "Multi-modal capture\nSpeech, Text, Vision", icon: Terminal },
@@ -429,22 +359,22 @@ export const AIChatbots = () => {
                 ].map((node, i) => {
                   const Icon = node.icon;
                   return (
-                    <motion.div 
+                    <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
-                      transition={{ delay: i * 0.1, duration: 0.5 }}
-                      className="group flex flex-col bg-slate-950/80 border border-white/5 p-6 rounded-[2rem] hover:border-[#2910E5]/30 transition-all relative z-10"
+                      transition={{ delay: i * 0.1, duration: 0.4 }}
+                      className="group flex flex-col bg-black/[0.01] border border-black/[0.06] p-8 rounded-2xl hover:bg-white hover:border-primary/20 transition-all relative z-10 shadow-sm hover:shadow-2xl"
                     >
-                      <div className="flex items-center justify-between mb-10">
-                        <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/40 group-hover:text-white group-hover:bg-[#2910E5]/20 transition-all">
+                      <div className="flex items-center justify-between mb-8">
+                        <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-black/20 group-hover:text-primary border border-black/[0.06] group-hover:border-primary/20 transition-all">
                           <Icon className="w-5 h-5" />
                         </div>
-                        <span className="text-[10px] font-mono font-black text-[#2910E5] uppercase tracking-widest">Phase {node.step}</span>
+                        <span className="text-[8px] font-['Anonymous_Pro'] font-black text-primary uppercase tracking-widest font-['Anonymous_Pro']">PHASE_{node.step}</span>
                       </div>
-                      <h4 className="text-xl font-black text-white mb-3 tracking-tight">{node.label}</h4>
-                      <p className="text-[11px] font-mono text-white/30 leading-relaxed font-bold whitespace-pre-line group-hover:text-white/60 transition-colors uppercase tracking-widest">
+                      <h4 className="text-xl font-heading font-normal text-black mb-4 tracking-[0.1em] uppercase leading-none">{node.label}</h4>
+                      <p className="text-[9px] font-['Anonymous_Pro'] text-black/30 leading-relaxed font-black whitespace-pre-line group-hover:text-[#4B5563] transition-colors uppercase tracking-[0.25em]">
                         {node.desc}
                       </p>
                     </motion.div>
@@ -453,48 +383,48 @@ export const AIChatbots = () => {
               </div>
 
               {/* Technical footer */}
-              <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-8 text-[9px] font-mono text-white/20 uppercase tracking-[0.2em] font-black">
-                <span className="flex items-center gap-2 animate-pulse"><div className="w-1 h-1 rounded-full bg-emerald-500" /> Latency: 420ms (Avg)</span>
-                <span>Inference: Distributed</span>
-                <span>Security: AES-256 Encrypted</span>
+              <div className="mt-12 pt-8 border-t border-black/[0.06] flex flex-wrap gap-8 text-[9px] font-['Anonymous_Pro'] text-black/20 uppercase tracking-[0.3em] font-black">
+                <span className="flex items-center gap-2 animate-pulse text-primary/60"><div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(var(--primary-rgb),0.6)]" /> LATENCY: 240MS (P99)</span>
+                <span>INFERENCE: DISTRIBUTED</span>
+                <span>SECURITY: AES_256_ACTIVE</span>
               </div>
             </div>
           </div>
         </section>
 
         {/* ─── ENGINEERING PRINCIPLES ─────────────────────────────────────────── */}
-        <section className="py-32 px-6 bg-white border-t border-slate-100">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24 px-6 bg-background border-t border-black/[0.06]">
+          <div className="max-w-[1300px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
               {/* Left sticky */}
               <div className="lg:col-span-5">
                 <motion.div {...fadeUp} className="sticky top-32">
-                  <span className="text-[10px] font-black font-mono text-slate-400 uppercase tracking-[0.2em] mb-4 block">Design Methodology</span>
-                  <h2 className="text-4xl md:text-6xl font-black text-slate-950 tracking-tight leading-[0.9] mb-8">
+                  <span className="text-[9px] font-black font-['Anonymous_Pro'] text-primary uppercase tracking-[0.4em] mb-4 block">DESIGN_METHODOLOGY</span>
+                  <h2 className="text-3xl md:text-5xl font-heading font-normal text-black tracking-[0.1em] leading-[1.1] mb-8 uppercase">
                     Deterministic.<br />Traceable.<br />
-                    <span className="text-[#2910E5]">Industrial Scale.</span>
+                    <span className="text-black/10 select-none">Industrial Scale.</span>
                   </h2>
-                  <p className="text-slate-500 font-medium text-lg leading-relaxed max-w-sm">
+                  <p className="text-[#4B5563] font-bold text-sm leading-relaxed max-w-sm uppercase tracking-tight">
                     We don't build toys. We build infrastructure-grade AI systems that companies rely on for critical operations.
                   </p>
                 </motion.div>
               </div>
 
               {/* Right: principles */}
-              <div className="lg:col-span-7 space-y-4">
+              <div className="lg:col-span-7 space-y-3">
                 {principles.map((p, i) => (
                   <motion.div
                     key={i}
                     {...fadeUp}
                     transition={{ delay: i * 0.1 }}
-                    className="p-10 border border-slate-100 bg-slate-50/50 rounded-[2.5rem] group hover:bg-slate-950 transition-all duration-500 cursor-default"
+                    className="p-8 border border-black/[0.06] bg-black/[0.01] rounded-2xl group hover:bg-black transition-all duration-300 cursor-default"
                   >
-                    <div className="flex gap-8">
-                      <span className="text-[12px] font-mono font-black text-slate-300 group-hover:text-[#2910E5] transition-colors pt-1">{p.n}</span>
+                    <div className="flex gap-6">
+                      <span className="text-[10px] font-['Anonymous_Pro'] font-black text-black/20 group-hover:text-white/30 transition-colors pt-1">{p.n}</span>
                       <div>
-                        <h3 className="text-2xl font-black text-slate-950 group-hover:text-white tracking-tight mb-4 transition-colors">{p.title}</h3>
-                        <p className="text-slate-500 group-hover:text-slate-400 font-medium leading-relaxed transition-colors">{p.body}</p>
+                        <h3 className="text-2xl font-heading font-normal text-black group-hover:text-white tracking-[0.1em] mb-4 transition-colors uppercase leading-none">{p.title}</h3>
+                        <p className="text-[#4B5563] group-hover:text-white/60 font-bold leading-relaxed transition-colors uppercase text-xs tracking-tight">{p.body}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -506,32 +436,32 @@ export const AIChatbots = () => {
         </section>
 
         {/* ─── SECTOR VERTICALS ────────────────────────────────────────────────── */}
-        <section className="py-32 px-6 bg-white border-t border-slate-100">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-20">
-              <span className="text-[10px] font-black font-mono text-slate-400 uppercase tracking-[0.2em] mb-4 block">Industry Verticals</span>
-              <h2 className="text-4xl md:text-5xl font-black text-slate-950 tracking-tight">Purpose-Built for the Real World.</h2>
+        <section className="py-24 px-6 bg-background border-t border-black/[0.06]">
+          <div className="max-w-[1300px] mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-[9px] font-black font-['Anonymous_Pro'] text-primary uppercase tracking-[0.4em] mb-4 block">INDUSTRY_VERTICALS</span>
+              <h2 className="text-3xl md:text-5xl font-heading font-normal text-black tracking-[0.1em] uppercase leading-[1.1]">Purpose-Built for <br /><span className="text-primary/20 select-none">The Real World.</span></h2>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { sector: "FinTech", use: "Automated wealth management & identity verification agents.", color: "bg-[#2910E5]" },
-                { sector: "Logistics", use: "Supply chain orchestration & route-optimization assistants.", color: "bg-slate-950" },
-                { sector: "Healthcare", use: "Patient triage & complex medical documentation agents.", color: "bg-[#2910E5]/80" },
+                { sector: "FinTech", use: "Automated wealth management & identity verification agents.", color: "bg-black" },
+                { sector: "Logistics", use: "Supply chain orchestration & route-optimization assistants.", color: "bg-black/[0.01]" },
+                { sector: "Healthcare", use: "Patient triage & complex medical documentation agents.", color: "bg-black/80" },
               ].map((v, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   {...fadeUp}
                   transition={{ delay: i * 0.1 }}
-                  className="p-8 rounded-[2rem] border border-slate-100 flex flex-col justify-between min-h-[300px] hover:shadow-2xl hover:shadow-[#2910E5]/5 transition-all"
+                  className="p-8 rounded-2xl border border-black/[0.06] bg-black/[0.01] flex flex-col justify-between min-h-[280px] hover:border-primary/30 transition-all group"
                 >
-                  <div className="w-12 h-1 rounded-full bg-[#2910E5] mb-8" />
+                  <div className="w-8 h-0.5 bg-primary mb-8" />
                   <div>
-                    <h3 className="text-2xl font-black text-slate-950 mb-4">{v.sector}</h3>
-                    <p className="text-slate-500 font-medium leading-relaxed">{v.use}</p>
+                    <h3 className="text-2xl font-heading font-normal text-black mb-4 uppercase tracking-[0.1em]">{v.sector}</h3>
+                    <p className="text-[#4B5563] font-bold leading-relaxed uppercase text-[11px] tracking-tight">{v.use}</p>
                   </div>
                   <div className="mt-8 flex justify-end">
-                    <Button variant="ghost" className="rounded-full text-[10px] font-black uppercase tracking-widest text-[#2910E5]">Case Study</Button>
+                    <Button variant="ghost" className="h-8 rounded-2xl text-[9px] font-black uppercase tracking-widest text-black/60 hover:text-black hover:bg-black/[0.01] border border-black/10" onClick={() => navigate('/contact')}>CASE_STUDY</Button>
                   </div>
                 </motion.div>
               ))}
@@ -540,27 +470,30 @@ export const AIChatbots = () => {
         </section>
 
         {/* ─── ECOSYSTEM SYNC ─────────────────────────────────────────────────────── */}
-        <section className="pb-12 bg-white">
+        <section className="bg-background border-t border-black/[0.06]">
           <AstraEcosystemSync tools={relatedTools} />
         </section>
 
         {/* ─── FINAL CTA ───────────────────────────────────────────────────────── */}
-        <section className="py-32 px-6 bg-white border-t border-slate-100">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-12 py-16 px-10 border border-slate-100 rounded-[3rem] bg-slate-50/30 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#2910E5]/5 blur-[100px] rounded-full" />
-              <div className="relative z-10">
-                <span className="text-[10px] font-black font-mono text-slate-400 uppercase tracking-[0.2em] mb-4 block">Ready to Begin</span>
-                <h2 className="text-4xl md:text-6xl font-black text-slate-950 tracking-tight leading-[0.92]">
-                  Add a brain to<br />your product.
+        <section className="py-24 px-6 bg-background border-t border-black/[0.06]">
+          <div className="max-w-[1300px] mx-auto">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-12 py-16 px-10 border border-black/[0.06] rounded-2xl bg-black/[0.01] relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 blur-[100px] rounded-full" />
+              <div className="relative z-10 max-w-xl">
+                <span className="text-[9px] font-black font-['Anonymous_Pro'] text-primary uppercase tracking-[0.4em] mb-4 block">SYSTEM_DEPLOYMENT</span>
+                <h2 className="text-3xl md:text-5xl font-heading font-normal text-black tracking-[0.1em] leading-[1.1] uppercase mb-10">
+                  Add a brain to<br /><span className="text-primary/10 select-none">your product.</span>
                 </h2>
+                <p className="text-[#4B5563] font-bold text-sm uppercase tracking-tight max-w-md">
+                  Schedule a technical deep dive with our lead architects to discuss your neural infrastructure requirements.
+                </p>
               </div>
               <div className="flex flex-col sm:flex-row items-start md:items-center gap-6 shrink-0 relative z-10">
-                <Button asChild className="h-16 px-10 bg-[#2910E5] hover:bg-[#2910E5]/90 text-white font-black rounded-full text-lg shadow-xl shadow-[#2910E5]/20 transition-all group">
-                  <Link to="/contact">Request Audit <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></Link>
+                <Button className="h-12 px-8 bg-black hover:bg-black/90 text-white font-black rounded-2xl text-[11px] uppercase tracking-widest shadow-xl transition-all group border-none" onClick={() => navigate('/contact')}>
+                  REQUEST_AUDIT <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform text-primary inline" />
                 </Button>
-                <Link to="/services" className="text-sm font-black text-slate-400 hover:text-slate-950 transition-colors underline underline-offset-8 decoration-slate-200">
-                  Other Services
+                <Link to="/services" className="text-[9px] font-black text-black/30 hover:text-black transition-colors uppercase tracking-[0.3em] font-['Anonymous_Pro'] border-b border-black/10 pb-1">
+                  VIEW_ALL_DISCIPLINES
                 </Link>
               </div>
             </div>

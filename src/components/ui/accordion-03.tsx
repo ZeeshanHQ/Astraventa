@@ -54,14 +54,14 @@ export function Accordion03() {
  <AccordionItem className="relative border-b border-slate-100 last:border-0" value={item.id} key={item.id}>
  <AccordionTrigger className="pl-8 py-6 hover:no-underline [&>svg]:hidden text-left">
  <div className="flex items-center gap-4">
- <span className="text-xs font-mono text-primary font-bold opacity-50">{item.id}</span>
- <h3 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{item.title}</h3>
+ <span className="text-[11px] font-display font-normal text-primary uppercase tracking-[0.15em] opacity-50">{item.id}</span>
+ <h3 className="text-[20px] md:text-[24px] font-heading font-normal text-slate-900 uppercase tracking-[0.2em]">{item.title}</h3>
  </div>
  </AccordionTrigger>
  <AccordionContent className="text-slate-500 w-full grid md:grid-cols-2">
  <div className="px-8 pb-8 pt-2 space-y-6">
- <p className="text-lg leading-relaxed font-semibold"> {item.content}</p>
- <Button className="rounded-full bg-slate-900 hover:bg-slate-800 text-white px-6">Explore Capability</Button>
+ <p className="text-[15px] text-[#4B5563] font-body font-normal leading-[1.7]"> {item.content}</p>
+ <Button className="rounded-full bg-slate-900 hover:bg-slate-800 text-white px-6 font-display font-normal text-[13px] uppercase tracking-[0.1em]">Explore Capability</Button>
  </div>
  <div className="relative h-64 md:h-auto overflow-hidden">
  <img

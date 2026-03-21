@@ -1,0 +1,75 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 build
+> vite build
+
+[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+node.exe : Browserslist: browsers data (caniuse-lite) 
+is 9 months old. Please run:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Browsers 
+   list: b...ld. Please run::String) [], RemoteExcep  
+  tion
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  npx update-browserslist-db@latest
+  Why you should do it regularly: 
+https://github.com/browserslist/update-db#readme
+
+[1m[33mwarn[39m[22m - The class 
+`duration-[3000ms]` is ambiguous and matches multiple 
+utilities.
+[1m[33mwarn[39m[22m - If this is content and not 
+a class, replace it with 
+`duration-&lsqb;3000ms&rsqb;` to silence this warning.
+[32mΓ£ô[39m 57 modules transformed.
+[31mx[39m Build failed in 3.01s
+[31merror during build:
+[31m[vite:esbuild] Transform failed with 1 error:
+C:/Users/HS Computers/Documents/Astraventa/src/pages/s
+ervices/AIChatbots.tsx:507:22: ERROR: Expected ";" 
+but found "to"[31m
+file: [36mC:/Users/HS Computers/Documents/Astraventa/
+src/pages/services/AIChatbots.tsx:507:22[31m
+[33m
+[33mExpected ";" but found "to"[33m
+505|                    REQUEST_AUDIT <ArrowRight 
+className="ml-2 w-4 h-4 group-hover:translate-x-1 
+transition-transform text-primary inline" />
+506|                  </Button>
+507|                  <Link to="/services" 
+className="text-[9px] font-black text-black/30 
+hover:text-black transition-colors uppercase 
+tracking-[0.3em] font-['Anonymous_Pro'] border-b 
+border-black/10 pb-1">
+   |                        ^
+508|                    VIEW_ALL_DISCIPLINES
+509|                  </Link>
+[31m
+    at failureErrorWithLog (C:\Users\HS Computers\Docu
+ments\Astraventa\node_modules\esbuild\lib\main.js:1472
+:15)
+    at C:\Users\HS Computers\Documents\Astraventa\node
+_modules\esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> (C:\Users\HS Compu
+ters\Documents\Astraventa\node_modules\esbuild\lib\mai
+n.js:622:9)
+    at handleIncomingPacket (C:\Users\HS Computers\Doc
+uments\Astraventa\node_modules\esbuild\lib\main.js:677
+:12)
+    at Socket.readFromStdout (C:\Users\HS Computers\Do
+cuments\Astraventa\node_modules\esbuild\lib\main.js:60
+0:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk 
+(node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode 
+(node:internal/streams/readable:510:3)
+    at Readable.push 
+(node:internal/streams/readable:390:5)
+    at Pipe.onStreamRead 
+(node:internal/stream_base_commons:189:23)[39m

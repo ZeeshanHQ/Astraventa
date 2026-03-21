@@ -1,0 +1,58 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 build
+> vite build
+
+[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+node.exe : Browserslist: browsers data (caniuse-lite) 
+is 9 months old. Please run:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Browsers 
+   list: b...ld. Please run::String) [], RemoteExcep  
+  tion
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  npx update-browserslist-db@latest
+  Why you should do it regularly: 
+https://github.com/browserslist/update-db#readme
+
+[1m[33mwarn[39m[22m - The class 
+`duration-[3000ms]` is ambiguous and matches multiple 
+utilities.
+[1m[33mwarn[39m[22m - If this is content and not 
+a class, replace it with 
+`duration-&lsqb;3000ms&rsqb;` to silence this warning.
+[32mΓ£ô[39m 2296 modules transformed.
+Generated an empty chunk: "utils".
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                                 [39m[1m[2m    7.03 kB[22m[1m[22m[2m Γöé gzip:   2.48 kB[22m
+[2mdist/[22m[35mcss/index-DeTUTcKM.css                     [39m[1m[2m  243.82 kB[22m[1m[22m[2m Γöé gzip:  34.46 kB[22m
+[2mdist/[22m[36mjs/utils-l0sNRNKZ.js                       [39m[1m[2m    0.00 kB[22m[1m[22m[2m Γöé gzip:   0.02 kB[22m
+[2mdist/[22m[36mjs/howler-f7tFm8me.js                      [39m[1m[2m   26.80 kB[22m[1m[22m[2m Γöé gzip:   7.99 kB[22m
+[2mdist/[22m[36mjs/navmesh-Dhy_b3uo.js                     [39m[1m[2m   55.05 kB[22m[1m[22m[2m Γöé gzip:  11.00 kB[22m
+[2mdist/[22m[36mjs/boolean-CztZYRo0.js                     [39m[1m[2m   56.59 kB[22m[1m[22m[2m Γöé gzip:  19.69 kB[22m
+[2mdist/[22m[36mjs/process-Dauqzytp.js                     [39m[1m[2m   67.70 kB[22m[1m[22m[2m Γöé gzip:  23.00 kB[22m
+[2mdist/[22m[36mjs/ui-CUjiAs4I.js                          [39m[1m[2m   76.33 kB[22m[1m[22m[2m Γöé gzip:  14.90 kB[22m
+[2mdist/[22m[36mjs/gaussian-splat-compression-BL37JBS8.js  [39m[1m[2m   82.54 kB[22m[1m[22m[2m Γöé gzip:  23.34 kB[22m
+[2mdist/[22m[36mjs/ui-BcvTolZe.js                          [39m[1m[2m   91.85 kB[22m[1m[22m[2m Γöé gzip:  28.86 kB[22m
+[2mdist/[22m[36mjs/framer-C-1aj6B5.js                      [39m[1m[2m  135.44 kB[22m[1m[22m[2m Γöé gzip:  45.38 kB[22m
+[2mdist/[22m[36mjs/vendor-OktHA1n0.js                      [39m[1m[2m  141.22 kB[22m[1m[22m[2m Γöé gzip:  45.39 kB[22m
+[2mdist/[22m[36mjs/opentype-CyPWdR7I.js                    [39m[1m[2m  167.00 kB[22m[1m[22m[2m Γöé gzip:  48.96 kB[22m
+[2mdist/[22m[36mjs/index-CT_CzfZC.js                       [39m[1m[33m1,260.51 kB[39m[22m[2m Γöé gzip: 324.30 kB[22m
+[2mdist/[22m[36mjs/physics-BR8rmkuh.js                     [39m[1m[33m1,987.29 kB[39m[22m[2m Γöé gzip: 722.57 kB[22m
+[2mdist/[22m[36mjs/react-spline-BTxL3iUH.js                [39m[1m[33m2,017.16 kB[39m[22m[2m Γöé gzip: 574.48 kB[22m
+[33m
+(!) Some chunks are larger than 1000 kB after 
+minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to 
+improve chunking: https://rollupjs.org/configuration-o
+ptions/#output-manualchunks
+- Adjust chunk size limit for this warning via 
+build.chunkSizeWarningLimit.[39m
+[32mΓ£ô built in 35.17s[39m

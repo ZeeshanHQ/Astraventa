@@ -22,6 +22,7 @@ import {
  Globe
 } from "lucide-react";
 import { AstraventaLogo } from "@/components/AstraventaLogo";
+import { requestMarketIntelligence } from "@/lib/marketIntelligenceService";
 
 type Message = {
  id: string;
@@ -46,7 +47,7 @@ const AstraMarket = () => {
  // Dashboard State
  const [isDeploying, setIsDeploying] = useState(false);
  const [activeTargets, setActiveTargets] = useState([
- { url: "competitor-alpha.com", status: "Monitoring", lastChange: "2 hrs ago", changes: 14 }
+ { url: "stripe.com", status: "Monitoring", lastChange: "2 hrs ago", changes: 14 }
  ]);
  const [targetUrlInput, setTargetUrlInput] = useState("");
  const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -61,6 +62,10 @@ const AstraMarket = () => {
  useEffect(() => {
  scrollToBottom();
  }, [messages, isTyping]);
+
+    const handleRemoveTarget = (urlToRemove: string) => {
+        setActiveTargets(prev => prev.filter(t => t.url !== urlToRemove));
+    };
 
  const handleAddTarget = () => {
  if (!targetUrlInput.trim()) return;
@@ -95,69 +100,77 @@ const AstraMarket = () => {
  }, 2000);
  };
 
- const handleSend = async (text: string = input) => {
- if (!text.trim()) return;
+    const handleSend = async (text: string = input) => {
+        if (!text.trim()) return;
 
- // Add user message
- const newUserMsg: Message = {
- id: Date.now().toString(),
- role: "user",
- content: text,
- timestamp: new Date()
- };
- 
- setMessages(prev => [...prev, newUserMsg]);
- setInput("");
- setIsTyping(true);
+        // Add user message
+        const newUserMsg: Message = {
+            id: Date.now().toString(),
+            role: "user",
+            content: text,
+            timestamp: new Date()
+        };
 
- // MOCK RESPONSE LOGIC
- setTimeout(() => {
- let responseContent: React.ReactNode = "";
- const lowerText = text.toLowerCase();
- 
- if (lowerText.includes("report") || lowerText.includes("summary") || lowerText.includes("brief")) {
- responseContent = (
- <div className="space-y-4 w-full">
- <p className="font-bold text-slate-800">Weekly Executive Briefing: Competitor Alpha</p>
- 
- <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
- <div className="flex items-start gap-2">
- <Tags className="w-4 h-4 text-fuchsia-600 shrink-0 mt-0.5" />
- <div>
- <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-1">Pricing Page Change detected</h4>
- <p className="text-sm text-slate-600">They removed their $99/mo "Starter" tier. The entry-level price is now $199/mo (Pro tier). The Enterprise 'Contact Sales' button was changed from Blue to Green.</p>
- </div>
- </div>
- </div>
+        setMessages(prev => [...prev, newUserMsg]);
+        setInput("");
+        setIsTyping(true);
 
- <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
- <div className="flex items-start gap-2">
- <TrendingUp className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
- <div>
- <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-1">New Feature Announcement</h4>
- <p className="text-sm text-slate-600">A new banner was added to their /features page promoting "AI-Powered Analytics". This strongly indicates a product pivot matching our upcoming roadmap.</p>
- </div>
- </div>
- </div>
- </div>
- );
- } else if (lowerText.includes("alert") || lowerText.includes("notify")) {
- responseContent = "I have updated your alert settings. I will now send a Slack notification immediately if I detect a price drop greater than 10% on any tracked competitor.";
- } else {
- responseContent = "Noted. To ensure your custom monitoring agents scale out via Browser Use Cloud, please insert your Browser Use API Key in the settings panel.";
- }
+        try {
+            // Live OpenRouter Intelligence Call
+            const responseText = await requestMarketIntelligence(text, activeTargets);
+            
+            const newBotMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                role: "assistant",
+                content: (
+                    <div className="prose prose-sm prose-slate max-w-none prose-p:leading-relaxed prose-headings:text-slate-900 prose-headings:font-bold">
+                        {responseText.split('\n').map((line, i) => {
+                            // Simple inline markdown parsing for bold and bullet points
+                            if (line.startsWith('### ')) return <h4 key={i} className="text-sm font-bold text-slate-800 mt-3 mb-1">{line.replace('### ', '')}</h4>;
+                            if (line.startsWith('## ')) return <h3 key={i} className="text-base font-black text-slate-900 mt-4 mb-2 border-b border-slate-100 pb-1">{line.replace('## ', '')}</h3>;
+                            if (line.startsWith('# ')) return <h2 key={i} className="text-lg font-black text-fuchsia-800 mt-4 mb-2">{line.replace('# ', '')}</h2>;
+                            if (line.startsWith('- ') || line.startsWith('* ')) {
+                                const bulletText = line.substring(2);
+                                // Parse bold text inside list items
+                                const boldParsed = bulletText.split(/(\*\*.*?\*\*)/g).map((part, pIdx) => {
+                                    if (part.startsWith('**') && part.endsWith('**')) {
+                                        return <strong key={pIdx} className="font-bold text-slate-900">{part.slice(2, -2)}</strong>;
+                                    }
+                                    return part;
+                                });
+                                return <li key={i} className="ml-4 list-disc text-slate-700 marker:text-fuchsia-400">{boldParsed}</li>;
+                            }
+                            if (line.trim() === '') return <br key={i} />;
+                            
+                            // Parse bold text in normal paragraphs
+                            const boldParsed = line.split(/(\*\*.*?\*\*)/g).map((part, pIdx) => {
+                                if (part.startsWith('**') && part.endsWith('**')) {
+                                    return <strong key={pIdx} className="font-bold text-slate-900">{part.slice(2, -2)}</strong>;
+                                }
+                                return part;
+                            });
+                            
+                            return <p key={i} className="mb-2 text-slate-700">{boldParsed}</p>;
+                        })}
+                    </div>
+                ),
+                timestamp: new Date()
+            };
 
- const newBotMsg: Message = {
- id: (Date.now() + 1).toString(),
- role: "assistant",
- content: responseContent,
- timestamp: new Date()
- };
- 
- setMessages(prev => [...prev, newBotMsg]);
- setIsTyping(false);
- }, 1500);
- };
+            setMessages(prev => [...prev, newBotMsg]);
+        } catch (error: any) {
+            console.error(error);
+            const errorMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                role: "assistant",
+                content: "Error: " + error.message,
+                timestamp: new Date()
+            };
+            setMessages(prev => [...prev, errorMsg]);
+        } finally {
+            setIsTyping(false);
+        }
+    };
 
  return (
  <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
@@ -227,10 +240,10 @@ const AstraMarket = () => {
  <span className="text-[10px] font-bold text-fuchsia-600">{target.status}</span>
  </div>
  </div>
- <Button variant="ghost" size="icon" className="w-8 h-8 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">
- <ArrowUpRight className="w-4 h-4" />
- </Button>
- </div>
+                                            <Button variant="ghost" size="icon" onClick={() => handleRemoveTarget(target.url)} className="w-8 h-8 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-500 hover:bg-red-50">
+                                                <X className="w-4 h-4" />
+                                            </Button>
+                                        </div>
 
  <div className="grid grid-cols-2 gap-2 mt-4">
  <div className="bg-slate-50 rounded-xl p-2.5 border border-slate-100">

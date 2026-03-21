@@ -32,7 +32,7 @@ export const CodeEditor = () => {
  return (
  <section id="automation" className="py-32 relative overflow-hidden">
  {/* Background Glow */}
- <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-3xl" />
+ <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-black/10 rounded-full blur-3xl" />
 
  <div className="container relative z-10 mx-auto px-4">
  <motion.div
@@ -60,12 +60,12 @@ export const CodeEditor = () => {
  <div className="glass-card rounded-2xl overflow-hidden shadow-depth neon-border">
  {/* Editor Header */}
  <div className="flex items-center gap-3 px-6 py-4 border-b border-border/50 bg-card/30">
- <Terminal className="w-5 h-5 text-accent" />
+ <Terminal className="w-5 h-5 text-primary" />
  <span className="text-sm font-medium text-muted-foreground">automation_bot.py</span>
  <div className="ml-auto flex gap-2">
  <div className="w-3 h-3 rounded-full bg-destructive/60" />
- <div className="w-3 h-3 rounded-full bg-secondary/60" />
- <div className="w-3 h-3 rounded-full bg-accent/60" />
+ <div className="w-3 h-3 rounded-full bg-black/60" />
+ <div className="w-3 h-3 rounded-full bg-primary/60" />
  </div>
  </div>
 
@@ -80,7 +80,7 @@ export const CodeEditor = () => {
  <div className="flex items-center justify-between px-6 py-3 border-t border-border/50 bg-card/30 text-xs">
  <div className="flex items-center gap-4 text-muted-foreground">
  <span className="flex items-center gap-2">
- <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+ <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
  Connected to Astraventa Cloud
  </span>
  </div>

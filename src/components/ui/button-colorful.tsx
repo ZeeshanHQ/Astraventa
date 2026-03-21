@@ -17,7 +17,7 @@ export function ButtonColorful({
  "relative h-16 px-10 overflow-hidden rounded-2xl",
  "bg-slate-900 dark:bg-white",
  "transition-all duration-300",
- "group border-0 text-xl font-bold tracking-tight shadow-[0_20px_40px_rgba(41,16,229,0.2)]",
+ "group border-0 text-xl font-bold tracking-tight shadow-[0_20px_40px_rgba(126, 150, 246,0.2)]",
  className
  )}
  {...props}
@@ -26,7 +26,7 @@ export function ButtonColorful({
  <div
  className={cn(
  "absolute inset-0",
- "bg-gradient-to-r from-[#2910E5] via-[#4F46E5] to-[#818CF8]",
+ "bg-gradient-to-r from-[#7E96F6] via-[#4F46E5] to-[#818CF8]",
  "opacity-0 group-hover:opacity-100",
  "transition-opacity duration-500"
  )}
@@ -41,7 +41,7 @@ export function ButtonColorful({
  </div>
 
  {/* Glow effect on hover */}
- <div className="absolute inset-0 opacity-0 group-hover:opacity-40 bg-[#2910E5] blur-2xl transition-opacity duration-500 -z-10" />
+ <div className="absolute inset-0 opacity-0 group-hover:opacity-40 bg-[#7E96F6] blur-2xl transition-opacity duration-500 -z-10" />
  </Button>
  );
 }

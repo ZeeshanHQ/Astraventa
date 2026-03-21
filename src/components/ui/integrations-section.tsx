@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import { motion } from "framer-motion";
 
 const techStack = [
@@ -73,6 +74,7 @@ const MarqueeRow = ({ items, reverse = false }: { items: any[], reverse?: boolea
 };
 
 export default function IntegrationsSection() {
+ const navigate = useNavigate();
  const row1 = techStack.slice(0, 8);
  const row2 = techStack.slice(8, 16);
  const row3 = techStack.slice(16, 24);
@@ -82,26 +84,26 @@ export default function IntegrationsSection() {
  {/* Left Side */}
  <div className="space-y-6">
  <div>
- <p className="technical-label !text-primary mb-4">
+ <p className="text-[11px] font-display font-normal text-primary uppercase tracking-[0.15em] mb-4">
  Tech Ecosystem
  </p>
- <h2>
+ <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl">
  Seamless Integration.<br />
  <span className="text-primary">Any Stack.</span>
  </h2>
  </div>
  
- <p className="text-lg text-slate-500 font-medium leading-relaxed max-w-md">
+ <p className="text-[15px] text-[#4B5563] font-body font-normal leading-[1.7] max-w-md">
  Whether you are built on legacy infrastructure or the latest edge-ready frameworks, our agents adapt to your ecosystem perfectly.
  </p>
 
  <div className="flex flex-wrap gap-4 pt-4">
- <Button asChild className="btn-primary h-14 px-8 text-base group">
- <Link to="/get-in-touch" className="flex items-center">
- Start Integration
- </Link>
- </Button>
- <Button asChild variant="outline" className="btn-ghost h-14 px-8 text-base">
+  <ShinyButton onClick={() => navigate('/get-in-touch')} className="h-12 px-8 rounded-full font-display font-bold text-[14px] uppercase tracking-[0.15em] group">
+  <span className="flex items-center pt-[2px]">
+  Start Integration
+  </span>
+  </ShinyButton>
+ <Button asChild variant="outline" className="btn-ghost h-12 px-8 rounded-full font-display font-bold text-[14px] uppercase tracking-[0.15em] shadow-none">
  <Link to="/docs">View Tech Docs &rarr;</Link>
  </Button>
  </div>

@@ -46,12 +46,12 @@ export const Products = () => {
  <div className="max-w-7xl mx-auto px-6 relative z-10">
  <div className="mb-16 md:mb-24">
  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
- <span className="w-1.5 h-1.5 rounded-full bg-[#2910E5] animate-pulse" />
+ <span className="w-1.5 h-1.5 rounded-full bg-[#7E96F6] animate-pulse" />
  <span className="text-[10px] font-bold text-slate-700 uppercase tracking-[0.2em] font-heading">Our Architecture</span>
  </div>
  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6 font-heading uppercase">
  Enterprise Product <br className="hidden md:block"/>
- <span className="text-[#2910E5]">Ecosystem.</span>
+ <span className="text-[#7E96F6]">Ecosystem.</span>
  </h2>
  <p className="text-lg text-slate-500 font-medium max-w-2xl leading-relaxed">
  We don't just build websites; we architect comprehensive digital systems designed for high-performance scale and autonomous operation.
@@ -72,7 +72,7 @@ export const Products = () => {
  whileHover={{ scale: isActive ? 1 : 1.02 }}
  className={`cursor-pointer p-6 rounded-3xl border transition-all duration-500 overflow-hidden relative ${
  isActive 
- ? "bg-white border-transparent shadow-2xl shadow-[#2910E5]/10" 
+ ? "bg-white border-transparent shadow-2xl shadow-[#7E96F6]/10" 
  : "bg-white/50 border-slate-200/50 hover:bg-white hover:border-slate-200 shadow-sm"
  }`}
  >
@@ -80,13 +80,13 @@ export const Products = () => {
  {isActive && (
  <motion.div 
  layoutId="active-indicator"
- className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#2910E5]"
+ className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#7E96F6]"
  />
  )}
 
  <div className="flex items-start gap-4">
  <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-500 delay-100 ${
- isActive ? "bg-[#2910E5]/10 text-[#2910E5]" : "bg-slate-100 text-slate-400"
+ isActive ? "bg-[#7E96F6]/10 text-[#7E96F6]" : "bg-slate-100 text-slate-400"
  }`}>
  <product.icon className="w-6 h-6" />
  </div>
@@ -98,7 +98,7 @@ export const Products = () => {
  {product.title}
  </h3>
  <p className={`text-sm tracking-wide font-bold uppercase transition-colors duration-500 mb-3 ${
- isActive ? "text-[#2910E5]" : "text-slate-400"
+ isActive ? "text-[#7E96F6]" : "text-slate-400"
  }`}>
  {product.subtitle}
  </p>
@@ -118,15 +118,15 @@ export const Products = () => {
  <ul className="space-y-2 mb-6">
  {product.highlights.map((highlight, idx) => (
  <li key={idx} className="flex items-center text-sm font-bold text-slate-700">
- <div className="w-4 h-4 rounded-full bg-[#2910E5]/10 flex items-center justify-center mr-3">
- <div className="w-1.5 h-1.5 rounded-full bg-[#2910E5]" />
+ <div className="w-4 h-4 rounded-full bg-[#7E96F6]/10 flex items-center justify-center mr-3">
+ <div className="w-1.5 h-1.5 rounded-full bg-[#7E96F6]" />
  </div>
  {highlight}
  </li>
  ))}
  </ul>
 
- <Button variant="link" className="p-0 h-auto font-black text-[#2910E5] group/btn uppercase tracking-[0.2em] text-[10px]">
+ <Button variant="link" className="p-0 h-auto font-black text-[#7E96F6] group/btn uppercase tracking-[0.2em] text-[10px]">
  View Documentation 
  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-2 transition-transform duration-300" />
  </Button>
@@ -172,14 +172,14 @@ export const Products = () => {
  <path
  d="M 100 250 C 200 250, 250 150, 350 150 C 450 150, 500 350, 600 350"
  fill="transparent"
- stroke="#2910E5"
+ stroke="#7E96F6"
  strokeWidth="2"
  strokeDasharray="5,5"
  />
  <path
  d="M 100 250 C 200 250, 250 350, 350 350 C 450 350, 500 150, 600 150"
  fill="transparent"
- stroke="#2910E5"
+ stroke="#7E96F6"
  strokeWidth="2"
  strokeDasharray="5,5"
  />
@@ -189,7 +189,7 @@ export const Products = () => {
  <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
  {/* User Node */}
  <div className="flex flex-col items-center gap-3">
- <div className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center shadow-[0_0_30px_-5px_#2910E5]">
+ <div className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center shadow-[0_0_30px_-5px_#7E96F6]">
  <Zap className="w-6 h-6 text-white" />
  </div>
  <span className="text-xs font-mono text-slate-400">INPUT_STREAM</span>
@@ -197,14 +197,14 @@ export const Products = () => {
 
  {/* AI Engine Node (Central) */}
  <div className="relative">
- <div className="absolute inset-[-20%] animate-spin-slow rounded-full border border-dashed border-[#2910E5]/30" />
- <div className="absolute inset-[-40%] animate-spin-slow-reverse rounded-full border border-dashed border-[#2910E5]/20" />
- <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#2910E5] to-blue-400 p-[1px] shadow-[0_0_50px_-10px_#2910E5]">
+ <div className="absolute inset-[-20%] animate-spin-slow rounded-full border border-dashed border-[#7E96F6]/30" />
+ <div className="absolute inset-[-40%] animate-spin-slow-reverse rounded-full border border-dashed border-[#7E96F6]/20" />
+ <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#7E96F6] to-blue-400 p-[1px] shadow-[0_0_50px_-10px_#7E96F6]">
  <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
  <Bot className="w-10 h-10 text-white animate-pulse" />
  </div>
  </div>
- <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-mono text-[#2910E5] font-bold">NLP_CORE</span>
+ <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-mono text-[#7E96F6] font-bold">NLP_CORE</span>
  </div>
 
  {/* Database Node */}
@@ -240,7 +240,7 @@ export const Products = () => {
  <div className="flex-1 bg-slate-800/50 rounded-xl border border-slate-700/50 p-6 relative overflow-hidden flex flex-col justify-end gap-2">
  {/* Mock Graph Bars */}
  <div className="absolute top-6 left-6 flex items-center gap-2">
- <Activity className="w-4 h-4 text-[#2910E5]" />
+ <Activity className="w-4 h-4 text-[#7E96F6]" />
  <span className="text-xs font-mono text-slate-300">LIVE_METRICS</span>
  </div>
  
@@ -251,7 +251,7 @@ export const Products = () => {
  initial={{ height: 0 }}
  animate={{ height: `${(height / 140) * 100}%` }}
  transition={{ duration: 1, delay: i * 0.05 }}
- className={`w-1/12 rounded-t-sm ${i === 8 ? 'bg-[#2910E5] shadow-[0_0_20px_#2910E5]' : 'bg-slate-700'}`}
+ className={`w-1/12 rounded-t-sm ${i === 8 ? 'bg-[#7E96F6] shadow-[0_0_20px_#7E96F6]' : 'bg-slate-700'}`}
  />
  ))}
  </div>
@@ -276,7 +276,7 @@ export const Products = () => {
  <motion.div 
  animate={{ y: [-10, -20, -10] }}
  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
- className="absolute top-1/4 left-1/4 w-16 h-16 bg-[#2910E5]/20 border border-[#2910E5] rounded-xl flex items-center justify-center backdrop-blur-md shadow-[0_0_30px_#2910E5]"
+ className="absolute top-1/4 left-1/4 w-16 h-16 bg-[#7E96F6]/20 border border-[#7E96F6] rounded-xl flex items-center justify-center backdrop-blur-md shadow-[0_0_30px_#7E96F6]"
  >
  <Network className="w-8 h-8 text-white" />
  </motion.div>
@@ -299,7 +299,7 @@ export const Products = () => {
 
  {/* Connecting Mesh Lines */}
  <svg className="absolute inset-0 w-full h-full">
- <path d="M 100 100 L 150 150 L 200 200" stroke="#2910E5" strokeWidth="2" fill="none" className="opacity-50" />
+ <path d="M 100 100 L 150 150 L 200 200" stroke="#7E96F6" strokeWidth="2" fill="none" className="opacity-50" />
  </svg>
  </div>
  </motion.div>

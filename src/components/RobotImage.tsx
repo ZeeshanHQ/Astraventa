@@ -79,8 +79,8 @@ export const RobotImage = ({ mousePosition }: RobotImageProps) => {
  </div>
  
  {/* Ears/Antennae - Light teal/cyan fin-like structures */}
- <div className="absolute top-8 left-8 w-6 h-12 bg-cyan-300 rounded-full transform rotate-12 shadow-sm" />
- <div className="absolute top-8 right-8 w-6 h-12 bg-cyan-300 rounded-full transform -rotate-12 shadow-sm" />
+ <div className="absolute top-8 left-8 w-6 h-12 bg-primary/10 rounded-full transform rotate-12 shadow-sm" />
+ <div className="absolute top-8 right-8 w-6 h-12 bg-primary/10 rounded-full transform -rotate-12 shadow-sm" />
  
  {/* Robot Arms */}
  <motion.div
@@ -93,7 +93,7 @@ export const RobotImage = ({ mousePosition }: RobotImageProps) => {
  <div className="absolute top-32 right-2 w-6 h-16 bg-white rounded-full shadow-lg" />
  
  {/* Torso Details - Light teal/cyan pouch-like detail */}
- <div className="absolute top-40 left-1/2 transform -translate-x-1/2 w-24 h-16 bg-cyan-300 rounded-xl shadow-sm" />
+ <div className="absolute top-40 left-1/2 transform -translate-x-1/2 w-24 h-16 bg-primary/10 rounded-xl shadow-sm" />
  
  </motion.div>
  
@@ -112,7 +112,7 @@ export const RobotImage = ({ mousePosition }: RobotImageProps) => {
  />
  
  <motion.div
- className="absolute -bottom-6 -left-6 w-3 h-3 bg-cyan-400 rounded-full opacity-60"
+ className="absolute -bottom-6 -left-6 w-3 h-3 bg-primary/10 rounded-full opacity-60"
  animate={{
  y: [0, -12, 0],
  rotate: [0, -360, 0],
@@ -130,7 +130,7 @@ export const RobotImage = ({ mousePosition }: RobotImageProps) => {
  initial={{ scale: 0, opacity: 0 }}
  animate={{ scale: 2, opacity: 0 }}
  transition={{ duration: 1 }}
- className="absolute inset-0 border-2 border-cyan-400 rounded-full"
+ className="absolute inset-0 border-2 border-primary/20 rounded-full"
  />
  )}
 
@@ -140,7 +140,7 @@ export const RobotImage = ({ mousePosition }: RobotImageProps) => {
  initial={{ scale: 0, opacity: 0, y: 20 }}
  animate={{ scale: 1, opacity: 1, y: 0 }}
  exit={{ scale: 0, opacity: 0, y: 20 }}
- className="absolute -top-12 left-1/2 -translate-x-1/2 bg-cyan-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+ className="absolute -top-12 left-1/2 -translate-x-1/2 bg-primary/10 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
  >
  Hello!
  </motion.div>

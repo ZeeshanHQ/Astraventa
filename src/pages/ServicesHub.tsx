@@ -24,7 +24,7 @@ const TechnicalNodes = () => {
             cx={Math.random() * 1000}
             cy={Math.random() * 1000}
             r={2}
-            fill="#2910E5"
+            fill="#7E96F6"
             animate={{
               opacity: [0.2, 0.8, 0.2],
               scale: [1, 1.5, 1],
@@ -59,7 +59,7 @@ const ServicesHub = () => {
       
       {/* Progress Bar */}
       <motion.div className="fixed top-20 left-0 right-0 h-[2px] bg-primary/20 z-50 origin-[0%]">
-        <motion.div style={{ scaleX }} className="h-full bg-primary shadow-[0_0_10px_#2910E5]" />
+        <motion.div style={{ scaleX }} className="h-full bg-primary shadow-[0_0_10px_#7E96F6]" />
       </motion.div>
 
       <main className="relative z-10 pt-40 pb-0">
@@ -77,9 +77,9 @@ const ServicesHub = () => {
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="technical-label !text-primary !text-[11px]">Directory Navigation</span>
               </div>
-              <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
                 Our Engineering <br />
-                <span className="text-primary italic">Disciplines.</span>
+                <span className="text-[hsl(var(--primary))]">Disciplines.</span>
               </h1>
               <p className="text-slate-700 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
                 A high-fidelity directory of Astraventa's technical core. Bridge the gap between AI innovation and scalable business architecture.
@@ -116,7 +116,7 @@ const ServicesHub = () => {
                   <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
                   <span className="technical-label !text-white/40">Integration Ready</span>
                 </div>
-                <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-none">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tighter leading-none">
                   Ready to start <br /> your project?
                 </h2>
                 <p className="text-white/50 text-xl font-medium max-w-2xl mx-auto mb-16 leading-relaxed">

@@ -157,10 +157,10 @@ export default function TimeLine_01({
     <section className="py-32 bg-white">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="max-w-3xl">
-          <h1 className="mb-4 text-3xl font-black tracking-tight md:text-5xl text-slate-900 uppercase">
+          <h1 className="mb-4 text-3xl md:text-4xl font-heading font-normal tracking-[0.15em] text-slate-900 uppercase">
             {title}
           </h1>
-          <p className="mb-6 text-base text-slate-500 md:text-lg">
+          <p className="mb-6 text-[15px] text-slate-500 md:text-[16px] font-display font-normal leading-relaxed">
             {description}
           </p>
         </div>
@@ -180,7 +180,7 @@ export default function TimeLine_01({
                 <div className="top-32 flex h-min w-64 shrink-0 items-center gap-4 md:sticky group">
                   <div className="flex items-center gap-3">
                     <div className={`p-3 rounded-2xl transition-all duration-500 scale-110 ${
-                      isActive ? "bg-[#0066FF] text-white shadow-xl shadow-[#0066FF]/20" : "bg-slate-100 text-slate-400"
+                      isActive ? "bg-primary text-white shadow-xl shadow-primary/20" : "bg-slate-100 text-slate-400"
                     }`}>
                       <entry.icon className="h-5 w-5" />
                     </div>
@@ -227,7 +227,7 @@ export default function TimeLine_01({
                     <div className="space-y-3">
                       <h2
                         className={
-                          "text-2xl font-black leading-tight tracking-tight md:text-3xl transition-colors duration-500 " +
+                          "text-xl md:text-2xl font-heading font-normal leading-tight tracking-[0.1em] transition-colors duration-500 uppercase " +
                           (isActive ? "text-slate-900" : "text-slate-700")
                         }
                       >
@@ -237,7 +237,7 @@ export default function TimeLine_01({
                       {/* Improved description with better spacing */}
                       <p
                         className={
-                          "text-base leading-relaxed md:text-lg transition-all duration-500 " +
+                          "text-[15px] leading-relaxed transition-all duration-500 font-display font-normal " +
                           (isActive 
                             ? "text-slate-500 line-clamp-none" 
                             : "text-slate-400 line-clamp-2")
@@ -266,7 +266,7 @@ export default function TimeLine_01({
                                   key={itemIndex} 
                                   className="flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100"
                                 >
-                                  <div className="mt-1 h-2 w-2 rounded-full bg-[#0066FF] flex-shrink-0" />
+                                  <div className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
                                   <span className="text-sm text-slate-600 font-medium leading-relaxed">{item}</span>
                                 </div>
                               ))}
@@ -274,15 +274,15 @@ export default function TimeLine_01({
                           )}
 
                           {entry.button && (
-                            <div className="flex justify-end pt-4">
+                            <div className="flex justify-start pt-4">
                               <Button 
-                                variant="default" 
-                                className="h-12 px-8 bg-slate-900 hover:bg-[#0066FF] text-white rounded-full font-bold group transition-all duration-300" 
+                                variant="outline" 
+                                className="h-9 px-6 rounded-full font-bold transition-all duration-300 uppercase tracking-widest text-[10px] border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40 shadow-none bg-transparent" 
                                 asChild
                               >
                                 <a href={entry.button.url} target="_blank" rel="noreferrer">
                                   {entry.button.text} 
-                                  <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                  <ArrowUpRight className="ml-2 h-3.5 w-3.5 opacity-60" />
                                 </a>
                               </Button>
                             </div>

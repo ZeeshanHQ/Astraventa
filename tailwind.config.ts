@@ -26,12 +26,11 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          glow: "hsl(var(--primary-glow))",
+          glow: "hsla(var(--primary), 0.15)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
-          glow: "hsl(var(--secondary-glow))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -55,10 +54,11 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["'Geist Sans'", "sans-serif"],
-        body: ["'Inter'", "sans-serif"],
-        mono: ["'Geist Mono'", "monospace"],
-        heading: ["'Satoshi'", "sans-serif"],
+        sans: ["'Mulish'", "'Muli'", "sans-serif"],
+        body: ["'Mulish'", "'Muli'", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
+        heading: ["'Tenor Sans'", "serif"],
+        display: ["'Glacial Indifference'", "sans-serif"],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(circle at 50% 50%, var(--tw-gradient-stops))',

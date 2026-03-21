@@ -18,8 +18,6 @@ export const AstraventaLogo = ({ className = "", size = "md", iconOnly = false }
  return (
  <motion.div 
  className={`flex items-center justify-start ${className}`}
- whileHover={{ scale: 1.02 }}
- transition={{ duration: 0.2 }}
  >
  <img 
  src="/logo-new.png" 

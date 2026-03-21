@@ -48,19 +48,19 @@ const TrustSecurity = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       <main className="pt-32 pb-24 px-6 overflow-hidden">
         {/* ─── HERO SECTION ─────────────────────────────────────────────────── */}
         <section className="relative max-w-[1400px] mx-auto mb-32">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] pointer-events-none" />
-          
+
           <div className="max-w-4xl pt-20">
             <motion.div {...fadeUp} className="mb-12">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-900" />
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] leading-none">Security Sequence // Activated</span>
               </span>
-              <h1 className="text-6xl md:text-8xl font-black text-slate-950 tracking-tight leading-[0.9] mb-10 uppercase italic">
+              <h1 className="text-6xl md:text-8xl font-black text-slate-950 tracking-tight leading-[0.9] mb-10 uppercase">
                 Hardened <br />
                 <span className="text-slate-300">Integrity.</span>
               </h1>
@@ -73,13 +73,13 @@ const TrustSecurity = () => {
 
         {/* ─── COMPLIANCE GRID ─────────────────────────────────────────────── */}
         <section className="max-w-[1400px] mx-auto py-24 mb-32 border-t border-slate-100">
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {compliance.map((item, i) => (
               <motion.div
                 key={i}
                 {...fadeUp}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 bg-slate-50/50 border border-slate-100 rounded-[2rem] hover:bg-white hover:border-[#0066FF]/30 transition-all duration-500"
+                className="p-8 bg-slate-50/50 border border-slate-100 rounded-sm hover:bg-white hover:border-[hsl(var(--primary))]/30 transition-all duration-500"
               >
                 <div className="flex items-center justify-between mb-6">
                   <div className="p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
@@ -87,7 +87,7 @@ const TrustSecurity = () => {
                   </div>
                   <span className="text-[10px] font-black px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 uppercase tracking-widest">{item.status}</span>
                 </div>
-                <h4 className="text-xl font-black text-slate-950 mb-3 uppercase italic leading-none">{item.title}</h4>
+                <h4 className="text-xl font-black text-slate-950 mb-3 uppercase leading-none">{item.title}</h4>
                 <p className="text-slate-500 text-sm font-medium leading-relaxed">
                   {item.description}
                 </p>
@@ -97,15 +97,15 @@ const TrustSecurity = () => {
         </section>
 
         {/* ─── CORE PILLARS ────────────────────────────────────────────────── */}
-        <section className="max-w-[1400px] mx-auto py-32 bg-slate-950 rounded-[4rem] px-12 relative overflow-hidden text-white mb-32">
+        <section className="max-w-[1400px] mx-auto py-32 bg-slate-950 rounded-sm px-12 relative overflow-hidden text-white mb-32">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:40px_40px]" />
           </div>
-          
+
           <div className="relative z-10">
             <motion.div {...fadeUp} className="max-w-2xl mb-20">
-              <div className="text-[10px] font-black text-[#0066FF] uppercase tracking-[0.3em] mb-6">Defense Protocols</div>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.95] mb-8 uppercase italic">
+              <div className="text-[10px] font-black text-[hsl(var(--primary))] uppercase tracking-[0.3em] mb-6">Defense Protocols</div>
+              <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.95] mb-8 uppercase">
                 Hardening <br />
                 <span className="text-slate-600 font-normal">Matrices.</span>
               </h2>
@@ -119,10 +119,10 @@ const TrustSecurity = () => {
                   transition={{ delay: i * 0.1 }}
                   className="group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-[#0066FF]/20 group-hover:border-[#0066FF]/40 transition-all duration-500">
-                    <pillar.icon className="w-6 h-6 text-[#0066FF]" />
+                  <div className="w-14 h-14 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-[hsl(var(--primary))]/20 group-hover:border-[hsl(var(--primary))]/40 transition-all duration-500">
+                    <pillar.icon className="w-6 h-6 text-[hsl(var(--primary))]" />
                   </div>
-                  <h4 className="text-2xl font-black mb-4 tracking-tight uppercase italic leading-none">{pillar.title}</h4>
+                  <h4 className="text-2xl font-black mb-4 tracking-tight uppercase leading-none">{pillar.title}</h4>
                   <p className="text-slate-400 font-medium leading-relaxed mb-6">
                     {pillar.description}
                   </p>
@@ -146,17 +146,17 @@ const TrustSecurity = () => {
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-xs font-black text-emerald-700 uppercase tracking-widest leading-none">Status: Zero Breaches Recorded</span>
             </div>
-            
-            <h2 className="text-4xl md:text-5xl font-black text-slate-950 mb-12 tracking-tight leading-none uppercase italic">
+
+            <h2 className="text-4xl md:text-5xl font-black text-slate-950 mb-12 tracking-tight leading-none uppercase">
               Rigorous Security <br />
               <span className="text-slate-300">for Visionary Scale.</span>
             </h2>
-            
+
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="h-14 px-8 bg-slate-900 text-white rounded-2xl font-black tracking-widest text-[11px] uppercase transition-all shadow-xl hover:bg-[#0066FF]">
+              <button className="h-14 px-8 bg-black text-white rounded-sm font-black tracking-widest text-[11px] uppercase transition-all shadow-xl hover:bg-black/90">
                 Download Compliance Pack
               </button>
-              <button className="h-14 px-8 border border-slate-200 rounded-2xl font-black tracking-widest text-[11px] uppercase transition-all hover:bg-slate-50">
+              <button className="h-14 px-8 border border-border/50 rounded-sm font-black tracking-widest text-[11px] uppercase transition-all hover:bg-black/5">
                 Report Vulnerability
               </button>
             </div>

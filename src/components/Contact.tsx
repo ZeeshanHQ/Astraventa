@@ -1,434 +1,366 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Send, Bot, Sparkles, Zap, Phone, MapPin, Clock, BadgeCheck, Keyboard } from "lucide-react";
+import { Mail, Send, Phone, MapPin, Clock, BadgeCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ChatbotModal } from "./ChatbotModal";
+import Globe from "@/components/ui/globe";
 import { z } from "zod";
 
 const contactSchema = z.object({
- name: z.string().min(2, "Name must be at least 2 characters"),
- email: z.string().email("Please enter a valid email address"),
- company: z.string().optional(),
- phone: z.string().optional(),
- service: z.string().min(1, "Please select a service"),
- budget: z.string().optional(),
- timeline: z.string().optional(),
- message: z.string().min(10, "Message must be at least 10 characters"),
- _honey: z.string().max(0, "Bot detected").optional(),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  company: z.string().optional(),
+  phone: z.string().optional(),
+  service: z.string().min(1, "Please select a service"),
+  budget: z.string().optional(),
+  timeline: z.string().optional(),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+  _honey: z.string().max(0, "Bot detected").optional(),
 });
 
 export const Contact = () => {
- const [isHovered, setIsHovered] = useState(false);
- const [isChatbotOpen, setIsChatbotOpen] = useState(false);
- const [isClicked, setIsClicked] = useState(false);
- const [formData, setFormData] = useState({
- name: "",
- email: "",
- company: "",
- phone: "",
- service: "",
- budget: "",
- timeline: "",
- message: "",
- _honey: "" // Honeypot field
- });
- const [errors, setErrors] = useState<Record<string, string>>({});
- const [isSubmitting, setIsSubmitting] = useState(false);
- const { toast } = useToast();
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    service: "",
+    budget: "",
+    timeline: "",
+    message: "",
+    _honey: ""
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
- // Keyboard shortcut for AI chatbot
- useEffect(() => {
- const handleKeyPress = (e: KeyboardEvent) => {
- if (e.ctrlKey && e.key === 'k') {
- e.preventDefault();
- setIsChatbotOpen(true);
- }
- };
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        setIsChatbotOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
- window.addEventListener('keydown', handleKeyPress);
- return () => window.removeEventListener('keydown', handleKeyPress);
- }, []);
+  const services = [
+    "AI Chatbots & Virtual Assistants",
+    "Web Automation & RPA",
+    "Custom AI Integration",
+    "Smart Analytics & Insights",
+    "Web Development & E-commerce",
+    "AI Security & Compliance",
+    "Other"
+  ];
 
- const services = [
- "AI Chatbots & Virtual Assistants",
- "Web Automation & RPA",
- "Custom AI Integration",
- "Smart Analytics & Insights",
- "Web Development & E-commerce",
- "AI Security & Compliance",
- "Other"
- ];
+  const budgetRanges = [
+    "Under $5,000",
+    "$5,000 - $15,000",
+    "$15,000 - $50,000",
+    "$50,000 - $100,000",
+    "Over $100,000"
+  ];
 
- const budgetRanges = [
- "Under $5,000",
- "$5,000 - $15,000",
- "$15,000 - $50,000",
- "$50,000 - $100,000",
- "Over $100,000"
- ];
+  const timelines = [
+    "ASAP (Rush Project)",
+    "1-2 weeks",
+    "1 month",
+    "2-3 months",
+    "3+ months",
+    "Flexible"
+  ];
 
- const timelines = [
- "ASAP (Rush Project)",
- "1-2 weeks",
- "1 month",
- "2-3 months",
- "3+ months",
- "Flexible"
- ];
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
 
- const handleInputChange = (field: string, value: string) => {
- setFormData(prev => ({ ...prev, [field]: value }));
- };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrors({});
+    const result = contactSchema.safeParse(formData);
 
- const handleSubmit = async (e: React.FormEvent) => {
- e.preventDefault();
- setErrors({});
+    if (!result.success) {
+      const formattedErrors: Record<string, string> = {};
+      result.error.issues.forEach((issue) => {
+        formattedErrors[issue.path[0]] = issue.message;
+      });
+      setErrors(formattedErrors);
+      toast({
+        title: "Validation Error",
+        description: "Please check the form for errors.",
+        variant: "destructive",
+      });
+      return;
+    }
 
- // Validate with Zod
- const result = contactSchema.safeParse(formData);
+    if (formData._honey) {
+      toast({
+        title: "Submission Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+      return;
+    }
 
- if (!result.success) {
- const formattedErrors: Record<string, string> = {};
- result.error.issues.forEach((issue) => {
- formattedErrors[issue.path[0]] = issue.message;
- });
- setErrors(formattedErrors);
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
 
- toast({
- title: "Validation Error",
- description: "Please check the form for errors.",
- variant: "destructive",
- });
- return;
- }
+      if (response.ok) {
+        toast({
+          title: "Message Sent Successfully!",
+          description: "We'll get back to you within 2 hours.",
+          variant: "default",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          service: "",
+          budget: "",
+          timeline: "",
+          message: "",
+          _honey: ""
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
- // Check Honeypot
- if (formData._honey) {
- console.warn("Honeypot filled, blocking submission");
- toast({
- title: "Submission Error",
- description: "Something went wrong. Please try again later.",
- variant: "destructive",
- });
- return;
- }
+  const contactInfo = [
+    { icon: Phone, title: "WhatsApp", value: "+92 328 4529264", description: "Mon-Fri 9AM-6PM EST" },
+    { icon: Mail, title: "Email", value: "astraventaai@gmail.com", description: "24/7 Support Available" },
+    { icon: MapPin, title: "Office", value: "New York, NY", description: "Serving Clients Globally" },
+    { icon: Clock, title: "Response Time", value: "< 2 Hours", description: "During Business Hours" }
+  ];
 
- setIsSubmitting(true);
+  return (
+    <section id="contact" className="py-16 md:py-24 relative bg-transparent section-transition overflow-hidden">
+      <div className="container relative z-10 mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
+            <Mail className="w-4 h-4 mr-2" />
+            GET IN TOUCH
+          </Badge>
+          <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-5xl mb-6">
+            Ready to <span className="text-primary">Transform</span> Your Business?
+          </h2>
+          <p className="text-[15px] text-[#4B5563] font-display font-normal leading-[1.7] max-w-2xl mx-auto">
+            Connect with our lead architects to discuss your AI automation roadmap and technical scope.
+          </p>
+        </motion.div>
 
- try {
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto">
+          {/* Left: Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Card className="bg-white/60 backdrop-blur-2xl border border-slate-200/50 shadow-sm rounded-3xl overflow-hidden">
+              <CardHeader className="pb-4 border-b border-slate-100/50">
+                <CardTitle className="text-xl font-heading font-normal uppercase tracking-[0.15em] text-black">Start Your AI Journey</CardTitle>
+                <CardDescription className="text-xs text-slate-500 font-display uppercase tracking-widest">
+                  Connect with our team for precision automation.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-slate-700 ml-1">Full Name *</label>
+                      <Input
+                        placeholder="Your full name"
+                        value={formData.name}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        className="rounded-xl border-slate-200 focus:ring-primary"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-slate-700 ml-1">Email Address *</label>
+                      <Input
+                        type="email"
+                        placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        className="rounded-xl border-slate-200 focus:ring-primary"
+                        required
+                      />
+                    </div>
+                  </div>
 
- const response = await fetch('/api/contact', {
- method: 'POST',
- body: JSON.stringify(formData),
- headers: {
- 'Content-Type': 'application/json',
- 'Accept': 'application/json'
- }
- });
+                  {/* Honeypot Field (Hidden) */}
+                  <div className="hidden" aria-hidden="true">
+                    <Input
+                      type="text"
+                      name="_honey"
+                      value={formData._honey}
+                      onChange={(e) => handleInputChange('_honey', e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
 
- if (response.ok) {
- toast({
- title: "Message Sent Successfully!",
- description: "We'll get back to you within 2 hours.",
- variant: "default",
- });
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-slate-700 ml-1">Company Name</label>
+                      <Input
+                        placeholder="Your company"
+                        value={formData.company}
+                        onChange={(e) => handleInputChange('company', e.target.value)}
+                        className="rounded-xl border-slate-200"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-slate-700 ml-1">Phone Number</label>
+                      <Input
+                        type="tel"
+                        placeholder="+1 (555) 123-4567"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="rounded-xl border-slate-200"
+                      />
+                    </div>
+                  </div>
 
- // Reset form
- setFormData({
- name: "",
- email: "",
- company: "",
- phone: "",
- service: "",
- budget: "",
- timeline: "",
- message: "",
- _honey: ""
- });
- }
- else {
- throw new Error('Form submission failed');
- }
- } catch (error) {
- toast({
- title: "Error",
- description: "Failed to send message. Please try again.",
- variant: "destructive",
- });
- } finally {
- setIsSubmitting(false);
- }
- };
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-slate-700 ml-1">Service Needed *</label>
+                    <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
+                      <SelectTrigger className="rounded-xl border-slate-200">
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent className="rounded-xl">
+                        {services.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
 
- const contactInfo = [
- {
- icon: Phone,
- title: "WhatsApp",
- value: "+92 328 4529264",
- description: "Mon-Fri 9AM-6PM EST"
- },
- {
- icon: Mail,
- title: "Email",
- value: "astraventaai@gmail.com",
- description: "24/7 Support Available"
- },
- {
- icon: MapPin,
- title: "Office",
- value: "New York, NY",
- description: "Serving Clients Globally"
- },
- {
- icon: Clock,
- title: "Response Time",
- value: "< 2 Hours",
- description: "During Business Hours"
- }
- ];
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-slate-700 ml-1">Budget Range</label>
+                      <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
+                        <SelectTrigger className="rounded-xl border-slate-200">
+                          <SelectValue placeholder="Select budget range" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl">
+                          {budgetRanges.map((range) => <SelectItem key={range} value={range}>{range}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-slate-700 ml-1">Project Timeline</label>
+                      <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
+                        <SelectTrigger className="rounded-xl border-slate-200">
+                          <SelectValue placeholder="When do you need this?" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl">
+                          {timelines.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
 
- return (
- <section id="contact" className="py-16 md:py-24 relative bg-transparent section-transition">
- {/* Background Elements */}
- <div className="absolute inset-0 bg-transparent" />
- <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
- <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-slate-700 ml-1">Project Details *</label>
+                    <Textarea
+                      placeholder="Tell us about your requirements, goals, and any specific needs..."
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      className="rounded-xl border-slate-200 resize-none"
+                      required
+                    />
+                  </div>
 
- <div className="container relative z-10 mx-auto px-4">
- <motion.div
- initial={{ opacity: 0, y: 30 }}
- whileInView={{ opacity: 1, y: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.8 }}
- className="text-center mb-12"
- style={{ fontStyle: 'normal' }}
- >
- <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
- <Mail className="w-4 h-4 mr-2" />
- Get In Touch
- </Badge>
- <h2 className="text-5xl md:text-6xl font-black mb-6 text-slate-900 tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
- Ready to <span className="text-[#2910E5]">Transform</span> Your Business?
- </h2>
- <p className="text-xl text-slate-500 max-w-2xl mx-auto font-medium tracking-tight">
- Let's discuss your AI automation needs. Our experts are ready to help you achieve your goals.
- </p>
- </motion.div>
+                  <ShinyButton type="submit" disabled={isSubmitting} className="w-full h-14 rounded-2xl">
+                    <span className="flex items-center justify-center gap-2">
+                      <Send className="w-5 h-5" /> {isSubmitting ? "Sending..." : "Send Message"}
+                    </span>
+                  </ShinyButton>
 
- <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
- {/* Contact Form */}
- <motion.div
- initial={{ opacity: 0, x: -50 }}
- whileInView={{ opacity: 1, x: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.8, delay: 0.2 }}
- >
- <Card className="bg-white/60 backdrop-blur-2xl border border-slate-200/50 shadow-sm rounded-3xl" style={{ fontStyle: 'normal' }}>
- <CardHeader className="pb-4">
- <CardTitle className="text-2xl mb-2 font-bold text-slate-900 font-heading tracking-tight">Start Your AI Journey</CardTitle>
- <CardDescription className="text-slate-500 font-medium tracking-tight">
- Fill out the form below and we'll get back to you within 2 hours.
- </CardDescription>
- </CardHeader>
- <CardContent>
- <form onSubmit={handleSubmit} className="space-y-6">
- <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div>
- <label className="block text-sm font-medium mb-2">Full Name *</label>
- <Input
- type="text"
- name="name"
- placeholder="Your full name"
- value={formData.name}
- onChange={(e) => handleInputChange('name', e.target.value)}
- className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
- required
- />
- {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
- </div>
- <div>
- <label className="block text-sm font-medium mb-2">Email Address *</label>
- <Input
- type="email"
- name="email"
- placeholder="your@email.com"
- value={formData.email}
- onChange={(e) => handleInputChange('email', e.target.value)}
- className={`bg-card/50 border-primary/30 focus:border-primary smooth-transition ${errors.email ? 'border-red-500' : ''}`}
- required
- />
- {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
- </div>
- </div>
+                  <div className="flex items-center justify-center gap-2 text-xs text-slate-500 font-medium">
+                    <BadgeCheck className="w-4 h-4 text-emerald-500" />
+                    <span>We'll respond within 2 hours during business hours</span>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
 
- {/* Honeypot Field (Hidden) */}
- <div className="hidden" aria-hidden="true">
- <Input
- type="text"
- name="_honey"
- value={formData._honey}
- onChange={(e) => handleInputChange('_honey', e.target.value)}
- tabIndex={-1}
- autoComplete="off"
- />
- </div>
+          {/* Right: Globe & Consolidated Contact Details */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="flex flex-col items-center sticky top-32 space-y-12"
+          >
+            {/* Globe Section */}
+            <div className="relative">
+              <Globe />
+            </div>
+            
+            {/* Consolidated Contact Information Cards */}
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+              {contactInfo.map((info, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * i }}
+                  className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:border-primary/20 transition-colors"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+                    <info.icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-0.5">{info.title}</h4>
+                    <p className="text-sm font-bold text-slate-900 truncate leading-tight mb-1">{info.value}</p>
+                    <p className="text-[11px] text-slate-500 font-medium leading-tight">{info.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
 
- <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div>
- <label className="block text-sm font-medium mb-2">Company Name</label>
- <Input
- type="text"
- name="company"
- placeholder="Your company"
- value={formData.company}
- onChange={(e) => handleInputChange('company', e.target.value)}
- className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
- />
- </div>
- <div>
- <label className="block text-sm font-medium mb-2">Phone Number</label>
- <Input
- type="tel"
- name="phone"
- placeholder="+1 (555) 123-4567"
- value={formData.phone}
- onChange={(e) => handleInputChange('phone', e.target.value)}
- className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
- />
- </div>
- </div>
-
- <div>
- <label className="block text-sm font-medium mb-2">Service Needed *</label>
- <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
- <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
- <SelectValue placeholder="Select a service" />
- </SelectTrigger>
- <SelectContent>
- {services.map((service) => (
- <SelectItem key={service} value={service}>
- {service}
- </SelectItem>
- ))}
- </SelectContent>
- </Select>
- {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service}</p>}
- </div>
-
- <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div>
- <label className="block text-sm font-medium mb-2">Budget Range</label>
- <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
- <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
- <SelectValue placeholder="Select budget range" />
- </SelectTrigger>
- <SelectContent>
- {budgetRanges.map((range) => (
- <SelectItem key={range} value={range}>
- {range}
- </SelectItem>
- ))}
- </SelectContent>
- </Select>
- </div>
- <div>
- <label className="block text-sm font-medium mb-2">Project Timeline</label>
- <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
- <SelectTrigger className="bg-card/50 border-primary/30 focus:border-primary smooth-transition">
- <SelectValue placeholder="When do you need this completed?" />
- </SelectTrigger>
- <SelectContent>
- {timelines.map((timeline) => (
- <SelectItem key={timeline} value={timeline}>
- {timeline}
- </SelectItem>
- ))}
- </SelectContent>
- </Select>
- </div>
- </div>
-
- <div>
- <label className="block text-sm font-medium mb-2">Project Details *</label>
- <Textarea
- name="message"
- placeholder="Tell us about your project requirements, goals, and any specific needs..."
- rows={5}
- value={formData.message}
- onChange={(e) => handleInputChange('message', e.target.value)}
- className="bg-card/50 border-primary/30 focus:border-primary smooth-transition"
- required
- />
- {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
- </div>
-
- <Button
- type="submit"
- size="lg"
- disabled={isSubmitting}
- className="w-full group bg-[#2910E5] hover:bg-[#2910E5]/90 text-white rounded-2xl smooth-transition font-bold tracking-tight h-14 shadow-[0_8px_30px_rgb(41,16,229,0.2)]"
- >
- <Send className="w-5 h-5 mr-2 transition-transform" />
- {isSubmitting ? "Sending..." : "Send Message"}
- </Button>
-
- <div className="flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
- <BadgeCheck className="w-4 h-4 text-emerald-500" />
- <span>We'll respond within 2 hours during business hours</span>
- </div>
- </form>
- </CardContent>
- </Card>
- </motion.div>
-
- {/* Contact Info & AI Bot */}
- <motion.div
- initial={{ opacity: 0, x: 50 }}
- whileInView={{ opacity: 1, x: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.8, delay: 0.4 }}
- className="space-y-8"
- >
- {/* Contact Information */}
- <div className="space-y-6">
- {contactInfo.map((info, index) => {
- const Icon = info.icon;
- return (
- <motion.div
- key={index}
- initial={{ opacity: 0, y: 20 }}
- whileInView={{ opacity: 1, y: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
- className="bg-white/60 backdrop-blur-2xl p-6 rounded-3xl border border-slate-200/50 shadow-sm transition-all hover:border-[#2910E5]/30 hover:shadow-md"
- style={{ fontStyle: 'normal' }}
- >
- <div className="flex items-center gap-4">
- <div className="w-12 h-12 rounded-2xl bg-[#2910E5]/5 border border-[#2910E5]/10 flex items-center justify-center">
- <Icon className="w-5 h-5 text-[#2910E5]" strokeWidth={1.5} />
- </div>
- <div>
- <h4 className="font-bold text-slate-900 font-heading tracking-tight">{info.title}</h4>
- <p className="text-[#2910E5] font-semibold text-sm tracking-tight">{info.value}</p>
- <p className="text-xs text-slate-500 font-medium mt-0.5">{info.description}</p>
- </div>
- </div>
- </motion.div>
- );
- })}
- </div>
- </motion.div>
- </div>
- </div>
-
- {/* Chatbot Modal */}
- <ChatbotModal isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
- </section>
- );
+      <ChatbotModal isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
+    </section>
+  );
 };

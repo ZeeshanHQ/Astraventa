@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Boxes } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ShinyButton } from "@/components/ui/shiny-button";
 
 type Card = {
  id: number;
@@ -87,10 +88,10 @@ export const CardSlide = ({
  transition={{ type: "spring", stiffness: 120, damping: 18 }}
  >
  <div className="space-y-3 sm:space-y-4">
- <div className="font-bold text-lg sm:text-xl md:text-2xl text-slate-900 tracking-tight">
+ <div className="font-display font-normal text-lg sm:text-xl md:text-2xl text-slate-900 tracking-wide">
  {card.name}
  </div>
- <div className="text-slate-500 text-sm sm:text-base leading-relaxed">
+ <div className="text-[#4B5563] font-body font-normal text-sm sm:text-[15px] leading-[1.7]">
  {card.content}
  </div>
  <div className="mt-3">
@@ -103,7 +104,7 @@ export const CardSlide = ({
  </div>
  <div className="pt-3 border-t border-slate-100 mt-4 flex items-center gap-2">
  <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
- <p className="text-slate-500 font-medium text-xs sm:text-sm tracking-wide uppercase font-mono">
+ <p className="text-[#4B5563] font-display font-normal text-[11px] sm:text-[12px] tracking-[0.1em] uppercase">
  {card.designation}
  </p>
  </div>
@@ -222,7 +223,7 @@ export function AstraProductWalls() {
  className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-slate-200 bg-white shadow-sm mb-8"
  >
  <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
- <span className="text-[11px] font-black text-slate-500 uppercase tracking-[0.15em] font-mono">
+ <span className="text-[11px] font-display font-normal text-slate-500 uppercase tracking-[0.15em]">
  Engineering Excellence · Without Compromise
  </span>
  </motion.div>
@@ -233,7 +234,7 @@ export function AstraProductWalls() {
  whileInView={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
  viewport={{ once: true }}
- className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-950 leading-[0.9] mb-6"
+ className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl mb-6"
  >
  Products built to<br />
  <span className="text-primary">outlast the hype.</span>
@@ -245,7 +246,7 @@ export function AstraProductWalls() {
  whileInView={{ opacity: 1, y: 0 }}
  transition={{ delay: 0.1, duration: 0.6 }}
  viewport={{ once: true }}
- className="text-lg text-slate-500 font-medium leading-relaxed mb-10 max-w-lg"
+ className="text-[15px] text-[#4B5563] font-body font-normal leading-[1.7] mb-10 max-w-lg"
  >
  Every Astraventa product is an opinionated system — designed for
  real-world scale, not demos. From autonomous AI agents to
@@ -267,8 +268,8 @@ export function AstraProductWalls() {
  { value: "24/7", label: "Autonomous Ops" },
  ].map((stat) => (
  <div key={stat.label} className="flex flex-col">
- <span className="text-3xl font-black text-slate-950 tracking-tight">{stat.value}</span>
- <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1 font-mono">{stat.label}</span>
+ <span className="text-3xl font-heading font-normal text-slate-950">{stat.value}</span>
+ <span className="text-[11px] font-display font-normal text-[#4B5563] uppercase tracking-[0.1em] mt-1">{stat.label}</span>
  </div>
  ))}
  </motion.div>
@@ -281,26 +282,24 @@ export function AstraProductWalls() {
  viewport={{ once: true }}
  className="flex flex-col sm:flex-row gap-4"
  >
- <Button
- size="lg"
- className="btn-primary h-13 px-8 group overflow-hidden relative whitespace-nowrap"
- onClick={() => window.location.href = '/products'}
- >
- <span className="relative z-10 flex items-center">
- Explore All Products
- <Boxes className="ml-2.5 w-4 h-4 group-hover:rotate-12 transition-transform duration-500" />
- </span>
- <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000" />
- </Button>
- <Button
- variant="outline"
- size="lg"
- className="btn-ghost h-13 px-8 group whitespace-nowrap"
- onClick={() => window.location.href = '/get-in-touch'}
- >
- Book a Demo
- <ArrowRight className="ml-2 w-4 h-4 transition-transform text-primary" />
- </Button>
+             <ShinyButton
+               className="h-10 px-6 rounded-full font-display font-medium text-[12px] uppercase tracking-[0.1em] flex items-center justify-center gap-2.5 whitespace-nowrap"
+               onClick={() => window.location.href = '/products'}
+             >
+               <span className="relative z-10 flex items-center gap-2.5 pt-[2px]">
+                 Explore All Products
+                 <Boxes className="w-3.5 h-3.5" />
+               </span>
+             </ShinyButton>
+             <Button
+               variant="ghost"
+               size="default"
+               className="h-10 px-5 rounded-full font-display font-medium text-[12px] uppercase tracking-[0.1em] flex items-center gap-2 text-black/70 hover:text-black hover:bg-transparent shadow-none whitespace-nowrap transition-colors"
+               onClick={() => window.location.href = '/get-in-touch'}
+             >
+               Book a Demo
+               <ArrowRight className="w-3.5 h-3.5 text-primary" />
+             </Button>
  </motion.div>
  </div>
 

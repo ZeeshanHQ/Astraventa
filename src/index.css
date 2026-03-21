@@ -1,54 +1,79 @@
-@import '@fontsource/geist-sans/400.css';
-@import '@fontsource/geist-sans/600.css';
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/geist-mono/400.css';
+/* Typography: Tenor Sans (H1) · Glacial Indifference (Nav/H2/Labels) · Mulish (Body) */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
- :root {
- /* Astraventa Pro - Pure White Design System */
- --background: 0 0% 100%; /* #FFFFFF Pure White */
- --foreground: 0 0% 7%; /* #111111 Soft Black */
- 
- --card: 0 0% 100%;
- --card-foreground: 222 47% 11%;
- 
- --popover: 0 0% 100%;
- --popover-foreground: 222 47% 11%;
- 
- /* Deep Indigo Primary */
- --primary: 247 87% 48%; /* #2910E5 */
- --primary-foreground: 0 0% 100%; /* #FFFFFF */
- 
- /* Secondary / Muted */
- --secondary: 210 40% 96.1%;
- --secondary-foreground: 222 47% 11%;
- 
- /* Emerald Green Accent */
- --accent: 160 84% 39%; /* #10B981 Emerald Green */
- --accent-foreground: 210 40% 98%;
- 
- --muted: 210 40% 96.1%;
- --muted-foreground: 215.4 16.3% 46.9%; /* #475569 Slate Gray / Body */
- 
- --destructive: 0 84.2% 60.2%;
- --destructive-foreground: 210 40% 98%;
+  :root {
+    /* Astraventa Corporate Core - Precision Branding */
+    --background: 0 0% 100%; /* Pure White */
+    --foreground: 0 0% 0%; /* Rich Black */
 
- --border: 214.3 31.8% 91.4%;
- --input: 214.3 31.8% 91.4%;
- --ring: 221 100% 50%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
 
- --radius: 0.75rem;
- }
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    /* Brand Primary - Astra Indigo */
+    --primary: 247 88% 48%;
+    --primary-rgb: 41, 16, 229;
+    --primary-foreground: 0 0% 100%;
+
+    /* Accent — maps to Primary for strict 3-color palette */
+    --accent: 247 88% 48%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Secondary - High-End Minimalist Slate */
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 0%;
+
+    /* Muted Elements */
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Neutral System - Sharp & Technical */
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 247 88% 48%;
+
+    --radius: 0.2rem; /* Elite technical sharpness */
+  }
+
+  .dark {
+    /* Obsidian Dark - For Products & Tools */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Brand Primary - Astra Indigo */
+    --primary: 247 88% 48%;
+    --primary-rgb: 41, 16, 229;
+    --primary-foreground: 0 0% 100%;
+
+    /* Accent — maps to Primary */
+    --accent: 247 88% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 247 88% 48%;
+  }
 }
 
-/* Typography System - Satoshi & Inter */
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Typography imports are handled in index.html for optimal loading */
 
 @layer base {
  * {
@@ -59,42 +84,50 @@
  scroll-behavior: smooth;
  }
 
- body {
- @apply bg-background text-foreground antialiased;
- font-family: 'Inter', sans-serif;
- font-size: 16px;
- font-weight: 500;
- line-height: 1.625;
- 
- /* Blueprint Grid Pattern - Thin 1px lines, 5% opacity */
- background-image: 
- linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
- linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
- background-size: 96px 96px; 
- background-attachment: fixed;
- }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Mulish', 'Muli', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #4B5563;
 
- h1 {
- font-family: 'Geist Sans', sans-serif;
- @apply font-bold text-[72px] tracking-tighter leading-[1.1];
- background: linear-gradient(to bottom right, #000000 30% , #2910E5);
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
- background-clip: text;
- font-style: normal;
- }
+    /* Precision Blueprint Grid - Extremely Subtle */
+    background-image: 
+      linear-gradient(to right, hsla(var(--foreground), 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, hsla(var(--foreground), 0.03) 1px, transparent 1px);
+    background-size: 64px 64px; 
+    background-attachment: fixed;
+  }
 
- h2 {
- font-family: 'Satoshi', sans-serif;
- @apply font-bold text-slate-900 text-[48px] tracking-tight;
- font-style: normal;
- }
+  h1 {
+    font-family: 'Tenor Sans', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    line-height: 1.15;
+    font-style: normal;
+    @apply text-foreground;
+  }
 
- h3, h4, h5, h6 {
- font-family: 'Geist Sans', sans-serif;
- @apply font-semibold tracking-tighter text-slate-900;
- font-style: normal;
- }
+  h2 {
+    font-family: 'Glacial Indifference', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    @apply text-foreground;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: 'Glacial Indifference', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    font-style: normal;
+    @apply text-foreground;
+  }
 }
 
 @layer components {
@@ -103,42 +136,56 @@
  @apply absolute top-0 left-0 w-full md:w-auto bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl rounded-2xl p-6 transition-all duration-300 animate-in fade-in zoom-in-95;
  }
 
- /* Glassmorphism utility */
- .glass {
- @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-sm;
- }
+  /* Glassmorphism utility - More Neutral */
+  .glass {
+  @apply bg-white/50 backdrop-blur-xl border border-border/50 shadow-sm;
+  }
 
  .glass-card {
  @apply backdrop-blur-xl border border-slate-200/50 bg-white/30 shadow-sm transition-all;
  }
 
- /* Premium Buttons */
- .btn-primary {
- @apply rounded-full bg-[#2910E5] text-white hover:bg-[#2910E5]/90 transition-all font-heading font-medium px-6 py-3 shadow-sm;
- }
+  /* Premium Buttons - Elite Scaling */
+   .btn-primary {
+     font-family: 'Glacial Indifference', sans-serif;
+     font-size: 14px;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: 0.15em;
+     @apply rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-all px-5 py-2.5 shadow-none;
+   }
+ 
+  .btn-ghost {
+    font-family: 'Glacial Indifference', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    @apply rounded-full bg-transparent border-[1px] border-border hover:bg-black/5 transition-all px-5 py-2.5 shadow-none;
+  }
 
- .btn-ghost {
- @apply rounded-full bg-transparent border-[0.5px] border-slate-200 hover:bg-slate-50 transition-all font-heading font-medium px-6 py-3;
- }
-
- /* Deep Indigo Glow Button Effect */
- .btn-primary-glow {
- @apply bg-primary text-white shadow-lg shadow-[#2910e5]/30 hover:shadow-[#2910e5]/50 transition-all;
- }
+  /* Elite Surgical Glow Button Effect */
+   .btn-primary-glow {
+     @apply bg-primary text-primary-foreground shadow-xl shadow-primary/30 hover:shadow-primary/50 transition-all duration-300;
+   }
 
  /* Technical Label & Aura Glow */
- .technical-label {
- font-family: 'Geist Mono', monospace;
- @apply text-[12px] uppercase tracking-widest text-[#2910E5] font-medium;
- }
+  .technical-label {
+    font-family: 'Glacial Indifference', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    @apply text-primary;
+  }
 
  .aura-glow {
  @apply transition-all duration-300;
  }
  
- .aura-glow:hover {
- box-shadow: 0 0 25px rgba(41, 16, 229, 0.3);
- }
+  .aura-glow:hover {
+    box-shadow: 0 0 40px -10px hsla(var(--primary), 0.4);
+  }
 
  /* Smooth Section Transition */
  .section-transition {

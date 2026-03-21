@@ -74,7 +74,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
  
  {/* Active Indicator Line */}
  <div className={cn(
- "absolute left-8 bottom-6 w-12 h-1 bg-[#2910E5] transition-all duration-500 delay-300",
+ "absolute left-8 bottom-6 w-12 h-1 bg-primary transition-all duration-500 delay-300",
  isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
  )} />
  </div>
@@ -97,24 +97,24 @@ export function LandingAccordionItem() {
  
  {/* Left Side: Text Content */}
  <div className="w-full lg:w-1/3 text-center lg:text-left">
- <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 mb-8">
- <span className="w-1.5 h-1.5 rounded-full bg-[#2910E5]" />
- <span className="text-[10px] font-bold text-slate-700 uppercase tracking-[0.2em]">Core Capabilities</span>
+ <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/[0.04] border border-black/[0.08] mb-8">
+ <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+ <span className="text-[10px] font-bold text-black/60 uppercase tracking-[0.2em] font-['Anonymous_Pro']">Core Capabilities</span>
  </div>
- <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-none tracking-tighter mb-8">
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-normal text-black leading-none tracking-[0.2em] uppercase mb-8">
  Accelerate <br />
- <span className="text-[#2910E5]">Gen-AI</span> Tasks.
+ <span className="text-primary">Gen-AI</span> Tasks.
  </h2>
- <p className="text-lg text-slate-500 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed mb-10">
+ <p className="text-[15px] text-[#4B5563] font-display font-normal max-w-xl mx-auto lg:mx-0 leading-relaxed mb-10">
  Deploy high-performance AI logic directly into your enterprise flow. High-throughput architectures built for mission-critical operations.
  </p>
  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
- <a
- href="#contact"
- className="inline-flex items-center justify-center bg-slate-900 text-white font-bold px-8 py-4 rounded-full shadow-xl shadow-slate-200 hover:bg-black transition-all duration-300 "
+ <button
+ onClick={() => window.location.href = "/contact"}
+ className="inline-flex items-center justify-center bg-black text-white font-display font-bold px-8 py-3.5 rounded-full shadow-xl shadow-black/5 hover:bg-black/90 transition-all duration-300 uppercase tracking-widest text-[11px]"
  >
  Contact Specialist
- </a>
+ </button>
  </div>
  </div>
 

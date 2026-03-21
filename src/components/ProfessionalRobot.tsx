@@ -106,14 +106,14 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
  <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[55%] h-[20%] bg-gray-900 rounded-full flex items-center justify-center overflow-hidden shadow-inner">
  {/* Holographic Grid Background */}
  <div className="absolute inset-0 opacity-20">
- <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10" />
+ <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-blue-500/10" />
  <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(0,212,255,0.1)_50%,transparent_100%)] bg-[length:20px_20px]" />
  <div className="absolute inset-0 bg-[linear-gradient(0deg,transparent_0%,rgba(0,212,255,0.1)_50%,transparent_100%)] bg-[length:20px_20px]" />
  </div>
 
  {/* Enhanced Eyes with Advanced Tracking */}
  <motion.div
- className="absolute w-[24%] h-[32%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
+ className="absolute w-[24%] h-[32%] bg-gradient-to-r from-primary/10 via-blue-500 to-purple-500 rounded-full"
  style={{ 
  left: '22%', 
  top: '34%', 
@@ -138,7 +138,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
  }}
  />
  <motion.div
- className="absolute w-[24%] h-[32%] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full"
+ className="absolute w-[24%] h-[32%] bg-gradient-to-r from-primary/10 via-blue-500 to-purple-500 rounded-full"
  style={{ 
  right: '22%', 
  top: '34%', 
@@ -254,7 +254,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
 
  {/* Energy Flow Lines */}
  <motion.div
- className="absolute top-[25%] left-[15%] w-[2%] h-[15%] bg-gradient-to-b from-cyan-400 to-transparent rounded-full"
+ className="absolute top-[25%] left-[15%] w-[2%] h-[15%] bg-gradient-to-b from-primary/10 to-transparent rounded-full"
  animate={{
  opacity: [0, 1, 0],
  scaleY: [0, 1, 0],
@@ -267,7 +267,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
  }}
  />
  <motion.div
- className="absolute top-[25%] right-[15%] w-[2%] h-[15%] bg-gradient-to-b from-cyan-400 to-transparent rounded-full"
+ className="absolute top-[25%] right-[15%] w-[2%] h-[15%] bg-gradient-to-b from-primary/10 to-transparent rounded-full"
  animate={{
  opacity: [0, 1, 0],
  scaleY: [0, 1, 0],
@@ -283,7 +283,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
 
  {/* Enhanced Multi-Layer Glow Effect */}
  <motion.div
- className="absolute inset-0 bg-gradient-radial from-cyan-500/20 via-blue-500/10 to-transparent rounded-full"
+ className="absolute inset-0 bg-gradient-radial from-primary/10 via-blue-500/10 to-transparent rounded-full"
  animate={{
  scale: [1, 1.15, 1],
  opacity: [0.3, 0.6, 0.3],
@@ -301,7 +301,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
  {Array.from({ length: 12 }).map((_, i) => (
  <motion.div
  key={i}
- className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-sm"
+ className="absolute w-2 h-2 bg-gradient-to-r from-primary/10 to-blue-500 rounded-full blur-sm"
  animate={{
  x: Math.sin(i * 0.5 + Date.now() * 0.001) * (50 + i * 4),
  y: Math.cos(i * 0.5 + Date.now() * 0.001) * (50 + i * 4),
@@ -341,7 +341,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
  animate={{ opacity: 1, y: 0, scale: 1 }}
  exit={{ opacity: 0, y: -20, scale: 0.8 }}
  transition={{ duration: 0.3 }}
- className="absolute -top-20 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-md px-6 py-3 rounded-2xl border border-cyan-400/50 shadow-glow whitespace-nowrap"
+ className="absolute -top-20 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur-md px-6 py-3 rounded-2xl border border-primary/20 shadow-glow whitespace-nowrap"
  style={{
  boxShadow: "0 0 30px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1)"
  }}
@@ -353,7 +353,7 @@ export const ProfessionalRobot = ({ mousePosition }: ProfessionalRobotProps) => 
 
  {/* Energy Pulse Rings */}
  <motion.div
- className="absolute inset-0 border-2 border-cyan-400/30 rounded-full"
+ className="absolute inset-0 border-2 border-primary/20 rounded-full"
  animate={{
  scale: [1, 1.3, 1],
  opacity: [0.5, 0, 0.5],

@@ -5,9 +5,10 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
+import { cn } from "@/lib/utils";
+import {
   Mail, Globe, FileText, ArrowRight, Sparkles, Bot, FileSearch, LineChart, BookOpen,
-  PenTool, Video, Palette, ScrollText, Wand2, Users, Target, MessageSquareText, 
+  PenTool, Video, Palette, ScrollText, Wand2, Users, Target, MessageSquareText,
   CalendarDays, Database, CheckSquare, MailX, UserSquare2, Scale, Megaphone, Receipt,
   ShoppingCart, MousePointerClick, Activity, ShieldCheck,
   Trophy, Radio, ScanLine, Sun, BarChart2, Heart, PenLine, Search, X
@@ -21,43 +22,43 @@ const toolCategories = [
     tools: [
       {
         title: "AstraReach AI", description: "Your autonomous email operations copilot. Send outreach, review inbox, and auto-reply.",
-        icon: Mail, color: "text-blue-500", bg: "bg-blue-500/10",
-        features: ["Intelligent Outreach", "Inbox Summarization"], href: "/tools/astra-reach"
+        icon: Mail, color: "text-primary", bg: "bg-primary/5",
+        features: ["Intelligent Outreach", "Inbox Summarization"], href: "/coming-soon"
       },
       {
         title: "AstraScrape AI", description: "Extract high-quality structured data from dynamic websites using resilient AI agents.",
-        icon: Globe, color: "text-emerald-500", bg: "bg-emerald-500/10",
-        features: ["JS Rendering Support", "Structured Export"], href: "/tools/astra-scrape"
+        icon: Globe, color: "text-primary", bg: "bg-primary/5",
+        features: ["JS Rendering Support", "Structured Export"], href: "/coming-soon"
       },
       {
         title: "AstraFlow AI", description: "Smart data-entry agent that populates complex system fields using natural language.",
-        icon: FileText, color: "text-purple-500", bg: "bg-purple-500/10",
-        features: ["Context Injection", "Auto-Validation"], href: "/tools/astra-flow"
+        icon: FileText, color: "text-primary", bg: "bg-primary/5",
+        features: ["Context Injection", "Auto-Validation"], href: "/coming-soon"
       },
       {
         title: "AstraDoc AI", description: "Intelligent document analyzer. Instantly extract clauses and summarize long contracts.",
-        icon: FileSearch, color: "text-rose-500", bg: "bg-rose-500/10",
-        features: ["PDF Parsing", "Semantic Search"], href: "/tools/astra-doc"
+        icon: FileSearch, color: "text-primary", bg: "bg-primary/5",
+        features: ["PDF Parsing", "Semantic Search"], href: "/coming-soon"
       },
       {
         title: "AstraTranslate AI", description: "Enterprise localization. Translate documents while maintaining brand voice.",
-        icon: Globe, color: "text-cyan-500", bg: "bg-cyan-500/10",
-        features: ["Tone Preservation", "50+ Languages"], href: "/tools/astra-translate"
+        icon: Globe, color: "text-primary", bg: "bg-primary/5",
+        features: ["Tone Preservation", "50+ Languages"], href: "/tools/astra-translate", tag: "Active"
       },
       {
         title: "AstraMarket AI", description: "Continuous competitor intelligence. Monitor rival websites for pricing changes autonomously.",
-        icon: LineChart, color: "text-fuchsia-500", bg: "bg-fuchsia-500/10",
-        features: ["Automated Tracking", "Browser Use Cloud"], href: "/tools/astra-market"
+        icon: LineChart, color: "text-primary", bg: "bg-primary/5",
+        features: ["Automated Tracking", "Browser Use Cloud"], href: "/coming-soon"
       },
       {
         title: "AstraAgent AI", description: "The Browser Worker. Autonomously navigates websites to book flights, fill forms, and complete tasks.",
-        icon: MousePointerClick, color: "text-blue-500", bg: "bg-blue-500/10",
-        features: ["Autonomous Browsing", "Task Execution"], href: "/tools/astra-agent"
+        icon: MousePointerClick, color: "text-primary", bg: "bg-primary/5",
+        features: ["Autonomous Browsing", "Task Execution"], href: "/coming-soon"
       },
       {
         title: "AstraPulse AI", description: "AI Observability for Vibe Coders. Monitor token costs, latency, and agent hallucination rates.",
-        icon: Activity, color: "text-emerald-500", bg: "bg-emerald-500/10",
-        features: ["Token Tracking", "Health Monitoring"], href: "/tools/astra-pulse"
+        icon: Activity, color: "text-primary", bg: "bg-primary/5",
+        features: ["Token Tracking", "Health Monitoring"], href: "/coming-soon"
       }
     ]
   },
@@ -67,28 +68,28 @@ const toolCategories = [
     tools: [
       {
         title: "AstraHook AI", description: "Viral hook generator for LinkedIn/Twitter based on your long-form blog.",
-        icon: PenTool, color: "text-orange-500", bg: "bg-orange-500/10",
-        features: ["Social Algorithms", "A/B Testing"], href: "/tools/astra-hook"
+        icon: PenTool, color: "text-primary", bg: "bg-primary/5",
+        features: ["Social Algorithms", "A/B Testing"], href: "/coming-soon"
       },
       {
         title: "AstraScript AI", description: "YouTube/Reels scriptwriter that analyzes trending video structures for your niche.",
-        icon: Video, color: "text-red-500", bg: "bg-red-500/10",
-        features: ["Hook Structuring", "Retention Analysis"], href: "/tools/astra-script"
+        icon: Video, color: "text-primary", bg: "bg-primary/5",
+        features: ["Hook Structuring", "Retention Analysis"], href: "/coming-soon"
       },
       {
         title: "AstraVibe AI", description: "AI-powered color palette and typography generator for new branding.",
-        icon: Palette, color: "text-pink-500", bg: "bg-pink-500/10",
-        features: ["Hex Code Export", "UI Previews"], href: "/tools/astra-vibe"
+        icon: Palette, color: "text-primary", bg: "bg-primary/5",
+        features: ["Hex Code Export", "UI Previews"], href: "/coming-soon"
       },
       {
         title: "AstraBlog AI", description: "Long-form SEO article writer that uses live web-search to cite real sources.",
-        icon: ScrollText, color: "text-teal-500", bg: "bg-teal-500/10",
-        features: ["Live SERP Sync", "Plagiarism Free"], href: "/tools/astra-blog"
+        icon: ScrollText, color: "text-primary", bg: "bg-primary/5",
+        features: ["Live SERP Sync", "Plagiarism Free"], href: "/tools/astra-blog", tag: "New"
       },
       {
         title: "AstraPrompt AI", description: "Prompt engineer tool that turns 'bad' prompts into high-quality instructions for Midjourney.",
-        icon: Wand2, color: "text-violet-500", bg: "bg-violet-500/10",
-        features: ["Image Gen Optimization", "LLM Tuning"], href: "/tools/astra-prompt"
+        icon: Wand2, color: "text-primary", bg: "bg-primary/5",
+        features: ["Image Gen Optimization", "LLM Tuning"], href: "/tools/astra-prompt", tag: "Active"
       }
     ]
   },
@@ -98,33 +99,33 @@ const toolCategories = [
     tools: [
       {
         title: "AstraLead AI", description: "LinkedIn scraper that writes hyper-personalized ice-breakers based on a prospect's activity.",
-        icon: Users, color: "text-blue-600", bg: "bg-blue-600/10",
-        features: ["Profile Scraping", "Outreach Gen"], href: "/tools/astra-lead"
+        icon: Users, color: "text-primary", bg: "bg-primary/5",
+        features: ["Profile Scraping", "Outreach Gen"], href: "/coming-soon"
       },
       {
         title: "AstraPitch AI", description: "Generator for custom sales decks (PPT/PDF) based solely on a client's website URL.",
-        icon: Target, color: "text-rose-600", bg: "bg-rose-600/10",
-        features: ["Pitch Structuring", "Design Export"], href: "/tools/astra-pitch"
+        icon: Target, color: "text-primary", bg: "bg-primary/5",
+        features: ["Pitch Structuring", "Design Export"], href: "/coming-soon"
       },
       {
         title: "AstraReview AI", description: "Monitors Google/G2 reviews and drafts intelligent, brand-aligned responses.",
-        icon: MessageSquareText, color: "text-amber-500", bg: "bg-amber-500/10",
-        features: ["Review Indexing", "Tone Mapping"], href: "/tools/astra-review"
+        icon: MessageSquareText, color: "text-primary", bg: "bg-primary/5",
+        features: ["Review Indexing", "Tone Mapping"], href: "/coming-soon"
       },
       {
         title: "AstraEvent AI", description: "Scans industry webinars and creates a list of potential VIP networking targets.",
-        icon: CalendarDays, color: "text-indigo-500", bg: "bg-indigo-500/10",
-        features: ["Event Scraping", "Lead Scoring"], href: "/tools/astra-event"
+        icon: CalendarDays, color: "text-primary", bg: "bg-primary/5",
+        features: ["Event Scraping", "Lead Scoring"], href: "/coming-soon"
       },
       {
         title: "AstraSQL AI", description: "Natural language to complex SQL query generator for non-technical founders.",
-        icon: Database, color: "text-emerald-600", bg: "bg-emerald-600/10",
-        features: ["PostgreSQL/MySQL", "Schema Context"], href: "/tools/astra-sql"
+        icon: Database, color: "text-primary", bg: "bg-primary/5",
+        features: ["PostgreSQL/MySQL", "Schema Context"], href: "/coming-soon"
       },
       {
         title: "AstraCommerce AI", description: "Upload a product photo; AI generates title, SEO description, and price for direct store listing.",
-        icon: ShoppingCart, color: "text-pink-600", bg: "bg-pink-600/10",
-        features: ["Image to Listing", "Auto SEO"], href: "/tools/astra-commerce"
+        icon: ShoppingCart, color: "text-primary", bg: "bg-primary/5",
+        features: ["Image to Listing", "Auto SEO"], href: "/coming-soon"
       }
     ]
   },
@@ -134,38 +135,38 @@ const toolCategories = [
     tools: [
       {
         title: "AstraTask AI", description: "Turns raw meeting transcripts into actionable Jira/Linear/Trello tasks automatically.",
-        icon: CheckSquare, color: "text-sky-500", bg: "bg-sky-500/10",
-        features: ["Meeting Ingestion", "Ticket Creation"], href: "/tools/astra-task"
+        icon: CheckSquare, color: "text-primary", bg: "bg-primary/5",
+        features: ["Meeting Ingestion", "Ticket Creation"], href: "/coming-soon"
       },
       {
         title: "AstraMail AI", description: "A highly intelligent tool that unsubscribes you from 'junk' mail autonomously.",
-        icon: MailX, color: "text-red-600", bg: "bg-red-600/10",
-        features: ["Spam Routing", "Inbox Zero Protocol"], href: "/tools/astra-mail"
+        icon: MailX, color: "text-primary", bg: "bg-primary/5",
+        features: ["Spam Routing", "Inbox Zero Protocol"], href: "/coming-soon"
       },
       {
         title: "AstraRecruit AI", description: "Scans resumes and ranks them based on a specific custom Job Description (JD).",
-        icon: UserSquare2, color: "text-fuchsia-600", bg: "bg-fuchsia-600/10",
-        features: ["Resume Parsing", "Skill Matching"], href: "/tools/astra-recruit"
+        icon: UserSquare2, color: "text-primary", bg: "bg-primary/5",
+        features: ["Resume Parsing", "Skill Matching"], href: "/coming-soon"
       },
       {
         title: "AstraLegal AI", description: "Simplified contract reader that highlights 'red flags' in Terms & Conditions immediately.",
-        icon: Scale, color: "text-slate-700", bg: "bg-slate-700/10",
-        features: ["Risk Analysis", "Clause Detection"], href: "/tools/astra-legal"
+        icon: Scale, color: "text-primary", bg: "bg-primary/5",
+        features: ["Risk Analysis", "Clause Detection"], href: "/coming-soon"
       },
       {
         title: "AstraBrand AI", description: "Omnichannel generator: inputs a topic, outputs Twitter, LinkedIn, Blog, & Newsletter drafts.",
-        icon: Megaphone, color: "text-orange-600", bg: "bg-orange-600/10",
-        features: ["Omnichannel Gen", "Style Guides"], href: "/tools/astra-brand"
+        icon: Megaphone, color: "text-primary", bg: "bg-primary/5",
+        features: ["Omnichannel Gen", "Style Guides"], href: "/coming-soon"
       },
       {
         title: "AstraFinance AI", description: "Ingests PDF invoices and bank statements, reconciling them with QuickBooks/Xero.",
-        icon: Receipt, color: "text-green-600", bg: "bg-green-600/10",
-        features: ["Line Item Extraction", "Auto-Reconciliation"], href: "/tools/astra-finance"
+        icon: Receipt, color: "text-primary", bg: "bg-primary/5",
+        features: ["Line Item Extraction", "Auto-Reconciliation"], href: "/coming-soon"
       },
       {
         title: "AstraVerify AI", description: "Identity & Deepfake Detector. Live scans calls/documents to verify 99% human authenticity.",
-        icon: ShieldCheck, color: "text-violet-600", bg: "bg-violet-600/10",
-        features: ["Deepfake Detection", "KYC Compliance"], href: "/tools/astra-verify"
+        icon: ShieldCheck, color: "text-primary", bg: "bg-primary/5",
+        features: ["Deepfake Detection", "KYC Compliance"], href: "/coming-soon"
       }
     ]
   },
@@ -175,38 +176,38 @@ const toolCategories = [
     tools: [
       {
         title: "AstraGrit AI", description: "Scans a candidate's GitHub, LeetCode, and public work history to produce a 'Grit Score' for resilience.",
-        icon: Trophy, color: "text-yellow-600", bg: "bg-yellow-600/10",
-        features: ["Grit Score", "GitHub Analysis"], href: "/tools/astra-grit"
+        icon: Trophy, color: "text-primary", bg: "bg-primary/5",
+        features: ["Grit Score", "GitHub Analysis"], href: "/coming-soon"
       },
       {
         title: "AstraRelay AI", description: "Offline-first AI communication via Mesh Networks (Bluetooth/Local Radio) when internet is unavailable.",
-        icon: Radio, color: "text-cyan-600", bg: "bg-cyan-600/10",
-        features: ["Mesh Network", "Zero Internet"], href: "/tools/astra-relay"
+        icon: Radio, color: "text-primary", bg: "bg-primary/5",
+        features: ["Mesh Network", "Zero Internet"], href: "/coming-soon"
       },
       {
         title: "AstraTrace AI", description: "AI-powered supply chain quality verifier. Scans product photos for international standard compliance.",
-        icon: ScanLine, color: "text-teal-600", bg: "bg-teal-600/10",
-        features: ["Quality Scan", "Standard Matching"], href: "/tools/astra-trace"
+        icon: ScanLine, color: "text-primary", bg: "bg-primary/5",
+        features: ["Quality Scan", "Standard Matching"], href: "/coming-soon"
       },
       {
         title: "AstraGrid AI", description: "Smart solar & energy management. Predicts load-shedding and optimizes solar/battery switching.",
-        icon: Sun, color: "text-amber-500", bg: "bg-amber-500/10",
-        features: ["Energy Forecasting", "Load Optimization"], href: "/tools/astra-grid"
+        icon: Sun, color: "text-primary", bg: "bg-primary/5",
+        features: ["Energy Forecasting", "Load Optimization"], href: "/coming-soon"
       },
       {
         title: "AstraAd AI", description: "Mimics Eye-Tracking AI to pre-analyze ad creatives, predict CTR, and optimize before launch.",
-        icon: BarChart2, color: "text-purple-600", bg: "bg-purple-600/10",
-        features: ["Heatmap Analysis", "CTR Prediction"], href: "/tools/astra-ad"
+        icon: BarChart2, color: "text-primary", bg: "bg-primary/5",
+        features: ["Heatmap Analysis", "CTR Prediction"], href: "/coming-soon"
       },
       {
         title: "AstraMatch AI", description: "Psychographic analysis of influencer audiences to match brand-perfect ambassadors with zero fake followers.",
-        icon: Heart, color: "text-rose-500", bg: "bg-rose-500/10",
-        features: ["Follower Analysis", "Brand Fit Score"], href: "/tools/astra-match"
+        icon: Heart, color: "text-primary", bg: "bg-primary/5",
+        features: ["Follower Analysis", "Brand Fit Score"], href: "/coming-soon"
       },
       {
         title: "AstraDraft AI", description: "Upload a napkin sketch and get a 1:1 scale technical 3D CAD model ready for architecture or engineering.",
-        icon: PenLine, color: "text-slate-600", bg: "bg-slate-600/10",
-        features: ["Sketch to CAD", "3D Model Export"], href: "/tools/astra-draft"
+        icon: PenLine, color: "text-primary", bg: "bg-primary/5",
+        features: ["Sketch to CAD", "3D Model Export"], href: "/coming-soon"
       }
     ]
   }
@@ -224,8 +225,8 @@ const AstraTools = () => {
 
     // If searching, search across ALL categories
     const allTools = toolCategories.flatMap(cat => cat.tools);
-    return allTools.filter(tool => 
-      tool.title.toLowerCase().includes(query) || 
+    return allTools.filter(tool =>
+      tool.title.toLowerCase().includes(query) ||
       tool.description.toLowerCase().includes(query) ||
       tool.features.some(f => f.toLowerCase().includes(query))
     );
@@ -234,7 +235,7 @@ const AstraTools = () => {
   return (
     <div className="min-h-screen bg-white selection:bg-primary/10 selection:text-primary overflow-x-hidden">
       <Header />
-      
+
       <main className="pt-24 pb-12">
         <div className="max-w-7xl mx-auto px-6">
           {/* Hero Section */}
@@ -271,7 +272,7 @@ const AstraTools = () => {
                 className="h-16 pl-14 pr-14 rounded-full border-slate-200 bg-white shadow-sm focus-visible:ring-primary focus-visible:border-primary text-base font-bold placeholder:text-slate-300 transition-all"
               />
               {searchQuery && (
-                <button 
+                <button
                   onClick={() => setSearchQuery("")}
                   className="absolute inset-y-0 right-6 flex items-center text-slate-300 hover:text-slate-600 transition-colors"
                 >
@@ -289,7 +290,7 @@ const AstraTools = () => {
           {/* Navigation Tabs - Only show when NOT searching */}
           <AnimatePresence mode="wait">
             {!searchQuery && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -299,11 +300,10 @@ const AstraTools = () => {
                   <button
                     key={cat.id}
                     onClick={() => setActiveTab(cat.id)}
-                    className={`px-8 py-3 rounded-full font-bold text-[10px] transition-all duration-300 border uppercase tracking-[0.1em] ${
-                      activeTab === cat.id 
-                        ? 'bg-slate-950 border-slate-950 text-white shadow-lg' 
-                        : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
-                    }`}
+                    className={`px-8 py-3 rounded-full font-bold text-[10px] transition-all duration-300 border uppercase tracking-[0.1em] ${activeTab === cat.id
+                      ? 'bg-slate-950 border-slate-950 text-white shadow-lg'
+                      : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
+                      }`}
                   >
                     {cat.label}
                   </button>
@@ -325,18 +325,30 @@ const AstraTools = () => {
                   className="group p-10 rounded-[2.5rem] border border-slate-200 bg-white hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 relative flex flex-col h-full"
                 >
                   <div className="flex-1">
-                    <div className={`w-14 h-14 rounded-2xl ${tool.bg} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
-                      <tool.icon className={`w-7 h-7 ${tool.color}`} />
+                    <div className="flex justify-between items-start mb-8">
+                      <div className={`w-14 h-14 rounded-2xl ${tool.bg} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                        <tool.icon className={`w-7 h-7 ${tool.color}`} />
+                      </div>
+                      {tool.tag && (
+                        <span className={cn(
+                          "text-[8px] font-black font-['Anonymous_Pro'] px-2 py-0.5 rounded-full uppercase tracking-widest",
+                          tool.tag === "Active" ? "bg-emerald-50 text-emerald-600 border border-emerald-100" :
+                          tool.tag === "New" ? "bg-primary/5 text-primary border border-primary/10" :
+                          "bg-amber-50 text-amber-600 border border-amber-100"
+                        )}>
+                          {tool.tag}
+                        </span>
+                      )}
                     </div>
-                    
-                    <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight uppercase">{tool.title}</h3>
-                    <p className="text-sm text-slate-500 mb-8 leading-relaxed font-bold">
+
+                    <h3 className="text-xl font-heading font-normal text-slate-900 mb-2 tracking-tight uppercase leading-none">{tool.title}</h3>
+                    <p className="text-[13px] text-slate-500 mb-8 leading-relaxed font-medium">
                       {tool.description}
                     </p>
 
                     <div className="space-y-3 mb-10">
                       {tool.features.map((feature) => (
-                        <div key={feature} className="flex items-center gap-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                        <div key={feature} className="flex items-center gap-3 text-[9px] font-black font-['Anonymous_Pro'] text-slate-400 uppercase tracking-widest">
                           <div className={`w-1.5 h-1.5 rounded-full bg-primary/40`} />
                           {feature}
                         </div>
@@ -344,7 +356,7 @@ const AstraTools = () => {
                     </div>
                   </div>
 
-                  <Button 
+                  <Button
                     onClick={() => window.location.href = tool.href}
                     className="w-full justify-between group/btn bg-slate-50 hover:bg-primary text-slate-900 hover:text-white border border-slate-200 hover:border-primary transition-all duration-300 rounded-full h-14 mb-3 font-bold tracking-widest uppercase text-[10px] shadow-sm"
                   >
@@ -366,8 +378,8 @@ const AstraTools = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2 uppercase tracking-tighter">No tools matched your query.</h3>
                 <p className="text-slate-500 font-bold max-w-md mx-auto">Try searching for broader keywords like 'lead', 'email', or 'web'.</p>
-                <Button 
-                  variant="link" 
+                <Button
+                  variant="link"
                   onClick={() => setSearchQuery("")}
                   className="mt-6 text-primary font-black uppercase tracking-widest text-[10px]"
                 >
@@ -378,14 +390,14 @@ const AstraTools = () => {
           </div>
 
           {/* Aggressive Impact CTA */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="mt-24 p-12 md:p-20 rounded-[3rem] bg-slate-50 border border-slate-200 text-slate-950 text-center relative overflow-hidden group shadow-sm"
           >
             <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]" />
-            
+
             <div className="relative z-10 max-w-4xl mx-auto">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 mb-10 shadow-sm">
                 <Sparkles className="w-8 h-8 text-primary" />

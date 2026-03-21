@@ -109,11 +109,11 @@ export default function GalleryHoverCarousel({
  >
  <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
  <div className="max-w-2xl">
- <h2 className="mb-4">
+ <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl lg:text-5xl mb-6">
  {heading.split('.')[0]}. <br className="hidden md:block"/>
  <span className="text-primary">{heading.split('.')[1] || ''}</span>
  </h2>
- <p className="text-lg text-slate-500 font-medium font-sans">
+ <p className="text-[15px] text-[#4B5563] font-body font-normal leading-[1.7] max-w-xl">
  Explore our collection of innovative solutions and cutting-edge technologies designed to transform your business.
  </p>
  </div>
@@ -137,9 +137,9 @@ export default function GalleryHoverCarousel({
  <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
  </div>
 
- <div className="absolute bottom-0 left-0 w-full px-8 py-8 transition-all duration-500 group-hover:h-1/2 group-hover:flex flex-col justify-center bg-white/95 backdrop-blur-md opacity-0 group-hover:opacity-100">
- <h3 className="text-[24px] font-bold text-primary font-heading tracking-tight leading-none mb-3">{item.title}</h3>
- <p className="text-slate-500 text-sm md:text-base line-clamp-3 font-sans">
+ <div className="absolute bottom-0 left-0 w-full px-8 py-8 transition-all duration-500 group-hover:h-1/2 group-hover:flex flex-col justify-center bg-white/95 backdrop-blur-md opacity-0 group-hover:opacity-100 border-t border-slate-100">
+ <h3 className="text-[16px] font-display font-normal text-primary uppercase tracking-[0.1em] mb-2">{item.title}</h3>
+ <p className="text-[13px] text-[#4B5563] font-body font-normal leading-[1.7] line-clamp-3">
  {item.summary}
  </p>
  <Button

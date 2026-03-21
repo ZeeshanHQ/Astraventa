@@ -18,52 +18,53 @@ const BrandHighlightCard = ({
   image: string;
   slug: string;
 }) => (
-  <Link to={`/why-astraventa/${slug}`} className="block h-full">
-    <div className="glass-card aura-glow group relative overflow-hidden rounded-2xl p-6 h-full transition-all duration-300">
+    <Link to={`/why-astraventa/${slug}`} className="block h-full group">
+    <div className="relative overflow-hidden pt-8 pb-6 h-full transition-all duration-300">
+      <div className="absolute top-0 left-0 right-0 h-px bg-black/5 group-hover:bg-primary/40 transition-colors duration-300" />
       <div className="relative z-10 flex h-full flex-col">
-        <div className="mb-4 flex items-center justify-between">
-          <div className="rounded-lg bg-primary/10 p-2 text-primary">
-            <Icon size={24} />
+        <div className="mb-5 flex items-center justify-between">
+          <div className="text-black/40 group-hover:text-primary transition-colors duration-300">
+            <Icon size={22} strokeWidth={1.5} />
           </div>
-          <ArrowUpRight className="text-slate-400 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" size={20} />
+          <ArrowUpRight className="text-black/15 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" size={16} />
         </div>
-        <h3 className="mb-2 text-xl font-heading font-bold text-slate-900">{title}</h3>
-        <p className="mb-6 text-sm text-slate-600 dark:text-slate-400">{description}</p>
-        <div className="mt-auto overflow-hidden rounded-xl">
+        <h3 className="mb-3 text-[14px] font-display font-normal text-black uppercase tracking-[0.12em] group-hover:text-primary transition-colors duration-300">{title}</h3>
+        <p className="mb-6 text-[13px] text-[#4B5563] font-body font-normal leading-[1.7]">{description}</p>
+        <div className="mt-auto overflow-hidden rounded-xl opacity-50 group-hover:opacity-90 transition-all duration-700">
           <img 
             src={`${image}?auto=format&fit=crop&w=600&q=80`} 
             alt={title} 
-            className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="h-32 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           />
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
     </div>
   </Link>
 );
 
+
 export function BrandHighlights() {
 	return (
-		<section className="relative w-full overflow-hidden bg-white py-8 dark:bg-slate-950">
+  <section className="relative w-full overflow-hidden bg-white py-20">
   {/* Background Glow */}
 			<div
 				aria-hidden="true"
 				className={cn(
 					'pointer-events-none absolute -top-10 left-1/2 -z-10 size-full -translate-x-1/2 rounded-full',
-					'bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-from),transparent_50%)] from-primary/5',
+					'bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.03),transparent_50%)]',
 					'blur-[100px]',
 				)}
 			/>
 
 			<div className="container mx-auto px-4">
   {/* WavePath and Intro */}
-  <div className="mb-6 flex flex-col items-center">
-  <WavePath className="mb-8 text-primary opacity-50 h-px w-[60vw]" />
+   <div className="mb-10 flex flex-col items-center">
+  <WavePath className="mb-10 text-[hsl(var(--primary))] opacity-30 h-0.5 w-[60vw]" />
   <div className="flex w-full max-w-4xl flex-col items-center text-center">
-  <h2>
-  Engineering Excellence <span className="text-primary">Without Compromise</span>
+  <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl mb-6">
+  Engineering Excellence <br /><span className="text-[hsl(var(--primary))]">Without Compromise</span>
   </h2>
-  <p className="max-w-xl text-base text-slate-600 dark:text-slate-400">
+  <p className="max-w-[560px] text-[15px] text-[#4B5563] font-body font-normal leading-[1.7]">
   We don't just write code; we architect experiences. Our philosophy is rooted in building systems that are as dependable as they are innovative.
   </p>
   </div>

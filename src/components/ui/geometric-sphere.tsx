@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 
 // --- CONFIGURATION (Astraventa Brand Colors) ---
 const CONFIG = {
- primaryColor: "41, 16, 229", // Astraventa indigo #2910E5
+ primaryColor: "126, 150, 246", // Astraventa indigo #7E96F6
  secondaryColor: "99, 131, 255", // Lighter blue accent
  sphereRotationDuration: "240s",
  gridPanDuration: "180s",
@@ -91,7 +91,7 @@ export default function GeometricSphere() {
  style={{
  transform: gridTranslate,
  backgroundImage:
- "repeating-linear-gradient(to right, rgba(41,16,229,0.06) 1px, transparent 1px), repeating-linear-gradient(to bottom, rgba(41,16,229,0.06) 1px, transparent 1px)",
+ "repeating-linear-gradient(to right, rgba(126, 150, 246,0.06) 1px, transparent 1px), repeating-linear-gradient(to bottom, rgba(126, 150, 246,0.06) 1px, transparent 1px)",
  backgroundSize: "40px 40px",
  }}
  />

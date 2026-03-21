@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, ArrowUpRight } from "lucide-react";
+import { ShinyButton } from "@/components/ui/shiny-button";
 
 const articles = [
  {
@@ -37,25 +38,25 @@ export const BlogSection = () => {
  <div className="max-w-7xl mx-auto px-6 relative z-10">
  
  {/* Section Header */}
- <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" style={{ fontStyle: 'normal' }}>
- <motion.div 
- initial={{ opacity: 0, x: -20 }}
- whileInView={{ opacity: 1, x: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.6 }}
- className="max-w-2xl"
- >
- <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 mb-6">
- <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
- <span className="technical-label !text-slate-700">Engineering Insights</span>
- </div>
- <h2>
- The <span className="text-primary">Vanguard</span> of Tech.
- </h2>
- <p className="text-lg text-slate-500 font-medium font-sans mt-4 max-w-xl">
- Deep dives, architectural decisions, and theoretical models from the Astraventa engineering team.
- </p>
- </motion.div>
+  <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+  <motion.div 
+  initial={{ opacity: 0, x: -20 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="max-w-2xl"
+  >
+  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/[0.04] border border-black/[0.08] mb-6">
+  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-pulse" />
+  <span className="text-[11px] font-display font-normal text-black/60 uppercase tracking-[0.15em]">Engineering Insights</span>
+  </div>
+  <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl lg:text-5xl">
+  The <span className="text-[hsl(var(--primary))]">Vanguard</span> of Tech.
+  </h2>
+  <p className="text-[15px] text-[#4B5563] font-body font-normal leading-[1.7] mt-4 max-w-xl">
+  Deep dives, architectural decisions, and theoretical models from the Astraventa engineering team.
+  </p>
+  </motion.div>
 
  <motion.div
  initial={{ opacity: 0, x: 20 }}
@@ -63,64 +64,63 @@ export const BlogSection = () => {
  viewport={{ once: true }}
  transition={{ duration: 0.6 }}
  >
- <button className="flex items-center gap-2 px-6 py-3 rounded-full border border-slate-200 bg-white/50 backdrop-blur-md text-sm font-bold text-slate-900 shadow-sm hover:border-[#2910E5]/30 hover:text-[#2910E5] transition-all duration-300 group">
- View All Articles
- <ArrowRight className="w-4 h-4 transition-transform" />
- </button>
+  <ShinyButton className="h-10 px-5 rounded-full text-[12px] font-display font-medium uppercase tracking-[0.1em]">
+  <span className="flex items-center gap-2 pt-[1px]">
+  View All Articles
+  <ArrowRight className="w-3.5 h-3.5" />
+  </span>
+  </ShinyButton>
  </motion.div>
  </div>
 
  {/* Blog Grid */}
  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
  {articles.map((article, index) => (
- <motion.article
- key={article.id}
- initial={{ opacity: 0, y: 30 }}
- whileInView={{ opacity: 1, y: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.6, delay: index * 0.1 }}
- className="glass-card aura-glow group relative flex flex-col rounded-3xl overflow-hidden"
- style={{ fontStyle: 'normal' }}
- >
- {/* Image Container */}
- <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
- <img 
- src={article.image} 
- alt={article.title}
- className="w-full h-full object-cover transition-transform duration-700 group-"
- />
- <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-60 mix-blend-multiply" />
+  <motion.article
+  key={article.id}
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: index * 0.1 }}
+  className="group relative flex flex-col overflow-hidden bg-white border border-black/[0.05] hover:border-primary/20 transition-all duration-300 shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)]"
+  >
+  {/* Image Container */}
+  <div className="relative aspect-[16/9] overflow-hidden bg-black/5 rounded-sm m-2">
+  <img 
+  src={article.image} 
+  alt={article.title}
+  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+  />
+  <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
+  
+  <div className="absolute top-4 left-4">
+  <span className="bg-black/90 text-white px-3 py-1 rounded-sm text-[11px] font-display font-normal uppercase tracking-[0.15em]">
+  {article.category}
+  </span>
+  </div>
+  </div>
+
+  {/* Content Container */}
+  <div className="flex flex-col flex-grow p-8 pt-4">
+  <div className="flex items-center gap-4 text-[11px] font-display font-normal text-black/40 uppercase tracking-[0.15em] mb-4">
+  <span>{article.date}</span>
+  <div className="w-1 h-1 rounded-full bg-black/10" />
+  <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{article.readTime}</span>
+  </div>
  
- <div className="absolute top-4 left-4">
- <span className="technical-label !text-[#0F172A] bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full !text-[10px]">
- {article.category}
- </span>
- </div>
- </div>
+  <h3 className="text-[16px] font-display font-normal text-black uppercase tracking-[0.1em] mb-3 group-hover:text-[hsl(var(--primary))] transition-colors duration-300 line-clamp-2">
+  {article.title}
+  </h3>
+  
+  <p className="text-[13px] text-[#4B5563] font-body font-normal leading-[1.7] mb-8 flex-grow line-clamp-3">
+  {article.excerpt}
+  </p>
 
- {/* Content Container */}
- <div className="flex flex-col flex-grow p-8">
- <div className="flex items-center gap-4 text-[11px] font-medium text-slate-400 uppercase tracking-wider mb-4">
- <span className="technical-label !text-slate-400 !text-[11px] !tracking-normal">{article.date}</span>
- <div className="w-1 h-1 rounded-full bg-slate-300" />
- <span className="technical-label !text-slate-400 !text-[11px] !tracking-normal flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{article.readTime}</span>
- </div>
-
- <h3 className="text-xl font-bold text-slate-900 mb-3 leading-snug group-hover:text-[#2910E5] transition-colors duration-300 line-clamp-2">
- {article.title}
- </h3>
- 
- <p className="text-sm text-slate-500 font-medium leading-relaxed mb-8 flex-grow line-clamp-3">
- {article.excerpt}
- </p>
-
- {/* Read Article CTA */}
- <div className="mt-auto pt-6 border-t border-slate-100/80 flex items-center justify-between">
- <span className="text-xs font-bold text-slate-900 uppercase tracking-widest group-hover:text-[#2910E5] transition-colors">Read Article</span>
- <div className="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-[#2910E5] border border-slate-200 group-hover:border-[#2910E5] flex items-center justify-center transition-all duration-300">
- <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
- </div>
- </div>
+  {/* Read Article CTA */}
+  <div className="mt-auto pt-5 border-t border-black/[0.05] flex items-center justify-between">
+  <span className="text-[11px] font-display font-normal text-black/50 uppercase tracking-[0.15em] group-hover:text-[hsl(var(--primary))] transition-colors">Read Article</span>
+  <ArrowRight className="w-4 h-4 text-black/20 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-300" />
+  </div>
  </div>
  </motion.article>
  ))}

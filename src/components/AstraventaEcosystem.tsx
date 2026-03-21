@@ -14,8 +14,8 @@ export const AstraventaEcosystem = () => {
  {/* Section Header */}
  <div className="mb-12" style={{ fontStyle: 'normal' }}>
  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50/50 border border-indigo-100/50 mb-6">
- <span className="w-1.5 h-1.5 rounded-full bg-[#2910E5]" />
- <span className="text-[10px] font-bold text-[#2910E5] uppercase tracking-[0.2em] font-heading">Our Range</span>
+ <span className="w-1.5 h-1.5 rounded-full bg-[#7E96F6]" />
+ <span className="text-[10px] font-bold text-[#7E96F6] uppercase tracking-[0.2em] font-heading">Our Range</span>
  </div>
  <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] tracking-tighter mb-4 font-heading">
  The Astraventa Ecosystem
@@ -41,12 +41,12 @@ export const AstraventaEcosystem = () => {
  >
  <div className="noise-overlay" />
  {/* Soft background glow */}
- <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2910E5]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none transition-opacity duration-700 opacity-50 group-hover:opacity-100" />
+ <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#7E96F6]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none transition-opacity duration-700 opacity-50 group-hover:opacity-100" />
  
  <div className="p-8 relative z-10 flex-col h-full justify-between flex" style={{ fontStyle: 'normal' }}>
  <div className="mb-12">
- <div className="w-12 h-12 rounded-xl bg-[#2910E5]/5 border border-[#2910E5]/10 flex items-center justify-center mb-6">
- <BarChart3 className="w-5 h-5 text-[#2910E5]" />
+ <div className="w-12 h-12 rounded-xl bg-[#7E96F6]/5 border border-[#7E96F6]/10 flex items-center justify-center mb-6">
+ <BarChart3 className="w-5 h-5 text-[#7E96F6]" />
  </div>
  <h3 className="text-2xl md:text-3xl font-bold text-[#0F172A] font-heading tracking-tight mb-3">
  LaunchPact: <span className="text-slate-400 font-normal">AI as your Co-Founder</span>
@@ -60,7 +60,7 @@ export const AstraventaEcosystem = () => {
  <div className="bg-white border border-slate-200/50 rounded-2xl p-6 shadow-sm overflow-hidden relative">
  <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
  <h4 className="text-sm font-bold text-[#0F172A] font-heading flex items-center gap-2">
- <Calendar className="w-4 h-4 text-[#2910E5]" /> Q3 Growth Roadmap
+ <Calendar className="w-4 h-4 text-[#7E96F6]" /> Q3 Growth Roadmap
  </h4>
  <span className="text-xs font-bold text-emerald-500 bg-emerald-50 px-2 py-1 rounded-md">On Track</span>
  </div>
@@ -77,7 +77,7 @@ export const AstraventaEcosystem = () => {
  </div>
  <div className="flex flex-col items-center">
  <div className={`w-4 h-4 rounded-full flex items-center justify-center z-10 ${
- item.status === 'completed' ? 'bg-[#2910E5] text-white' : 'bg-[#2910E5]/20 border-2 border-[#2910E5]'
+ item.status === 'completed' ? 'bg-[#7E96F6] text-white' : 'bg-[#7E96F6]/20 border-2 border-[#7E96F6]'
  }`}>
  {item.status === 'completed' && <CheckCircle2 className="w-3 h-3" />}
  </div>
@@ -125,7 +125,7 @@ export const AstraventaEcosystem = () => {
  </div>
 
  {/* Sleek Waveform UI */}
- <div className="h-24 bg-slate-900 rounded-xl border border-slate-800 p-4 relative overflow-hidden flex items-center justify-center gap-1 group-hover:border-[#2910E5]/50 transition-colors">
+ <div className="h-24 bg-slate-900 rounded-xl border border-slate-800 p-4 relative overflow-hidden flex items-center justify-center gap-1 group-hover:border-[#7E96F6]/50 transition-colors">
  <div className="absolute top-3 left-3 flex gap-1.5">
  <div className="w-2 h-2 rounded-full bg-slate-700" />
  <div className="w-2 h-2 rounded-full bg-slate-700" />
@@ -206,7 +206,7 @@ export const AstraventaEcosystem = () => {
  variant="outline" 
  size="lg" 
  onClick={() => navigate('/products')}
- className="h-12 px-8 bg-transparent border-slate-200 text-[#0F172A] hover:bg-slate-50 hover:text-[#2910E5] hover:border-[#2910E5]/30 font-bold font-heading rounded-full shadow-sm transition-all duration-300 group"
+ className="h-12 px-8 bg-transparent border-slate-200 text-[#0F172A] hover:bg-slate-50 hover:text-[#7E96F6] hover:border-[#7E96F6]/30 font-bold font-heading rounded-full shadow-sm transition-all duration-300 group"
  >
  Explore the Full Suite
  <ChevronRight className="ml-2 w-4 h-4 transition-transform " />

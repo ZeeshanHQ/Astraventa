@@ -17,6 +17,8 @@ import {
   Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import { useNavigate } from "react-router-dom";
 
 const HIGHLIGHTS_DATA: any = {
   "built-to-last": {
@@ -98,6 +100,7 @@ const HIGHLIGHTS_DATA: any = {
 
 export default function BrandHighlightDetail() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const data = slug ? HIGHLIGHTS_DATA[slug] : null;
 
   if (!data) return null;
@@ -152,9 +155,14 @@ export default function BrandHighlightDetail() {
                 {data.content}
               </p>
               <div className="pt-6">
-                <Button size="lg" className="btn-primary h-14 px-8 rounded-2xl shadow-xl shadow-primary/20">
+                <ShinyButton 
+                  onClick={() => navigate('/contact')}
+                  className="h-10 px-6 rounded-full font-display font-medium text-[12px] uppercase tracking-[0.1em]"
+                >
+                  <span className="flex items-center gap-2 pt-[1px]">
                   Discuss Your Vision
-                </Button>
+                  </span>
+                </ShinyButton>
               </div>
             </div>
 
@@ -193,11 +201,16 @@ export default function BrandHighlightDetail() {
                 Let's engineer a solution that outlasts the competition. 24/7 autonomous support, worldwide scale, and user-centric logic.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" className="bg-white text-primary hover:bg-slate-50 h-14 px-10 rounded-2xl font-black uppercase tracking-widest text-xs">
+                <ShinyButton 
+                  onClick={() => navigate('/contact')}
+                  className="h-10 px-6 rounded-full font-display font-medium text-[12px] uppercase tracking-[0.1em]"
+                >
+                  <span className="flex items-center gap-2 pt-[1px]">
                   Start Project
-                </Button>
-                <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 h-14 px-10 rounded-2xl font-black uppercase tracking-widest text-xs">
-                  Book A Call
+                  </span>
+                </ShinyButton>
+                <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 h-14 px-10 rounded-2xl font-black uppercase tracking-widest text-xs" asChild>
+                  <Link to="/contact">Book A Call</Link>
                 </Button>
               </div>
             </div>

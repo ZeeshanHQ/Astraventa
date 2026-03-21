@@ -62,7 +62,7 @@ const AnimatedFeatureSpotlight = React.forwardRef<HTMLElement, AnimatedFeatureSp
  {description}
  </p>
  <div className="animate-in fade-in slide-in-from-top-4 duration-700 delay-500 pt-4">
- <Button size="lg" className="h-14 px-8 bg-[#2910E5] text-white hover:bg-[#2910E5]/90 rounded-full font-bold shadow-lg transition-all " {...buttonProps}>
+ <Button size="lg" className="h-14 px-8 bg-[#7E96F6] text-white hover:bg-[#7E96F6]/90 rounded-full font-bold shadow-lg transition-all " {...buttonProps}>
  {buttonText}
  </Button>
  </div>

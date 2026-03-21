@@ -92,10 +92,10 @@ export const BackgroundLessLogo = ({ className = "", size = "md" }: BackgroundLe
 
  {/* Professional Text Layout */}
  <div className="flex flex-col">
- <span className={`font-bold ${textSizes[size]} text-foreground tracking-tight leading-tight`}>
+ <span className={`font-black ${textSizes[size]} text-foreground tracking-tighter leading-tight font-sans`}>
  Astraventa
  </span>
- <span className="text-xs text-muted-foreground -mt-1 font-medium tracking-wider uppercase">
+ <span className="text-[10px] text-muted-foreground -mt-0.5 font-bold tracking-widest uppercase font-mono">
  AI Solutions
  </span>
  </div>

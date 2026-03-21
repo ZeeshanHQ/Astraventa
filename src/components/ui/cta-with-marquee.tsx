@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // ─── Marquee Primitive ─────────────────────────────────────────────────────────
@@ -66,62 +68,24 @@ const imagesBottom = [
  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=400&fit=crop", // gradient sphere
 ];
 
-// ─── Scramble Button ───────────────────────────────────────────────────────────
-function ScrambleButton({ href, label }: { href: string; label: string }) {
- const [displayText, setDisplayText] = useState(label);
- const [isScrambling, setIsScrambling] = useState(false);
- const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*";
-
- const scramble = () => {
- if (isScrambling) return;
- setIsScrambling(true);
- let iteration = 0;
- const interval = setInterval(() => {
- setDisplayText(
- label
- .split("")
- .map((letter, index) => {
- if (index < iteration) return label[index];
- return chars[Math.floor(Math.random() * chars.length)];
- })
- .join("")
- );
- if (iteration >= label.length) {
- clearInterval(interval);
- setIsScrambling(false);
- }
- iteration += 1 / 3;
- }, 30);
- };
-
- return (
- <Link
- to={href}
- onMouseEnter={scramble}
- className="inline-block px-8 py-4 bg-[#2910E5] text-white rounded-full font-black font-heading hover:bg-[#2910E5]/90 transition-all shadow-lg shadow-[#2910E5]/25 text-base tracking-tight"
- >
- {displayText}
- </Link>
- );
-}
 
 // ─── Main Export ───────────────────────────────────────────────────────────────
 export function BrandingCTAWithMarquee() {
  return (
- <div className="relative w-full bg-white overflow-hidden border-t border-slate-100">
- <div className="container mx-auto px-6 lg:px-12 py-24">
+ <div className="relative w-full bg-white overflow-hidden border-t border-black/[0.06]">
+ <div className="container mx-auto px-6 lg:px-12 py-16 md:py-20">
  <div className="grid lg:grid-cols-2 gap-12 items-center">
 
  {/* Left: Content */}
  <div className="space-y-8">
  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
- <span className="text-[10px] font-mono font-bold text-primary uppercase tracking-widest">Brand Identity Studio</span>
+ <span className="text-[10px] font-['Anonymous_Pro'] font-bold text-primary uppercase tracking-widest">Brand Identity Studio</span>
  </div>
 
- <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-tight tracking-tight text-slate-900">
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-normal text-black tracking-[0.1em] uppercase leading-[1.1] mb-6">
  Build a Brand{" "}
- <span className="text-[#2910E5]">The World</span>{" "}
+ <span className="text-primary">The World</span>{" "}
  Won't Forget.
  </h2>
 
@@ -130,7 +94,16 @@ export function BrandingCTAWithMarquee() {
  <p className="text-base">From strategy to style guide — fully engineered.</p>
  </div>
 
- <ScrambleButton href="/contact" label="Start Your Identity" />
+ <div className="pt-4">
+    <ShinyButton
+      className="h-12 px-8 rounded-full font-display font-bold text-[14px] uppercase tracking-[0.12em]"
+      onClick={() => {}}
+    >
+      <span className="flex items-center gap-3 pt-[2px]">
+        START_IDENTITY <ArrowRight className="w-4 h-4" />
+      </span>
+    </ShinyButton>
+  </div>
  </div>
 
  {/* Right: Dual Marquee */}

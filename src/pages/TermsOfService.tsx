@@ -1,89 +1,79 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, BadgeCheck, Mail, Phone } from "lucide-react";
+import { ArrowLeft, BadgeCheck, Mail, Phone, Scale, ShieldAlert, FileText, Globe, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AstraventaLogo } from "@/components/AstraventaLogo";
+import { Footer } from "@/components/Footer";
 
 export const TermsOfService = () => {
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* Background Aesthetic */}
- <div className="fixed inset-0 overflow-hidden pointer-events-none">
- <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
- <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
- </div>
-
+ <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-teal-100">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -20 }}
- animate={{ opacity: 1, y: 0 }}
- className="sticky top-0 z-50 glass-card border-b border-white/5 bg-black/40 backdrop-blur-xl"
- >
- <div className="container mx-auto px-4 py-6 flex items-center justify-between">
+ <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+ <div className="container mx-auto px-4 py-4 flex items-center justify-between">
  <Link to="/">
- <Button variant="ghost" size="sm" className="gap-2 hover:bg-white/5">
+ <Button variant="ghost" size="sm" className="gap-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium tracking-wide">
  <ArrowLeft className="w-4 h-4" />
  Back to Home
  </Button>
  </Link>
  <AstraventaLogo size="md" />
- <div className="w-24 hidden md:block" /> {/* Spacer for balance */}
+ <div className="w-24 hidden md:block" />
  </div>
- </motion.div>
+ </div>
 
  {/* Content */}
- <div className="container relative z-10 mx-auto px-4 py-20 max-w-4xl">
+ <main className="container relative z-10 mx-auto px-4 py-20 max-w-4xl">
  <motion.div
- initial={{ opacity: 0, y: 30 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.8 }}
- className="glass-card p-8 md:p-16 rounded-[2.5rem] border-white/5 bg-black/40 backdrop-blur-2xl shadow-2xl"
+   initial={{ opacity: 0, scale: 0.98, y: 20 }}
+   animate={{ opacity: 1, scale: 1, y: 0 }}
+   transition={{ duration: 0.6, ease: "easeOut" }}
+   className="bg-white p-8 md:p-16 rounded-[2.5rem] border border-slate-200 shadow-2xl shadow-slate-200/50"
  >
  <div className="text-center mb-16">
- <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">
- <BadgeCheck className="w-4 h-4" />
- Legal Documents
+ <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest mb-6 shadow-sm">
+ <Scale className="w-3.5 h-3.5" />
+ Legal Framework
  </div>
- <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
- Terms of <span className="gradient-text">Service</span>
+ <h1 className="text-4xl md:text-6xl font-heading font-normal text-slate-900 mb-6 tracking-tight">
+ Terms of <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600 font-bold">Service</span>
  </h1>
- <p className="text-muted-foreground font-light text-lg">
- Updated on {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+ <p className="text-slate-500 font-medium text-lg max-w-2xl mx-auto leading-relaxed">
+ Governing the use of our high-velocity AI orchestration platform. <br/> Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
  </p>
  </div>
 
  <div className="space-y-16">
  <section className="group">
  <div className="flex items-center gap-4 mb-6">
- <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">1</div>
- <h2 className="text-3xl font-bold tracking-tight">Acceptance of Terms</h2>
+ <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-black border border-slate-200 shadow-sm">01</div>
+ <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Acceptance of Agreement</h2>
  </div>
- <p className="text-muted-foreground leading-relaxed text-lg font-light group-hover:text-foreground transition-colors duration-300">
+ <p className="text-slate-600 leading-relaxed text-[15px] font-medium transition-colors duration-300">
  By accessing and using Astraventa's AI automation services, you accept and agree to be bound by the terms
- and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+ and provision of this agreement. Our platform is designed for enterprise-grade autonomous intelligence, and usage implies
+ compliance with our security and ethics standards.
  </p>
  </section>
 
  <section className="group">
  <div className="flex items-center gap-4 mb-6">
- <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">2</div>
- <h2 className="text-3xl font-bold tracking-tight">Description of Service</h2>
+ <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-black border border-slate-200 shadow-sm">02</div>
+ <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Scope of AI Services</h2>
  </div>
- <p className="text-muted-foreground leading-relaxed mb-6 text-lg font-light group-hover:text-foreground transition-colors duration-300">
+ <p className="text-slate-600 leading-relaxed mb-6 text-[15px] font-medium transition-colors duration-300">
  Astraventa provides premium AI-powered automation solutions including:
  </p>
- <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+ <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
  {[
- "AI Chatbots & Assistants",
- "Web Process Automation",
- "Custom Model Integration",
- "Smart Data Analytics",
- "Cloud Infrastructure",
- "Strategic AI Consulting"
+ { title: "Autonomous Agents", icon: BadgeCheck },
+ { title: "Neural Orchestration", icon: Globe },
+ { title: "Custom Model Ops", icon: FileText },
+ { title: "Data Synthesis", icon: ShieldAlert }
  ].map((item, i) => (
- <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all">
- <div className="w-2 h-2 rounded-full bg-primary" />
- <span className="text-sm font-medium">{item}</span>
+ <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-teal-200 hover:bg-teal-50/30 transition-all shadow-sm">
+ <item.icon className="w-5 h-5 text-teal-600" />
+ <span className="text-sm font-bold text-slate-700">{item.title}</span>
  </div>
  ))}
  </div>
@@ -91,19 +81,21 @@ export const TermsOfService = () => {
 
  <section className="group">
  <div className="flex items-center gap-4 mb-6">
- <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">3</div>
- <h2 className="text-3xl font-bold tracking-tight">User Responsibilities</h2>
+ <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-black border border-slate-200 shadow-sm">03</div>
+ <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Enterprise Use & Security</h2>
  </div>
- <ul className="space-y-4">
+ <ul className="space-y-3">
  {[
- "Provide accurate business data",
- "Non-interference with AI systems",
- "Respect for intellectual property",
- "Secure handling of API keys",
- "Lawful use of automated tools"
+ "Verification of business entity data for high-integrity modeling",
+ "Strict non-interference with autonomous neural architecture",
+ "Respect for Astraventa Intellectual Property and proprietary code",
+ "Secure management of all authentication tokens and access credentials",
+ "Compliance with local and international AI safety regulations"
  ].map((item, i) => (
- <li key={i} className="flex items-center gap-4 text-muted-foreground text-lg font-light">
- <BadgeCheck className="w-5 h-5 text-primary flex-shrink-0" />
+ <li key={i} className="flex items-start gap-3 text-slate-600 text-[15px] font-medium bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+ <div className="w-5 h-5 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0 mt-0.5">
+ <Check className="w-3 h-3 text-white stroke-[3]" />
+ </div>
  {item}
  </li>
  ))}
@@ -112,38 +104,46 @@ export const TermsOfService = () => {
 
  <section className="group">
  <div className="flex items-center gap-4 mb-6">
- <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shadow-lg">4</div>
- <h2 className="text-3xl font-bold tracking-tight">Intellectual Property</h2>
+ <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-black border border-slate-200 shadow-sm">04</div>
+ <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Proprietary Rights</h2>
  </div>
- <div className="p-8 rounded-3xl bg-gradient-to-br from-white/5 to-transparent border border-white/5">
- <p className="text-muted-foreground leading-relaxed text-lg font-light italic">
- "All AI architectures, custom designs, and automated workflows developed by Astraventa remain the
- intellectual property of the company unless explicitly transferred in writing via a project-specific SLA."
+ <div className="p-8 rounded-3xl bg-slate-900 text-white relative overflow-hidden shadow-2xl">
+ <div className="absolute top-0 right-0 p-4 opacity-5">
+ <Scale className="w-32 h-32" />
+ </div>
+ <p className="text-slate-300 leading-relaxed text-[15px] font-medium relative z-10">
+ <strong className="text-white">Ownership Note:</strong> All AI architectures, proprietary neural weights, and automated workflows 
+ engineered by Astraventa remain the exclusive intellectual property of the company. Usage rights are granted 
+ per-license and do not constitute a transfer of underlying technology ownership.
  </p>
  </div>
  </section>
 
- <div className="pt-16 border-t border-white/5">
- <div className="p-8 md:p-12 rounded-[2rem] bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 text-center">
- <h3 className="text-2xl font-bold mb-4">Questions about our terms?</h3>
- <p className="text-muted-foreground mb-8 font-light">
- Our legal and support teams are available 24/7 to clarify any queries.
+ <div className="pt-12 border-t border-slate-200">
+ <div className="p-8 md:p-12 rounded-[2rem] bg-slate-900 text-white text-center shadow-2xl relative overflow-hidden">
+ <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-transparent pointer-events-none" />
+ <h3 className="text-2xl font-bold mb-4 relative z-10">Legal Consult Required?</h3>
+ <p className="text-slate-400 mb-8 font-medium text-[15px] relative z-10">
+ Our legal and engineering support teams are available 24/7 to clarify any queries.
  </p>
- <div className="flex flex-col md:flex-row gap-6 justify-center">
- <div className="flex items-center justify-center gap-3 text-primary font-bold">
- <Mail className="w-5 h-5" />
+ <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10">
+ <div className="flex items-center gap-2.5 text-white font-bold bg-white/5 px-6 py-3 rounded-xl border border-white/10 backdrop-blur-sm">
+ <Mail className="w-4 h-4 text-teal-400" />
  astraventaai@gmail.com
  </div>
- <div className="flex items-center justify-center gap-3 text-secondary font-bold">
- <Phone className="w-5 h-5" />
+ <a href="tel:+923284529264" className="flex items-center gap-2.5 text-white font-bold bg-white/5 px-6 py-3 rounded-xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
+ <Phone className="w-4 h-4 text-teal-400" />
  +92 328 4529264
- </div>
+ </a>
  </div>
  </div>
  </div>
  </div>
  </motion.div>
- </div>
+ </main>
+ <Footer />
  </div>
  );
 };
+
+export default TermsOfService;

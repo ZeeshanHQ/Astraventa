@@ -24,7 +24,7 @@ export default function AstraRelay() {
  <Header />
  <main className="pt-32 pb-20 px-6 max-w-5xl mx-auto min-h-[90vh]">
  <div className="flex items-center gap-3 mb-10">
- <div className="w-12 h-12 rounded-xl bg-cyan-600/10 flex items-center justify-center text-cyan-600">
+ <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
  <Radio className="w-6 h-6" />
  </div>
  <div>
@@ -35,8 +35,8 @@ export default function AstraRelay() {
  <WifiOff className="w-3.5 h-3.5 text-rose-400" />
  <span className="text-xs font-bold text-slate-300">Internet: OFF</span>
  <span className="w-px h-4 bg-slate-700" />
- <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
- <span className="text-xs font-bold text-cyan-400">Mesh: ACTIVE</span>
+ <Radio className="w-3.5 h-3.5 text-primary animate-pulse" />
+ <span className="text-xs font-bold text-primary">Mesh: ACTIVE</span>
  </div>
  </div>
 
@@ -61,9 +61,9 @@ export default function AstraRelay() {
  </div>
  ))}
  </div>
- <div className="bg-cyan-50 rounded-3xl p-6 border border-cyan-100">
- <h4 className="font-bold text-cyan-900 text-xs uppercase tracking-widest mb-3">Transport Layer</h4>
- <div className="space-y-2 text-xs font-mono font-medium text-cyan-700">
+ <div className="bg-primary/10 rounded-3xl p-6 border border-primary/20">
+ <h4 className="font-bold text-primary text-xs uppercase tracking-widest mb-3">Transport Layer</h4>
+ <div className="space-y-2 text-xs font-mono font-medium text-primary">
  <div>Protocol: BT 5.2 Long Range</div>
  <div>Enc: AES-256-GCM</div>
  <div>Relay Hops: 2</div>
@@ -74,7 +74,7 @@ export default function AstraRelay() {
 
  <div className="md:col-span-2 bg-slate-900 rounded-3xl border border-slate-800 flex flex-col overflow-hidden shadow-2xl" style={{ minHeight: 450 }}>
  <div className="p-4 border-b border-slate-800 flex items-center gap-2">
- <MessageCircle className="w-4 h-4 text-cyan-500" />
+ <MessageCircle className="w-4 h-4 text-primary" />
  <span className="font-bold text-slate-300 text-sm tracking-widest uppercase">Mesh Chat Log</span>
  </div>
  <div className="flex-1 p-6 space-y-4 overflow-y-auto">
@@ -84,15 +84,15 @@ export default function AstraRelay() {
  {msg.from.split("-")[1]?.[0] || "Y"}
  </div>
  <div>
- <div className={`text-[10px] font-bold mb-1 ${msg.from.includes("You") ? "text-right text-cyan-500" : "text-slate-500"}`}>{msg.from} · {msg.ts}</div>
- <div className={`text-sm p-3 rounded-2xl font-medium ${msg.from.includes("You") ? "bg-cyan-600 text-white rounded-tr-none" : "bg-slate-800 text-slate-300 border border-slate-700 rounded-tl-none"}`}>{msg.text}</div>
+ <div className={`text-[10px] font-bold mb-1 ${msg.from.includes("You") ? "text-right text-primary" : "text-slate-500"}`}>{msg.from} · {msg.ts}</div>
+ <div className={`text-sm p-3 rounded-2xl font-medium ${msg.from.includes("You") ? "bg-primary/10 text-white rounded-tr-none" : "bg-slate-800 text-slate-300 border border-slate-700 rounded-tl-none"}`}>{msg.text}</div>
  </div>
  </motion.div>
  ))}
  </div>
  <div className="p-4 border-t border-slate-800 flex gap-3">
- <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && send()} className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-cyan-500/50" placeholder="Relay a message via Mesh..." />
- <Button onClick={send} className="bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl px-6"><Send className="w-4 h-4" /></Button>
+ <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && send()} className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-primary/20" placeholder="Relay a message via Mesh..." />
+ <Button onClick={send} className="bg-primary/10 hover:bg-primary/10 text-white rounded-xl px-6"><Send className="w-4 h-4" /></Button>
  </div>
  </div>
  </div>

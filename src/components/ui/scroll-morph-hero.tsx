@@ -98,16 +98,16 @@ function FlipCard({
 
         {/* Back Face */}
         <div
-          className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-xl bg-white flex flex-col items-center justify-center p-2 border border-[#2910E5]/20"
+          className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-xl bg-white flex flex-col items-center justify-center p-2 border border-[#7E96F6]/20"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
           <div className="text-center">
-            <p className="text-[6px] font-black text-[#2910E5] uppercase tracking-widest mb-1">Module {index + 1}</p>
+            <p className="text-[6px] font-black text-[#7E96F6] uppercase tracking-widest mb-1">Module {index + 1}</p>
             <p className="text-[10px] font-bold text-slate-900 leading-tight mb-1">{name}</p>
             <div className="w-6 h-[1px] bg-slate-100 mx-auto my-1" />
             <button 
               onClick={handleNavigate}
-              className="text-[7px] font-bold text-white bg-[#2910E5] px-2 py-1 rounded-full mt-1 transform group-hover:scale-110 transition-transform"
+              className="text-[7px] font-bold text-white bg-[#7E96F6] px-2 py-1 rounded-full mt-1 transform group-hover:scale-110 transition-transform"
             >
               Open Tool
             </button>
@@ -237,7 +237,7 @@ export default function ScrollMorphHero() {
  <div 
  className="absolute inset-0 opacity-[0.03] pointer-events-none"
  style={{ 
- backgroundImage: 'linear-gradient(#2910E5 1px, transparent 1px), linear-gradient(90deg, #2910E5 1px, transparent 1px)', 
+ backgroundImage: 'linear-gradient(#7E96F6 1px, transparent 1px), linear-gradient(90deg, #7E96F6 1px, transparent 1px)', 
  backgroundSize: '50px 50px' 
  }} 
  />
@@ -251,12 +251,12 @@ export default function ScrollMorphHero() {
  animate={introPhase === "circle" && morphValue < 0.4 ? { opacity: 1 - morphValue * 2.5, y: 0 } : { opacity: 0 }}
  className="flex flex-col items-center"
  >
- <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2910E5]/5 border border-[#2910E5]/10 mb-6">
- <div className="w-1 h-1 rounded-full bg-[#2910E5] animate-pulse" />
- <span className="text-[10px] font-black text-[#2910E5] tracking-[0.2em] uppercase font-mono">Autonomous Ecosystem</span>
+ <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#7E96F6]/5 border border-[#7E96F6]/10 mb-6">
+ <div className="w-1 h-1 rounded-full bg-[#7E96F6] animate-pulse" />
+ <span className="text-[10px] font-black text-[#7E96F6] tracking-[0.2em] uppercase font-mono">Autonomous Ecosystem</span>
  </div>
  <h1 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 max-w-xl leading-[1.1]">
- The future is built on <span className="text-[#2910E5]">AI Autonomy.</span>
+ The future is built on <span className="text-[#7E96F6]">AI Autonomy.</span>
  </h1>
  <p className="text-[11px] font-bold tracking-[0.3em] text-slate-400 uppercase font-mono flex items-center gap-4">
  <span className="w-8 h-[1px] bg-slate-200" />
@@ -271,11 +271,11 @@ export default function ScrollMorphHero() {
  style={{ opacity: contentOpacity, y: contentY }}
  className="absolute top-[22%] z-50 flex flex-col items-center justify-center text-center pointer-events-none px-6"
  >
- <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2910E5]/5 border border-[#2910E5]/10 mb-4">
- <span className="text-[10px] font-black text-[#2910E5] tracking-[0.2em] uppercase font-mono">Agentic Toolbelt</span>
+ <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#7E96F6]/5 border border-[#7E96F6]/10 mb-4">
+ <span className="text-[10px] font-black text-[#7E96F6] tracking-[0.2em] uppercase font-mono">Agentic Toolbelt</span>
  </div>
  <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
- Deploy Specialized <br/> <span className="text-[#2910E5]">Intelligence.</span>
+ Deploy Specialized <br/> <span className="text-[#7E96F6]">Intelligence.</span>
  </h2>
  <p className="text-sm md:text-base text-slate-500 max-w-lg font-medium leading-relaxed">
  Scroll through our 20+ specialized AI modules. From resilient extraction to autonomous outreach, equip your stack with the power of Astraventa.

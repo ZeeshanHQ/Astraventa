@@ -53,42 +53,41 @@ const saasItems: (CardStackItem & { icon: React.ReactNode })[] = [
 
 export default function CardStackSection() {
  return (
- <section className="py-10 md:py-12 relative overflow-hidden bg-transparent">
- {/* Background Ornaments */}
- <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-10" />
- <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10" />
+  <section className="py-10 md:py-12 relative overflow-hidden bg-white">
+  {/* Background Ornaments */}
+  <div className="absolute top-0 left-1/4 w-96 h-96 bg-black/5 rounded-full blur-[120px] -z-10" />
+  <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[hsl(var(--primary))]/5 rounded-full blur-[120px] -z-10" />
 
  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
  {/* Left Content */}
- <div className="space-y-10 lg:pr-4">
- <div className="flex">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 backdrop-blur-md">
- <Sparkles className="w-3.5 h-3.5 text-primary" />
- <span className="technical-label !text-primary">Innovative Features</span>
- </div>
- </div>
- 
- <div className="space-y-6 mb-12" style={{ fontStyle: 'normal' }}>
- <h2>
- Engineering the <span className="text-primary">Future of Digital</span> Ecosystems
- </h2>
- 
- <p className="text-lg text-slate-500 leading-relaxed max-w-xl font-medium">
- Experience Astraventa's core technologies through our proprietary card-mesh interface. 
- Each layer represents a pillar of our commitment to aesthetic engineering and simplified complexity.
- </p>
- </div>
+  <div className="space-y-10 lg:pr-4">
+  <div className="flex">
+  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-black/5 border border-border/50 text-[11px] font-display font-normal uppercase tracking-[0.15em]">
+  <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--primary))]" />
+  <span className="text-black/60">INNOVATIVE FEATURES</span>
+  </div>
+  </div>
+  <div className="space-y-6 mb-12">
+  <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl lg:text-5xl">
+  Engineering the <span className="text-[hsl(var(--primary))]">Future</span> of Digital Ecosystems
+  </h2>
+  
+  <p className="text-[15px] text-[#4B5563] font-body font-normal leading-[1.7] max-w-xl">
+  Experience Astraventa's core technologies through our proprietary card-mesh interface. 
+  Each layer represents a pillar of our commitment to aesthetic engineering and simplified complexity.
+  </p>
+  </div>
 
- <div className="grid grid-cols-2 gap-6 pt-4" style={{ fontStyle: 'normal' }}>
- <div className="glass-card aura-glow p-4 rounded-2xl">
- <div className="text-3xl font-bold text-[#2910E5] mb-1">99.9%</div>
- <div className="technical-label !text-slate-500 !text-[10px]">Uptime Reliability</div>
- </div>
- <div className="glass-card aura-glow p-4 rounded-2xl">
- <div className="text-3xl font-bold text-[#2910E5] mb-1">10x</div>
- <div className="technical-label !text-slate-500 !text-[10px]">Deployment Speed</div>
- </div>
- </div>
+  <div className="grid grid-cols-2 gap-6 pt-4">
+  <div className="bg-black/[0.02] p-4 rounded-sm border border-border/50">
+  <div className="text-3xl font-heading font-normal text-black mb-1">99.9%</div>
+  <div className="text-[11px] font-display font-normal text-black/40 uppercase tracking-[0.1em]">Uptime Reliability</div>
+  </div>
+  <div className="bg-black/[0.02] p-4 rounded-sm border border-border/50">
+  <div className="text-3xl font-heading font-normal text-black mb-1">10X</div>
+  <div className="text-[11px] font-display font-normal text-black/40 uppercase tracking-[0.1em]">Deployment Speed</div>
+  </div>
+  </div>
  </div>
 
  {/* Right Content - Card Stack */}

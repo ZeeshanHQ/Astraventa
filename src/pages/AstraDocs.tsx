@@ -2,11 +2,11 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "@/components/Header";
-import { 
-  BookOpen, Search, ChevronRight, Mail, Globe, FileText, Bot, FileSearch, 
-  LineChart, MousePointerClick, Activity, ShieldCheck, PenTool, Video, Palette, 
-  ScrollText, Wand2, Users, Target, MessageSquareText, CalendarDays, Database, 
-  CheckSquare, MailX, UserSquare2, Scale, Megaphone, Receipt, ShoppingCart, 
+import {
+  BookOpen, Search, ChevronRight, Mail, Globe, FileText, Bot, FileSearch,
+  LineChart, MousePointerClick, Activity, ShieldCheck, PenTool, Video, Palette,
+  ScrollText, Wand2, Users, Target, MessageSquareText, CalendarDays, Database,
+  CheckSquare, MailX, UserSquare2, Scale, Megaphone, Receipt, ShoppingCart,
   Trophy, Radio, ScanLine, Sun, BarChart2, Heart, PenLine, ArrowRight, ExternalLink,
   Layers, Rocket, Cpu, Sparkles, Terminal, Shield, Zap, Info, List
 } from "lucide-react";
@@ -63,7 +63,7 @@ const ALL_CONTENT: Record<string, any[]> = {
 export default function AstraDocs() {
   const { toolId } = useParams<{ toolId?: string }>();
   const navigate = useNavigate();
-  
+
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("saas");
   const [activeId, setActiveId] = useState(toolId || SAAS_DOCS[0].id);
@@ -89,8 +89,8 @@ export default function AstraDocs() {
 
   const filteredItems = useMemo(() => {
     if (!searchQuery) return activeItems;
-    return activeItems.filter(i => 
-      i.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    return activeItems.filter(i =>
+      i.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       i.tagline.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [searchQuery, activeItems]);
@@ -103,9 +103,9 @@ export default function AstraDocs() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       <div className="flex pt-20 h-screen overflow-hidden">
-        
+
         {/* --- Sidebar Level 1: Global Categories --- */}
         <aside className="w-[72px] shrink-0 bg-slate-50 border-r border-slate-200 flex flex-col items-center py-6 gap-6 z-30">
           <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center mb-4">
@@ -172,7 +172,7 @@ export default function AstraDocs() {
         {/* --- Main Area: Content & TOC --- */}
         <main className="flex-1 overflow-y-auto bg-white custom-scrollbar">
           <div className="max-w-7xl mx-auto flex h-full">
-            
+
             {/* Content Column */}
             <div className="flex-1 min-w-0 px-8 md:px-16 py-12 max-w-4xl">
               <nav className="flex gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8">
@@ -191,7 +191,7 @@ export default function AstraDocs() {
                   <h1 className="text-4xl font-black text-slate-900 tracking-tight leading-none mb-3">
                     {activeDoc?.name}
                   </h1>
-                  <p className="text-lg text-slate-500 font-medium tracking-tight italic">{activeDoc?.tagline}</p>
+                  <p className="text-lg text-slate-500 font-medium tracking-tight">{activeDoc?.tagline}</p>
                 </div>
               </div>
 
@@ -245,7 +245,7 @@ export default function AstraDocs() {
                 <Link to={activeDoc?.href || "/"} className="technical-label !text-primary flex items-center gap-2 hover:translate-x-1 transition-transform">
                   View Web Instance <ExternalLink className="w-3 h-3" />
                 </Link>
-                <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Astra Docs v2.4</div>
+                <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Astra Docs v1.0</div>
               </div>
             </div>
 
@@ -270,7 +270,7 @@ export default function AstraDocs() {
                   </a>
                 ))}
               </nav>
-              
+
               <div className="mt-12 p-6 rounded-2xl bg-slate-50 border border-slate-200">
                 <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">Support</h4>
                 <p className="text-[11px] text-slate-600 font-medium mb-4 leading-relaxed">Need technical assistance with {activeDoc?.name}?</p>

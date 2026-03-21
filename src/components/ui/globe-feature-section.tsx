@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import createGlobe, { COBEOptions } from "cobe"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
@@ -24,15 +25,15 @@ export default function GlobeFeatureSection() {
  >
  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
- <span className="technical-label !text-primary">Global Infrastructure</span>
+ <span className="text-[11px] font-display font-normal text-primary uppercase tracking-[0.15em]">Global Infrastructure</span>
  </div>
  
- <h2>
+ <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl lg:text-5xl">
  Deploy Globally.<br />
  <span className="text-primary">Scale Autonomously.</span>
  </h2>
  
- <p className="text-xl text-slate-500 font-medium leading-relaxed mt-6 max-w-lg">
+ <p className="text-[15px] text-[#4B5563] font-display font-normal leading-[1.7] mt-6 max-w-lg">
  Our proprietary engineering core allows you to launch high-performance systems across any region with zero-latency infrastructure and world-class aesthetics.
  </p>
  </motion.div>
@@ -43,9 +44,14 @@ export default function GlobeFeatureSection() {
  viewport={{ once: true }}
  transition={{ duration: 0.6, delay: 0.2 }}
  >
- <Button className="btn-primary group h-14 px-8 text-base">
- Join Astraventa Network <ArrowRight className="ml-2 h-5 w-5 transition-transform" />
- </Button>
+  <ShinyButton 
+    className="h-10 px-6 rounded-full font-display font-medium text-[12px] uppercase tracking-[0.1em] flex items-center justify-center gap-2"
+    onClick={() => window.location.href = '/contact'}
+  >
+    <span className="flex items-center gap-2 pt-[1px]">
+      Join Astraventa Network <ArrowRight className="w-3.5 h-3.5" />
+    </span>
+  </ShinyButton>
  </motion.div>
  </div>
 

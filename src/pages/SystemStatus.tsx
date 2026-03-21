@@ -26,16 +26,16 @@ const SystemStatus = () => {
       
       <main className="pt-32 pb-24 px-6 overflow-hidden">
         {/* ─── HERO SECTION ─────────────────────────────────────────────────── */}
-        <section className="relative max-w-[1400px] mx-auto mb-20 bg-white rounded-[4rem] p-12 md:p-20 border border-slate-100 shadow-sm overflow-hidden text-center">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0066FF]/5 blur-[120px] rounded-full pointer-events-none" />
+        <section className="relative max-w-[1400px] mx-auto mb-20 bg-white rounded-sm p-12 md:p-20 border border-slate-100 shadow-sm overflow-hidden text-center">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[hsl(var(--primary))]/5 blur-[120px] rounded-full pointer-events-none" />
           
           <motion.div {...fadeUp}>
             <div className="inline-flex items-center gap-3 mb-10 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-full">
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-xs font-black text-emerald-700 uppercase tracking-widest leading-none">All Systems Operational // Global Sequence v4.2</span>
+              <span className="text-xs font-black text-emerald-700 uppercase tracking-widest leading-none">All Systems Operational // Global Sequence v1.0</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-black text-slate-950 tracking-tight leading-[0.9] mb-10 uppercase italic">
+            <h1 className="text-6xl md:text-8xl font-black text-slate-950 tracking-tight leading-[0.9] mb-10 uppercase">
               Infrastructure <br />
               <span className="text-slate-300">Telemetry.</span>
             </h1>
@@ -62,7 +62,7 @@ const SystemStatus = () => {
         {/* ─── SERVICE CLUSTERS ────────────────────────────────────────────── */}
         <section className="max-w-[1400px] mx-auto mb-32">
           <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-2xl font-black text-slate-950 tracking-tight uppercase italic">Service <span className="text-slate-400">Clusters</span></h2>
+            <h2 className="text-2xl font-black text-slate-950 tracking-tight uppercase">Service <span className="text-slate-400">Clusters</span></h2>
             <div className="flex-grow h-px bg-slate-200/50" />
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Updated 5s ago</span>
           </div>
@@ -73,11 +73,11 @@ const SystemStatus = () => {
                 key={i}
                 {...fadeUp}
                 transition={{ delay: i * 0.05 }}
-                className="group p-8 bg-white border border-slate-100 rounded-[2.5rem] hover:shadow-2xl hover:shadow-[#0066FF]/5 hover:border-[#0066FF]/30 transition-all duration-500"
+                className="group p-8 bg-white border border-slate-100 rounded-sm hover:shadow-2xl hover:shadow-[hsl(var(--primary))]/5 hover:border-[hsl(var(--primary))]/30 transition-all duration-500"
               >
                 <div className="flex items-start justify-between mb-8">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-[#0066FF]/5 transition-colors">
-                    <service.icon className="w-5 h-5 text-slate-400 group-hover:text-[#0066FF] transition-colors" />
+                  <div className="w-12 h-12 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-[hsl(var(--primary))]/5 transition-colors">
+                    <service.icon className="w-5 h-5 text-slate-400 group-hover:text-[hsl(var(--primary))] transition-colors" />
                   </div>
                   <div className="flex flex-col items-end">
                     <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-1.5 mb-1">
@@ -88,7 +88,7 @@ const SystemStatus = () => {
                   </div>
                 </div>
                 
-                <h4 className="text-xl font-black text-slate-900 mb-6 tracking-tight uppercase italic leading-none">{service.name}</h4>
+                <h4 className="text-xl font-black text-slate-900 mb-6 tracking-tight uppercase leading-none">{service.name}</h4>
                 
                 <div className="flex items-center justify-between text-[11px] font-black text-slate-400 uppercase tracking-widest pt-6 border-t border-slate-50">
                   <span>METRIC: LATENCY</span>
@@ -101,7 +101,7 @@ const SystemStatus = () => {
                     initial={{ width: "30%" }}
                     animate={{ width: ["40%", "45%", "42%", "48%", "40%"] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="h-full bg-[#0066FF]"
+                    className="h-full bg-[hsl(var(--primary))]"
                   />
                 </div>
               </motion.div>
@@ -110,11 +110,11 @@ const SystemStatus = () => {
         </section>
 
         {/* ─── INCIDENT HISTORY ────────────────────────────────────────────── */}
-        <section className="max-w-[1400px] mx-auto py-24 bg-slate-950 rounded-[4rem] px-12 text-white relative overflow-hidden mb-32">
+        <section className="max-w-[1400px] mx-auto py-24 bg-slate-950 rounded-sm px-12 text-white relative overflow-hidden mb-32">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 relative z-10">
             <div>
-              <div className="text-[10px] font-black text-[#0066FF] uppercase tracking-[0.3em] mb-4">Historical Fidelity</div>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-none uppercase italic">
+              <div className="text-[10px] font-black text-[hsl(var(--primary))] uppercase tracking-[0.3em] mb-4">Historical Fidelity</div>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-none uppercase">
                 Uptime <span className="text-slate-600 font-normal">History.</span>
               </h2>
             </div>
@@ -155,13 +155,13 @@ const SystemStatus = () => {
         {/* ─── SUPPORT LINK ────────────────────────────────────────────────── */}
         <section className="max-w-[800px] mx-auto py-24 text-center">
           <motion.div {...fadeUp}>
-            <h2 className="text-4xl font-black text-slate-950 mb-8 tracking-tight uppercase italic leading-none">
+            <h2 className="text-4xl font-black text-slate-950 mb-8 tracking-tight uppercase leading-none">
               Detect an <span className="text-slate-300">Anomaly?</span>
             </h2>
             <p className="text-lg text-slate-500 font-medium mb-12 max-w-xl mx-auto leading-relaxed">
               Our 24/7 global response team is standing by for enterprise-grade support and incident escalation.
             </p>
-            <button className="h-16 px-12 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-2xl font-black tracking-widest text-[11px] uppercase transition-all shadow-xl shadow-slate-200/50">
+            <button className="h-16 px-12 bg-black hover:bg-black/90 text-white border-none rounded-sm font-black tracking-widest text-[11px] uppercase transition-all shadow-xl shadow-black/10">
                Open Emergency Ticket
             </button>
           </motion.div>

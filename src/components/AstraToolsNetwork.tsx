@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import ScrollMorphHero from "@/components/ui/scroll-morph-hero";
 
 export const AstraToolsNetwork = () => {
@@ -22,20 +23,17 @@ export const AstraToolsNetwork = () => {
  transition={{ duration: 0.6, delay: 0.3 }}
  className="flex flex-col items-center"
  >
- <button 
- onClick={() => navigate('/products/astra-tools')}
- className="group relative px-10 py-5 bg-[#2910E5] rounded-full overflow-hidden shadow-[0_0_25px_rgba(41,16,229,0.15)] hover:shadow-[0_0_40px_rgba(41,16,229,0.4)] transition-all duration-500"
- >
- <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
- <div className="relative flex items-center gap-3">
- <span className="text-sm font-bold text-white tracking-[0.2em] font-heading uppercase">Explore Full Network</span>
- <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
- <ArrowUpRight className="w-4 h-4 text-white" />
- </div>
- </div>
- </button>
+  <ShinyButton 
+  onClick={() => navigate('/products/astra-tools')}
+  className="h-10 px-6 rounded-full font-display font-medium text-[12px] uppercase tracking-[0.1em]"
+  >
+  <span className="flex items-center gap-2.5 pt-[2px]">
+  Explore Full Network
+  <ArrowUpRight className="w-3.5 h-3.5" />
+  </span>
+  </ShinyButton>
  
- <p className="mt-8 text-[11px] font-mono font-bold text-slate-400 uppercase tracking-[0.2em]">
+ <p className="mt-8 text-[11px] font-display font-normal text-slate-400 uppercase tracking-[0.15em]">
  20+ Specialized Modules Ready for Deployment
  </p>
  </motion.div>

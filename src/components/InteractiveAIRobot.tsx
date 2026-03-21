@@ -200,7 +200,7 @@ export const InteractiveAIRobot = ({ mousePosition }: InteractiveAIRobotProps) =
  initial={{ scale: 0, opacity: 0 }}
  animate={{ scale: 2, opacity: 0 }}
  transition={{ duration: 1 }}
- className="absolute inset-0 border-2 border-accent rounded-full"
+ className="absolute inset-0 border-2 border-primary rounded-full"
  />
  )}
 
@@ -210,7 +210,7 @@ export const InteractiveAIRobot = ({ mousePosition }: InteractiveAIRobotProps) =
  initial={{ scale: 0, opacity: 0 }}
  animate={{ scale: 1, opacity: 1 }}
  exit={{ scale: 0, opacity: 0 }}
- className="absolute -top-8 left-1/2 -translate-x-1/2 bg-accent text-white px-2 py-1 rounded-full text-xs font-bold"
+ className="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white px-2 py-1 rounded-full text-xs font-bold"
  >
  Hey!
  </motion.div>

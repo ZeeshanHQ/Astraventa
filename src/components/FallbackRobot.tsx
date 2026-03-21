@@ -47,7 +47,7 @@ export const FallbackRobot = ({ mousePosition }: FallbackRobotProps) => {
  repeat: Infinity,
  ease: "linear",
  }}
- className="absolute inset-4 border border-secondary/30 rounded-full"
+ className="absolute inset-4 border border-black/30 rounded-full"
  />
 
  {/* Pulse Effect */}
@@ -76,7 +76,7 @@ export const FallbackRobot = ({ mousePosition }: FallbackRobotProps) => {
  }}
  className="absolute -top-4 -right-4"
  >
- <Sparkles className="w-6 h-6 text-accent" />
+ <Sparkles className="w-6 h-6 text-primary" />
  </motion.div>
  </motion.div>
  </div>

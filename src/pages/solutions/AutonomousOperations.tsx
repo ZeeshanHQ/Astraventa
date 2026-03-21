@@ -74,7 +74,7 @@ const WorkflowOrchestrator = () => {
           </div>
           <div className="text-center">
             <div className="technical-label !text-[10px] mb-1">Astra Intelligence</div>
-            <div className="text-sm font-black text-slate-900 tracking-tight italic">Refactoring Logic</div>
+            <div className="text-sm font-black text-slate-900 tracking-tight">Refactoring Logic</div>
           </div>
         </div>
 
@@ -119,7 +119,7 @@ const AutonomousOperations = () => {
               
               <h1 className="text-6xl md:text-9xl font-bold mb-8 leading-[0.9] tracking-tighter text-slate-950">
                 Autonomous <br />
-                <span className="text-primary italic font-serif">Operations.</span>
+                <span className="text-[hsl(var(--primary))] font-serif">Operations.</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-slate-500 font-medium mb-12 max-w-3xl mx-auto leading-relaxed">

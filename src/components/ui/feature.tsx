@@ -12,14 +12,14 @@ function IdentityBlueprint() {
  {/* Grid background */}
  <div 
  className="absolute inset-0 opacity-40 rounded-xl" 
- style={{ backgroundImage: 'radial-gradient(circle at center, #0066ff30 1.5px, transparent 1.5px)', backgroundSize: '16px 16px' }}
+ style={{ backgroundImage: 'radial-gradient(circle at center, var(--primary-glow) 1.5px, transparent 1.5px)', backgroundSize: '16px 16px' }}
  />
  {/* SVG drawing */}
  <svg width="120" height="120" viewBox="0 0 100 100" className="relative z-10 overflow-visible">
  {/* Outer construction circle */}
  <motion.circle 
  cx="50" cy="50" r="45" 
- fill="none" stroke="#0066FF" strokeWidth="0.5" strokeDasharray="4 4"
+ fill="none" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="4 4"
  initial={{ rotate: 0 }} animate={{ rotate: 360 }}
  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
  className="origin-center"
@@ -27,7 +27,7 @@ function IdentityBlueprint() {
  {/* Inner construction circle */}
  <motion.circle 
  cx="50" cy="50" r="30" 
- fill="none" stroke="#0066FF" strokeWidth="0.5" strokeDasharray="4 4"
+ fill="none" stroke="var(--primary)" strokeWidth="0.5" strokeDasharray="4 4"
  initial={{ rotate: 0 }} animate={{ rotate: -360 }}
  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
  className="origin-center opacity-50"
@@ -35,16 +35,16 @@ function IdentityBlueprint() {
  {/* Vector paths drawing */}
  <motion.path 
  d="M50 20 L80 80 L50 65 L20 80 Z" 
- fill="#0066FF" stroke="#0066FF" strokeWidth="2" strokeLinejoin="round" fillOpacity="0"
+ fill="var(--primary)" stroke="var(--primary)" strokeWidth="2" strokeLinejoin="round" fillOpacity="0"
  initial={{ pathLength: 0, fillOpacity: 0 }}
  animate={{ pathLength: [0, 1, 1, 0.4, 0], fillOpacity: [0, 0, 0.1, 0, 0] }}
  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
  />
  {/* Anchor points */}
- <motion.circle cx="50" cy="20" r="2.5" fill="white" stroke="#0066FF" strokeWidth="1.5" />
- <motion.circle cx="80" cy="80" r="2.5" fill="white" stroke="#0066FF" strokeWidth="1.5" />
- <motion.circle cx="20" cy="80" r="2.5" fill="white" stroke="#0066FF" strokeWidth="1.5" />
- <motion.circle cx="50" cy="65" r="2.5" fill="white" stroke="#0066FF" strokeWidth="1.5" />
+ <motion.circle cx="50" cy="20" r="2.5" fill="white" stroke="var(--primary)" strokeWidth="1.5" />
+ <motion.circle cx="80" cy="80" r="2.5" fill="white" stroke="var(--primary)" strokeWidth="1.5" />
+ <motion.circle cx="20" cy="80" r="2.5" fill="white" stroke="var(--primary)" strokeWidth="1.5" />
+ <motion.circle cx="50" cy="65" r="2.5" fill="white" stroke="var(--primary)" strokeWidth="1.5" />
  </svg>
  </div>
  )
@@ -58,9 +58,9 @@ function VisualSystem() {
  const fonts = [
  { class: "font-serif font-black", label: "Serif 900" },
  { class: "font-sans font-medium", label: "Sans 500" },
- { class: "font-mono font-normal tracking-widest", label: "Mono 400" },
+ { class: "font-['Anonymous_Pro'] font-normal tracking-widest", label: "Mono 400" },
  ]
- const colors = ["#0066FF", "#38bdf8", "#0f172a"]
+ const colors = ["var(--primary)", "var(--accent)", "#0f172a"]
 
  useEffect(() => {
  const interval = setInterval(() => {
@@ -81,7 +81,7 @@ function VisualSystem() {
  className="flex flex-col items-center mt-3"
  >
  <span className={`text-[3.5rem] leading-none text-slate-900 ${fonts[fontCombo].class}`}>Aa</span>
- <span className="text-[9px] font-mono text-slate-400 uppercase tracking-[0.2em] mt-2">
+ <span className="text-[9px] font-['Anonymous_Pro'] text-slate-400 uppercase tracking-[0.2em] mt-2">
  {fonts[fontCombo].label}
  </span>
  </motion.div>
@@ -111,13 +111,13 @@ function VisualSystem() {
  animate={{ borderColor: ["#e2e8f0", "#bfdbfe", "#e2e8f0"] }}
  transition={{ duration: 3, repeat: Infinity }}
  >
- <div className="w-2.5 h-2.5 rounded-full bg-[#0066FF]/20 flex shrink-0" />
+ <div className="w-2.5 h-2.5 rounded-full bg-primary/20 flex shrink-0" />
  <motion.div 
  className="h-1.5 bg-slate-200 rounded-full" 
  animate={{ width: ["40%", "80%", "40%"] }}
  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
  />
- <div className="ml-auto w-5 h-3 bg-[#0066FF]/10 rounded shadow-sm border border-[#0066FF]/20 shrink-0" />
+ <div className="ml-auto w-5 h-3 bg-primary/10 rounded shadow-sm border border-primary/20 shrink-0" />
  </motion.div>
  </div>
  </div>
@@ -149,7 +149,7 @@ function BrandValidator() {
  <div className="relative w-full aspect-[4/3] bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
  {/* Scanning Line */}
  <motion.div 
- className="absolute left-0 right-0 h-[2px] bg-[#0066FF] shadow-[0_0_15px_#0066FF] z-20"
+ className="absolute left-0 right-0 h-[2px] bg-primary shadow-[0_0_15px_var(--primary)] z-20"
  animate={{ top: ["0%", "100%", "0%"] }}
  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
  />
@@ -162,25 +162,25 @@ function BrandValidator() {
  className="relative z-10 flex flex-col items-center gap-3"
  >
  {scanIndex === 0 && (
- <div className="w-16 h-16 border-2 border-[#0066FF] rounded-lg rotate-45 flex items-center justify-center">
- <div className="w-8 h-8 bg-[#0066FF]/20 rounded-sm" />
+ <div className="w-10 h-10 border-2 border-primary rounded-lg rotate-45 flex items-center justify-center">
+ <div className="w-8 h-8 bg-primary/20 rounded-2xl" />
  </div>
  )}
  {scanIndex === 1 && (
  <div className="flex gap-1.5">
- <div className="w-6 h-10 bg-[#0066FF] rounded-sm" />
- <div className="w-6 h-10 bg-[#0066FF]/60 rounded-sm" />
- <div className="w-6 h-10 bg-[#0066FF]/20 rounded-sm" />
+ <div className="w-6 h-10 bg-primary rounded-2xl" />
+ <div className="w-6 h-10 bg-primary/60 rounded-2xl" />
+ <div className="w-6 h-10 bg-primary/20 rounded-2xl" />
  </div>
  )}
  {scanIndex === 2 && (
- <div className="text-4xl font-black text-[#0066FF] italic tracking-tighter">Aa</div>
+ <div className="text-4xl font-black text-[hsl(var(--primary))] tracking-tighter">Aa</div>
  )}
  
  <div className="flex flex-col items-center">
- <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">{elements[scanIndex].label}</span>
+ <span className="text-[10px] font-['Anonymous_Pro'] font-bold text-slate-400 uppercase tracking-widest">{elements[scanIndex].label}</span>
  <motion.span 
- className="text-[9px] font-mono font-black text-[#0066FF] uppercase"
+ className="text-[9px] font-['Anonymous_Pro'] font-black text-primary uppercase"
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
  transition={{ delay: 1.5 }}
@@ -193,7 +193,7 @@ function BrandValidator() {
 
  {/* Floating Status Badge */}
  <motion.div 
- className="absolute -bottom-2 -right-4 bg-[#0066FF] text-white text-[10px] font-black px-4 py-2 rounded-xl shadow-xl shadow-[#0066FF]/20 flex items-center gap-2"
+ className="absolute -bottom-2 -right-4 bg-primary text-white text-[10px] font-black px-4 py-2 rounded-xl shadow-xl shadow-primary/20 flex items-center gap-2"
  animate={{ y: [0, -5, 0] }}
  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
  >
@@ -208,13 +208,13 @@ function BrandValidator() {
 
 export function BrandingFeaturesSection() {
  return (
- <section className="bg-white px-6 py-28 border-t border-slate-100 relative overflow-hidden">
+ <section className="bg-white px-6 py-16 md:py-20 border-t border-black/[0.06] relative overflow-hidden">
  {/* Very subtle blueprint grid */}
  <div
  className="absolute inset-0 opacity-[0.025] pointer-events-none"
  style={{
  backgroundImage:
- "linear-gradient(#0066FF 0.5px, transparent 0.5px), linear-gradient(90deg, #0066FF 0.5px, transparent 0.5px)",
+ "linear-gradient(var(--primary) 0.5px, transparent 0.5px), linear-gradient(90deg, var(--primary) 0.5px, transparent 0.5px)",
  backgroundSize: "56px 56px",
  }}
  />
@@ -229,14 +229,14 @@ export function BrandingFeaturesSection() {
  className="mb-14"
  >
  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-slate-200 bg-white shadow-sm mb-6">
- <div className="w-1.5 h-1.5 rounded-full bg-[#0066FF] animate-pulse" />
- <span className="text-[11px] font-black text-slate-400 uppercase tracking-[0.15em] font-mono">
+ <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+ <span className="text-[11px] font-black text-slate-400 uppercase tracking-[0.15em] font-['Anonymous_Pro']">
  Brand Craft · What Sets Us Apart
  </span>
  </div>
- <h2 className="text-slate-900 mb-5 leading-[0.95] tracking-tight">
+ <h2 className="text-3xl md:text-5xl font-heading font-normal text-black tracking-[0.1em] uppercase leading-[1.1] mb-6">
  Where strategy meets<br />
- <span className="text-[#0066FF]">visual mastery.</span>
+ <span className="text-primary">visual mastery.</span>
  </h2>
  <p className="text-xl text-slate-500 font-medium leading-relaxed max-w-2xl">
  Three dimensions of brand excellence, animated live — because a great brand
@@ -260,7 +260,7 @@ export function BrandingFeaturesSection() {
  <IdentityBlueprint />
  </div>
  <div className="mt-4 border-t border-slate-100 pt-6">
- <h3 className="text-xl font-black text-slate-900 tracking-tight mb-2">
+ <h3 className="text-xl font-heading font-normal text-black tracking-[0.1em] uppercase leading-[1.2] mb-2">
  Identity Architecture
  </h3>
  <p className="text-slate-500 text-sm font-medium leading-relaxed">
@@ -283,7 +283,7 @@ export function BrandingFeaturesSection() {
  <VisualSystem />
  </div>
  <div className="mt-4 border-t border-slate-100 pt-6">
- <h3 className="text-xl font-black text-slate-900 tracking-tight mb-2">
+ <h3 className="text-xl font-heading font-normal text-black tracking-[0.1em] uppercase leading-[1.2] mb-2">
  Visual Language
  </h3>
  <p className="text-slate-500 text-sm font-medium leading-relaxed">
@@ -306,7 +306,7 @@ export function BrandingFeaturesSection() {
  <BrandValidator />
  </div>
  <div className="mt-4 border-t border-slate-100 pt-6">
- <h3 className="text-xl font-black text-slate-900 tracking-tight mb-2">
+ <h3 className="text-xl font-heading font-normal text-black tracking-[0.1em] uppercase leading-[1.2] mb-2">
  Brand Consistency
  </h3>
  <p className="text-slate-500 text-sm font-medium leading-relaxed">

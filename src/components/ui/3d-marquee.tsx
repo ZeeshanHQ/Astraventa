@@ -71,7 +71,7 @@ const ThreeDMarquee = ({
  {subarray.map((src, imageIndex) => (
  <div className='relative' key={imageIndex + src}>
  <img
- className='aspect-4/3 h-full w-full rounded-lg bg-neutral-100 object-cover select-none dark:bg-neutral-900 shadow-xl border border-white/10'
+ className="aspect-4/3 h-full w-full rounded-lg bg-neutral-100 object-cover select-none dark:bg-neutral-900 shadow-xl border border-border grayscale hover:grayscale-0 transition-all duration-500"
  key={imageIndex}
  src={src}
  draggable={false}

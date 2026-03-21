@@ -50,58 +50,58 @@ export const Features = () => {
  };
 
  return (
- <section id="services" className="py-32 relative">
- {/* Background Elements */}
- <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background" />
+  <section id="services" className="py-32 relative bg-white">
+  {/* Background Elements */}
+  <div className="absolute inset-0 bg-white" />
  
- <div className="container relative z-10 mx-auto px-4">
- <motion.div
- initial={{ opacity: 0, y: 30 }}
- whileInView={{ opacity: 1, y: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.8 }}
- className="text-center mb-20"
- >
- <h2 className="text-5xl md:text-6xl font-bold mb-6">
- Our <span className="gradient-text">AI Solutions</span>
- </h2>
- <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
- Cutting-edge AI and automation services that transform how businesses operate and scale.
- </p>
- </motion.div>
+  <div className="container relative z-10 mx-auto px-4">
+  <motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+  className="text-center mb-20"
+  >
+  <h2 className="text-5xl md:text-6xl font-black text-black mb-6 tracking-tighter uppercase leading-none">
+  Our <span className="text-[hsl(var(--primary))]">AI Solutions</span>
+  </h2>
+  <p className="text-xl text-black/50 max-w-2xl mx-auto font-black uppercase tracking-tight">
+  Cutting-edge AI and automation services that transform how businesses operate and scale.
+  </p>
+  </motion.div>
 
- <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
- {features.map((feature, index) => {
- const Icon = feature.icon;
- return (
- <motion.div
- key={index}
- initial={{ opacity: 0, y: 30 }}
- whileInView={{ opacity: 1, y: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.6, delay: index * 0.1 }}
- whileHover={{ y: -8, transition: { duration: 0.3 } }}
- className="group"
- >
- <div onClick={() => scrollToSection(feature.sectionId)}>
- <TiltCard className="h-full">
- <div className="glass-card p-8 rounded-2xl h-full smooth-transition hover:shadow-glow hover:border-primary/50 border border-transparent cursor-pointer">
- <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-6 glow-pulse">
- <Icon className="w-7 h-7 text-foreground" />
- </div>
- <h3 className="text-2xl font-semibold mb-4 group-hover:gradient-text smooth-transition">
- {feature.title}
- </h3>
- <p className="text-muted-foreground leading-relaxed">
- {feature.description}
- </p>
- </div>
- </TiltCard>
- </div>
- </motion.div>
- );
- })}
- </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+  {features.map((feature, index) => {
+  const Icon = feature.icon;
+  return (
+  <motion.div
+  key={index}
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: index * 0.1 }}
+  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+  className="group"
+  >
+  <div onClick={() => scrollToSection(feature.sectionId)}>
+  <TiltCard className="h-full">
+  <div className="bg-black/[0.02] p-8 rounded-sm h-full smooth-transition border border-border/50 hover:border-[hsl(var(--primary))]/30 shadow-sm cursor-pointer">
+  <div className="w-14 h-14 rounded-sm bg-black flex items-center justify-center mb-6">
+  <Icon className="w-7 h-7 text-[hsl(var(--primary))]" />
+  </div>
+  <h3 className="text-2xl font-black text-black mb-4 uppercase tracking-tighter group-hover:text-[hsl(var(--primary))] transition-colors">
+  {feature.title}
+  </h3>
+  <p className="text-black/50 leading-relaxed font-black uppercase text-xs tracking-tight">
+  {feature.description}
+  </p>
+  </div>
+  </TiltCard>
+  </div>
+  </motion.div>
+  );
+  })}
+  </div>
  </div>
  </section>
  );

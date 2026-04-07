@@ -17,7 +17,7 @@ const techStack = [
  // Row 2
  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg", label: "AWS" },
  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", label: "Docker" },
- { icon: "https://cdn.simpleicons.org/openai/000000", label: "OpenAI" },
+ { icon: "https://cdn.simpleicons.org/openai/412991", label: "OpenAI" },
  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", label: "MongoDB" },
  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg", label: "Rust" },
  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg", label: "Go" },
@@ -64,7 +64,7 @@ const MarqueeRow = ({ items, reverse = false }: { items: any[], reverse?: boolea
  <img 
  src={url}
  alt={label}
- className="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 relative z-10 p-1"
+ className="w-full h-full object-contain transition-all duration-300 relative z-10 p-1"
  />
  </div>
  ))}

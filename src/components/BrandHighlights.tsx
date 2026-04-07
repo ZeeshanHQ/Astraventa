@@ -30,7 +30,7 @@ const BrandHighlightCard = ({
         </div>
         <h3 className="mb-3 text-[14px] font-display font-normal text-black uppercase tracking-[0.12em] group-hover:text-primary transition-colors duration-300">{title}</h3>
         <p className="mb-6 text-[13px] text-[#4B5563] font-body font-normal leading-[1.7]">{description}</p>
-        <div className="mt-auto overflow-hidden rounded-xl opacity-50 group-hover:opacity-90 transition-all duration-700">
+        <div className="mt-auto overflow-hidden rounded-xl transition-all duration-700">
           <img 
             src={`${image}?auto=format&fit=crop&w=600&q=80`} 
             alt={title} 

@@ -14,7 +14,8 @@ import {
   Terminal,
   Cpu,
   Globe,
-  Radio
+  Radio,
+  Users
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ export const AdminLayout = ({ children, onLogout }: AdminLayoutProps) => {
     { icon: Database, label: "Node Manager", path: "/admin?tab=content", tab: "content" },
     { icon: Activity, label: "System Vitals", path: "/admin?tab=health", tab: "health" },
     { icon: ShieldCheck, label: "Security Mesh", path: "/admin?tab=security", tab: "security" },
+    { icon: Users, label: "Talent Acquisition", path: "/admin?tab=careers", tab: "careers" },
     { icon: Settings, label: "Core Config", path: "/admin?tab=settings", tab: "settings" },
   ];
 

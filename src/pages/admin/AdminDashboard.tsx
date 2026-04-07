@@ -25,7 +25,13 @@ import {
   Maximize2,
   RefreshCcw,
   Shield,
-  Layers
+  Layers,
+  Users,
+  Briefcase,
+  Mail,
+  ExternalLink,
+  CheckCircle2,
+  Clock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,6 +41,7 @@ import { toast } from "sonner";
 import { Link, useSearchParams } from "react-router-dom";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { cn } from "@/lib/utils";
+import { supabase, CareerPosition, CareerApplication } from "@/lib/supabase";
 
 const ADMIN_KEY = "astra2024";
 
@@ -44,14 +51,30 @@ const AdminDashboard = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [isNewPost, setIsNewPost] = useState(false);
+  const [positions, setPositions] = useState<CareerPosition[]>([]);
+  const [applications, setApplications] = useState<CareerApplication[]>([]);
+  const [isNewPosition, setIsNewPosition] = useState(false);
+  const [editingPosition, setEditingPosition] = useState<Partial<CareerPosition> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "overview";
 
   useEffect(() => {
     if (isAuthenticated) {
-      setPosts(blogService.getPosts());
+      if (activeTab === "content" || activeTab === "overview") {
+        setPosts(blogService.getPosts());
+      }
+      if (activeTab === "careers") {
+        fetchCareersData();
+      }
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, activeTab]);
+
+  const fetchCareersData = async () => {
+    const { data: posData } = await supabase.from('career_positions').select('*').order('created_at', { ascending: false });
+    const { data: appData } = await supabase.from('career_applications').select('*').order('created_at', { ascending: false });
+    if (posData) setPositions(posData);
+    if (appData) setApplications(appData);
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,6 +90,27 @@ const AdminDashboard = () => {
     setIsAuthenticated(false);
     setPassword("");
     toast.info("Session Terminated.");
+  };
+
+  const handleSavePosition = async () => {
+    if (editingPosition) {
+      const { error } = await supabase
+        .from('career_positions')
+        .upsert({
+          ...editingPosition,
+          id: isNewPosition ? undefined : editingPosition.id,
+          created_at: undefined // Let DB handle it
+        });
+
+      if (error) {
+        toast.error("Protocol failure: " + error.message);
+      } else {
+        toast.success("Position data synchronized.");
+        setEditingPosition(null);
+        setIsNewPosition(false);
+        fetchCareersData();
+      }
+    }
   };
 
   const handleSave = () => {
@@ -574,6 +618,154 @@ const AdminDashboard = () => {
     </div>
   );
 
+  const renderCareers = () => (
+    <div className="space-y-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+        <div>
+          <h2 className="text-4xl font-black text-white tracking-tighter italic font-display uppercase">Talent_Vault</h2>
+          <div className="flex items-center gap-4 mt-4">
+             <div className="px-3 py-1 bg-primary/10 border border-primary/20 rounded-md text-[9px] font-black text-primary uppercase tracking-widest font-mono">
+                {positions.length} ACTIVE_POSITIONS
+             </div>
+             <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+             <p className="text-white/20 font-mono text-[9px] uppercase tracking-[0.3em]">{applications.length} PENDING_APPLICATIONS</p>
+          </div>
+        </div>
+        <Button 
+          onClick={() => {
+            setEditingPosition({
+              title: "",
+              team: "",
+              location: "Remote",
+              type: "Full-time",
+              description: "",
+              requirements: [],
+              active: true
+            });
+            setIsNewPosition(true);
+          }} 
+          className="h-14 px-10 bg-slate-50 hover:bg-white text-black font-black rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-4 transition-all hover:scale-[1.02] active:scale-[0.98] font-display italic"
+        >
+          <Plus className="w-5 h-5" /> Initialize_New_Position
+        </Button>
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+        <div className="xl:col-span-2 space-y-8">
+          <div className="bg-white/[0.02] border border-white/5 rounded-[3rem] overflow-hidden backdrop-blur-md">
+            <div className="p-8 border-b border-white/5 flex items-center justify-between">
+              <h3 className="text-[12px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-3 italic font-display">
+                <Briefcase className="w-4 h-4 text-primary" /> Active_Listings
+              </h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-white/[0.01] border-b border-white/5">
+                    <th className="px-8 py-6 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 font-mono">Status</th>
+                    <th className="px-8 py-6 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 font-mono">Position</th>
+                    <th className="px-8 py-6 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 font-mono text-right">Ops</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {positions.map((pos) => (
+                    <tr key={pos.id} className="group/row hover:bg-white/[0.01] transition-colors">
+                      <td className="px-8 py-6">
+                        <div className={cn("inline-flex items-center gap-2 px-2 py-1 rounded bg-black border text-[8px] font-black uppercase tracking-widest", 
+                          pos.active ? "border-emerald-500/20 text-emerald-500" : "border-white/10 text-white/20")}>
+                          <div className={cn("w-1 h-1 rounded-full", pos.active ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" : "bg-white/10")} />
+                          {pos.active ? "LIVE" : "DORMANT"}
+                        </div>
+                      </td>
+                      <td className="px-8 py-6">
+                        <div className="text-[13px] font-black text-white tracking-widest uppercase mb-1">{pos.title}</div>
+                        <div className="text-[9px] text-white/20 font-black uppercase tracking-widest font-mono">{pos.team} // {pos.location}</div>
+                      </td>
+                      <td className="px-8 py-6 text-right space-x-2">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white/40 hover:text-primary transition-all"
+                          onClick={() => {
+                            setEditingPosition(pos);
+                            setIsNewPosition(false);
+                          }}
+                        >
+                          <Edit2 className="w-3.5 h-3.5" />
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white/40 hover:text-red-500 transition-all"
+                          onClick={async () => {
+                            if (confirm("Purge this position?")) {
+                              await supabase.from('career_positions').delete().eq('id', pos.id);
+                              fetchCareersData();
+                              toast.info("Position record purged.");
+                            }
+                          }}
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-8">
+           <div className="p-10 rounded-[3rem] bg-white/[0.02] border border-white/5 relative overflow-hidden group">
+            <h3 className="text-[12px] font-black text-white uppercase tracking-[0.3em] mb-10 flex items-center gap-3 italic font-display">
+              <Users className="w-4 h-4 text-emerald-500" /> Incoming_Applications
+            </h3>
+            <div className="space-y-6">
+              {applications.length === 0 ? (
+                <div className="text-[10px] text-white/10 uppercase tracking-widest text-center py-10 font-mono italic">No pending submissions</div>
+              ) : (
+                applications.map((app) => (
+                  <div key={app.id} className="p-6 rounded-2xl bg-black border border-white/5 hover:border-white/10 transition-all group/app">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[11px] font-black text-white uppercase tracking-widest">{app.full_name}</span>
+                      <span className="text-[8px] font-mono text-white/20 uppercase">{new Date(app.created_at).toLocaleDateString()}</span>
+                    </div>
+                    <div className="text-[10px] text-primary font-black uppercase tracking-widest mb-4 italic font-display">
+                      {positions.find(p => p.id === app.position_id)?.title || "Unknown Position"}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <a href={`mailto:${app.email}`} className="p-2 rounded-lg bg-white/5 text-white/40 hover:text-white transition-colors">
+                        <Mail className="w-3 h-3" />
+                      </a>
+                      {app.portfolio_url && (
+                        <a href={app.portfolio_url} target="_blank" className="p-2 rounded-lg bg-white/5 text-white/40 hover:text-white transition-colors">
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                      <div className="flex-1" />
+                      <div className="flex gap-2 opacity-0 group-hover/app:opacity-100 transition-opacity">
+                         <button 
+                          className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 hover:bg-emerald-500/20 transition-all"
+                          onClick={() => toast.success("Applicant status updated to reviewed.")}
+                         >
+                            <CheckCircle2 className="w-3 h-3" />
+                         </button>
+                         <button className="p-2 rounded-lg bg-white/5 text-white/40 hover:text-red-500 transition-all">
+                            <X className="w-3 h-3" />
+                         </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   const renderPlaceholder = (title: string) => (
     <div className="min-h-[500px] flex flex-col items-center justify-center border border-dashed border-white/10 rounded-[4rem] text-center p-12 bg-white/[0.01]">
       <div className="w-24 h-24 rounded-3xl bg-black border border-white/10 flex items-center justify-center mb-8 shadow-2xl relative">
@@ -682,6 +874,7 @@ const AdminDashboard = () => {
           {activeTab === "content" && renderContent()}
           {activeTab === "health" && renderHealth()}
           {activeTab === "security" && renderSecurity()}
+          {activeTab === "careers" && renderCareers()}
           {activeTab === "settings" && renderSettings()}
         </div>
       </motion.div>
@@ -817,6 +1010,113 @@ const AdminDashboard = () => {
                          <Save className="w-5 h-5" /> Synchronize_Node
                       </Button>
                    </div>
+                </div>
+             </motion.div>
+          </div>
+        )}
+        {editingPosition && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-end bg-black/80 backdrop-blur-2xl">
+             <motion.div 
+               initial={{ x: "100%", opacity: 0 }}
+               animate={{ x: 0, opacity: 1 }}
+               exit={{ x: "200%", opacity: 0 }}
+               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+               className="w-full max-w-4xl h-full bg-[#050505] border-l border-white/10 shadow-[0_0_100px_rgba(0,0,0,1)] flex flex-col overflow-hidden relative"
+             >
+                <div className="px-12 py-10 border-b border-white/5 bg-black flex items-center justify-between sticky top-0 z-20">
+                   <div className="flex items-center gap-8">
+                      <div className="w-16 h-16 rounded-[2rem] bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shadow-2xl">
+                        {isNewPosition ? <Plus className="w-8 h-8" /> : <Briefcase className="w-8 h-8" />}
+                      </div>
+                      <div>
+                        <h2 className="text-3xl font-black text-white italic font-display uppercase tracking-wider">{isNewPosition ? "Initialize_Position" : "Modify_Position_Record"}</h2>
+                         <div className="flex items-center gap-3 mt-1">
+                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                           <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] font-mono">POSITION_ID: <span className="text-white/40">{editingPosition.id || "NEW_NODE"}</span></span>
+                        </div>
+                      </div>
+                   </div>
+                   <Button variant="ghost" className="w-14 h-14 rounded-2xl text-white/20 hover:text-white hover:bg-white/5 border border-white/5 transition-all" onClick={() => { setEditingPosition(null); setIsNewPosition(false); }}>
+                      <X className="w-6 h-6" />
+                   </Button>
+                </div>
+
+                <div className="p-12 space-y-10 flex-1 overflow-y-auto custom-scrollbar">
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      <div className="space-y-4">
+                        <label className="text-[11px] font-black text-white/20 uppercase tracking-[0.5em] font-mono ml-4 block italic">Position_Title</label>
+                        <Input 
+                          value={editingPosition.title}
+                          onChange={(e) => setEditingPosition({...editingPosition, title: e.target.value})}
+                          className="h-20 bg-black border-white/10 text-white rounded-[2rem] font-black text-xl px-10 focus:border-primary transition-all shadow-none border italic font-display"
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[11px] font-black text-white/20 uppercase tracking-[0.5em] font-mono ml-4 block italic">Team_Allocation</label>
+                        <Input 
+                          value={editingPosition.team}
+                          onChange={(e) => setEditingPosition({...editingPosition, team: e.target.value})}
+                          className="h-20 bg-black border-white/10 text-white rounded-[2rem] font-black tracking-widest text-sm px-10 focus:border-primary transition-all shadow-none border font-display italic"
+                        />
+                      </div>
+                   </div>
+
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      <div className="space-y-4">
+                        <label className="text-[11px] font-black text-white/20 uppercase tracking-[0.5em] font-mono ml-4 block italic">Deployment_Location</label>
+                        <Input 
+                          value={editingPosition.location}
+                          onChange={(e) => setEditingPosition({...editingPosition, location: e.target.value})}
+                          className="h-20 bg-black border-white/10 text-white rounded-[2rem] font-black text-sm px-10 focus:border-primary transition-all shadow-none border italic font-display"
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[11px] font-black text-white/20 uppercase tracking-[0.5em] font-mono ml-4 block italic">Contract_Class</label>
+                        <Input 
+                          value={editingPosition.type}
+                          onChange={(e) => setEditingPosition({...editingPosition, type: e.target.value})}
+                          className="h-20 bg-black border-white/10 text-white rounded-[2rem] font-black text-sm px-10 focus:border-primary transition-all shadow-none border italic font-display"
+                        />
+                      </div>
+                   </div>
+
+                   <div className="space-y-4">
+                      <label className="text-[11px] font-black text-white/20 uppercase tracking-[0.5em] font-mono ml-4 block italic">Role_Mission_Briefing</label>
+                      <Textarea 
+                        value={editingPosition.description}
+                        onChange={(e) => setEditingPosition({...editingPosition, description: e.target.value})}
+                        className="min-h-[200px] bg-black border-white/10 text-white/80 rounded-[2.5rem] p-10 focus:border-primary transition-all font-medium leading-relaxed shadow-none border italic"
+                      />
+                   </div>
+
+                   <div className="space-y-6">
+                      <label className="flex items-center gap-5 cursor-pointer group">
+                        <div className="relative">
+                          <input 
+                              type="checkbox" 
+                              checked={editingPosition.active}
+                              onChange={(e) => setEditingPosition({...editingPosition, active: e.target.checked})}
+                              className="sr-only"
+                          />
+                          <div className={cn(
+                             "w-12 h-6 rounded-full transition-all duration-500 border border-white/10",
+                             editingPosition.active ? 'bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'bg-white/5'
+                          )} />
+                          <div className={cn(
+                             "absolute top-1 w-4 h-4 rounded-full bg-white transition-all duration-500 shadow-xl",
+                             editingPosition.active ? 'left-7' : 'left-1'
+                          )} />
+                        </div>
+                        <span className="text-[11px] font-black text-white/20 group-hover:text-white uppercase tracking-[0.3em] font-display italic transition-colors">Position_Live_In_Public_Index</span>
+                      </label>
+                   </div>
+                </div>
+
+                <div className="px-12 py-10 border-t border-white/5 bg-black flex items-center justify-end gap-6 sticky bottom-0 z-20">
+                    <button className="h-16 px-10 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] text-white/20 hover:text-white transition-all font-display italic" onClick={() => { setEditingPosition(null); setIsNewPosition(false); }}>Abort_Mission</button>
+                    <Button onClick={handleSavePosition} className="h-16 px-14 bg-emerald-500 hover:bg-emerald-600 text-white font-black rounded-2xl uppercase tracking-[0.3em] text-[12px] shadow-[0_15px_40px_rgba(16,185,129,0.2)] flex items-center gap-4 transition-all hover:scale-[1.02] active:scale-[0.98] font-display italic">
+                        <Save className="w-5 h-5" /> Commit_Changes
+                    </Button>
                 </div>
              </motion.div>
           </div>

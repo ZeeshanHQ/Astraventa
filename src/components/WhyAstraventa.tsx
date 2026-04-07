@@ -46,7 +46,6 @@ const StatusModule = ({
  initial={{ opacity: 0, scale: 0.9 }}
  whileInView={{ opacity: 1, scale: 1 }}
  viewport={{ once: true }}
- whileHover={{ y: -4, transition: { duration: 0.3 } }}
  className={`absolute px-4 py-3 bg-white/90 backdrop-blur-xl border border-black/[0.06] rounded-full z-20 shadow-lg ${className}`}
  >
  <div className="flex items-center gap-2.5 relative z-10">
@@ -124,8 +123,8 @@ export const WhyAstraventa = () => {
  desc: "Customized LLM integrations and automated reasoning engines."
  },
  { 
- label: "Fast & Beautiful", 
- title: "KINETIC DESIGN", 
+ label: "Precise & Beautiful", 
+ title: "PRECISION DESIGN", 
  icon: Activity,
  desc: "High-fidelity micro-interactions meet ultra-performance code."
  },

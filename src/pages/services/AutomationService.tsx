@@ -45,7 +45,9 @@ const StitchHeroVisual = () => {
             <img
             src={heroImage}
             alt="Automation Engineering Architecture"
-            className="w-full max-w-[550px] lg:max-w-[1000px] h-auto object-contain"
+            className="w-full max-w-[500px] lg:max-w-[780px] h-auto object-contain"
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
       </div>

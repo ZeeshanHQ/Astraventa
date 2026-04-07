@@ -425,6 +425,8 @@ const AIService = () => {
                 src={heroImage}
                 alt="Astraventa AI Infrastructure Visualization"
                 className="absolute inset-0 w-full h-full object-cover object-center"
+                loading="eager"
+                decoding="async"
               />
 
               {/* Light overlay for readability without darkening */}

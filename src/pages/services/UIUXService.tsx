@@ -42,7 +42,9 @@ const StitchHeroVisual = () => {
           <img
             src={heroImage}
             alt="UI/UX Design Architecture"
-            className="w-full max-w-[550px] lg:max-w-[850px] h-auto object-contain"
+            className="w-full max-w-[480px] lg:max-w-[720px] h-auto object-contain"
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
       </div>
@@ -172,7 +174,7 @@ const UIUXService = () => {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
 
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroOpacity = 1; // Fixed opacity — prevents hero fade on deploy
 
   // ─── ECOSYSTEM SYNC ───────────────────────────────────────────────────────
   const relatedTools = [

@@ -274,7 +274,9 @@ const BackendEngineering = () => {
                 <img
                   src={heroImage}
                   alt="Backend Engineering"
-                  className="w-full max-w-[550px] lg:max-w-[850px] h-auto object-contain relative z-10"
+                  className="w-full max-w-[500px] lg:max-w-[750px] h-auto object-contain relative z-10"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
             </motion.div>

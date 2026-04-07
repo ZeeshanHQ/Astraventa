@@ -52,7 +52,9 @@ const StitchHeroVisual = () => {
           <img
             src={heroImage}
             alt="AI Chatbot Architecture"
-            className="w-full max-w-[650px] lg:max-w-[1050px] h-auto object-contain drop-shadow-2xl"
+            className="w-full max-w-[560px] lg:max-w-[780px] h-auto object-contain drop-shadow-2xl"
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
       </div>
@@ -103,7 +105,7 @@ export const AIChatbots = () => {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
 
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroOpacity = 1; // Fixed opacity — prevents hero fade on deploy
 
   const services = [
     {

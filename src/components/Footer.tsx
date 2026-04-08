@@ -105,13 +105,13 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative py-20 border-t border-slate-200/50 bg-white" style={{ fontStyle: 'normal' }}>
-      <div className="container mx-auto px-6 max-w-7xl">
+    <footer className="relative py-12 md:py-20 border-t border-slate-200/50 bg-white" style={{ fontStyle: 'normal' }}>
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
 
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 mb-12">
 
-          {/* Brand & Newsletter Column (Spans 3 columns on large screens) */}
+          {/* Brand & Newsletter Column */}
           <div className="lg:col-span-3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -119,24 +119,24 @@ export const Footer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-6">
-                <AstraventaLogo size="lg" />
+              <div className="mb-5">
+                <AstraventaLogo size="nav" className="max-w-[240px]" />
               </div>
-              <p className="text-[13px] text-[#4B5563] font-body font-normal mb-8 max-w-sm leading-[1.7]">
+              <p className="text-[13px] text-[#4B5563] font-body font-normal mb-6 max-w-sm leading-[1.7]">
                 Architecting the autonomous enterprise. We build resilient AI modules and high-performance engineering systems for visionary companies.
               </p>
 
               {/* Newsletter Subscription */}
-              <div className="mb-8 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+              <div className="mb-6 p-4 sm:p-6 bg-slate-50 rounded-2xl border border-slate-100">
                 <h4 className="font-display font-normal text-slate-900 text-[13px] uppercase tracking-[0.1em] mb-2">Join the Vanguard</h4>
-                <p className="text-xs text-[#4B5563] mb-4">Get our latest engineering insights and AI research delivered monthly.</p>
-                <div className="flex items-center gap-2">
+                <p className="text-xs text-[#4B5563] mb-4">Get our latest engineering insights delivered monthly.</p>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                   <input
                     type="email"
-                    placeholder="Engineering email"
+                    placeholder="Your email"
                     className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all bg-white font-medium"
                   />
-                  <button className="h-10 px-4 bg-black hover:bg-black/90 text-white rounded-full text-[14px] font-display font-bold uppercase tracking-[0.15em] transition-all flex items-center justify-center border-none shadow-none">
+                  <button className="h-10 px-4 bg-black hover:bg-black/90 text-white rounded-full text-[13px] font-display font-bold uppercase tracking-[0.1em] transition-all flex items-center justify-center border-none shadow-none whitespace-nowrap">
                     Subscribe
                   </button>
                 </div>
@@ -152,7 +152,7 @@ export const Footer = () => {
                       href={social.href}
                       aria-label={social.label}
                       whileHover={{ y: -2 }}
-                      className="w-10 h-10 rounded-sm bg-white border border-border/50 flex items-center justify-center hover:border-primary/30 hover:bg-primary/5 group transition-all"
+                      className="w-9 h-9 rounded-lg bg-white border border-border/50 flex items-center justify-center hover:border-primary/30 hover:bg-primary/5 group transition-all"
                     >
                       <Icon className="w-4 h-4 text-black/40 group-hover:text-primary transition-colors" />
                     </motion.a>
@@ -165,8 +165,8 @@ export const Footer = () => {
           {/* Spacer for large screens */}
           <div className="hidden lg:block lg:col-span-1 border-r border-slate-100/50" />
 
-          {/* Links Categories (Spans 8 columns total) */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-8 pl-0 lg:pl-8">
+          {/* Links Categories */}
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-6 pl-0 lg:pl-8">
             {footerLinks.map((section, index) => (
               <motion.div
                 key={index}
@@ -236,15 +236,16 @@ export const Footer = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="pt-8 border-t border-slate-200/50 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="pt-8 border-t border-slate-200/50 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left"
         >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="technical-label !text-black/40 !capitalize ![text-transform:none] tracking-normal">[ Status: All systems operational ] • © 2026 Astraventa Inc.</span>
+            <span className="technical-label !text-black/40 !capitalize ![text-transform:none] tracking-normal text-xs">© 2026 Astraventa Inc. • All systems operational</span>
           </div>
-          <div className="flex gap-8 text-[12px] text-black/30 font-display font-normal uppercase tracking-[0.1em]">
-            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy_Policy</Link>
-            <Link to="/terms" className="hover:text-primary transition-colors">Terms_of_Service</Link>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-[11px] text-black/30 font-display font-normal uppercase tracking-[0.1em]">
+            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-primary transition-colors">Terms</Link>
+            <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </div>
         </motion.div>
       </div>

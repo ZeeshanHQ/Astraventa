@@ -32,12 +32,12 @@ export const AdminLayout = ({ children, onLogout }: AdminLayoutProps) => {
   const location = useLocation();
 
   const menuItems = [
-    { icon: LayoutDashboard, label: "Command Center", path: "/admin", tab: "overview" },
-    { icon: Database, label: "Node Manager", path: "/admin?tab=content", tab: "content" },
-    { icon: Activity, label: "System Vitals", path: "/admin?tab=health", tab: "health" },
-    { icon: ShieldCheck, label: "Security Mesh", path: "/admin?tab=security", tab: "security" },
-    { icon: Users, label: "Talent Acquisition", path: "/admin?tab=careers", tab: "careers" },
-    { icon: Settings, label: "Core Config", path: "/admin?tab=settings", tab: "settings" },
+    { icon: LayoutDashboard, label: "Overview", path: "/admin", tab: "overview" },
+    { icon: Database, label: "Content", path: "/admin?tab=content", tab: "content" },
+    { icon: Activity, label: "System Health", path: "/admin?tab=health", tab: "health" },
+    { icon: ShieldCheck, label: "Security", path: "/admin?tab=security", tab: "security" },
+    { icon: Users, label: "Careers", path: "/admin?tab=careers", tab: "careers" },
+    { icon: Settings, label: "Settings", path: "/admin?tab=settings", tab: "settings" },
   ];
 
   const currentTab = new URLSearchParams(location.search).get("tab") || "overview";

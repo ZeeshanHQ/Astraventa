@@ -152,14 +152,19 @@ interface HeaderProps {
 
 export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -181,13 +186,13 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
       <div className="w-full max-w-[1400px] mx-auto px-6 flex items-center justify-between">
         {/* Logo - Left */}
         <div className="flex-shrink-0 flex items-center gap-4">
-          <Link to="/" className="flex items-center">
-            <AstraventaLogo size="lg" className="mr-0" />
+          <Link to="/" className="flex items-center py-1">
+            <AstraventaLogo size="nav" className="mr-0" />
           </Link>
 
-          {/* Mobile Toggle */}
+        {/* Mobile Toggle */}
           <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className={cn(
                   "rounded-full w-10 h-10",
@@ -196,64 +201,64 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-full sm:max-w-md p-0 bg-white border-r-0">
+              <SheetContent side="left" className="w-[85vw] max-w-sm p-0 bg-white border-r-0 overflow-hidden">
                 <div className="flex flex-col h-full">
-                  <div className="p-6 border-b flex items-center justify-between">
-                    <AstraventaLogo size="md" />
-                    <SheetTrigger asChild>
-                      <Button variant="ghost" size="icon" className="rounded-full">
-                        <X className="w-5 h-5" />
-                      </Button>
-                    </SheetTrigger>
+                  <div className="p-4 border-b flex items-center justify-between shrink-0">
+                    <AstraventaLogo size="sm" />
+                    <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setMobileOpen(false)}>
+                      <X className="w-5 h-5" />
+                    </Button>
                   </div>
 
-                  <div className="flex-1 overflow-y-auto py-8 px-6 space-y-10">
+                  <div className="flex-1 overflow-y-auto py-6 px-4 space-y-8">
                     {/* Solution Section */}
-                    <div className="space-y-4">
-                      <h5 className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold">Solution</h5>
-                      <div className="grid gap-2">
-                        {[...services, ...products].map((item) => (
-                          <Link key={item.title} to={item.href} className="flex items-center gap-4 p-3 rounded-2xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-100">
-                            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-500">
+                    <div className="space-y-3">
+                      <h5 className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold px-1">Services</h5>
+                      <div className="grid gap-1">
+                        {services.map((item) => (
+                          <Link key={item.title} to={item.href} onClick={() => setMobileOpen(false)}
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all">
+                            <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-500 shrink-0">
                               {item.icon}
                             </div>
                             <div>
-                              <h6 className="text-sm font-display font-bold text-slate-900">{item.title}</h6>
-                              <p className="text-[11px] text-slate-500 line-clamp-1">{item.description}</p>
+                              <h6 className="text-sm font-bold text-slate-900 leading-none mb-0.5">{item.title}</h6>
+                              <p className="text-[11px] text-slate-400 line-clamp-1">{item.description}</p>
                             </div>
                           </Link>
                         ))}
                       </div>
                     </div>
 
-                    {/* Venture Studio */}
-                    <div className="space-y-4">
-                      <h5 className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold">Venture Studio</h5>
-                      <div className="grid gap-2">
-                        {venturePortfolio.map((item) => (
-                          <Link key={item.title} to={item.href} className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                            <div className="flex items-center gap-4">
-                              <div className="text-primary">{item.icon}</div>
-                              <div>
-                                <h6 className="text-sm font-display font-bold text-slate-900">{item.title}</h6>
-                                <p className="text-[11px] text-slate-400">{item.tag}</p>
-                              </div>
+                    {/* Products Section */}
+                    <div className="space-y-3">
+                      <h5 className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold px-1">Products</h5>
+                      <div className="grid gap-1">
+                        {products.map((item) => (
+                          <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all">
+                            <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-500 shrink-0">
+                              {item.icon}
                             </div>
-                            <ArrowUpRight className="w-4 h-4 text-slate-300" />
-                          </Link>
+                            <div>
+                              <h6 className="text-sm font-bold text-slate-900 leading-none mb-0.5">{item.title}</h6>
+                              <p className="text-[11px] text-slate-400 line-clamp-1">{item.description}</p>
+                            </div>
+                          </a>
                         ))}
                       </div>
                     </div>
 
                     {/* AstraLab */}
-                    <div className="space-y-4">
-                      <h5 className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold">AstraLab</h5>
+                    <div className="space-y-3">
+                      <h5 className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold px-1">AstraLab Tools</h5>
                       <div className="grid grid-cols-2 gap-2">
                         {astraLabCategories.flatMap(c => c.tools.slice(0, 2)).map((tool) => (
-                          <Link key={tool.title} to={tool.href} className="flex flex-col gap-2 p-3 rounded-xl border border-slate-100 hover:bg-slate-50">
-                            <div className="flex items-center gap-3">
-                              <div className="text-slate-400">{tool.icon}</div>
-                              <span className="text-xs font-bold text-slate-700">{tool.title}</span>
+                          <Link key={tool.title} to={tool.href} onClick={() => setMobileOpen(false)}
+                            className="flex flex-col gap-1.5 p-3 rounded-xl border border-slate-100 hover:bg-slate-50">
+                            <div className="flex items-center gap-2">
+                              <div className="text-slate-400 [&>svg]:w-3.5 [&>svg]:h-3.5">{tool.icon}</div>
+                              <span className="text-xs font-bold text-slate-700 leading-none">{tool.title}</span>
                             </div>
                             {tool.tag && (
                               <span className={cn(
@@ -267,27 +272,31 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
                             )}
                           </Link>
                         ))}
-                        <Link to="/products/astra-tools" className="flex items-center justify-center gap-2 p-3 rounded-xl border border-primary/20 bg-primary/5 text-primary text-xs font-bold">
-                          View All <Plus className="w-3 h-3" />
+                        <Link to="/products/astra-tools" onClick={() => setMobileOpen(false)}
+                          className="flex items-center justify-center gap-2 p-3 rounded-xl border border-primary/20 bg-primary/5 text-primary text-xs font-bold col-span-2">
+                          View All Tools <Plus className="w-3 h-3" />
                         </Link>
                       </div>
                     </div>
 
-                    {/* Others */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <Link to="/about" className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                    {/* Company + Resources row */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <Link to="/about" onClick={() => setMobileOpen(false)}
+                        className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
                         <Users className="w-5 h-5 mx-auto mb-2 text-slate-400" />
                         <span className="text-xs font-bold text-slate-900">Company</span>
                       </Link>
-                      <Link to="/blog" className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                      <Link to="/blog" onClick={() => setMobileOpen(false)}
+                        className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
                         <BookOpen className="w-5 h-5 mx-auto mb-2 text-slate-400" />
                         <span className="text-xs font-bold text-slate-900">Resources</span>
                       </Link>
                     </div>
                   </div>
 
-                  <div className="p-6 bg-slate-50 border-t">
-                    <Button onClick={() => navigate('/contact')} className="w-full py-6 rounded-2xl font-bold font-heading shadow-xl bg-black hover:bg-slate-900">
+                  <div className="p-4 bg-slate-50 border-t shrink-0">
+                    <Button onClick={() => { navigate('/contact'); setMobileOpen(false); }}
+                      className="w-full h-12 rounded-2xl font-bold font-heading shadow-xl bg-black hover:bg-slate-900 text-[13px]">
                       Start Project &rarr;
                     </Button>
                   </div>

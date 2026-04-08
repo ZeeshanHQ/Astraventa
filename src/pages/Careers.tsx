@@ -168,6 +168,7 @@ const Careers = () => {
   const [selectedRole, setSelectedRole] = useState<CareerPosition | null>(null);
   const [isApplying, setIsApplying] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [externalApplicationFormUrl, setExternalApplicationFormUrl] = useState("");
   
   // Application form state
   const [appForm, setAppForm] = useState({
@@ -195,6 +196,11 @@ const Careers = () => {
     };
 
     fetchRoles();
+  }, []);
+
+  useEffect(() => {
+    const savedUrl = window.localStorage.getItem("career_external_form_url") || "";
+    setExternalApplicationFormUrl(savedUrl);
   }, []);
 
   const handleApply = async (e: React.FormEvent) => {
@@ -579,6 +585,18 @@ const Careers = () => {
                         <p className="text-[13px] text-[#6B7280] font-normal leading-[1.7] line-clamp-2 max-w-2xl">
                           {role.description}
                         </p>
+                        {!!role.requirements?.length && (
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {role.requirements.slice(0, 3).map((requirement) => (
+                              <span
+                                key={requirement}
+                                className="inline-flex items-center px-2.5 py-1 rounded-full border border-black/[0.08] bg-black/[0.02] text-[10px] text-black/45"
+                              >
+                                {requirement}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
                       {/* Meta */}
@@ -598,12 +616,24 @@ const Careers = () => {
 
                       {/* CTA */}
                       <div className="shrink-0">
-                        <button 
-                          onClick={() => setSelectedRole(role)}
-                          className="inline-flex items-center gap-2 h-9 px-5 border border-black/[0.08] rounded-xl group-hover:border-foreground group-hover:bg-foreground group-hover:text-white transition-all font-display font-normal text-[10px] uppercase tracking-[0.18em] text-black/50"
-                        >
-                          Apply <ChevronRight className="w-3 h-3" />
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <button 
+                            onClick={() => setSelectedRole(role)}
+                            className="inline-flex items-center gap-2 h-9 px-5 border border-black/[0.08] rounded-xl group-hover:border-foreground group-hover:bg-foreground group-hover:text-white transition-all font-display font-normal text-[10px] uppercase tracking-[0.18em] text-black/50"
+                          >
+                            Quick Apply <ChevronRight className="w-3 h-3" />
+                          </button>
+                          {externalApplicationFormUrl && (
+                            <a
+                              href={externalApplicationFormUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 h-9 px-4 border border-primary/20 rounded-xl text-primary hover:bg-primary/5 transition-all font-display font-normal text-[10px] uppercase tracking-[0.14em]"
+                            >
+                              Apply via Form
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -807,6 +837,16 @@ const Careers = () => {
                     <p className="text-[12px] text-black/40 font-display font-normal uppercase tracking-widest mt-1">
                       {selectedRole.team} // {selectedRole.location}
                     </p>
+                    {externalApplicationFormUrl && (
+                      <a
+                        href={externalApplicationFormUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center mt-3 px-3 py-1.5 rounded-full border border-primary/20 text-primary text-[10px] uppercase tracking-[0.12em] hover:bg-primary/5 transition-all"
+                      >
+                        Apply via external form
+                      </a>
+                    )}
                   </div>
                   <button 
                     onClick={() => setSelectedRole(null)}

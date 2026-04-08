@@ -44,6 +44,7 @@ import { cn } from "@/lib/utils";
 import { supabase, CareerPosition, CareerApplication } from "@/lib/supabase";
 
 const ADMIN_KEY = "astra2024";
+const CAREER_EXTERNAL_FORM_LINK_KEY = "career_external_form_url";
 
 const AdminDashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,6 +58,7 @@ const AdminDashboard = () => {
   const [editingPosition, setEditingPosition] = useState<Partial<CareerPosition> | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "overview";
+  const [careerExternalFormUrl, setCareerExternalFormUrl] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -68,6 +70,11 @@ const AdminDashboard = () => {
       }
     }
   }, [isAuthenticated, activeTab]);
+
+  useEffect(() => {
+    const savedFormUrl = window.localStorage.getItem(CAREER_EXTERNAL_FORM_LINK_KEY) || "";
+    setCareerExternalFormUrl(savedFormUrl);
+  }, []);
 
   const fetchCareersData = async () => {
     const { data: posData } = await supabase.from('career_positions').select('*').order('created_at', { ascending: false });
@@ -111,6 +118,11 @@ const AdminDashboard = () => {
         fetchCareersData();
       }
     }
+  };
+
+  const handleSaveCareerFormLink = () => {
+    window.localStorage.setItem(CAREER_EXTERNAL_FORM_LINK_KEY, careerExternalFormUrl.trim());
+    toast.success("Career form link saved.");
   };
 
   const handleSave = () => {
@@ -622,13 +634,13 @@ const AdminDashboard = () => {
     <div className="space-y-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
         <div>
-          <h2 className="text-4xl font-black text-white tracking-tighter italic font-display uppercase">Talent_Vault</h2>
+          <h2 className="text-4xl font-black text-white tracking-tighter italic font-display uppercase">Careers Manager</h2>
           <div className="flex items-center gap-4 mt-4">
              <div className="px-3 py-1 bg-primary/10 border border-primary/20 rounded-md text-[9px] font-black text-primary uppercase tracking-widest font-mono">
-                {positions.length} ACTIVE_POSITIONS
+                {positions.length} OPEN JOBS
              </div>
              <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
-             <p className="text-white/20 font-mono text-[9px] uppercase tracking-[0.3em]">{applications.length} PENDING_APPLICATIONS</p>
+             <p className="text-white/20 font-mono text-[9px] uppercase tracking-[0.3em]">{applications.length} APPLICATIONS</p>
           </div>
         </div>
         <Button 
@@ -646,7 +658,7 @@ const AdminDashboard = () => {
           }} 
           className="h-14 px-10 bg-slate-50 hover:bg-white text-black font-black rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-4 transition-all hover:scale-[1.02] active:scale-[0.98] font-display italic"
         >
-          <Plus className="w-5 h-5" /> Initialize_New_Position
+          <Plus className="w-5 h-5" /> Add New Job
         </Button>
       </div>
 
@@ -655,7 +667,7 @@ const AdminDashboard = () => {
           <div className="bg-white/[0.02] border border-white/5 rounded-[3rem] overflow-hidden backdrop-blur-md">
             <div className="p-8 border-b border-white/5 flex items-center justify-between">
               <h3 className="text-[12px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-3 italic font-display">
-                <Briefcase className="w-4 h-4 text-primary" /> Active_Listings
+                <Briefcase className="w-4 h-4 text-primary" /> Job Listings
               </h3>
             </div>
             <div className="overflow-x-auto">
@@ -664,7 +676,7 @@ const AdminDashboard = () => {
                   <tr className="bg-white/[0.01] border-b border-white/5">
                     <th className="px-8 py-6 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 font-mono">Status</th>
                     <th className="px-8 py-6 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 font-mono">Position</th>
-                    <th className="px-8 py-6 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 font-mono text-right">Ops</th>
+                    <th className="px-8 py-6 text-[9px] font-black uppercase tracking-[0.4em] text-white/20 font-mono text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
@@ -674,7 +686,7 @@ const AdminDashboard = () => {
                         <div className={cn("inline-flex items-center gap-2 px-2 py-1 rounded bg-black border text-[8px] font-black uppercase tracking-widest", 
                           pos.active ? "border-emerald-500/20 text-emerald-500" : "border-white/10 text-white/20")}>
                           <div className={cn("w-1 h-1 rounded-full", pos.active ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" : "bg-white/10")} />
-                          {pos.active ? "LIVE" : "DORMANT"}
+                          {pos.active ? "ACTIVE" : "INACTIVE"}
                         </div>
                       </td>
                       <td className="px-8 py-6">
@@ -698,10 +710,10 @@ const AdminDashboard = () => {
                           size="icon" 
                           className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white/40 hover:text-red-500 transition-all"
                           onClick={async () => {
-                            if (confirm("Purge this position?")) {
+                            if (confirm("Delete this job?")) {
                               await supabase.from('career_positions').delete().eq('id', pos.id);
                               fetchCareersData();
-                              toast.info("Position record purged.");
+                              toast.info("Job deleted.");
                             }
                           }}
                         >
@@ -717,13 +729,28 @@ const AdminDashboard = () => {
         </div>
 
         <div className="space-y-8">
+          <div className="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5">
+            <h3 className="text-[11px] font-black text-white uppercase tracking-[0.3em] mb-4">External Application Form</h3>
+            <p className="text-white/40 text-xs mb-4">
+              Add your Tally/Google Form link. Careers page will show this as "Apply via Form".
+            </p>
+            <Input
+              value={careerExternalFormUrl}
+              onChange={(e) => setCareerExternalFormUrl(e.target.value)}
+              placeholder="https://tally.so/r/your-form-id"
+              className="h-11 bg-black border-white/10 text-white/80 mb-3"
+            />
+            <Button onClick={handleSaveCareerFormLink} className="w-full h-10 rounded-xl bg-primary hover:bg-primary/90 text-white">
+              Save Form Link
+            </Button>
+          </div>
            <div className="p-10 rounded-[3rem] bg-white/[0.02] border border-white/5 relative overflow-hidden group">
             <h3 className="text-[12px] font-black text-white uppercase tracking-[0.3em] mb-10 flex items-center gap-3 italic font-display">
-              <Users className="w-4 h-4 text-emerald-500" /> Incoming_Applications
+              <Users className="w-4 h-4 text-emerald-500" /> Recent Applications
             </h3>
             <div className="space-y-6">
               {applications.length === 0 ? (
-                <div className="text-[10px] text-white/10 uppercase tracking-widest text-center py-10 font-mono italic">No pending submissions</div>
+                <div className="text-[10px] text-white/10 uppercase tracking-widest text-center py-10 font-mono italic">No applications yet</div>
               ) : (
                 applications.map((app) => (
                   <div key={app.id} className="p-6 rounded-2xl bg-black border border-white/5 hover:border-white/10 transition-all group/app">
@@ -732,7 +759,7 @@ const AdminDashboard = () => {
                       <span className="text-[8px] font-mono text-white/20 uppercase">{new Date(app.created_at).toLocaleDateString()}</span>
                     </div>
                     <div className="text-[10px] text-primary font-black uppercase tracking-widest mb-4 italic font-display">
-                      {positions.find(p => p.id === app.position_id)?.title || "Unknown Position"}
+                      {positions.find(p => p.id === app.position_id)?.title || "Unknown Job"}
                     </div>
                     <div className="flex items-center gap-3">
                       <a href={`mailto:${app.email}`} className="p-2 rounded-lg bg-white/5 text-white/40 hover:text-white transition-colors">
@@ -747,7 +774,7 @@ const AdminDashboard = () => {
                       <div className="flex gap-2 opacity-0 group-hover/app:opacity-100 transition-opacity">
                          <button 
                           className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 hover:bg-emerald-500/20 transition-all"
-                          onClick={() => toast.success("Applicant status updated to reviewed.")}
+                          onClick={() => toast.success("Marked as reviewed.")}
                          >
                             <CheckCircle2 className="w-3 h-3" />
                          </button>
@@ -1086,6 +1113,23 @@ const AdminDashboard = () => {
                         value={editingPosition.description}
                         onChange={(e) => setEditingPosition({...editingPosition, description: e.target.value})}
                         className="min-h-[200px] bg-black border-white/10 text-white/80 rounded-[2.5rem] p-10 focus:border-primary transition-all font-medium leading-relaxed shadow-none border italic"
+                      />
+                   </div>
+
+                   <div className="space-y-4">
+                      <label className="text-[11px] font-black text-white/20 uppercase tracking-[0.5em] font-mono ml-4 block italic">Job_Requirements (one per line)</label>
+                      <Textarea
+                        value={(editingPosition.requirements || []).join("\n")}
+                        onChange={(e) =>
+                          setEditingPosition({
+                            ...editingPosition,
+                            requirements: e.target.value
+                              .split("\n")
+                              .map((item) => item.trim())
+                              .filter(Boolean),
+                          })
+                        }
+                        className="min-h-[180px] bg-black border-white/10 text-white/80 rounded-[2.5rem] p-10 focus:border-primary transition-all font-medium leading-relaxed shadow-none border italic"
                       />
                    </div>
 

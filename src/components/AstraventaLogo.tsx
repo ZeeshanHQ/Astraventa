@@ -9,8 +9,8 @@ interface AstraventaLogoProps {
 
 export const AstraventaLogo = ({ className = "", size = "md", iconOnly = false }: AstraventaLogoProps) => {
  const sizeClasses = {
- nav: "h-8 md:h-10",
- sm: "h-6 md:h-8",
+ nav: "h-10 md:h-12",
+ sm: "h-8 md:h-10",
  md: "h-12 md:h-16", 
  lg: "h-16 md:h-20",
  xl: "h-20 md:h-24"

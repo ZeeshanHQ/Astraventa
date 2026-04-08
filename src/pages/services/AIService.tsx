@@ -1,10 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import heroImage from "@/assets/images/ai-cta.svg";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ShinyButton } from "@/components/ui/shiny-button";
-import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import {
   Brain,
@@ -415,75 +413,69 @@ const AIService = () => {
           <AstraEcosystemSync tools={relatedTools} />
         </section>
 
-        {/* ─── FINAL CTA (SVG Background, Bright) ──────────────────────────────── */}
+        {/* ─── FINAL CTA (Clean + Brand Consistent) ─────────────────────────────── */}
         <section className="py-24 px-6 relative bg-white border-t border-black/[0.06] overflow-hidden">
           <div className="max-w-[1300px] mx-auto">
-            <div className="relative rounded-2xl overflow-hidden border border-black/[0.06] shadow-[0_20px_60px_rgba(0,0,0,0.08)]" style={{ aspectRatio: "1024.5/576" }}>
+            <div className="relative rounded-3xl border border-black/[0.08] bg-gradient-to-br from-white via-white to-primary/[0.04] p-8 md:p-12 lg:p-14 shadow-[0_18px_60px_rgba(0,0,0,0.06)] overflow-hidden">
+              <div className="absolute -top-20 -right-20 w-72 h-72 bg-primary/10 blur-[90px] rounded-full pointer-events-none" />
+              <div className="absolute -bottom-24 -left-16 w-80 h-80 bg-black/[0.03] blur-[90px] rounded-full pointer-events-none" />
 
-              {/* SVG Background – fills entire container, no zoom on hover */}
-              <img
-                src={heroImage}
-                alt="Astraventa AI Infrastructure Visualization"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                loading="eager"
-                decoding="async"
-              />
-
-              {/* Light overlay for readability without darkening */}
-              <div className="absolute inset-0 bg-white/10 pointer-events-none" />
-
-              {/* Centered CTA Content — perfectly inside the blue box */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
-                {/* Status badge */}
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm shadow-[0_2px_16px_rgba(0,0,0,0.1)] border border-white/80 mb-8">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-                  </span>
-                  <span className="font-['Anonymous_Pro'] text-[11px] font-bold uppercase tracking-[0.2em] text-black/60">
-                    SCALE_INITIALIZATION // <span className="text-primary">V1.0</span>
-                  </span>
-                </div>
-
-                {/* Headline */}
-                <h2 className="font-heading font-normal text-black uppercase leading-[1.15] tracking-[0.2em] text-[2.2rem] md:text-[3rem] mb-5 drop-shadow-[0_2px_20px_rgba(255,255,255,0.9)]">
-                  Deploy <br />
-                  <span className="text-primary">Intelligence.</span>
-                </h2>
-
-                {/* Sub-copy */}
-                <p className="text-[14px] text-[#4B5563] font-display font-normal leading-[1.7] mb-10 max-w-md drop-shadow-[0_1px_10px_rgba(255,255,255,1)]">
-                  Architect and deploy your proprietary AI infrastructure with our specialized engineering lab.
-                </p>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row items-center gap-5">
-                  <ShinyButton
-                    className="h-11 px-7 rounded-full font-display font-bold text-[13px] uppercase tracking-[0.1em]"
-                    onClick={() => navigate("/contact")}
-                  >
-                    <span className="flex items-center gap-2.5 pt-[2px]">
-                      Request Audit <ArrowRight className="w-4 h-4" />
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div className="lg:col-span-8">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.08] mb-6">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    <span className="text-[10px] font-['Anonymous_Pro'] font-bold uppercase tracking-[0.2em] text-black/50">
+                      READY_FOR_DEPLOYMENT
                     </span>
-                  </ShinyButton>
-                  <Button
-                    variant="ghost"
-                    className="h-9 px-5 text-black/60 hover:text-black hover:bg-transparent transition-colors text-[12px] font-display font-medium tracking-[0.08em] uppercase shadow-none bg-transparent"
-                    onClick={() => navigate("/services")}
-                  >
-                    <Terminal className="mr-2 w-3.5 h-3.5 text-primary" /> View Capabilities
-                  </Button>
-                </div>
-              </div>
+                  </div>
 
-              {/* Bottom status strip */}
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-6 text-[9px] font-['Anonymous_Pro'] font-bold text-black/30 uppercase tracking-[0.3em]">
-                <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm px-3 py-1.5 rounded-full border border-black/[0.06]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> NEURAL_GRID // v4
-                </span>
-                <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm px-3 py-1.5 rounded-full border border-black/[0.06] hidden md:flex">
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/20" /> SOC2_AUDITED
-                </span>
+                  <h2 className="font-heading font-normal text-black uppercase leading-[1.1] tracking-[0.16em] text-[2rem] md:text-[2.8rem] mb-5">
+                    Build Your AI Stack <br />
+                    <span className="text-primary">With Astraventa.</span>
+                  </h2>
+
+                  <p className="text-[14px] md:text-[15px] text-[#4B5563] font-display leading-[1.75] max-w-2xl mb-8">
+                    From strategy and model selection to secure deployment, we help you launch practical AI systems that are fast, reliable, and enterprise-ready.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <ShinyButton
+                      className="h-11 px-7 rounded-full font-display font-bold text-[12px] uppercase tracking-[0.12em]"
+                      onClick={() => navigate("/contact")}
+                    >
+                      <span className="flex items-center gap-2">
+                        Start AI Project <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </ShinyButton>
+                    <Button
+                      variant="ghost"
+                      className="h-10 px-5 rounded-full border border-black/[0.08] text-black/60 hover:text-black hover:bg-black/[0.03] text-[11px] font-display uppercase tracking-[0.12em]"
+                      onClick={() => navigate("/services")}
+                    >
+                      Explore All Services
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-4">
+                  <div className="bg-white rounded-2xl border border-black/[0.08] p-6 md:p-7">
+                    <div className="text-[10px] font-['Anonymous_Pro'] font-bold uppercase tracking-[0.2em] text-black/40 mb-5">
+                      Delivery Signals
+                    </div>
+                    <div className="space-y-4">
+                      {[
+                        { label: "Security-First Architecture", value: "SOC 2 Ready" },
+                        { label: "Deployment Velocity", value: "Weeks, not months" },
+                        { label: "Production Reliability", value: "High availability setup" },
+                      ].map((item) => (
+                        <div key={item.label} className="flex items-center justify-between gap-4 border-b border-black/[0.05] pb-3 last:border-0 last:pb-0">
+                          <span className="text-[12px] text-black/55">{item.label}</span>
+                          <span className="text-[10px] uppercase tracking-[0.12em] text-primary font-medium text-right">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -42,7 +42,7 @@ const StitchHeroVisual = () => {
           <img
             src={heroImage}
             alt="UI/UX Design Architecture"
-            className="w-full max-w-[480px] lg:max-w-[720px] h-auto object-contain"
+            className="w-full max-w-[380px] sm:max-w-[480px] lg:max-w-[720px] h-auto object-contain"
             loading="eager"
             decoding="async"
           />

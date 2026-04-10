@@ -41,7 +41,7 @@ const StitchHeroVisual = () => {
           <img
             src={heroImage}
             alt="Web Engineering Architecture"
-            className="w-full max-w-[560px] lg:max-w-[780px] h-auto object-contain drop-shadow-2xl"
+            className="w-full max-w-[460px] sm:max-w-[560px] lg:max-w-[780px] h-auto object-contain drop-shadow-2xl"
             loading="eager"
             decoding="async"
           />

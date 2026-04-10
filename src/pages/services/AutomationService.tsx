@@ -45,7 +45,7 @@ const StitchHeroVisual = () => {
             <img
             src={heroImage}
             alt="Automation Engineering Architecture"
-            className="w-full max-w-[500px] lg:max-w-[780px] h-auto object-contain"
+            className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[780px] h-auto object-contain"
             loading="eager"
             decoding="async"
           />
@@ -163,15 +163,15 @@ const AutomationService = () => {
         </section>
  
         {/* ─── TECH STACK MARQUEE ────────────────────────────────────────────── */}
-        <section className="py-20 border-b border-black/[0.06] bg-white relative overflow-hidden">
+        <section className="py-12 sm:py-16 md:py-20 border-b border-black/[0.06] bg-white relative overflow-hidden">
           <div className="absolute inset-0 bg-primary/[0.02] pointer-events-none" style={{ backgroundImage: "radial-gradient(var(--primary) 0.5px, transparent 0.5px)", backgroundSize: "32px 32px" }} />
-          <div className="max-w-[1400px] mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6 mb-12 flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
             <div className="flex flex-col gap-3">
               <span className="text-[10px] font-bold font-['Anonymous_Pro'] text-primary uppercase tracking-[0.4em] mb-2 block">AUTOMATION_STACK // INTEGRATIONS</span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-normal text-black tracking-[0.10em] uppercase leading-none">Official <br /><span className="text-black/20 italic">Integration Mesh.</span></h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading font-normal text-black tracking-[0.10em] uppercase leading-none">Official <br /><span className="text-black/20 italic">Integration Mesh.</span></h2>
             </div>
             <div className="flex flex-col md:items-end gap-2 text-right">
-              <div className="text-black text-[11px] font-black font-['Anonymous_Pro'] uppercase tracking-[0.3em]">N8N // ZAPIER // MAKE // AIRTABLE</div>
+              <div className="text-black text-[10px] sm:text-[11px] font-black font-['Anonymous_Pro'] uppercase tracking-[0.3em]">N8N // ZAPIER // MAKE // AIRTABLE</div>
               <div className="h-px w-full md:w-64 bg-primary/20" />
             </div>
           </div>

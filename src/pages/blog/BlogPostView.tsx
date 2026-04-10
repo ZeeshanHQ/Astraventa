@@ -16,13 +16,13 @@ const MarkdownRenderer = ({ content }: { content: string }) => {
     <div className="prose prose-slate lg:prose-xl max-w-none">
       {lines.map((line, i) => {
         if (line.startsWith("# ")) {
-          return <h1 key={i} className="text-4xl font-black text-slate-900 mt-12 mb-6 tracking-tight">{line.replace("# ", "")}</h1>;
+          return <h1 key={i} className="text-3xl sm:text-4xl font-black text-slate-900 mt-8 sm:mt-12 mb-4 sm:mb-6 tracking-tight">{line.replace("# ", "")}</h1>;
         }
         if (line.startsWith("## ")) {
-          return <h2 key={i} className="text-2xl font-black text-slate-800 mt-10 mb-4 tracking-tight">{line.replace("## ", "")}</h2>;
+          return <h2 key={i} className="text-xl sm:text-2xl font-black text-slate-800 mt-8 sm:mt-10 mb-3 sm:mb-4 tracking-tight">{line.replace("## ", "")}</h2>;
         }
         if (line.startsWith("### ")) {
-          return <h3 key={i} className="text-xl font-bold text-slate-800 mt-8 mb-3 tracking-tight">{line.replace("### ", "")}</h3>;
+          return <h3 key={i} className="text-lg sm:text-xl font-bold text-slate-800 mt-6 sm:mt-8 mb-2 sm:mb-3 tracking-tight">{line.replace("### ", "")}</h3>;
         }
         if (line.startsWith("- ")) {
           return (
@@ -33,7 +33,7 @@ const MarkdownRenderer = ({ content }: { content: string }) => {
           );
         }
         if (line.trim() === "") return <br key={i} />;
-        return <p key={i} className="text-lg text-slate-600 font-medium leading-relaxed mb-6">{line}</p>;
+        return <p key={i} className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed mb-4 sm:mb-6">{line}</p>;
       })}
     </div>
   );

@@ -83,7 +83,7 @@ export default function About() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight text-slate-950 leading-[0.88] mb-8 max-w-5xl"
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black tracking-tight text-slate-950 leading-[0.88] mb-6 sm:mb-8 max-w-4xl sm:max-w-5xl"
                         >
                             Engineering the<br />
                             <span className="text-primary">Autonomous Future.</span>
@@ -94,7 +94,7 @@ export default function About() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.15, duration: 0.7 }}
-                            className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl mb-16"
+                            className="text-lg sm:text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-xl sm:max-w-2xl mb-12 sm:mb-16"
                         >
                             Astraventa is a hybrid AI powerhouse merging elite software engineering with
                             autonomous intelligence. We design, build, and deploy the systems that power the next generation of digital business.
@@ -108,8 +108,8 @@ export default function About() {
                             className="grid grid-cols-2 md:grid-cols-4 gap-px border border-slate-100 rounded-2xl overflow-hidden bg-slate-100 mb-0"
                         >
                             {stats.map((s) => (
-                                <div key={s.label} className="bg-white px-8 py-8 flex flex-col">
-                                    <span className="text-4xl font-black text-primary tracking-tighter mb-1">{s.value}</span>
+                                <div key={s.label} className="bg-white px-4 sm:px-6 md:px-8 py-6 sm:py-8 flex flex-col">
+                                    <span className="text-3xl sm:text-4xl font-black text-primary tracking-tighter mb-1">{s.value}</span>
                                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest font-mono">{s.label}</span>
                                 </div>
                             ))}
@@ -121,7 +121,7 @@ export default function About() {
                 <section className="border-b border-slate-100">
                     <div className="max-w-7xl mx-auto">
                         {/* Section heading */}
-                        <div className="pt-20 px-6">
+                        <div className="pt-16 sm:pt-20 px-4 sm:px-6">
                             <motion.div {...fadeUp} className="flex items-center gap-4 mb-2">
                                 <div className="h-px w-10 bg-slate-200" />
                                 <span className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] font-mono">

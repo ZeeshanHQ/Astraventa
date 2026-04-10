@@ -41,9 +41,9 @@ const StitchNodeGraph = () => {
   ];
 
   return (
-    <div className="relative w-full h-[540px] flex items-center justify-center pointer-events-none sm:pointer-events-auto">
+    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[540px] flex items-center justify-center pointer-events-none sm:pointer-events-auto">
       {/* Central Core */}
-      <div className="relative z-20 w-32 h-32 bg-white rounded-full border border-black/[0.06] shadow-[0_0_50px_rgba(var(--primary-rgb),0.1)] flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative z-20 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-white rounded-full border border-black/[0.06] shadow-[0_0_50px_rgba(var(--primary-rgb),0.1)] flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 animate-pulse" />
         <div className="relative z-10 flex flex-col items-center gap-1.5">
           <Brain className="w-8 h-8 text-primary" />
@@ -233,20 +233,20 @@ const AIService = () => {
         </section>
 
         {/* ─── ARCHITECTURE (Technical Schematic) ─────────────────────────────────── */}
-        <section className="py-20 px-6 relative border-t border-black/[0.06] bg-white">
-          <div className="max-w-[1300px] mx-auto">
+        <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 relative border-t border-black/[0.06] bg-white">
+          <div className="max-w-[1280px] mx-auto">
             <motion.div {...fadeUp} className="mb-16 text-center">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/[0.04] border border-black/[0.08] mb-6">
                 <span className="text-[10px] font-['Anonymous_Pro'] font-bold text-black/60 uppercase tracking-[0.15em]">OUR_METHODOLOGY</span>
               </div>
-              <h2 className="font-display font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-3xl md:text-4xl mb-5">Technical Architecture</h2>
-              <p className="text-[15px] text-[#4B5563] font-display font-normal leading-[1.7] max-w-xl mx-auto">
+              <h2 className="font-display font-normal text-black uppercase leading-[1.15] tracking-[0.25em] text-2xl sm:text-3xl md:text-4xl mb-5">Technical Architecture</h2>
+              <p className="text-[14px] sm:text-[15px] text-[#4B5563] font-display font-normal leading-[1.7] max-w-xl mx-auto">
                 High-throughput infrastructure blueprint designed for mission-critical enterprise environments.
               </p>
             </motion.div>
 
             {/* Schematic Flow Diagram */}
-            <div className="relative w-full h-auto bg-black/[0.01] rounded-2xl border border-black/[0.06] p-10 overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="relative w-full h-auto bg-black/[0.01] rounded-2xl border border-black/[0.06] p-6 sm:p-8 md:p-10 overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-6">
               <div className="absolute top-1/2 left-0 right-0 h-[0.5px] bg-primary/20 hidden lg:block -translate-y-1/2" />
 
               {[

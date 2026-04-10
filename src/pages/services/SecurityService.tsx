@@ -47,7 +47,7 @@ const StitchHeroVisual = () => {
           <img
             src={heroImage}
             alt="Security Engineering Architecture"
-            className="w-full max-w-[500px] lg:max-w-[750px] h-auto object-contain"
+            className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[750px] h-auto object-contain"
             loading="eager"
             decoding="async"
           />
@@ -193,10 +193,10 @@ export const SecurityService = () => {
     <div className="min-h-screen bg-white selection:bg-primary/10 overflow-x-hidden font-sans">
       <Header />
 
-      <main className="pt-12">
+      <main className="pt-20 sm:pt-24">
 
         {/* ─── HERO Section ──────────────────────────────────────────────────────── */}
-        <section ref={heroRef} className="relative min-h-[90vh] flex items-center px-6 overflow-hidden bg-white">
+        <section ref={heroRef} className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center px-4 sm:px-6 overflow-hidden bg-white">
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
             style={{
               backgroundImage: `linear-gradient(var(--primary) 1px, transparent 1px), linear-gradient(90deg, var(--primary) 1px, transparent 1px)`,

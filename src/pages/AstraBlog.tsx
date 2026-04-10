@@ -102,7 +102,7 @@ export default function AstraBlog() {
   return (
     React.createElement("div", { className: "min-h-screen bg-slate-50" },
       React.createElement(Header, null),
-      React.createElement("main", { className: "pt-32 pb-20 px-6 max-w-5xl mx-auto min-h-[90vh]" },
+      React.createElement("main", { className: "pt-20 sm:pt-24 md:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 max-w-5xl mx-auto min-h-[90vh]" },
         React.createElement("div", { className: "flex items-center gap-3 mb-8" },
           React.createElement("div", { className: "w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-500" },
             React.createElement(ScrollText, { className: "w-6 h-6" })

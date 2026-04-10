@@ -36,7 +36,7 @@ const BlogListing = () => {
     <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500/10 transition-colors duration-700">
       <Header />
 
-      <main className="pt-32 pb-24 px-6 max-w-[1400px] mx-auto">
+      <main className="pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 max-w-[1280px] mx-auto">
         {/* ─── HEADER ──────────────────────────────────────────────────────────── */}
         <section className="mb-20 text-center relative">
           <motion.div 
@@ -46,7 +46,7 @@ const BlogListing = () => {
           />
           
           <div className="relative z-10">
-            <motion.div {...fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-100 bg-white text-[12px] font-mono uppercase tracking-[0.2em] text-blue-600 mb-8 shadow-sm">
+            <motion.div {...fadeUp} className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-blue-100 bg-white text-[11px] sm:text-[12px] font-mono uppercase tracking-[0.2em] text-blue-600 mb-6 sm:mb-8 shadow-sm">
               <Newspaper className="w-4 h-4" /> Editorial & Insights
             </motion.div>
             <motion.h1 

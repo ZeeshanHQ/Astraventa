@@ -148,7 +148,7 @@ const SectionHeading = ({
   className?: string;
 }) => (
   <h2
-    className={`font-heading font-normal uppercase tracking-[0.12em] text-foreground leading-[1.08] text-[2rem] md:text-[2.6rem] lg:text-[3rem] ${className}`}
+    className={`font-heading font-normal uppercase tracking-[0.12em] text-foreground leading-[1.08] text-[1.8rem] sm:text-[2rem] md:text-[2.6rem] lg:text-[3rem] ${className}`}
   >
     {children}
     {accent && (
@@ -254,7 +254,7 @@ const Careers = () => {
           {/* Ambient radial — same as landing */}
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_-10%,rgba(41,16,229,0.05),transparent_55%)]" />
 
-          <div className="max-w-[1280px] w-full mx-auto px-6 pt-32 md:pt-44 pb-0 relative z-10">
+          <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 pt-24 sm:pt-32 md:pt-44 pb-0 relative z-10">
             <div className="flex flex-col lg:flex-row items-start lg:items-center gap-14 lg:gap-20">
 
               {/* LEFT COLUMN */}
@@ -283,7 +283,7 @@ const Careers = () => {
                 {/* Heading — Tenor Sans, normal, uppercase (matches landing hero) */}
                 <motion.h1
                   variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } } }}
-                  className="mb-6 font-heading font-normal text-foreground uppercase leading-[1.08] tracking-[0.15em] text-[2.5rem] sm:text-[3.1rem] md:text-[3.7rem] lg:text-[4.1rem]"
+                  className="mb-4 sm:mb-6 font-heading font-normal text-foreground uppercase leading-[1.08] tracking-[0.15em] text-[2rem] sm:text-[2.5rem] md:text-[3.1rem] lg:text-[3.7rem]"
                 >
                   Build the Future.<br />
                   <span className="text-primary">Own the Outcome.</span>
@@ -292,7 +292,7 @@ const Careers = () => {
                 {/* Sub-headline — Mulish, same style as landing */}
                 <motion.p
                   variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } } }}
-                  className="mb-3 text-[15px] md:text-[16px] text-[#4B5563] font-normal leading-[1.8] max-w-[540px]"
+                  className="mb-3 text-[14px] sm:text-[15px] md:text-[16px] text-[#4B5563] font-normal leading-[1.8] max-w-[480px] sm:max-w-[540px]"
                 >
                   Astraventa is assembling an elite collective of engineers, designers, and AI
                   researchers to architect the autonomous enterprise.

@@ -40,7 +40,7 @@ const SystemMonitor = () => {
 
   return (
     <div className="relative w-full bg-black/[0.01] rounded-2xl border border-black/[0.06] overflow-hidden shadow-2xl">
-      <div className="flex items-center justify-between px-6 py-4 border-b border-black/[0.06] bg-black/10">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-black/[0.06] bg-black/10">
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shadow-[0_0_12px_rgba(var(--primary-rgb),0.4)]" />
           <span className="text-[10px] font-['Anonymous_Pro'] font-black text-black tracking-[0.2em] uppercase">CLUSTER_01 // LIVE_NET</span>
@@ -51,7 +51,7 @@ const SystemMonitor = () => {
         </div>
       </div>
 
-      <div className="p-8 space-y-6">
+      <div className="p-4 sm:p-6 md:p-8 space-y-6">
         {streams.map((s, i) => (
           <div key={i}>
             <div className="flex justify-between mb-3">

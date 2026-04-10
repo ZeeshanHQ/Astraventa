@@ -157,8 +157,8 @@ export const Contact = () => {
   const contactInfo = [
     { icon: Phone, title: "WhatsApp", value: "+92 328 4529264", description: "Mon-Fri 9AM-6PM EST" },
     { icon: Mail, title: "Email", value: "astraventaai@gmail.com", description: "24/7 Support Available" },
-    { icon: MapPin, title: "Office", value: "New York, NY", description: "Serving Clients Globally" },
-    { icon: Clock, title: "Response Time", value: "< 2 Hours", description: "During Business Hours" }
+    { icon: MapPin, title: "Location", value: "Remote-First", description: "Global Team, Worldwide Service" },
+    { icon: Clock, title: "Response Time", value: "2 Hours", description: "Business Hours" }
   ];
 
   return (

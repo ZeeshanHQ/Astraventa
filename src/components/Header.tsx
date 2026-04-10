@@ -103,32 +103,32 @@ const astraLabCategories = [
   {
     title: "Growth & Outreach",
     tools: [
-      { title: "Astra Reach", href: "/coming-soon", icon: <Globe className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Lead", href: "/coming-soon", icon: <Users className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Ad", href: "/coming-soon", icon: <Zap className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Mail", href: "/coming-soon", icon: <Mail className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Funnel", href: "/coming-soon", icon: <Network className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Reach", href: "/tools/astra-reach", icon: <Globe className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Lead", href: "/tools/astra-lead", icon: <Users className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Ad", href: "/tools/astra-ad", icon: <Zap className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Mail", href: "/tools/astra-mail", icon: <Mail className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Funnel", href: "/tools/astra-task", icon: <Network className="w-4 h-4" />, tag: "Coming Soon" },
     ]
   },
   {
     title: "Content & Creative",
     tools: [
-      { title: "Astra Script", href: "/coming-soon", icon: <PenTool className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Script", href: "/tools/astra-script", icon: <PenTool className="w-4 h-4" />, tag: "Coming Soon" },
       { title: "Astra Prompt", href: "/tools/astra-prompt", icon: <MessageSquare className="w-4 h-4" />, tag: "Active" },
       { title: "Astra Blog", href: "/tools/astra-blog", icon: <BookOpen className="w-4 h-4" />, tag: "New" },
       { title: "Astra Translate", href: "/tools/astra-translate", icon: <Globe className="w-4 h-4" />, tag: "Active" },
-      { title: "Astra Vibe", href: "/coming-soon", icon: <Sparkles className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Design", href: "/coming-soon", icon: <Palette className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Vibe", href: "/tools/astra-vibe", icon: <Sparkles className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Design", href: "/tools/astra-brand", icon: <Palette className="w-4 h-4" />, tag: "Coming Soon" },
     ]
   },
   {
     title: "Intelligence & Scale",
     tools: [
-      { title: "Astra Agent", href: "/coming-soon", icon: <Bot className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Flow", href: "/coming-soon", icon: <Workflow className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Pulse", href: "/coming-soon", icon: <Activity className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Core", href: "/coming-soon", icon: <Cpu className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Secure", href: "/coming-soon", icon: <ShieldCheck className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Agent", href: "/tools/astra-agent", icon: <Bot className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Flow", href: "/tools/astra-flow", icon: <Workflow className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Pulse", href: "/tools/astra-pulse", icon: <Activity className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Core", href: "/tools/astra-grit", icon: <Cpu className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Secure", href: "/tools/astra-verify", icon: <ShieldCheck className="w-4 h-4" />, tag: "Coming Soon" },
     ]
   }
 ];

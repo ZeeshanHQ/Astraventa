@@ -84,6 +84,9 @@ const footerLinks = [
 
 export const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -94,6 +97,20 @@ export const Footer = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setIsSubscribing(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setIsSubscribed(true);
+    setIsSubscribing(false);
+    setEmail("");
   };
 
   useEffect(() => {
@@ -128,18 +145,37 @@ export const Footer = () => {
 
               {/* Newsletter Subscription */}
               <div className="mb-6 p-4 sm:p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                <h4 className="font-display font-normal text-slate-900 text-[13px] uppercase tracking-[0.1em] mb-2">Join the Vanguard</h4>
-                <p className="text-xs text-[#4B5563] mb-4">Get our latest engineering insights delivered monthly.</p>
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all bg-white font-medium"
-                  />
-                  <button className="h-10 px-4 bg-black hover:bg-black/90 text-white rounded-full text-[13px] font-display font-bold uppercase tracking-[0.1em] transition-all flex items-center justify-center border-none shadow-none whitespace-nowrap">
-                    Subscribe
-                  </button>
-                </div>
+                {!isSubscribed ? (
+                  <>
+                    <h4 className="font-display font-normal text-slate-900 text-[13px] uppercase tracking-[0.1em] mb-2">Join the Vanguard</h4>
+                    <p className="text-xs text-[#4B5563] mb-4">Get our latest engineering insights delivered monthly.</p>
+                    <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                      <input
+                        type="email"
+                        placeholder="Your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all bg-white font-medium"
+                        required
+                      />
+                      <button 
+                        type="submit"
+                        disabled={isSubscribing}
+                        className="h-10 px-4 bg-black hover:bg-black/90 text-white rounded-full text-[13px] font-display font-bold uppercase tracking-[0.1em] transition-all flex items-center justify-center border-none shadow-none whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubscribing ? "Subscribing..." : "Subscribe"}
+                      </button>
+                    </form>
+                  </>
+                ) : (
+                  <div className="text-center py-4">
+                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-3">
+                      <CheckCircle2 className="w-6 h-6 text-green-600" />
+                    </div>
+                    <h4 className="font-display font-normal text-slate-900 text-[13px] uppercase tracking-[0.1em] mb-2">Successfully Subscribed!</h4>
+                    <p className="text-xs text-[#4B5563]">You're now on the vanguard list.</p>
+                  </div>
+                )}
               </div>
 
               {/* Social Links */}

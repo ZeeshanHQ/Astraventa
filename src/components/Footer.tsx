@@ -105,7 +105,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative py-12 md:py-20 border-t border-slate-200/50 bg-white" style={{ fontStyle: 'normal' }}>
+    <footer className="relative py-8 sm:py-12 md:py-20 border-t border-slate-200/50 bg-white" style={{ fontStyle: 'normal' }}>
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
 
         {/* Main Footer Content */}

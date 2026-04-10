@@ -71,8 +71,8 @@ export const Hero = () => {
     <section className="relative overflow-hidden bg-white border-b border-black/[0.04]">
 
       {/* ── MAIN TWO-COLUMN CONTENT ──────────────────────────────────────── */}
-      <div className="max-w-[1280px] w-full mx-auto px-6 pt-32 md:pt-44 pb-0 relative z-10">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-14 lg:gap-20">
+      <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 pt-24 md:pt-32 lg:pt-44 pb-0 relative z-10">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-14 xl:gap-20">
 
           {/* LEFT COLUMN */}
           <motion.div
@@ -97,7 +97,7 @@ export const Hero = () => {
             {/* Heading — Tenor Sans, normal weight, uppercase */}
             <motion.h1
               variants={itemVars}
-              className="mb-6 font-heading font-normal text-foreground uppercase leading-[1.08] tracking-[0.15em] text-[2.5rem] sm:text-[3.1rem] md:text-[3.7rem] lg:text-[4.1rem]"
+              className="mb-6 font-heading font-normal text-foreground uppercase leading-[1.08] tracking-[0.15em] text-[1.875rem] sm:text-[2.5rem] md:text-[3.1rem] lg:text-[3.7rem] xl:text-[4.1rem]"
             >
               Build What<br />
               <span className="text-primary">Doesn't</span> Break.
@@ -106,7 +106,7 @@ export const Hero = () => {
             {/* Sub-headline */}
             <motion.p
               variants={itemVars}
-              className="mb-3 text-[15px] md:text-[16px] text-[#4B5563] font-normal leading-[1.8] max-w-[560px]"
+              className="mb-3 text-[14px] sm:text-[15px] md:text-[16px] text-[#4B5563] font-normal leading-[1.8] max-w-[560px]"
             >
               We engineer AI-powered SaaS products, custom LLM pipelines,
               autonomous agents, agentic workflows, and world-class web
@@ -114,7 +114,7 @@ export const Hero = () => {
             </motion.p>
             <motion.p
               variants={itemVars}
-              className="mb-10 text-[14px] text-[#6B7280] font-normal leading-[1.75] max-w-[540px]"
+              className="mb-8 sm:mb-10 text-[13px] sm:text-[14px] text-[#6B7280] font-normal leading-[1.75] max-w-[540px]"
             >
               From full-stack mobile apps, backend infrastructure, and cloud
               deployments to AI chatbots, security architecture, and brand
@@ -124,7 +124,7 @@ export const Hero = () => {
             {/* CTAs */}
             <motion.div
               variants={itemVars}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
             >
               <ShinyButton
                 className="h-11 px-8 text-[12px] font-display font-medium uppercase tracking-[0.12em]"
@@ -149,7 +149,7 @@ export const Hero = () => {
             variants={rightVars}
             initial="hidden"
             animate="show"
-            className="w-full lg:w-[370px] xl:w-[410px] shrink-0"
+            className="w-full lg:w-[320px] xl:w-[370px] 2xl:w-[410px] shrink-0"
           >
             <div className="relative rounded-2xl border border-black/[0.07] bg-white overflow-hidden shadow-[0_4px_32px_rgba(0,0,0,0.06)]">
               {/* Top accent */}
@@ -160,9 +160,9 @@ export const Hero = () => {
                 {stats.map((s) => (
                   <div
                     key={s.label}
-                    className="p-6 flex flex-col gap-1 group hover:bg-black/[0.015] transition-colors"
+                    className="p-4 sm:p-6 flex flex-col gap-1 group hover:bg-black/[0.015] transition-colors"
                   >
-                    <span className="font-heading font-normal text-[2rem] text-foreground leading-none tracking-[0.08em]">
+                    <span className="font-heading font-normal text-[1.5rem] sm:text-[2rem] text-foreground leading-none tracking-[0.08em]">
                       {s.value}
                     </span>
                     <span className="font-display font-normal text-[10px] text-black/40 uppercase tracking-[0.2em]">
@@ -176,16 +176,16 @@ export const Hero = () => {
               <div className="border-t border-black/[0.06]" />
 
               {/* "What We Build" clickable tags */}
-              <div className="p-5 flex flex-col gap-3">
+              <div className="p-4 sm:p-5 flex flex-col gap-3">
                 <p className="font-display font-normal text-[9px] text-black/35 uppercase tracking-[0.3em] mb-1">
                   What We Build
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {buildTags.map((tag) => (
                     <button
                       key={tag.label}
                       onClick={() => navigate(tag.route)}
-                      className="inline-flex items-center px-3 py-1 rounded-full border border-black/[0.08] bg-black/[0.02] font-display font-normal text-[10px] text-black/50 uppercase tracking-[0.1em] hover:border-primary/40 hover:text-primary hover:bg-primary/[0.04] transition-all cursor-pointer"
+                      className="inline-flex items-center px-2.5 py-1 rounded-full border border-black/[0.08] bg-black/[0.02] font-display font-normal text-[9px] sm:text-[10px] text-black/50 uppercase tracking-[0.1em] hover:border-primary/40 hover:text-primary hover:bg-primary/[0.04] transition-all cursor-pointer"
                     >
                       {tag.label}
                     </button>
@@ -220,8 +220,8 @@ export const Hero = () => {
       ──────────────────────────────────────────────────────────────────────── */}
       <div className="mt-14 border-t border-black/[0.06] relative overflow-hidden">
         {/* Label row — fully above and separate from ticker */}
-        <div className="max-w-[1280px] mx-auto px-6 py-3 flex items-center gap-4">
-          <span className="font-display font-normal text-[9px] text-black/30 uppercase tracking-[0.35em] shrink-0">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-3 flex items-center gap-4">
+          <span className="font-display font-normal text-[8px] sm:text-[9px] text-black/30 uppercase tracking-[0.35em] shrink-0">
             Core Capabilities
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-black/10 to-transparent" />
@@ -249,10 +249,10 @@ export const Hero = () => {
                 {capabilities.map((cap, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-2.5 px-7 border-r border-black/[0.05] whitespace-nowrap"
+                    className="flex items-center gap-2 sm:gap-2.5 px-4 sm:px-6 md:px-7 border-r border-black/[0.05] whitespace-nowrap"
                   >
                     <span className="text-primary/50 shrink-0">{cap.icon}</span>
-                    <span className="font-display font-normal text-[11px] text-black/45 uppercase tracking-[0.15em]">
+                    <span className="font-display font-normal text-[10px] sm:text-[11px] text-black/45 uppercase tracking-[0.15em]">
                       {cap.label}
                     </span>
                   </div>

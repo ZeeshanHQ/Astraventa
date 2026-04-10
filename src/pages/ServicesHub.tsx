@@ -62,10 +62,10 @@ const ServicesHub = () => {
         <motion.div style={{ scaleX }} className="h-full bg-primary shadow-[0_0_10px_#7E96F6]" />
       </motion.div>
 
-      <main className="relative z-10 pt-40 pb-0">
+      <main className="relative z-10 pt-32 sm:pt-40 pb-0">
         
         {/* Hero Section */}
-        <section className="px-6 mb-24 relative">
+        <section className="px-4 sm:px-6 mb-16 sm:mb-24 relative">
           <TechnicalNodes />
           <div className="max-w-[1400px] mx-auto text-center relative z-10">
             <motion.div
@@ -73,15 +73,15 @@ const ServicesHub = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-6 sm:mb-8">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="technical-label !text-primary !text-[11px]">Directory Navigation</span>
+                <span className="technical-label !text-primary !text-[10px] sm:!text-[11px]">Directory Navigation</span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6 sm:mb-8 leading-tight">
                 Our Engineering <br />
                 <span className="text-[hsl(var(--primary))]">Disciplines.</span>
               </h1>
-              <p className="text-slate-700 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+              <p className="text-slate-700 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
                 A high-fidelity directory of Astraventa's technical core. Bridge the gap between AI innovation and scalable business architecture.
               </p>
             </motion.div>
@@ -90,13 +90,13 @@ const ServicesHub = () => {
 
 
         {/* Ecosystem Scale - Project Showcase */}
-        <section className="max-w-[1400px] mx-auto px-6 mt-40">
+        <section className="max-w-[1400px] mx-auto px-4 sm:px-6 mt-24 sm:mt-32 md:mt-40">
           <ProjectShowcase />
         </section>
 
         {/* Final Home CTA (Deep Charcoal) */}
         <section className="mt-40">
-          <div className="w-full bg-[#0A0A0A] py-32 px-6 relative overflow-hidden">
+          <div className="w-full bg-[#0A0A0A] py-20 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
             {/* Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" 
               style={{ 
@@ -112,20 +112,20 @@ const ServicesHub = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-10 text-white/40">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8 sm:mb-10 text-white/40">
                   <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
                   <span className="technical-label !text-white/40">Integration Ready</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tighter leading-none">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 sm:mb-8 tracking-tighter leading-none">
                   Ready to start <br /> your project?
                 </h2>
-                <p className="text-white/50 text-xl font-medium max-w-2xl mx-auto mb-16 leading-relaxed">
+                <p className="text-white/50 text-lg sm:text-xl font-medium max-w-2xl mx-auto mb-12 sm:mb-16 leading-relaxed">
                   Engage our engineering core to build, scale, and secure your next-generation autonomous infrastructure.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                   <Link to="/contact">
-                    <Button className="h-16 px-12 bg-white hover:bg-white/90 text-slate-950 rounded-full font-black text-xl flex items-center gap-4 shadow-[0_20px_60px_-15px_rgba(255,255,255,0.1)] transition-all border-none group relative">
+                    <Button className="h-12 sm:h-14 md:h-16 px-8 sm:px-10 md:px-12 bg-white hover:bg-white/90 text-slate-950 rounded-full font-black text-lg sm:text-xl flex items-center gap-3 sm:gap-4 shadow-[0_20px_60px_-15px_rgba(255,255,255,0.1)] transition-all border-none group relative">
                       <span className="relative z-10">START A PROJECT</span>
                       <ArrowRight className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform" />
                     </Button>

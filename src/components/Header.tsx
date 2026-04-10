@@ -183,7 +183,7 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
             : "bg-white/70 backdrop-blur-md border-transparent"
       )}
     >
-      <div className="w-full max-w-[1400px] mx-auto px-6 flex items-center justify-between">
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo - Left */}
         <div className="flex-shrink-0 flex items-center gap-4">
           <Link to="/" className="flex items-center py-1">

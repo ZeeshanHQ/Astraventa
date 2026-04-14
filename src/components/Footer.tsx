@@ -214,7 +214,7 @@ export const Footer = () => {
                 <h4 className="technical-label !text-slate-900 mb-6">{section.title}</h4>
                 <ul className="space-y-4">
                   {section.links.map((link, linkIndex) => (
-                    <li>
+                    <li key={linkIndex}>
                       {link.href.startsWith('/') ? (
                          <Link
                           to={link.href}

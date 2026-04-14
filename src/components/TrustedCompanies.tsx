@@ -31,7 +31,7 @@ export const TrustedCompanies = () => {
  className="text-center mb-8"
  >
  <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">
- Trusted by Global Industry Leaders
+ Powering Solutions with Global Technology Leaders
  </h2>
  </motion.div>
 

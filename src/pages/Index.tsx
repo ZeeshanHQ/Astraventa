@@ -23,6 +23,8 @@ import { Accordion03 } from "@/components/ui/accordion-03";
 import { Button } from "@/components/ui/button";
 import { ShinyButton } from "@/components/ui/shiny-button";
 import { Bot, ArrowRight, HelpCircle } from "lucide-react";
+import { Testimonials } from "@/components/Testimonials";
+
 
 const Index = () => {
   useEffect(() => {
@@ -39,15 +41,16 @@ const Index = () => {
       <main className="relative">
         <div className="relative z-10 flex flex-col space-y-8 lg:space-y-12">
           <Hero />
+          <TrustedCompanies />
           <BrandHighlights />
 
-          {/* Astraventa Products Showcase — animated card stack */}
+          {/* Core Offerings */}
+          <section className="py-12">
+            <ProfessionalServices />
+          </section>
+
+          {/* Product Showcase */}
           <AstraProductWalls />
-
-          <ProfessionalServices />
-
-          <BlueprintDivider />
-          <CardStackSection />
 
           <BlueprintDivider />
           <WhyAstraventa />
@@ -128,6 +131,8 @@ const Index = () => {
           <BlogSection />
 
           <BlueprintDivider />
+          <Testimonials />
+
 
           {/* Technical FAQ Section */}
           <section className="max-w-4xl mx-auto px-6 py-10">

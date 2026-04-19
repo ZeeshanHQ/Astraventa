@@ -150,6 +150,8 @@ interface HeaderProps {
   isDarkHeroPage?: boolean;
 }
 
+import { AnnouncementBanner } from "./AnnouncementBanner";
+
 export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -170,19 +172,21 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-16 md:h-20 flex items-center border-b",
-        isScrolled
-          ? "bg-white/10 backdrop-blur-md border-slate-200/50 shadow-sm"
-          : isDarkHeroPage
-            ? "bg-black border-transparent"
-            : "bg-white/70 backdrop-blur-md border-transparent"
-      )}
-    >
+    <div className="fixed top-0 left-0 right-0 z-50">
+      <AnnouncementBanner />
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={cn(
+          "transition-all duration-300 h-16 md:h-20 flex items-center border-b",
+          isScrolled
+            ? "bg-white/10 backdrop-blur-md border-slate-200/50 shadow-sm"
+            : isDarkHeroPage
+              ? "bg-black border-transparent"
+              : "bg-white/70 backdrop-blur-md border-transparent"
+        )}
+      >
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo - Left */}
         <div className="flex-shrink-0 flex items-center gap-4">
@@ -702,6 +706,7 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
         </div>
       </div>
     </motion.header>
+    </div>
   );
 };
 

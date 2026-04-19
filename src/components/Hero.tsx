@@ -71,8 +71,8 @@ export const Hero = () => {
     <section className="relative overflow-hidden bg-white border-b border-black/[0.04]">
 
       {/* ── MAIN TWO-COLUMN CONTENT ──────────────────────────────────────── */}
-      <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 pt-24 md:pt-32 lg:pt-44 pb-0 relative z-10">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-14 xl:gap-20">
+      <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 pt-32 md:pt-40 lg:pt-56 pb-20 relative z-10">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-12 lg:gap-20 xl:gap-24">
 
           {/* LEFT COLUMN */}
           <motion.div
@@ -84,12 +84,12 @@ export const Hero = () => {
             {/* Badge */}
             <motion.div
               variants={itemVars}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/[0.04] border border-black/[0.08] mb-8 cursor-pointer hover:bg-black/[0.07] transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/[0.04] border border-black/[0.08] mb-10 cursor-pointer hover:bg-black/[0.07] transition-colors"
               onClick={() => navigate("/services")}
             >
               <span className="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               <span className="font-display font-normal text-[11px] text-black/60 uppercase tracking-[0.15em]">
-                Venture Engineering Studio
+                Services, Products & Tools
               </span>
               <ChevronRight className="w-3 h-3 text-black/30" />
             </motion.div>
@@ -97,7 +97,7 @@ export const Hero = () => {
             {/* Heading — Tenor Sans, normal weight, uppercase */}
             <motion.h1
               variants={itemVars}
-              className="mb-6 font-heading font-normal text-foreground uppercase leading-[1.08] tracking-[0.15em] text-[1.875rem] sm:text-[2.5rem] md:text-[3.1rem] lg:text-[3.7rem] xl:text-[4.1rem]"
+              className="mb-8 font-heading font-normal text-foreground uppercase leading-[1.05] tracking-[0.15em] text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] xl:text-[4.5rem]"
             >
               Build What<br />
               <span className="text-primary">Doesn't</span> Break.
@@ -106,38 +106,36 @@ export const Hero = () => {
             {/* Sub-headline */}
             <motion.p
               variants={itemVars}
-              className="mb-3 text-[14px] sm:text-[15px] md:text-[16px] text-[#4B5563] font-normal leading-[1.8] max-w-[560px]"
+              className="mb-4 text-[15px] sm:text-[16px] md:text-[18px] text-[#4B5563] font-normal leading-[1.8] max-w-[580px]"
             >
               We engineer AI-powered SaaS products, custom LLM pipelines,
-              autonomous agents, agentic workflows, and world-class web
+              autonomous agents, and world-class web
               ecosystems — built to perform at enterprise scale.
             </motion.p>
             <motion.p
               variants={itemVars}
-              className="mb-8 sm:mb-10 text-[13px] sm:text-[14px] text-[#6B7280] font-normal leading-[1.75] max-w-[540px]"
+              className="mb-10 sm:mb-12 text-[14px] sm:text-[15px] text-[#6B7280] font-normal leading-[1.75] max-w-[560px]"
             >
-              From full-stack mobile apps, backend infrastructure, and cloud
-              deployments to AI chatbots, security architecture, and brand
-              identity — Astraventa is your end-to-end engineering partner.
+              Whether you need elite <strong className="font-semibold text-black/80">professional services</strong>, powerful <strong className="font-semibold text-black/80">AI tools</strong>, or ready-to-scale <strong className="font-semibold text-black/80">SaaS products</strong>, Astraventa is your end-to-end engineering partner.
             </motion.p>
 
             {/* CTAs */}
             <motion.div
               variants={itemVars}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
             >
               <ShinyButton
-                className="h-11 px-8 text-[12px] font-display font-medium uppercase tracking-[0.12em]"
+                className="h-12 px-10 text-[13px] font-display font-medium uppercase tracking-[0.12em]"
                 onClick={() => navigate("/contact")}
               >
                 <span className="flex items-center gap-2">
-                  Start a Project <ArrowRight className="w-3.5 h-3.5" />
+                  Start a Project <ArrowRight className="w-4 h-4" />
                 </span>
               </ShinyButton>
 
               <ButtonWithIcon
                 onClick={() => navigate("/services")}
-                className="bg-transparent text-black border border-black/10 hover:bg-black/5"
+                className="bg-transparent text-black border border-black/10 hover:bg-black/5 h-12 px-8"
               >
                 View Capabilities
               </ButtonWithIcon>
@@ -149,11 +147,12 @@ export const Hero = () => {
             variants={rightVars}
             initial="hidden"
             animate="show"
-            className="w-full lg:w-[320px] xl:w-[370px] 2xl:w-[410px] shrink-0"
+            className="w-full lg:w-[400px] xl:w-[460px] 2xl:w-[500px] shrink-0"
           >
-            <div className="relative rounded-2xl border border-black/[0.07] bg-white overflow-hidden shadow-[0_4px_32px_rgba(0,0,0,0.06)]">
+            <div className="flex flex-col gap-8">
+                <div className="relative rounded-3xl border border-black/[0.07] bg-white overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
               {/* Top accent */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
               {/* Stats 2×2 grid */}
               <div className="grid grid-cols-2 divide-x divide-y divide-black/[0.06]">
@@ -208,6 +207,7 @@ export const Hero = () => {
 
               {/* Bottom accent */}
               <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            </div>
             </div>
           </motion.div>
         </div>

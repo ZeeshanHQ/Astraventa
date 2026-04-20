@@ -144,36 +144,36 @@ export const Footer = () => {
               </p>
 
               {/* Newsletter Subscription */}
-              <div className="mb-6 p-4 sm:p-6 bg-slate-50 rounded-2xl border border-slate-100">
+              <div className="mb-8">
                 {!isSubscribed ? (
                   <>
-                    <h4 className="font-display font-normal text-slate-900 text-[13px] uppercase tracking-[0.1em] mb-2">Join the Vanguard</h4>
-                    <p className="text-xs text-[#4B5563] mb-4">Get our latest engineering insights delivered monthly.</p>
-                    <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                    <h4 className="font-display font-bold text-black text-[12px] uppercase tracking-[0.15em] mb-2">Join the Vanguard</h4>
+                    <p className="text-[13px] text-[#4B5563] mb-4">Get our latest engineering insights delivered monthly.</p>
+                    <form onSubmit={handleNewsletterSubmit} className="relative max-w-sm">
                       <input
                         type="email"
-                        placeholder="Your email"
+                        placeholder="Email address"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all bg-white font-medium"
+                        className="w-full h-11 pl-4 pr-32 rounded-full border border-black/[0.1] text-[13px] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all bg-transparent text-black placeholder:text-black/40"
                         required
                       />
                       <button 
                         type="submit"
                         disabled={isSubscribing}
-                        className="h-10 px-4 bg-black hover:bg-black/90 text-white rounded-full text-[13px] font-display font-bold uppercase tracking-[0.1em] transition-all flex items-center justify-center border-none shadow-none whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="absolute right-1 top-1 bottom-1 px-5 bg-black hover:bg-primary text-white rounded-full text-[10px] font-display font-bold uppercase tracking-[0.15em] transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {isSubscribing ? "Subscribing..." : "Subscribe"}
+                        {isSubscribing ? "..." : "Subscribe"}
                       </button>
                     </form>
                   </>
                 ) : (
-                  <div className="text-center py-4">
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-3">
-                      <CheckCircle2 className="w-6 h-6 text-green-600" />
+                  <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-50/50 flex items-start gap-3 max-w-sm">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-display font-bold text-emerald-900 text-[11px] uppercase tracking-[0.1em] mb-1">Successfully Subscribed</h4>
+                      <p className="text-[12px] text-emerald-700/80">You're now on the vanguard list.</p>
                     </div>
-                    <h4 className="font-display font-normal text-slate-900 text-[13px] uppercase tracking-[0.1em] mb-2">Successfully Subscribed!</h4>
-                    <p className="text-xs text-[#4B5563]">You're now on the vanguard list.</p>
                   </div>
                 )}
               </div>

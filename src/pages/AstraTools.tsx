@@ -23,42 +23,42 @@ const toolCategories = [
       {
         title: "AstraReach AI", description: "Your autonomous email operations copilot. Send outreach, review inbox, and auto-reply.",
         icon: Mail, color: "text-primary", bg: "bg-primary/5",
-        features: ["Intelligent Outreach", "Inbox Summarization"], href: "/coming-soon"
+        features: ["Intelligent Outreach", "Inbox Summarization"], href: "/tools/astra-reach", tag: "Mail Related"
       },
       {
         title: "AstraScrape AI", description: "Extract high-quality structured data from dynamic websites using resilient AI agents.",
         icon: Globe, color: "text-primary", bg: "bg-primary/5",
-        features: ["JS Rendering Support", "Structured Export"], href: "/coming-soon"
+        features: ["JS Rendering Support", "Anti-Detection"], href: "/tools/astra-scrape", tag: "Data Extraction"
       },
       {
         title: "AstraFlow AI", description: "Smart data-entry agent that populates complex system fields using natural language.",
         icon: FileText, color: "text-primary", bg: "bg-primary/5",
-        features: ["Context Injection", "Auto-Validation"], href: "/coming-soon"
+        features: ["Context Injection", "Auto-Validation"], href: "/tools/astra-flow", tag: "Data Entry"
       },
       {
         title: "AstraDoc AI", description: "Intelligent document analyzer. Instantly extract clauses and summarize long contracts.",
         icon: FileSearch, color: "text-primary", bg: "bg-primary/5",
-        features: ["PDF Parsing", "Semantic Search"], href: "/coming-soon"
+        features: ["PDF Parsing", "Semantic Search"], href: "/tools/astra-doc", tag: "Legal Ops"
       },
       {
         title: "AstraTranslate AI", description: "Enterprise localization. Translate documents while maintaining brand voice.",
         icon: Globe, color: "text-primary", bg: "bg-primary/5",
-        features: ["Tone Preservation", "50+ Languages"], href: "/tools/astra-translate", tag: "Active"
+        features: ["Tone Preservation", "50+ Languages"], href: "/tools/astra-translate", tag: "Localization"
       },
       {
         title: "AstraMarket AI", description: "Continuous competitor intelligence. Monitor rival websites for pricing changes autonomously.",
         icon: LineChart, color: "text-primary", bg: "bg-primary/5",
-        features: ["Automated Tracking", "Browser Use Cloud"], href: "/coming-soon"
+        features: ["Automated Tracking", "Price Alerts"], href: "/tools/astra-market", tag: "Intelligence"
       },
       {
         title: "AstraAgent AI", description: "The Browser Worker. Autonomously navigates websites to book flights, fill forms, and complete tasks.",
         icon: MousePointerClick, color: "text-primary", bg: "bg-primary/5",
-        features: ["Autonomous Browsing", "Task Execution"], href: "/coming-soon"
+        features: ["Autonomous Browsing", "Task Execution"], href: "/tools/astra-agent", tag: "Autonomous"
       },
       {
         title: "AstraPulse AI", description: "AI Observability for Vibe Coders. Monitor token costs, latency, and agent hallucination rates.",
         icon: Activity, color: "text-primary", bg: "bg-primary/5",
-        features: ["Token Tracking", "Health Monitoring"], href: "/coming-soon"
+        features: ["Token Tracking", "Health Monitoring"], href: "/tools/astra-pulse", tag: "Observability"
       }
     ]
   },
@@ -69,27 +69,27 @@ const toolCategories = [
       {
         title: "AstraHook AI", description: "Viral hook generator for LinkedIn/Twitter based on your long-form blog.",
         icon: PenTool, color: "text-primary", bg: "bg-primary/5",
-        features: ["Social Algorithms", "A/B Testing"], href: "/coming-soon"
+        features: ["Social Algorithms", "A/B Testing"], href: "/tools/astra-hook", tag: "Social Gen"
       },
       {
         title: "AstraScript AI", description: "YouTube/Reels scriptwriter that analyzes trending video structures for your niche.",
         icon: Video, color: "text-primary", bg: "bg-primary/5",
-        features: ["Hook Structuring", "Retention Analysis"], href: "/coming-soon"
+        features: ["Hook Structuring", "Retention Analysis"], href: "/tools/astra-script", tag: "Video Script"
       },
       {
         title: "AstraVibe AI", description: "AI-powered color palette and typography generator for new branding.",
         icon: Palette, color: "text-primary", bg: "bg-primary/5",
-        features: ["Hex Code Export", "UI Previews"], href: "/coming-soon"
+        features: ["Hex Code Export", "UI Previews"], href: "/tools/astra-vibe", tag: "Design System"
       },
       {
         title: "AstraBlog AI", description: "Long-form SEO article writer that uses live web-search to cite real sources.",
         icon: ScrollText, color: "text-primary", bg: "bg-primary/5",
-        features: ["Live SERP Sync", "Plagiarism Free"], href: "/tools/astra-blog", tag: "New"
+        features: ["Live SERP Sync", "Plagiarism Free"], href: "/tools/astra-blog", tag: "SEO Content"
       },
       {
-        title: "AstraPrompt AI", description: "Prompt engineer tool that turns 'bad' prompts into high-quality instructions for Midjourney.",
+        title: "AstraPrompt AI", description: "Prompt engineer tool that turns 'bad' prompts into high-quality instructions.",
         icon: Wand2, color: "text-primary", bg: "bg-primary/5",
-        features: ["Image Gen Optimization", "LLM Tuning"], href: "/tools/astra-prompt", tag: "Active"
+        features: ["Image Gen Optimization", "LLM Tuning"], href: "/tools/astra-prompt", tag: "Prompt Eng"
       }
     ]
   },
@@ -98,34 +98,34 @@ const toolCategories = [
     label: "Lead Gen & Sales",
     tools: [
       {
-        title: "AstraLead AI", description: "LinkedIn scraper that writes hyper-personalized ice-breakers based on a prospect's activity.",
+        title: "AstraLead AI", description: "LinkedIn scraper that writes personalized ice-breakers based on prospect activity.",
         icon: Users, color: "text-primary", bg: "bg-primary/5",
-        features: ["Profile Scraping", "Outreach Gen"], href: "/coming-soon"
+        features: ["Profile Scraping", "Outreach Gen"], href: "/tools/astra-lead", tag: "Lead Gen"
       },
       {
-        title: "AstraPitch AI", description: "Generator for custom sales decks (PPT/PDF) based solely on a client's website URL.",
+        title: "AstraPitch AI", description: "Generator for custom sales decks based solely on a client's website URL.",
         icon: Target, color: "text-primary", bg: "bg-primary/5",
-        features: ["Pitch Structuring", "Design Export"], href: "/coming-soon"
+        features: ["Pitch Structuring", "Design Export"], href: "/tools/astra-pitch", tag: "Sales Strategy"
       },
       {
-        title: "AstraReview AI", description: "Monitors Google/G2 reviews and drafts intelligent, brand-aligned responses.",
+        title: "AstraReview AI", description: "Monitors reviews and drafts intelligent, brand-aligned responses.",
         icon: MessageSquareText, color: "text-primary", bg: "bg-primary/5",
-        features: ["Review Indexing", "Tone Mapping"], href: "/coming-soon"
+        features: ["Review Indexing", "Tone Mapping"], href: "/tools/astra-review", tag: "Reputation"
       },
       {
         title: "AstraEvent AI", description: "Scans industry webinars and creates a list of potential VIP networking targets.",
         icon: CalendarDays, color: "text-primary", bg: "bg-primary/5",
-        features: ["Event Scraping", "Lead Scoring"], href: "/coming-soon"
+        features: ["Event Scraping", "Lead Scoring"], href: "/tools/astra-event", tag: "Event Intel"
       },
       {
         title: "AstraSQL AI", description: "Natural language to complex SQL query generator for non-technical founders.",
         icon: Database, color: "text-primary", bg: "bg-primary/5",
-        features: ["PostgreSQL/MySQL", "Schema Context"], href: "/coming-soon"
+        features: ["PostgreSQL/MySQL", "Schema Context"], href: "/tools/astra-sql", tag: "Data Query"
       },
       {
-        title: "AstraCommerce AI", description: "Upload a product photo; AI generates title, SEO description, and price for direct store listing.",
+        title: "AstraCommerce AI", description: "Generate product listings from photos with SEO-optimized titles and descriptions.",
         icon: ShoppingCart, color: "text-primary", bg: "bg-primary/5",
-        features: ["Image to Listing", "Auto SEO"], href: "/coming-soon"
+        features: ["Image to Listing", "Auto SEO"], href: "/tools/astra-commerce", tag: "E-Commerce"
       }
     ]
   },
@@ -134,39 +134,39 @@ const toolCategories = [
     label: "Productivity & ERP",
     tools: [
       {
-        title: "AstraTask AI", description: "Turns raw meeting transcripts into actionable Jira/Linear/Trello tasks automatically.",
+        title: "AstraTask AI", description: "Turns raw meeting transcripts into actionable project management tasks.",
         icon: CheckSquare, color: "text-primary", bg: "bg-primary/5",
-        features: ["Meeting Ingestion", "Ticket Creation"], href: "/coming-soon"
+        features: ["Meeting Ingestion", "Ticket Creation"], href: "/tools/astra-task", tag: "Task Automation"
       },
       {
-        title: "AstraMail AI", description: "A highly intelligent tool that unsubscribes you from 'junk' mail autonomously.",
+        title: "AstraMail AI", description: "Intelligent tool that unsubscribes you from 'junk' mail autonomously.",
         icon: MailX, color: "text-primary", bg: "bg-primary/5",
-        features: ["Spam Routing", "Inbox Zero Protocol"], href: "/coming-soon"
+        features: ["Spam Routing", "Inbox Zero Protocol"], href: "/tools/astra-mail", tag: "Inbox Cleanup"
       },
       {
-        title: "AstraRecruit AI", description: "Scans resumes and ranks them based on a specific custom Job Description (JD).",
+        title: "AstraRecruit AI", description: "Scans resumes and ranks them based on custom Job Descriptions.",
         icon: UserSquare2, color: "text-primary", bg: "bg-primary/5",
-        features: ["Resume Parsing", "Skill Matching"], href: "/coming-soon"
+        features: ["Resume Parsing", "Skill Matching"], href: "/tools/astra-recruit", tag: "Recruitment"
       },
       {
-        title: "AstraLegal AI", description: "Simplified contract reader that highlights 'red flags' in Terms & Conditions immediately.",
+        title: "AstraLegal AI", description: "Simplified contract reader that highlights 'red flags' in Terms & Conditions.",
         icon: Scale, color: "text-primary", bg: "bg-primary/5",
-        features: ["Risk Analysis", "Clause Detection"], href: "/coming-soon"
+        features: ["Risk Analysis", "Clause Detection"], href: "/tools/astra-legal", tag: "Legal Review"
       },
       {
-        title: "AstraBrand AI", description: "Omnichannel generator: inputs a topic, outputs Twitter, LinkedIn, Blog, & Newsletter drafts.",
+        title: "AstraBrand AI", description: "Omnichannel generator: inputs a topic, outputs content for all platforms.",
         icon: Megaphone, color: "text-primary", bg: "bg-primary/5",
-        features: ["Omnichannel Gen", "Style Guides"], href: "/coming-soon"
+        features: ["Omnichannel Gen", "Style Guides"], href: "/tools/astra-brand", tag: "Branding"
       },
       {
-        title: "AstraFinance AI", description: "Ingests PDF invoices and bank statements, reconciling them with QuickBooks/Xero.",
+        title: "AstraFinance AI", description: "Ingests PDF invoices and bank statements, reconciling them with accounting software.",
         icon: Receipt, color: "text-primary", bg: "bg-primary/5",
-        features: ["Line Item Extraction", "Auto-Reconciliation"], href: "/coming-soon"
+        features: ["Line Item Extraction", "Auto-Reconciliation"], href: "/tools/astra-finance", tag: "Fintech Ops"
       },
       {
-        title: "AstraVerify AI", description: "Identity & Deepfake Detector. Live scans calls/documents to verify 99% human authenticity.",
+        title: "AstraVerify AI", description: "Identity & Deepfake Detector. Verifies human authenticity in real-time.",
         icon: ShieldCheck, color: "text-primary", bg: "bg-primary/5",
-        features: ["Deepfake Detection", "KYC Compliance"], href: "/coming-soon"
+        features: ["Deepfake Detection", "KYC Compliance"], href: "/tools/astra-verify", tag: "Verification"
       }
     ]
   },
@@ -175,39 +175,39 @@ const toolCategories = [
     label: "Frontier & Specialist",
     tools: [
       {
-        title: "AstraGrit AI", description: "Scans a candidate's GitHub, LeetCode, and public work history to produce a 'Grit Score' for resilience.",
+        title: "AstraGrit AI", description: "Scans public work history to produce a 'Grit Score' for candidate resilience.",
         icon: Trophy, color: "text-primary", bg: "bg-primary/5",
-        features: ["Grit Score", "GitHub Analysis"], href: "/coming-soon"
+        features: ["Grit Score", "GitHub Analysis"], href: "/tools/astra-grit", tag: "HR Tech"
       },
       {
-        title: "AstraRelay AI", description: "Offline-first AI communication via Mesh Networks (Bluetooth/Local Radio) when internet is unavailable.",
+        title: "AstraRelay AI", description: "Offline-first AI communication via Mesh Networks when internet is unavailable.",
         icon: Radio, color: "text-primary", bg: "bg-primary/5",
-        features: ["Mesh Network", "Zero Internet"], href: "/coming-soon"
+        features: ["Mesh Network", "Zero Internet"], href: "/tools/astra-relay", tag: "Mesh Comm"
       },
       {
-        title: "AstraTrace AI", description: "AI-powered supply chain quality verifier. Scans product photos for international standard compliance.",
+        title: "AstraTrace AI", description: "AI-powered supply chain quality verifier and standard compliance scanner.",
         icon: ScanLine, color: "text-primary", bg: "bg-primary/5",
-        features: ["Quality Scan", "Standard Matching"], href: "/coming-soon"
+        features: ["Quality Scan", "Standard Matching"], href: "/tools/astra-trace", tag: "Supply Chain"
       },
       {
-        title: "AstraGrid AI", description: "Smart solar & energy management. Predicts load-shedding and optimizes solar/battery switching.",
+        title: "AstraGrid AI", description: "Smart solar & energy management for predictive load-shedding optimization.",
         icon: Sun, color: "text-primary", bg: "bg-primary/5",
-        features: ["Energy Forecasting", "Load Optimization"], href: "/coming-soon"
+        features: ["Energy Forecasting", "Load Optimization"], href: "/tools/astra-grid", tag: "Energy AI"
       },
       {
-        title: "AstraAd AI", description: "Mimics Eye-Tracking AI to pre-analyze ad creatives, predict CTR, and optimize before launch.",
+        title: "AstraAd AI", description: "Mimics Eye-Tracking AI to predict CTR and optimize ad creatives.",
         icon: BarChart2, color: "text-primary", bg: "bg-primary/5",
-        features: ["Heatmap Analysis", "CTR Prediction"], href: "/coming-soon"
+        features: ["Heatmap Analysis", "CTR Prediction"], href: "/tools/astra-ad", tag: "Ad Opt"
       },
       {
-        title: "AstraMatch AI", description: "Psychographic analysis of influencer audiences to match brand-perfect ambassadors with zero fake followers.",
+        title: "AstraMatch AI", description: "Psychographic analysis of influencer audiences for brand-perfect matching.",
         icon: Heart, color: "text-primary", bg: "bg-primary/5",
-        features: ["Follower Analysis", "Brand Fit Score"], href: "/coming-soon"
+        features: ["Follower Analysis", "Brand Fit Score"], href: "/tools/astra-match", tag: "Influencer"
       },
       {
-        title: "AstraDraft AI", description: "Upload a napkin sketch and get a 1:1 scale technical 3D CAD model ready for architecture or engineering.",
+        title: "AstraDraft AI", description: "Upload a napkin sketch and get a 1:1 scale technical 3D CAD model.",
         icon: PenLine, color: "text-primary", bg: "bg-primary/5",
-        features: ["Sketch to CAD", "3D Model Export"], href: "/coming-soon"
+        features: ["Sketch to CAD", "3D Model Export"], href: "/tools/astra-draft", tag: "Engineering"
       }
     ]
   }
@@ -330,12 +330,7 @@ const AstraTools = () => {
                         <tool.icon className={`w-7 h-7 ${tool.color}`} />
                       </div>
                       {tool.tag && (
-                        <span className={cn(
-                          "text-[8px] font-black font-['Anonymous_Pro'] px-2 py-0.5 rounded-full uppercase tracking-widest",
-                          tool.tag === "Active" ? "bg-emerald-50 text-emerald-600 border border-emerald-100" :
-                          tool.tag === "New" ? "bg-primary/5 text-primary border border-primary/10" :
-                          "bg-amber-50 text-amber-600 border border-amber-100"
-                        )}>
+                        <span className="text-[8px] font-black font-['Anonymous_Pro'] px-2.5 py-1 rounded-full uppercase tracking-widest bg-slate-50 text-slate-500 border border-slate-100">
                           {tool.tag}
                         </span>
                       )}
@@ -360,14 +355,14 @@ const AstraTools = () => {
                     onClick={() => window.location.href = tool.href}
                     className="w-full justify-between group/btn bg-slate-50 hover:bg-primary text-slate-900 hover:text-white border border-slate-200 hover:border-primary transition-all duration-300 rounded-full h-14 mb-3 font-bold tracking-widest uppercase text-[10px] shadow-sm"
                   >
-                    Deploy Module
+                    Book A Demo
                     <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                   <Link
                     to={`/docs/${tool.href.replace('/tools/', '')}`}
                     className="w-full flex items-center justify-center gap-2 rounded-full py-3 text-[10px] font-black text-slate-400 hover:text-primary hover:bg-primary/5 border border-dashed border-slate-200 hover:border-primary/30 transition-all uppercase tracking-widest"
                   >
-                    <BookOpen className="w-4 h-4" /> Technical Docs
+                    <BookOpen className="w-4 h-4" /> View Documentation
                   </Link>
                 </motion.div>
               ))

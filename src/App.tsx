@@ -104,16 +104,22 @@ const App = () => (
           <Route path="/products" element={<ProductCatalog />} />
 
           <Route path="/products/astra-tools" element={<AstraTools />} />
-          {/* Active Tools - restore original functionality */}
-          <Route path="/tools/astra-prompt" element={<AstraPrompt />} />
-          <Route path="/tools/astra-blog" element={<AstraBlog />} />
-          <Route path="/tools/astra-translate" element={<AstraTranslate />} />
-          <Route path="/tools/astra-scrape" element={<AstraScrape />} />
-          <Route path="/tools/astra-doc" element={<AstraDoc />} />
-          <Route path="/tools/astra-market" element={<AstraMarket />} />
           <Route path="/docs" element={<AstraDocs />} />
           <Route path="/docs/:toolId" element={<AstraDocs />} />
           <Route path="/solutions/cloud" element={<CloudMigrations />} />
+
+          {/* Generic Tool Page - Primary Landing Page */}
+          <Route path="/tools/:toolId" element={<GenericToolPage />} />
+          
+          {/* Active Tools Sandbox - Specific implementations */}
+          <Route path="/tools/astra-prompt/sandbox" element={<AstraPrompt />} />
+          <Route path="/tools/astra-blog/sandbox" element={<AstraBlog />} />
+          <Route path="/tools/astra-translate/sandbox" element={<AstraTranslate />} />
+          <Route path="/tools/astra-scrape/sandbox" element={<AstraScrape />} />
+          <Route path="/tools/astra-doc/sandbox" element={<AstraDoc />} />
+          <Route path="/tools/astra-market/sandbox" element={<AstraMarket />} />
+          <Route path="/tools/astra-reach/sandbox" element={<AstraReach />} />
+          <Route path="/tools/astra-flow/sandbox" element={<AstraFlow />} />
 
           <Route path="/services/ai" element={<AIService />} />
           <Route path="/services/automation" element={<AutomationService />} />
@@ -125,9 +131,6 @@ const App = () => (
           <Route path="/services/backend" element={<BackendEngineering />} />
           <Route path="/services/chatbots" element={<AIChatbots />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
-
-
-          {/* Generic Pages */}
 
           <Route path="/status" element={<SystemStatus />} />
           <Route path="/blog" element={<BlogListing />} />
@@ -146,9 +149,6 @@ const App = () => (
 
           {/* Tool Waitlist Page */}
           <Route path="/tools/:toolId/waitlist" element={<ToolWaitlist />} />
-
-          {/* Generic Tool Page - catch-all for tools */}
-          <Route path="/tools/:toolId" element={<GenericToolPage />} />
 
           <Route path="/why-astraventa/:slug" element={<BrandHighlightDetail />} />
 

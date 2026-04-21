@@ -103,32 +103,32 @@ const astraLabCategories = [
   {
     title: "Growth & Outreach",
     tools: [
-      { title: "Astra Reach", href: "/tools/astra-reach", icon: <Globe className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Lead", href: "/tools/astra-lead", icon: <Users className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Ad", href: "/tools/astra-ad", icon: <Zap className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Mail", href: "/tools/astra-mail", icon: <Mail className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Funnel", href: "/tools/astra-task", icon: <Network className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Reach", href: "/tools/astra-reach", icon: <Globe className="w-4 h-4" />, tag: "Mail Related" },
+      { title: "Astra Lead", href: "/tools/astra-lead", icon: <Users className="w-4 h-4" />, tag: "Lead Gen" },
+      { title: "Astra Ad", href: "/tools/astra-ad", icon: <Zap className="w-4 h-4" />, tag: "Marketing" },
+      { title: "Astra Mail", href: "/tools/astra-mail", icon: <Mail className="w-4 h-4" />, tag: "Inbox Ops" },
+      { title: "Astra Funnel", href: "/tools/astra-task", icon: <Network className="w-4 h-4" />, tag: "Conversion" },
     ]
   },
   {
     title: "Content & Creative",
     tools: [
-      { title: "Astra Script", href: "/tools/astra-script", icon: <PenTool className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Prompt", href: "/tools/astra-prompt", icon: <MessageSquare className="w-4 h-4" />, tag: "Active" },
-      { title: "Astra Blog", href: "/tools/astra-blog", icon: <BookOpen className="w-4 h-4" />, tag: "New" },
-      { title: "Astra Translate", href: "/tools/astra-translate", icon: <Globe className="w-4 h-4" />, tag: "Active" },
-      { title: "Astra Vibe", href: "/tools/astra-vibe", icon: <Sparkles className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Design", href: "/tools/astra-brand", icon: <Palette className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Script", href: "/tools/astra-script", icon: <PenTool className="w-4 h-4" />, tag: "Scripting" },
+      { title: "Astra Prompt", href: "/tools/astra-prompt", icon: <MessageSquare className="w-4 h-4" />, tag: "Prompt Eng" },
+      { title: "Astra Blog", href: "/tools/astra-blog", icon: <BookOpen className="w-4 h-4" />, tag: "SEO Content" },
+      { title: "Astra Translate", href: "/tools/astra-translate", icon: <Globe className="w-4 h-4" />, tag: "Localization" },
+      { title: "Astra Vibe", href: "/tools/astra-vibe", icon: <Sparkles className="w-4 h-4" />, tag: "Design AI" },
+      { title: "Astra Design", href: "/tools/astra-brand", icon: <Palette className="w-4 h-4" />, tag: "Identity" },
     ]
   },
   {
     title: "Intelligence & Scale",
     tools: [
-      { title: "Astra Agent", href: "/tools/astra-agent", icon: <Bot className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Flow", href: "/tools/astra-flow", icon: <Workflow className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Pulse", href: "/tools/astra-pulse", icon: <Activity className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Core", href: "/tools/astra-grit", icon: <Cpu className="w-4 h-4" />, tag: "Coming Soon" },
-      { title: "Astra Secure", href: "/tools/astra-verify", icon: <ShieldCheck className="w-4 h-4" />, tag: "Coming Soon" },
+      { title: "Astra Agent", href: "/tools/astra-agent", icon: <Bot className="w-4 h-4" />, tag: "Autonomous" },
+      { title: "Astra Flow", href: "/tools/astra-flow", icon: <Workflow className="w-4 h-4" />, tag: "Workflow" },
+      { title: "Astra Pulse", href: "/tools/astra-pulse", icon: <Activity className="w-4 h-4" />, tag: "Observability" },
+      { title: "Astra Core", href: "/tools/astra-grit", icon: <Cpu className="w-4 h-4" />, tag: "Deep Logic" },
+      { title: "Astra Secure", href: "/tools/astra-verify", icon: <ShieldCheck className="w-4 h-4" />, tag: "Security" },
     ]
   }
 ];
@@ -265,12 +265,7 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
                               <span className="text-xs font-bold text-slate-700 leading-none">{tool.title}</span>
                             </div>
                             {tool.tag && (
-                              <span className={cn(
-                                "text-[7px] font-black font-['Anonymous_Pro'] px-1.5 py-0.5 rounded-full uppercase tracking-widest w-fit",
-                                tool.tag === "Active" ? "bg-emerald-50 text-emerald-600 border border-emerald-100" :
-                                tool.tag === "New" ? "bg-primary/5 text-primary border border-primary/10" :
-                                "bg-amber-50 text-amber-600 border border-amber-100"
-                              )}>
+                              <span className="text-[7px] font-black font-['Anonymous_Pro'] px-1.5 py-0.5 rounded-full uppercase tracking-widest w-fit bg-slate-50 text-slate-400 border border-slate-100">
                                 {tool.tag}
                               </span>
                             )}
@@ -527,12 +522,7 @@ export const Header = ({ isDarkHeroPage = false }: HeaderProps) => {
                                         <div className="flex items-center gap-2">
                                           <span className="text-[13px] font-heading font-normal text-slate-700 tracking-wide uppercase group-hover:text-primary transition-colors leading-none pt-0.5">{tool.title}</span>
                                           {tool.tag && (
-                                            <span className={cn(
-                                              "text-[7px] font-black font-['Anonymous_Pro'] px-1.5 py-0.5 rounded-full uppercase tracking-widest",
-                                              tool.tag === "Active" ? "bg-emerald-50 text-emerald-600 border border-emerald-100" :
-                                              tool.tag === "New" ? "bg-primary/5 text-primary border border-primary/10" :
-                                              "bg-amber-50 text-amber-600 border border-amber-100"
-                                            )}>
+                                            <span className="text-[7px] font-black font-['Anonymous_Pro'] px-1.5 py-0.5 rounded-full uppercase tracking-widest bg-slate-50 text-slate-400 border border-slate-100">
                                               {tool.tag}
                                             </span>
                                           )}

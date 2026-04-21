@@ -300,7 +300,7 @@ const AIService = () => {
               {[
                 { label: "Efficiency Gain", value: "85%", desc: "Reduction in manual operation latency across enterprise document ingestion.", icon: Activity },
                 { label: "Throughput", value: "12x", desc: "Linear increase in processing capacity without additional infrastructure overhead.", icon: Zap },
-                { label: "Inference Speed", value: "<15ms", desc: "Proprietary fine-tuning reduces latency for mission-critical decisioning.", icon: Cpu }
+                { label: "Inference Speed", value: "&lt;15ms", desc: "Proprietary fine-tuning reduces latency for mission-critical decisioning.", icon: Cpu }
               ].map((stat, i) => {
                 const Icon = stat.icon;
                 return (

@@ -78,7 +78,7 @@ export const AstraToolsNetwork = () => {
                   </div>
                 </div>
                 <p className="text-[15px] text-slate-500 font-medium leading-relaxed max-w-md">
-                  The central nervous system for autonomous workflows. Orchestrate complex logic trees with 99.9% uptime and <10ms latency.
+                  The central nervous system for autonomous workflows. Orchestrate complex logic trees with 99.9% uptime and &lt;10ms latency.
                 </p>
                 
                 <div className="mt-8 flex items-center gap-6">

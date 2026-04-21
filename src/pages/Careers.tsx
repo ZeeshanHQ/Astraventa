@@ -484,7 +484,7 @@ const Careers = () => {
                   <div className="grid grid-cols-3 gap-6">
                     {[
                       { value: "99.9%", label: "Uptime SLA" },
-                      { value: "<50ms", label: "Avg Response" },
+                      { value: "&lt;50ms", label: "Avg Response" },
                       { value: "Daily", label: "Deploy Cadence" },
                     ].map((s) => (
                       <div key={s.label}>

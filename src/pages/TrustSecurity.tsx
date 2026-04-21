@@ -21,7 +21,7 @@ const TrustSecurity = () => {
     { label: "Threats Blocked", value: "2.4M", change: "+12%", icon: Shield },
     { label: "Uptime SLA", value: "99.99%", change: "+0.01%", icon: Activity },
     { label: "Security Score", value: "A+", change: "Stable", icon: CheckCircle2 },
-    { label: "Response Time", value: "<200ms", change: "-15%", icon: Zap }
+    { label: "Response Time", value: "&lt;200ms", change: "-15%", icon: Zap }
   ];
 
   const compliance = [
@@ -384,7 +384,7 @@ const TrustSecurity = () => {
               {[
                 { label: "Threats Blocked Today", value: "47,892", change: "+15%", icon: Shield },
                 { label: "Active Incidents", value: "0", change: "-100%", icon: AlertTriangle },
-                { label: "Response Time", value: "<50ms", change: "-25%", icon: Zap },
+                { label: "Response Time", value: "&lt;50ms", change: "-25%", icon: Zap },
                 { label: "Systems Protected", value: "2,847", change: "+8%", icon: Server }
               ].map((metric, i) => {
                 const Icon = metric.icon;

@@ -51,7 +51,7 @@ export const AdminLayout = ({ children, onLogout }: AdminLayoutProps) => {
       {/* Sidebar */}
       <aside 
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-72 bg-black/40 backdrop-blur-2xl border-r border-white/5 transition-all duration-500 ease-[0.16,1,0.3,1] lg:relative lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 w-72 bg-black/40 backdrop-blur-2xl border-r border-white/5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:relative lg:translate-x-0",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:w-0 lg:opacity-0 lg:pointer-events-none"
         )}
       >

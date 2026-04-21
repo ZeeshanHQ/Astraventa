@@ -321,7 +321,7 @@ const toolMetadata: Record<string, {
     details: "From sketch to prototype in seconds. AstraDraft turns your rough drawings into high-precision technical models ready for 3D printing or industrial manufacturing.",
     tag: "Engineering"
   }
-};};
+};
 
 const GenericToolPage = () => {
   const navigate = useNavigate();

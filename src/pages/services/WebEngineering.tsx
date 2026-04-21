@@ -644,7 +644,7 @@ const WebEngineering = () => {
               <img
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2560&auto=format&fit=crop"
                 alt="Global Network"
-                className="w-full h-full object-cover opacity-10 grayscale group-hover:scale-110 transition-all duration-[3000ms]"
+                className="w-full h-full object-cover opacity-10 grayscale group-hover:scale-110 transition-all duration-[3s]"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative">

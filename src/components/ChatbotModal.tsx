@@ -232,7 +232,7 @@ export const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
         responseText = "💰 Great! Let's get you a custom quote.\n\n**What I need:**\n✅ Project details\n✅ Timeline\n✅ Budget range\n✅ Contact information\n\n**Benefits:**\n🎯 Accurate pricing\n📋 Detailed proposal\n🆓 No hidden fees\n\nReady to get started?";
         break;
       case 'portfolio':
-        responseText = "🎨 Here are some amazing examples:\n\n**Recent Projects:**\n🏢 E-commerce AI Chatbot (300% sales increase)\n🏭 Manufacturing Automation (60% cost reduction)\n🏪 Retail AI Assistant (24/7 support)\n\n**View Live Demos:**\n🔗 astraventa.online/portfolio\n📧 Request case studies\n\nWhich industry interests you most?";
+        responseText = "🎨 Here are some amazing examples:\n\n**Recent Projects:**\n🏢 E-commerce AI Chatbot (300% sales increase)\n🏭 Manufacturing Automation (60% cost reduction)\n🏪 Retail AI Assistant (24/7 support)\n\n**View Live Demos:**\n🔗 astraventa.com/portfolio\n📧 Request case studies\n\nWhich industry interests you most?";
         break;
     }
 

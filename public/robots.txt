@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://astraventa.online/sitemap.xml
+Sitemap: https://astraventa.com/sitemap.xml

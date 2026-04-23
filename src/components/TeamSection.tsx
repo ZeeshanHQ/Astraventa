@@ -33,7 +33,7 @@ const teamMembers = [
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "haider@astraventa.online"
+      email: "haider@astraventa.com"
     }
   },
   {
@@ -49,7 +49,7 @@ const teamMembers = [
     social: {
       linkedin: "https://www.linkedin.com/in/zeeshanjay/",
       twitter: "#",
-      email: "zeeshan@astraventa.online"
+      email: "zeeshan@astraventa.com"
     }
   },
   {
@@ -65,7 +65,7 @@ const teamMembers = [
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "sarah@astraventa.online"
+      email: "sarah@astraventa.com"
     }
   },
   {
@@ -81,7 +81,7 @@ const teamMembers = [
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "michael@astraventa.online"
+      email: "michael@astraventa.com"
     }
   }
 ];

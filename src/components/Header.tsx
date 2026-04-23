@@ -75,11 +75,11 @@ const services = [
 ];
 
 const products = [
-  { title: "LaunchPact AI", href: "https://launchpact.astraventa.online", description: "From Idea to Architecture in Minutes.", icon: <img src={launchpactLogo} alt="LaunchPact AI" className="w-5 h-5 object-contain" /> },
+  { title: "LaunchPact AI", href: "https://launchpact.astraventa.com", description: "From Idea to Architecture in Minutes.", icon: <img src={launchpactLogo} alt="LaunchPact AI" className="w-5 h-5 object-contain" /> },
   { title: "Shorts Cavexa", href: "https://shorts.cavexa.online", description: "High-Velocity Content, Zero Effort.", icon: <img src={shortscavexaLogo} alt="Shorts Cavexa" className="w-5 h-5 object-contain rounded-sm" /> },
-  { title: "ComplyMail", href: "https://comply.astraventa.online", description: "Enterprise Email Compliance & Security.", icon: <img src={complymailLogo} alt="ComplyMail" className="w-5 h-5 object-contain" /> },
-  { title: "Vectrax", href: "https://vectrax.astraventa.online", description: "AI-powered database management.", icon: <img src={vectraxLogo} alt="Vectrax" className="w-5 h-5 object-contain" /> },
-  { title: "Outrelix", href: "https://outrelix.astraventa.online", description: "Precision Outreach at Global Scale.", icon: <img src={outrelixLogo} alt="Outrelix" className="w-5 h-5 object-contain" /> },
+  { title: "ComplyMail", href: "https://comply.astraventa.com", description: "Enterprise Email Compliance & Security.", icon: <img src={complymailLogo} alt="ComplyMail" className="w-5 h-5 object-contain" /> },
+  { title: "Vectrax", href: "https://vectrax.astraventa.com", description: "AI-powered database management.", icon: <img src={vectraxLogo} alt="Vectrax" className="w-5 h-5 object-contain" /> },
+  { title: "Outrelix", href: "https://outrelix.astraventa.com", description: "Precision Outreach at Global Scale.", icon: <img src={outrelixLogo} alt="Outrelix" className="w-5 h-5 object-contain" /> },
 ];
 
 const venturePortfolio = [

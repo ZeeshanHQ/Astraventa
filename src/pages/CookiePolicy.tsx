@@ -116,7 +116,7 @@ export const CookiePolicy = () => {
  </p>
  <div className="mt-4 p-4 glass-card rounded-xl">
  <p className="text-foreground font-medium">Astraventa AI Solutions</p>
- <p className="text-muted-foreground">Email: privacy@astraventa.online</p>
+ <p className="text-muted-foreground">Email: privacy@astraventa.com</p>
  <p className="text-muted-foreground">Phone: +92 328 4529264</p>
  </div>
  </section>

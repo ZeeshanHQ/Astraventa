@@ -57,7 +57,7 @@ const products: Product[] = [
       { label: "Core Neural", value: "Venture Intelligence Layer", tooltip: "Proprietary multi-model orchestration for strategic accuracy." },
       { label: "Processing", value: "30-Day execution Logic" }
     ],
-    externalUrl: "https://launchpact.astraventa.online",
+    externalUrl: "https://launchpact.astraventa.com",
     docsUrl: "/docs/launchpact"
   },
   {
@@ -73,7 +73,7 @@ const products: Product[] = [
       { label: "Analytics", value: "Behavioral Kernel", tooltip: "Real-time analysis of lead engagement patterns." },
       { label: "Database", value: "Personalized Outreach Logic" }
     ],
-    externalUrl: "https://outrelix.astraventa.online",
+    externalUrl: "https://outrelix.astraventa.com",
     docsUrl: "/docs/outrelix"
   },
   {
@@ -89,7 +89,7 @@ const products: Product[] = [
       { label: "Logic", value: "Agentic Contract Drafting", tooltip: "Automated analysis and drafting against global legal standards." },
       { label: "Security", value: "Case file orchestration" }
     ],
-    externalUrl: "https://legalflow.astraventa.online",
+    externalUrl: "https://legalflow.astraventa.com",
     docsUrl: "/docs/legalflow"
   },
   {
@@ -121,7 +121,7 @@ const products: Product[] = [
       { label: "Validation", value: "Risk management logic", tooltip: "Ensuring every message meets global compliance standards." },
       { label: "Rep", value: "Automated Responses" }
     ],
-    externalUrl: "https://comply.astraventa.online",
+    externalUrl: "https://comply.astraventa.com",
     docsUrl: "/docs/complymail"
   },
   {
@@ -137,7 +137,7 @@ const products: Product[] = [
       { label: "Query", value: "Postgres Observer", tooltip: "Deep-packet inspection of database requests." },
       { label: "Control", value: "Autonomous management" }
     ],
-    externalUrl: "https://vectrax.astraventa.online",
+    externalUrl: "https://vectrax.astraventa.com",
     docsUrl: "/docs/vectrax"
   }
 ];

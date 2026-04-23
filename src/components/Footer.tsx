@@ -41,11 +41,11 @@ const footerLinks = [
   {
     title: "Products",
     links: [
-      { name: "LaunchPact AI", href: "https://launchpact.astraventa.online", tag: "Live" },
+      { name: "LaunchPact AI", href: "https://launchpact.astraventa.com", tag: "Live" },
       { name: "Shorts Cavexa", href: "https://shorts.cavexa.online", tag: "Live" },
-      { name: "ComplyMail", href: "https://comply.astraventa.online", tag: "New" },
-      { name: "Vectrax", href: "https://vectrax.astraventa.online", tag: "Live" },
-      { name: "Outrelix", href: "https://outrelix.astraventa.online", tag: "Live" },
+      { name: "ComplyMail", href: "https://comply.astraventa.com", tag: "New" },
+      { name: "Vectrax", href: "https://vectrax.astraventa.com", tag: "Live" },
+      { name: "Outrelix", href: "https://outrelix.astraventa.com", tag: "Live" },
     ],
   },
   {

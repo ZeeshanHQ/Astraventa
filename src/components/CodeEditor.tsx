@@ -25,7 +25,7 @@ workflow = av.create_workflow([
  'result_reporting'
 ])
 
-# ✨ AI automation deployed at: api.astraventa.online/v1/automate
+# ✨ AI automation deployed at: api.astraventa.com/v1/automate
 `;
 
 export const CodeEditor = () => {

@@ -50,15 +50,15 @@ export const PrivacyPolicy = () => {
  <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Information Collection</h2>
  </div>
  <p className="text-slate-600 leading-relaxed mb-6 text-[15px] font-medium transition-colors duration-300">
- Astraventa collects the minimal data required to provide exceptional AI orchestration services:
+ Astraventa collects the <strong className="text-slate-900">minimal data required</strong> to provide exceptional AI orchestration services:
  </p>
- <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+ <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
  {[
- "Basic Contact Details",
+ "Email Address",
+ "Full Name",
  "Company & Industry Context",
  "Technical Flow Requirements",
  "Project Specific Metadata",
- "Support Communication logs",
  "Usage Analytics (Anonymized)"
  ].map((item, i) => (
  <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 group-hover:border-slate-300 transition-all shadow-sm">
@@ -66,6 +66,11 @@ export const PrivacyPolicy = () => {
  <span className="text-sm font-bold text-slate-700">{item}</span>
  </div>
  ))}
+ </div>
+ <div className="p-6 rounded-2xl bg-teal-50 border border-teal-100">
+ <p className="text-sm text-slate-700 font-medium leading-relaxed">
+ <strong className="text-teal-700">Payment Processing:</strong> We use <strong className="text-teal-700">Paddle</strong> as our secure payment processor. Paddle handles all payment transactions and may collect additional payment-related information in accordance with their own privacy policy.
+ </p>
  </div>
  </section>
 

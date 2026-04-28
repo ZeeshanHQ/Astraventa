@@ -47,12 +47,13 @@ export const TermsOfService = () => {
  <section className="group">
  <div className="flex items-center gap-4 mb-6">
  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-black border border-slate-200 shadow-sm">01</div>
- <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Acceptance of Agreement</h2>
+ <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Service Provider</h2>
  </div>
+ <p className="text-slate-600 leading-relaxed text-[15px] font-medium transition-colors duration-300 mb-4">
+ <strong className="text-slate-900">Astraventa</strong> is the provider of all AI automation, development, and consulting services described on this platform. All services are delivered as digital solutions and are governed by the laws and regulations of your region.
+ </p>
  <p className="text-slate-600 leading-relaxed text-[15px] font-medium transition-colors duration-300">
- By accessing and using Astraventa's AI automation services, you accept and agree to be bound by the terms
- and provision of this agreement. Our platform is designed for enterprise-grade autonomous intelligence, and usage implies
- compliance with our security and ethics standards.
+ By accessing and using Astraventa's services, you accept and agree to be bound by the terms and provision of this agreement. Our platform is designed for enterprise-grade autonomous intelligence, and usage implies compliance with our security and ethics standards.
  </p>
  </section>
 
@@ -105,6 +106,24 @@ export const TermsOfService = () => {
  <section className="group">
  <div className="flex items-center gap-4 mb-6">
  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-black border border-slate-200 shadow-sm">04</div>
+ <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Digital Services & Regional Governance</h2>
+ </div>
+ <div className="p-8 rounded-3xl bg-slate-900 text-white relative overflow-hidden shadow-2xl">
+ <div className="absolute top-0 right-0 p-4 opacity-5">
+ <Scale className="w-32 h-32" />
+ </div>
+ <p className="text-slate-300 leading-relaxed text-[15px] font-medium relative z-10 mb-4">
+ <strong className="text-white">Digital Nature:</strong> All services provided by Astraventa are digital deliverables, including but not limited to AI models, software code, automation workflows, design assets, and consulting recommendations.
+ </p>
+ <p className="text-slate-300 leading-relaxed text-[15px] font-medium relative z-10">
+ <strong className="text-white">Regional Laws:</strong> These services and this agreement are governed by the laws applicable in your region. Astraventa complies with international standards while respecting local legal frameworks for digital services, data protection, and commercial transactions.
+ </p>
+ </div>
+ </section>
+
+ <section className="group">
+ <div className="flex items-center gap-4 mb-6">
+ <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-black border border-slate-200 shadow-sm">05</div>
  <h2 className="text-2xl font-bold tracking-tight text-slate-900 border-b border-slate-200 pb-2 flex-1">Proprietary Rights</h2>
  </div>
  <div className="p-8 rounded-3xl bg-slate-900 text-white relative overflow-hidden shadow-2xl">

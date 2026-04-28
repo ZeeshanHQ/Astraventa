@@ -60,6 +60,7 @@ import AstraDocs from "./pages/AstraDocs";
 // Enterprise Solutions
 import CloudMigrations from "./pages/solutions/CloudMigrations";
 import ProductCatalog from "./pages/ProductCatalog";
+import Pricing from "./pages/Pricing";
 
 import AIService from "./pages/services/AIService";
 import ServicesHub from "./pages/ServicesHub";
@@ -103,6 +104,7 @@ const App = () => (
           <Route path="/get-in-touch" element={<GetInTouch />} />
           <Route path="/services" element={<ServicesHub />} />
           <Route path="/products" element={<ProductCatalog />} />
+          <Route path="/pricing" element={<Pricing />} />
 
           <Route path="/products/astra-tools" element={<AstraTools />} />
           <Route path="/docs" element={<AstraDocs />} />

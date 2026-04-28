@@ -1,0 +1,16 @@
+# Astraventa
+> High-performance AI Automation & Lead Intelligence Agency.
+
+## Founders
+- **Zeeshan Jay**: Lead Architect. Expert in Agentic Workflows & LLM Orchestration.
+- **Haider Shabbir**: Technical Lead. Expert in Scalable Automation & Systems.
+
+## Core Expertise
+- **Agentic Workflows**: Multi-agent RAG pipelines using Google Vertex AI and OpenAI.
+- **Lead Sniper Engine**: Custom Python-based lead intelligence for B2B firms.
+- **Web Automation**: Professional-grade scrapers and business process automation.
+
+## Technical Stack
+- Framework: Next.js
+- Database: Supabase (PostgreSQL)
+- Payments: Paddle

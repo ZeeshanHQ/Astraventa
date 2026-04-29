@@ -63,6 +63,7 @@ const footerLinks = [
     title: "Company",
     links: [
       { name: "About Us", href: "/about" },
+      { name: "Pricing", href: "/pricing" },
       { name: "Careers", href: "/careers" },
       { name: "Leadership Team", href: "/leadership" },
       { name: "Partner Network", href: "/partners" },
@@ -281,6 +282,7 @@ export const Footer = () => {
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-[11px] text-black/30 font-display font-normal uppercase tracking-[0.1em]">
             <Link to="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
             <Link to="/terms" className="hover:text-primary transition-colors">Terms</Link>
+            <Link to="/refund" className="hover:text-primary transition-colors">Refund</Link>
             <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </div>
         </motion.div>

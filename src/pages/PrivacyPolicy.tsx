@@ -123,7 +123,7 @@ export const PrivacyPolicy = () => {
  <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
  <div className="flex items-center gap-2.5 text-slate-800 font-bold bg-white px-5 py-3 rounded-xl shadow-sm border border-slate-200">
  <Mail className="w-4 h-4 text-teal-600" />
- astraventaai@gmail.com
+ contact@astraventa.com
  </div>
  <div className="flex items-center gap-2.5 text-slate-800 font-bold bg-white px-5 py-3 rounded-xl shadow-sm border border-slate-200">
  <Clock className="w-4 h-4 text-teal-600" />

@@ -10,6 +10,7 @@ import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { TermsOfService } from "./pages/TermsOfService";
 import { CookiePolicy } from "./pages/CookiePolicy";
 import { RefundPolicy } from "./pages/RefundPolicy";
+import { CaseStudies } from "./pages/CaseStudies";
 import GetInTouch from "./pages/GetInTouch";
 import AstraTools from "./pages/AstraTools";
 import AstraReach from "./pages/AstraReach";
@@ -154,6 +155,7 @@ const App = () => (
           <Route path="/tools/:toolId/waitlist" element={<ToolWaitlist />} />
 
           <Route path="/why-astraventa/:slug" element={<BrandHighlightDetail />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
 
           {/* Legacy & Utilities */}
           <Route path="/contact" element={<GetInTouch />} />

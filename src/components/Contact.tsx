@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { ChatbotModal } from "./ChatbotModal";
 import Globe from "@/components/ui/globe";
 import { z } from "zod";
+import { supabase } from "@/lib/supabase";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -114,36 +115,49 @@ export const Contact = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      });
+      // Save to Supabase
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || null,
+          phone: formData.phone || null,
+          service: formData.service,
+          budget: formData.budget || null,
+          timeline: formData.timeline || null,
+          message: formData.message,
+          status: 'pending'
+        });
 
-      if (response.ok) {
-        toast({
-          title: "Message Sent Successfully!",
-          description: "We'll get back to you within 2 hours.",
-          variant: "default",
-        });
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          phone: "",
-          service: "",
-          budget: "",
-          timeline: "",
-          message: "",
-          _honey: ""
-        });
-      } else {
-        throw new Error('Form submission failed');
+      if (error) throw error;
+
+      // Trigger Edge Function to send email notifications
+      const { error: functionError } = await supabase.functions.invoke('send-contact-notification');
+
+      if (functionError) {
+        console.error('Edge function error:', functionError);
+        // Don't fail the submission if email notification fails
       }
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "We'll get back to you within 2 hours.",
+        variant: "default",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        service: "",
+        budget: "",
+        timeline: "",
+        message: "",
+        _honey: ""
+      });
     } catch (error) {
+      console.error('Error submitting contact form:', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
@@ -155,8 +169,8 @@ export const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: Phone, title: "WhatsApp", value: "+92 328 4529264", description: "Mon-Fri 9AM-6PM EST" },
-    { icon: Mail, title: "Email", value: "astraventaai@gmail.com", description: "24/7 Support Available" },
+    { icon: Phone, title: "WhatsApp", value: "+92 3267853405", description: "Mon-Fri 9AM-6PM EST" },
+    { icon: Mail, title: "Email", value: "contact@astraventa.com", description: "24/7 Support Available" },
     { icon: MapPin, title: "Location", value: "Remote-First", description: "Global Team, Worldwide Service" },
     { icon: Clock, title: "Response Time", value: "2 Hours", description: "Business Hours" }
   ];

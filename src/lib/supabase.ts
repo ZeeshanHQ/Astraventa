@@ -31,3 +31,25 @@ export interface CareerApplication {
   cover_letter: string;
   status: 'pending' | 'reviewed' | 'shortlisted' | 'rejected';
 }
+
+export interface DemoRequest {
+  id: string;
+  created_at: string;
+  email: string;
+  case_study_id: string | null;
+  status: 'pending' | 'contacted' | 'completed';
+}
+
+export interface ContactSubmission {
+  id: string;
+  created_at: string;
+  name: string;
+  email: string;
+  company: string | null;
+  phone: string | null;
+  service: string;
+  budget: string | null;
+  timeline: string | null;
+  message: string;
+  status: 'pending' | 'contacted' | 'qualified' | 'closed';
+}

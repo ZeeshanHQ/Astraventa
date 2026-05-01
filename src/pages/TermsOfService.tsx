@@ -148,11 +148,11 @@ export const TermsOfService = () => {
  <div className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10">
  <div className="flex items-center gap-2.5 text-white font-bold bg-white/5 px-6 py-3 rounded-xl border border-white/10 backdrop-blur-sm">
  <Mail className="w-4 h-4 text-teal-400" />
- astraventaai@gmail.com
+ contact@astraventa.com
  </div>
- <a href="tel:+923284529264" className="flex items-center gap-2.5 text-white font-bold bg-white/5 px-6 py-3 rounded-xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
+ <a href="tel:+923267853405" className="flex items-center gap-2.5 text-white font-bold bg-white/5 px-6 py-3 rounded-xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
  <Phone className="w-4 h-4 text-teal-400" />
- +92 328 4529264
+ +92 3267853405
  </a>
  </div>
  </div>

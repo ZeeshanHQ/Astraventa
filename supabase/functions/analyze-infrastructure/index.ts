@@ -114,7 +114,7 @@ Provide analysis in JSON format with these fields:
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'mistralai/Mistral-7B-Instruct-v0.3',
+          model: 'meta-llama/Llama-3.2-3B-Instruct',
           messages: [
             { role: 'system', content: 'You are an expert infrastructure monitoring AI. Always respond with valid JSON only.' },
             { role: 'user', content: prompt }
@@ -175,7 +175,7 @@ Provide analysis in JSON format with these fields:
         recommendations: analysisResult.recommendations,
         warnings: analysisResult.warnings,
         ai_analysis: analysisResult.ai_analysis,
-        model_used: 'mistralai/Mistral-7B-Instruct-v0.3'
+        model_used: 'meta-llama/Llama-3.2-3B-Instruct'
       }, { onConflict: 'analysis_date' })
 
     if (insertError) {

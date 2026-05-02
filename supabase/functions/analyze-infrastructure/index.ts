@@ -14,30 +14,59 @@ serve(async (req) => {
   }
 
   try {
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const githubToken = Deno.env.get('GITHUB_MODELS_TOKEN')!;
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    const githubToken = Deno.env.get('GITHUB_MODELS_TOKEN');
+
+    if (!supabaseUrl || !supabaseServiceKey || !githubToken) {
+      console.error('Missing environment variables:', {
+        hasSupabaseUrl: !!supabaseUrl,
+        hasSupabaseServiceKey: !!supabaseServiceKey,
+        hasGithubToken: !!githubToken
+      });
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Missing required environment variables',
+        details: {
+          hasSupabaseUrl: !!supabaseUrl,
+          hasSupabaseServiceKey: !!supabaseServiceKey,
+          hasGithubToken: !!githubToken
+        }
+      }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+    console.log('Starting infrastructure analysis...');
+
     // Fetch system data
-    const [
-      { data: contactSubmissions },
-      { data: demoRequests },
-      { data: newsletterSubscribers },
-      { data: blogPosts },
-      { data: careerPositions },
-      { data: careerApplications },
-      { data: activityLogs }
-    ] = await Promise.all([
-      supabase.from('contact_submissions').select('*'),
-      supabase.from('demo_requests').select('*'),
-      supabase.from('newsletter_subscribers').select('*'),
-      supabase.from('blog_posts').select('*'),
-      supabase.from('career_positions').select('*'),
-      supabase.from('career_applications').select('*'),
-      supabase.from('admin_activity_logs').select('*').order('created_at', { ascending: false }).limit(100)
-    ]);
+    let contactSubmissions, demoRequests, newsletterSubscribers, blogPosts, careerPositions, careerApplications, activityLogs;
+    try {
+      const results = await Promise.all([
+        supabase.from('contact_submissions').select('*'),
+        supabase.from('demo_requests').select('*'),
+        supabase.from('newsletter_subscribers').select('*'),
+        supabase.from('blog_posts').select('*'),
+        supabase.from('career_positions').select('*'),
+        supabase.from('career_applications').select('*'),
+        supabase.from('admin_activity_logs').select('*').order('created_at', { ascending: false }).limit(100)
+      ]);
+      [contactSubmissions, demoRequests, newsletterSubscribers, blogPosts, careerPositions, careerApplications, activityLogs] = results;
+      console.log('Database queries completed successfully');
+    } catch (dbError) {
+      console.error('Database query error:', dbError);
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Database query failed',
+        details: dbError.message
+      }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
 
     const today = new Date().toISOString().split('T')[0]
     const systemData = {
@@ -52,7 +81,9 @@ serve(async (req) => {
     }
 
     // Call GitHub Models API
-    const prompt = `You are an infrastructure monitoring AI for Astraventa.com. Analyze the following system data and provide a comprehensive report:
+    let githubResponse;
+    try {
+      const prompt = `You are an infrastructure monitoring AI for Astraventa.com. Analyze the following system data and provide a comprehensive report:
 
 System Data:
 - Blog Posts: ${systemData.posts}
@@ -75,28 +106,44 @@ Provide analysis in JSON format with these fields:
   "ai_analysis": "Detailed narrative analysis of the infrastructure..."
 }`;
 
-    const response = await fetch('https://models.inference.ai.azure.com/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${githubToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'mistralai/Mistral-7B-Instruct-v0.3',
-        messages: [
-          { role: 'system', content: 'You are an expert infrastructure monitoring AI. Always respond with valid JSON only.' },
-          { role: 'user', content: prompt }
-        ],
-        temperature: 0.3,
-        max_tokens: 2000
-      }),
-    });
+      console.log('Calling GitHub Models API...');
+      githubResponse = await fetch('https://models.inference.ai.azure.com/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${githubToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'mistralai/Mistral-7B-Instruct-v0.3',
+          messages: [
+            { role: 'system', content: 'You are an expert infrastructure monitoring AI. Always respond with valid JSON only.' },
+            { role: 'user', content: prompt }
+          ],
+          temperature: 0.3,
+          max_tokens: 2000
+        }),
+      });
 
-    if (!response.ok) {
-      throw new Error(`GitHub Models API error: ${response.statusText}`)
+      if (!githubResponse.ok) {
+        const errorText = await githubResponse.text();
+        console.error('GitHub Models API error:', githubResponse.status, errorText);
+        throw new Error(`GitHub Models API error: ${githubResponse.status} - ${errorText}`)
+      }
+
+      console.log('GitHub API call successful');
+    } catch (apiError) {
+      console.error('GitHub API call failed:', apiError);
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'GitHub API call failed',
+        details: apiError.message
+      }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
     }
 
-    const githubData = await response.json()
+    const githubData = await githubResponse.json()
     const aiResponse = githubData.choices[0].message.content
 
     // Parse AI response

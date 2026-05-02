@@ -9,6 +9,21 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+export interface SupabaseBlogPost {
+  id: string;
+  created_at: string;
+  updated_at: string | null;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  date: string;
+  category: 'Engineering' | 'AI' | 'Design' | 'Strategy';
+  image: string;
+  read_time: string;
+  published: boolean;
+}
+
 export interface CareerPosition {
   id: string;
   created_at: string;
@@ -53,3 +68,38 @@ export interface ContactSubmission {
   message: string;
   status: 'pending' | 'contacted' | 'qualified' | 'closed';
 }
+
+export interface NewsletterSubscriber {
+  id: string;
+  created_at: string;
+  email: string;
+  name: string | null;
+  status: 'pending' | 'confirmed' | 'unsubscribed';
+  confirmation_token: string | null;
+  confirmed_at: string | null;
+  unsubscribed_at: string | null;
+  preferences: Record<string, any>;
+  last_newsletter_sent_at: string | null;
+}
+
+export interface AdminActivityLog {
+  id: string;
+  created_at: string;
+  activity_type: 'login' | 'logout' | 'blog_create' | 'blog_edit' | 'blog_delete' | 'career_create' | 'career_edit' | 'career_delete' | 'contact_submit' | 'demo_submit' | 'newsletter_subscribe' | 'career_apply';
+  description: string;
+  details: Record<string, any>;
+  ip_address: string | null;
+  user_agent: string | null;
+}
+
+export const logActivity = async (activityType: AdminActivityLog['activity_type'], description: string, details: Record<string, any> = {}) => {
+  try {
+    await supabase.from('admin_activity_logs').insert({
+      activity_type: activityType,
+      description,
+      details,
+    });
+  } catch (error) {
+    console.error('Failed to log activity:', error);
+  }
+};

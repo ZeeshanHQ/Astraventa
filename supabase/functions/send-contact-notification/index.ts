@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'Astraventa <hello@astraventa.com>',
+            from: 'Astraventa <contact@astraventa.com>',
             to: ['astraventahq@gmail.com'],
             subject: `New Contact Inquiry - ${submission.name}`,
             html: `
@@ -141,7 +141,7 @@ Deno.serve(async (req) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'Astraventa <hello@astraventa.com>',
+            from: 'Astraventa <contact@astraventa.com>',
             to: [submission.email],
             subject: 'Thank you for contacting Astraventa',
             html: `

@@ -1,3 +1,5 @@
+import { supabase, SupabaseBlogPost } from "@/lib/supabase";
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -94,6 +96,32 @@ Premium design is about making the invisible complexity of engineering feel like
 
 const STORAGE_KEY = "astraventa_blog_posts";
 
+const fromSupabasePost = (post: SupabaseBlogPost): BlogPost => ({
+  id: post.id,
+  title: post.title,
+  excerpt: post.excerpt,
+  content: post.content,
+  author: post.author,
+  date: post.date,
+  category: post.category,
+  image: post.image,
+  readTime: post.read_time,
+  published: post.published,
+});
+
+const toSupabasePost = (post: BlogPost) => ({
+  id: post.id,
+  title: post.title,
+  excerpt: post.excerpt,
+  content: post.content,
+  author: post.author,
+  date: post.date,
+  category: post.category,
+  image: post.image,
+  read_time: post.readTime,
+  published: post.published,
+});
+
 export const blogService = {
   getPosts: (): BlogPost[] => {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -115,6 +143,75 @@ export const blogService = {
 
   getPostById: (id: string): BlogPost | undefined => {
     return blogService.getPosts().find(p => p.id === id);
+  },
+
+  getPostsFromSupabase: async (): Promise<BlogPost[]> => {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('*')
+      .order('date', { ascending: false });
+
+    if (error) {
+      console.error('Could not load Supabase blog posts:', error.message);
+      return blogService.getPosts();
+    }
+
+    const supabasePosts = (data || []).map(fromSupabasePost);
+    const merged = [...supabasePosts];
+
+    INITIAL_POSTS.forEach((post) => {
+      if (!merged.some((item) => item.id === post.id)) {
+        merged.push(post);
+      }
+    });
+
+    return merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  },
+
+  getPublishedPostsFromSupabase: async (): Promise<BlogPost[]> => {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('*')
+      .eq('published', true)
+      .order('date', { ascending: false });
+
+    if (error) {
+      console.error('Could not load published Supabase blog posts:', error.message);
+      return blogService.getPosts().filter((post) => post.published);
+    }
+
+    const supabasePosts = (data || []).map(fromSupabasePost);
+    const merged = [...supabasePosts];
+
+    INITIAL_POSTS.filter((post) => post.published).forEach((post) => {
+      if (!merged.some((item) => item.id === post.id)) {
+        merged.push(post);
+      }
+    });
+
+    return merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  },
+
+  getPostByIdFromSupabase: async (id: string): Promise<BlogPost | undefined> => {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (!error && data) {
+      return fromSupabasePost(data);
+    }
+
+    return blogService.getPostById(id);
+  },
+
+  savePostToSupabase: async (post: BlogPost) => {
+    const { error } = await supabase
+      .from('blog_posts')
+      .upsert(toSupabasePost(post));
+
+    if (error) throw error;
   },
 
   savePost: (post: BlogPost) => {
@@ -145,5 +242,14 @@ export const blogService = {
       localPosts = localPosts.filter((p: BlogPost) => p.id !== id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(localPosts));
     }
+  },
+
+  deletePostFromSupabase: async (id: string) => {
+    const { error } = await supabase
+      .from('blog_posts')
+      .delete()
+      .eq('id', id);
+
+    if (error) throw error;
   }
 };

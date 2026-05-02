@@ -47,13 +47,15 @@ const BlogPostView = () => {
 
   useEffect(() => {
     if (id) {
-      const p = blogService.getPostById(id);
-      if (p) {
-        setPost(p);
-        setRelatedPosts(blogService.getPosts().filter(item => item.id !== id).slice(0, 2));
-      } else {
-        navigate("/blog");
-      }
+      blogService.getPostByIdFromSupabase(id).then(async (p) => {
+        if (p) {
+          setPost(p);
+          const posts = await blogService.getPublishedPostsFromSupabase();
+          setRelatedPosts(posts.filter(item => item.id !== id).slice(0, 2));
+        } else {
+          navigate("/blog");
+        }
+      });
     }
   }, [id, navigate]);
 

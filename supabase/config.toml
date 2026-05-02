@@ -20,3 +20,25 @@ entrypoint = "./functions/send-contact-notification/index.ts"
 # Specifies static files to be bundled with the function. Supports glob patterns.
 # For example, if you want to serve static HTML pages in your function:
 # static_files = [ "./functions/send-contact-notification/*.html" ]
+
+[functions.confirm-newsletter]
+enabled = true
+verify_jwt = true
+import_map = "./functions/confirm-newsletter/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/confirm-newsletter/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/confirm-newsletter/*.html" ]
+
+[functions.send-newsletter-confirmation]
+enabled = true
+verify_jwt = true
+import_map = "./functions/send-newsletter-confirmation/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/send-newsletter-confirmation/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/send-newsletter-confirmation/*.html" ]

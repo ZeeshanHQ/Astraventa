@@ -10,23 +10,23 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 Deno.serve(async (req) => {
   try {
-    // Get pending notifications
-    const { data: notifications, error } = await supabase
-      .from('demo_request_notifications')
+    // Get unsent demo requests
+    const { data: requests, error } = await supabase
+      .from('demo_requests')
       .select('*')
-      .eq('notification_status', 'pending')
+      .eq('notification_sent', false)
       .limit(10)
 
     if (error) throw error
 
-    if (!notifications || notifications.length === 0) {
-      return new Response(JSON.stringify({ message: 'No pending notifications' }), {
+    if (!requests || requests.length === 0) {
+      return new Response(JSON.stringify({ message: 'No pending requests' }), {
         headers: { 'Content-Type': 'application/json' }
       })
     }
 
-    // Process each notification
-    for (const notification of notifications) {
+    // Process each request
+    for (const request of requests) {
       try {
         // Send email using Resend
         const emailResponse = await fetch('https://api.resend.com/emails', {
@@ -36,70 +36,28 @@ Deno.serve(async (req) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            from: 'Astraventa <hello@astraventa.com>',
+            from: 'Astraventa <demo@astraventa.com>',
             to: ['astraventahq@gmail.com'],
-            subject: 'New Demo Request - Astraventa',
+            subject: `Inquiry from ${request.email}`,
             html: `
               <!DOCTYPE html>
               <html>
               <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>New Demo Request - Astraventa</title>
               </head>
-              <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc;">
-                <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); overflow: hidden;">
-                  <!-- Header -->
-                  <div style="background: linear-gradient(135deg, #0d9488 0%, #059669 100%); padding: 32px; text-align: center;">
-                    <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">Astraventa</h1>
-                    <p style="margin: 8px 0 0; color: #ccfbf1; font-size: 14px; font-weight: 500;">Engineering the automated future</p>
+              <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #ffffff;">
+                <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border: 1px solid #e5e7eb; padding: 40px;">
+                  <h2 style="color: #111827; margin: 0 0 20px;">New Inquiry</h2>
+                  <p style="color: #374151; margin: 0 0 20px;">Someone requested information about your case studies.</p>
+                  
+                  <div style="background-color: #f9fafb; padding: 20px; border-radius: 4px; margin: 0 0 20px;">
+                    <p style="margin: 0 0 8px;"><strong>Email:</strong> ${request.email}</p>
+                    ${request.case_study_id ? `<p style="margin: 0 0 8px;"><strong>Interest:</strong> ${request.case_study_id}</p>` : ''}
+                    <p style="margin: 0;"><strong>Time:</strong> ${new Date(request.created_at).toLocaleString()}</p>
                   </div>
                   
-                  <!-- Content -->
-                  <div style="padding: 40px;">
-                    <h2 style="margin: 0 0 16px; color: #1e293b; font-size: 24px; font-weight: 600;">New Demo Request Received</h2>
-                    <p style="margin: 0 0 24px; color: #64748b; font-size: 16px; line-height: 1.6;">A potential client has requested a technical deep-dive for one of our case studies.</p>
-                    
-                    <!-- Details Box -->
-                    <div style="background: #f0fdf4; border-left: 4px solid #0d9488; padding: 24px; border-radius: 8px; margin: 24px 0;">
-                      <div style="margin-bottom: 16px;">
-                        <span style="display: block; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Lead Email</span>
-                        <span style="color: #1e293b; font-size: 16px; font-weight: 600;">${notification.email}</span>
-                      </div>
-                      ${notification.case_study_id ? `
-                      <div style="margin-bottom: 16px;">
-                        <span style="display: block; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Case Study Interest</span>
-                        <span style="color: #1e293b; font-size: 16px; font-weight: 600; text-transform: capitalize;">${notification.case_study_id}</span>
-                      </div>
-                      ` : ''}
-                      <div>
-                        <span style="display: block; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Request Time</span>
-                        <span style="color: #1e293b; font-size: 16px;">${new Date(notification.created_at).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</span>
-                      </div>
-                    </div>
-                    
-                    <!-- Action Items -->
-                    <div style="background: #f1f5f9; padding: 24px; border-radius: 8px; margin: 24px 0;">
-                      <h3 style="margin: 0 0 12px; color: #334155; font-size: 16px; font-weight: 600;">Next Steps</h3>
-                      <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
-                        <li>Review the lead's information</li>
-                        <li>Research their company and needs</li>
-                        <li>Follow up within 2 hours with a personalized message</li>
-                        <li>Schedule a technical deep-dive call</li>
-                      </ul>
-                    </div>
-                    
-                    <!-- CTA -->
-                    <div style="text-align: center; margin: 32px 0;">
-                      <a href="mailto:${notification.email}" style="display: inline-block; background: linear-gradient(135deg, #0d9488 0%, #059669 100%); color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px;">Reply to Lead</a>
-                    </div>
-                  </div>
-                  
-                  <!-- Footer -->
-                  <div style="background: #f8fafc; padding: 24px; text-align: center; border-top: 1px solid #e2e8f0;">
-                    <p style="margin: 0 0 8px; color: #64748b; font-size: 12px;">This is an automated notification from Astraventa</p>
-                    <p style="margin: 0; color: #94a3b8; font-size: 11px;">© 2026 Astraventa. All rights reserved.</p>
-                  </div>
+                  <p style="color: #374151; margin: 0;">Please follow up within 2 hours.</p>
                 </div>
               </body>
               </html>
@@ -108,38 +66,22 @@ Deno.serve(async (req) => {
         })
 
         if (emailResponse.ok) {
-          // Update notification status to sent
+          // Mark as sent
           await supabase
-            .from('demo_request_notifications')
+            .from('demo_requests')
             .update({ 
-              notification_status: 'sent',
-              sent_at: new Date().toISOString()
+              notification_sent: true,
+              notification_sent_at: new Date().toISOString()
             })
-            .eq('id', notification.id)
-        } else {
-          // Update notification status to failed
-          await supabase
-            .from('demo_request_notifications')
-            .update({ 
-              notification_status: 'failed',
-              error_message: 'Failed to send email'
-            })
-            .eq('id', notification.id)
+            .eq('id', request.id)
         }
       } catch (error) {
-        console.error('Error processing notification:', error)
-        await supabase
-          .from('demo_request_notifications')
-          .update({ 
-            notification_status: 'failed',
-            error_message: error.message
-          })
-          .eq('id', notification.id)
+        console.error('Error processing request:', error)
       }
     }
 
     return new Response(JSON.stringify({ 
-      message: `Processed ${notifications.length} notifications` 
+      message: `Processed ${requests.length} requests` 
     }), {
       headers: { 'Content-Type': 'application/json' }
     })

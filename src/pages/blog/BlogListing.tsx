@@ -16,7 +16,7 @@ const BlogListing = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    setPosts(blogService.getPosts().filter(p => p.published));
+    blogService.getPublishedPostsFromSupabase().then(setPosts);
   }, []);
 
   const filteredPosts = posts.filter(post => {

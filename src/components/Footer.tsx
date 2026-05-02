@@ -106,12 +106,29 @@ export const Footer = () => {
     
     setIsSubscribing(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubscribed(true);
-    setIsSubscribing(false);
-    setEmail("");
+    try {
+      const response = await fetch('https://hqywadiibynypygskyif.supabase.co/functions/v1/send-newsletter-confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setIsSubscribed(true);
+        setEmail("");
+      } else if (response.status === 409) {
+        alert('Email already subscribed');
+      } else {
+        throw new Error('Failed to subscribe');
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      alert('Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   useEffect(() => {
@@ -172,8 +189,8 @@ export const Footer = () => {
                   <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-50/50 flex items-start gap-3 max-w-sm">
                     <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-display font-bold text-emerald-900 text-[11px] uppercase tracking-[0.1em] mb-1">Successfully Subscribed</h4>
-                      <p className="text-[12px] text-emerald-700/80">You're now on the vanguard list.</p>
+                      <h4 className="font-display font-bold text-emerald-900 text-[11px] uppercase tracking-[0.1em] mb-1">Check Your Email</h4>
+                      <p className="text-[12px] text-emerald-700/80">We sent a confirmation link to your inbox.</p>
                     </div>
                   </div>
                 )}

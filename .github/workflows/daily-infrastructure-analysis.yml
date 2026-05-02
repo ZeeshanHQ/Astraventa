@@ -1,0 +1,18 @@
+name: Daily Infrastructure Analysis
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # Runs daily at 11 PM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  analyze-infrastructure:
+    name: Run AI Infrastructure Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Call Supabase Edge Function
+        run: |
+          curl -X POST 'https://hqywadiibynypygskyif.supabase.co/functions/v1/analyze-infrastructure' \
+            -H 'Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}' \
+            -H 'Content-Type: application/json'

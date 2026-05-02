@@ -141,7 +141,7 @@ Provide analysis in JSON format with these fields:
       analysis: analysisResult,
       systemData
     }), {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
 
   } catch (error) {
@@ -151,7 +151,7 @@ Provide analysis in JSON format with these fields:
       error: error.message
     }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
   }
 })

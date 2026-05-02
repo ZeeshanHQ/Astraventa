@@ -164,23 +164,37 @@ Provide analysis in JSON format with these fields:
     }
 
     // Store analysis in database
-    const { error: insertError } = await supabase
-      .from('infrastructure_monitoring')
-      .upsert({
-        analysis_date: today,
-        system_health: analysisResult.system_health,
-        database_status: analysisResult.database_status,
-        activity_summary: analysisResult.activity_summary,
-        issues_detected: analysisResult.issues_detected,
-        recommendations: analysisResult.recommendations,
-        warnings: analysisResult.warnings,
-        ai_analysis: analysisResult.ai_analysis,
-        model_used: 'meta-llama/Llama-3.2-3B-Instruct'
-      }, { onConflict: 'analysis_date' })
+    try {
+      console.log('Storing analysis in database...');
+      const { error: insertError } = await supabase
+        .from('infrastructure_monitoring')
+        .upsert({
+          analysis_date: today,
+          system_health: analysisResult.system_health,
+          database_status: analysisResult.database_status,
+          activity_summary: analysisResult.activity_summary,
+          issues_detected: analysisResult.issues_detected,
+          recommendations: analysisResult.recommendations,
+          warnings: analysisResult.warnings,
+          ai_analysis: analysisResult.ai_analysis,
+          model_used: 'meta-llama/Llama-3.2-3B-Instruct'
+        }, { onConflict: 'analysis_date' })
 
-    if (insertError) {
-      console.error('Error storing analysis:', insertError)
-      throw insertError
+      if (insertError) {
+        console.error('Error storing analysis:', insertError);
+        throw insertError;
+      }
+      console.log('Analysis stored successfully');
+    } catch (dbInsertError) {
+      console.error('Database insert error:', dbInsertError);
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Failed to store analysis in database',
+        details: dbInsertError.message
+      }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
     }
 
     return new Response(JSON.stringify({

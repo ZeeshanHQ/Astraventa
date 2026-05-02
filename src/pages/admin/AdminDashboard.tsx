@@ -34,7 +34,8 @@ import {
   Sparkles,
   Brain,
   Send,
-  Trash2
+  Trash2,
+  Radio
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

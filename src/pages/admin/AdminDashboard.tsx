@@ -131,9 +131,15 @@ const AdminDashboard = () => {
       fetchCareersData();
       fetchLeadsData();
       fetchActivityLogs();
-      fetchInfrastructureData();
     }
   }, [isAuthenticated, activeTab]);
+
+  // Fetch leads data when switching to leads tab
+  useEffect(() => {
+    if (isAuthenticated && activeTab === "leads") {
+      fetchLeadsData();
+    }
+  }, [activeTab, isAuthenticated]);
 
   const fetchBlogPosts = async () => {
     const data = await blogService.getPostsFromSupabase();
@@ -177,10 +183,11 @@ const AdminDashboard = () => {
       const { data: contactData, error: contactError } = await supabase.from('contact_submissions').select('*').order('created_at', { ascending: false });
       if (contactError) {
         console.error('Error fetching contact submissions:', contactError);
-        toast.error('Failed to fetch contact submissions');
+        toast.error('Failed to fetch contact submissions: ' + contactError.message);
       } else {
         console.log('Contact submissions fetched:', contactData?.length, contactData);
         setContactSubmissions(contactData || []);
+        toast.success(`Loaded ${contactData?.length || 0} contact submissions`);
       }
 
       const { data: demoData, error: demoError } = await supabase.from('demo_requests').select('*').order('created_at', { ascending: false });
@@ -205,7 +212,7 @@ const AdminDashboard = () => {
       }
     } catch (error) {
       console.error('Error in fetchLeadsData:', error);
-      toast.error('Failed to fetch leads data');
+      toast.error('Failed to fetch leads data: ' + error.message);
     }
   };
 

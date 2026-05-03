@@ -64,6 +64,8 @@ const AdminDashboard = () => {
   const [isCreatingEmail, setIsCreatingEmail] = useState(false);
   const [infrastructureData, setInfrastructureData] = useState<any[]>([]);
   const [lastAnalysis, setLastAnalysis] = useState<any>(null);
+  const [deleteAnalysisId, setDeleteAnalysisId] = useState<string | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editingEmail, setEditingEmail] = useState<any>(null);
   const [isNewPosition, setIsNewPosition] = useState(false);
   const [editingPosition, setEditingPosition] = useState<Partial<CareerPosition> | null>(null);
@@ -477,23 +479,91 @@ const AdminDashboard = () => {
             <h3 className="text-[14px] font-semibold text-white uppercase tracking-[0.3em] font-display">Latest Analysis</h3>
             <span className="text-[9px] text-white/50 font-mono">{new Date(lastAnalysis.created_at).toLocaleString()}</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="text-[11px] text-blue-400 uppercase tracking-widest mb-3 font-semibold">System Health</h4>
-              <div className={cn(
-                "p-4 rounded-xl border",
-                lastAnalysis.system_health?.status === 'healthy' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' :
-                lastAnalysis.system_health?.status === 'warning' ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' :
-                'bg-red-500/10 border-red-500/20 text-red-400'
+          
+          {/* System Health Score */}
+          <div className={cn(
+            "p-6 rounded-2xl border mb-6",
+            lastAnalysis.system_health?.status === 'healthy' ? 'bg-emerald-500/10 border-emerald-500/20' :
+            lastAnalysis.system_health?.status === 'warning' ? 'bg-amber-500/10 border-amber-500/20' :
+            'bg-red-500/10 border-red-500/20'
+          )}>
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-[12px] font-semibold uppercase tracking-widest text-white">System Health</h4>
+              <span className={cn(
+                "px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider",
+                lastAnalysis.system_health?.status === 'healthy' ? 'bg-emerald-500/20 text-emerald-400' :
+                lastAnalysis.system_health?.status === 'warning' ? 'bg-amber-500/20 text-amber-400' :
+                'bg-red-500/20 text-red-400'
               )}>
-                <div className="text-[28px] font-bold mb-1">{lastAnalysis.system_health?.score || 0}/100</div>
-                <div className="text-[10px] uppercase tracking-widest">{lastAnalysis.system_health?.status || 'Unknown'}</div>
+                {lastAnalysis.system_health?.status || 'Unknown'}
+              </span>
+            </div>
+            <div className="flex items-end gap-4">
+              <div className="text-[48px] font-bold leading-none text-white">{lastAnalysis.system_health?.score || 0}</div>
+              <div className="text-[14px] text-white/60 pb-2">/ 100 Score</div>
+            </div>
+            <p className="text-[11px] text-white/60 mt-3 leading-relaxed">{lastAnalysis.system_health?.details || 'No details available'}</p>
+          </div>
+
+          {/* Issues Detected */}
+          {lastAnalysis.issues_detected && lastAnalysis.issues_detected.length > 0 && (
+            <div className="mb-6">
+              <h4 className="text-[12px] font-semibold uppercase tracking-widest text-white mb-4">Issues Detected</h4>
+              <div className="space-y-3">
+                {lastAnalysis.issues_detected.map((issue: any, i: number) => (
+                  <div key={i} className={cn(
+                    "p-4 rounded-xl border",
+                    issue.severity === 'high' ? 'bg-red-500/10 border-red-500/20' :
+                    issue.severity === 'medium' ? 'bg-amber-500/10 border-amber-500/20' :
+                    'bg-blue-500/10 border-blue-500/20'
+                  )}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={cn(
+                        "px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider",
+                        issue.severity === 'high' ? 'bg-red-500/20 text-red-400' :
+                        issue.severity === 'medium' ? 'bg-amber-500/20 text-amber-400' :
+                        'bg-blue-500/20 text-blue-400'
+                      )}>
+                        {issue.severity}
+                      </span>
+                      <span className="text-[10px] text-white/60 uppercase tracking-wider">{issue.category}</span>
+                    </div>
+                    <p className="text-[11px] text-white/80">{issue.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            <div>
-              <h4 className="text-[11px] text-blue-400 uppercase tracking-widest mb-3 font-semibold">AI Summary</h4>
-              <p className="text-[11px] text-white/70 leading-relaxed">{lastAnalysis.ai_analysis || 'No analysis available'}</p>
+          )}
+
+          {/* Recommendations */}
+          {lastAnalysis.recommendations && lastAnalysis.recommendations.length > 0 && (
+            <div className="mb-6">
+              <h4 className="text-[12px] font-semibold uppercase tracking-widest text-white mb-4">Recommendations</h4>
+              <div className="space-y-3">
+                {lastAnalysis.recommendations.map((rec: any, i: number) => (
+                  <div key={i} className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={cn(
+                        "px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider",
+                        rec.priority === 'high' ? 'bg-red-500/20 text-red-400' :
+                        rec.priority === 'medium' ? 'bg-amber-500/20 text-amber-400' :
+                        'bg-blue-500/20 text-blue-400'
+                      )}>
+                        {rec.priority} Priority
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-white/80 mb-2">{rec.action}</p>
+                    <p className="text-[10px] text-white/50 italic">{rec.reason}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+          )}
+
+          {/* AI Analysis Summary */}
+          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+            <h4 className="text-[12px] font-semibold uppercase tracking-widest text-white mb-4">AI Analysis Summary</h4>
+            <p className="text-[11px] text-white/70 leading-relaxed">{lastAnalysis.ai_analysis || 'No analysis available'}</p>
           </div>
         </div>
       ) : (
@@ -535,13 +605,76 @@ const AdminDashboard = () => {
                     </div>
                     <p className="text-[11px] text-white/60 line-clamp-2">{analysis.ai_analysis || 'No analysis'}</p>
                   </div>
-                  <div className="text-[20px] font-bold text-white">{analysis.system_health?.score || 0}</div>
+                  <div className="flex items-center gap-4">
+                    <div className="text-[20px] font-bold text-white">{analysis.system_health?.score || 0}</div>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white hover:text-red-500 transition-all"
+                      onClick={() => {
+                        setDeleteAnalysisId(analysis.id);
+                        setShowDeleteModal(true);
+                      }}
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       )}
+
+      {/* Delete Confirmation Modal */}
+      <AnimatePresence>
+        {showDeleteModal && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-2xl">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="w-full max-w-md bg-black border border-white/10 rounded-[2rem] p-8 shadow-[0_0_60px_rgba(0,0,0,0.8)]"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-6">
+                <Trash2 className="w-8 h-8 text-red-500" />
+              </div>
+              <h3 className="text-[18px] font-semibold text-white text-center uppercase tracking-[0.2em] mb-3 font-display">Delete Analysis?</h3>
+              <p className="text-[12px] text-white/60 text-center mb-8 leading-relaxed">This will permanently delete this infrastructure analysis from the database. This action cannot be undone.</p>
+              <div className="flex gap-3">
+                <Button
+                  onClick={() => {
+                    setShowDeleteModal(false);
+                    setDeleteAnalysisId(null);
+                  }}
+                  className="flex-1 h-12 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl uppercase tracking-[0.15em] text-[11px] border border-white/10"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={async () => {
+                    if (deleteAnalysisId) {
+                      const { error } = await supabase.from('infrastructure_monitoring').delete().eq('id', deleteAnalysisId);
+                      if (error) {
+                        toast.error("Failed to delete analysis");
+                      } else {
+                        toast.success("Analysis deleted");
+                        await fetchInfrastructureData();
+                      }
+                    }
+                    setShowDeleteModal(false);
+                    setDeleteAnalysisId(null);
+                  }}
+                  className="flex-1 h-12 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl uppercase tracking-[0.15em] text-[11px] border border-red-400"
+                >
+                  Delete
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 

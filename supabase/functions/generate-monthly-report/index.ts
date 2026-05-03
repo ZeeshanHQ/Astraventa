@@ -1,6 +1,12 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+}
+
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
 const resendApiKey = Deno.env.get('RESEND_API_KEY')!
@@ -9,8 +15,22 @@ const adminEmail = Deno.env.get('ADMIN_EMAIL') || 'admin@astraventa.com'
 const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 serve(async (req) => {
+  // Handle CORS preflight
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders })
+  }
+
   try {
-    const { month, year } = await req.json()
+    let month, year
+    try {
+      const body = await req.json()
+      month = body.month
+      year = body.year
+    } catch {
+      // If no body provided, use current month/year
+      month = null
+      year = null
+    }
     const targetMonth = month || new Date().getMonth() + 1
     const targetYear = year || new Date().getFullYear()
 
@@ -198,7 +218,7 @@ serve(async (req) => {
       month: targetMonth,
       year: targetYear
     }), {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
 
   } catch (error) {
@@ -208,7 +228,7 @@ serve(async (req) => {
       error: error.message
     }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
   }
 })

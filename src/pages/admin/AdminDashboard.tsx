@@ -173,10 +173,13 @@ const AdminDashboard = () => {
 
   const fetchLeadsData = async () => {
     try {
+      console.log('Starting fetchLeadsData...');
       const { data: contactData, error: contactError } = await supabase.from('contact_submissions').select('*').order('created_at', { ascending: false });
-      if (contactError) console.error('Error fetching contact submissions:', contactError);
-      else {
-        console.log('Contact submissions fetched:', contactData?.length);
+      if (contactError) {
+        console.error('Error fetching contact submissions:', contactError);
+        toast.error('Failed to fetch contact submissions');
+      } else {
+        console.log('Contact submissions fetched:', contactData?.length, contactData);
         setContactSubmissions(contactData || []);
       }
 
@@ -202,6 +205,7 @@ const AdminDashboard = () => {
       }
     } catch (error) {
       console.error('Error in fetchLeadsData:', error);
+      toast.error('Failed to fetch leads data');
     }
   };
 

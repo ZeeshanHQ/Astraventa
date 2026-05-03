@@ -114,7 +114,7 @@ Provide analysis in JSON format with these fields:
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'meta-llama/Meta-Llama-3-8B-Instruct',
+          model: 'gpt-4o-mini',
           messages: [
             { role: 'system', content: 'You are an expert infrastructure monitoring AI. Always respond with valid JSON only.' },
             { role: 'user', content: prompt }
@@ -177,7 +177,7 @@ Provide analysis in JSON format with these fields:
           recommendations: analysisResult.recommendations,
           warnings: analysisResult.warnings,
           ai_analysis: analysisResult.ai_analysis,
-          model_used: 'meta-llama/Meta-Llama-3-8B-Instruct'
+          model_used: 'gpt-4o-mini'
         }, { onConflict: 'analysis_date' })
 
       if (insertError) {

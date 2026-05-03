@@ -131,6 +131,7 @@ const AdminDashboard = () => {
       fetchCareersData();
       fetchLeadsData();
       fetchActivityLogs();
+      fetchInfrastructureData();
     }
   }, [isAuthenticated, activeTab]);
 
@@ -205,10 +206,17 @@ const AdminDashboard = () => {
   };
 
   const fetchInfrastructureData = async () => {
-    const { data } = await supabase.from('infrastructure_monitoring').select('*').order('created_at', { ascending: false }).limit(30);
-    if (data) {
-      setInfrastructureData(data);
-      setLastAnalysis(data[0] || null);
+    try {
+      const { data, error } = await supabase.from('infrastructure_monitoring').select('*').order('created_at', { ascending: false }).limit(30);
+      if (error) {
+        console.error('Error fetching infrastructure data:', error);
+        return;
+      }
+      console.log('Infrastructure data fetched:', data?.length);
+      setInfrastructureData(data || []);
+      setLastAnalysis(data?.[0] || null);
+    } catch (error) {
+      console.error('Error in fetchInfrastructureData:', error);
     }
   };
 

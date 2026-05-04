@@ -303,6 +303,132 @@ const AdminDashboard = () => {
     }
   };
 
+  const renderCareers = () => (
+    <div className="space-y-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+        <div>
+          <h2 className="text-4xl font-semibold text-white tracking-tighter font-display uppercase">Careers</h2>
+          <div className="flex items-center gap-4 mt-6">
+             <div className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl text-[10px] font-semibold text-blue-400 uppercase tracking-widest font-mono">
+                {positions.length} POSITIONS
+             </div>
+             <div className="px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-[10px] font-semibold text-emerald-500 uppercase tracking-widest font-mono">
+                {applications.length} APPLICATIONS
+             </div>
+          </div>
+        </div>
+        <Button onClick={() => { setEditingPosition({ title: '', team: '', location: '', type: '', description: '', requirements: [], active: true }); setIsNewPosition(true); }} className="h-12 px-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[10px] flex items-center gap-3 transition-all font-display">
+          <Plus className="w-4 h-4" /> Add Position
+        </Button>
+      </div>
+
+      {/* Positions */}
+      <div className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] overflow-hidden backdrop-blur-md">
+        <div className="p-10 border-b border-white/5">
+          <h3 className="text-[12px] font-semibold text-white uppercase tracking-[0.3em] flex items-center gap-3 font-display">
+            <Briefcase className="w-4 h-4 text-blue-400" /> Job Positions
+          </h3>
+        </div>
+        {positions.length === 0 ? (
+          <div className="p-16 text-center">
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6">
+              <Briefcase className="w-8 h-8 text-white/30" />
+            </div>
+            <h3 className="text-[14px] font-semibold text-white uppercase tracking-[0.3em] mb-3 font-display">No positions</h3>
+            <p className="text-[11px] text-white/50 max-w-md mx-auto">Job positions will appear here when you create them.</p>
+          </div>
+        ) : (
+          <div className="divide-y divide-white/5">
+            {positions.map((position) => (
+              <div key={position.id} className="p-8 hover:bg-white/[0.01] transition-colors">
+                <div className="flex items-start justify-between gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="text-[14px] font-semibold text-white tracking-wider uppercase font-display">{position.title}</div>
+                      <span className={cn(
+                        "text-[8px] font-semibold uppercase tracking-widest px-2 py-1 rounded border font-mono",
+                        position.active ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' : 'bg-red-500/10 border-red-500/20 text-red-500'
+                      )}>
+                        {position.active ? 'Active' : 'Inactive'}
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-white/50 font-mono uppercase tracking-widest mb-2">{position.team} • {position.location} • {position.type}</div>
+                    <p className="text-[11px] text-white/60 line-clamp-2">{position.description}</p>
+                  </div>
+                  <div className="flex gap-2 shrink-0">
+                    <Button variant="ghost" size="icon" className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white hover:text-blue-400 transition-all" onClick={() => { setEditingPosition(position); setIsNewPosition(false); }}>
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white hover:text-red-500 transition-all" onClick={async () => {
+                      const { error } = await supabaseAdmin.from('career_positions').delete().eq('id', position.id);
+                      if (error) toast.error("Failed to delete position");
+                      else {
+                        toast.success("Position deleted");
+                        fetchCareersData();
+                      }
+                    }}>
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Applications */}
+      <div className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] overflow-hidden backdrop-blur-md">
+        <div className="p-10 border-b border-white/5">
+          <h3 className="text-[12px] font-semibold text-white uppercase tracking-[0.3em] flex items-center gap-3 font-display">
+            <Users className="w-4 h-4 text-emerald-400" /> Applications
+          </h3>
+        </div>
+        {applications.length === 0 ? (
+          <div className="p-16 text-center">
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6">
+              <Users className="w-8 h-8 text-white/30" />
+            </div>
+            <h3 className="text-[14px] font-semibold text-white uppercase tracking-[0.3em] mb-3 font-display">No applications</h3>
+            <p className="text-[11px] text-white/50 max-w-md mx-auto">Applications will appear here when candidates apply.</p>
+          </div>
+        ) : (
+          <div className="divide-y divide-white/5">
+            {applications.map((application) => (
+              <div key={application.id} className="p-8 hover:bg-white/[0.01] transition-colors">
+                <div className="flex items-start justify-between gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="text-[14px] font-semibold text-white tracking-wider uppercase font-display">{application.full_name}</div>
+                      <span className={cn(
+                        "text-[8px] font-semibold uppercase tracking-widest px-2 py-1 rounded border font-mono",
+                        application.status === 'pending' ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' :
+                        application.status === 'reviewed' ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' :
+                        application.status === 'shortlisted' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
+                        'bg-red-500/10 border-red-500/20 text-red-500'
+                      )}>
+                        {application.status}
+                      </span>
+                    </div>
+                    <a href={`mailto:${application.email}`} className="text-[11px] font-semibold text-blue-400 hover:text-blue-400/80 transition-colors mb-2 inline-block">
+                      {application.email}
+                    </a>
+                    {application.portfolio_url && (
+                      <a href={application.portfolio_url} target="_blank" rel="noopener noreferrer" className="text-[10px] text-white/50 ml-4 hover:text-white/80 transition-colors">
+                        Portfolio →
+                      </a>
+                    )}
+                    <p className="text-[11px] text-white/60 line-clamp-2 mt-2">{application.cover_letter}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
   const renderNewsletter = () => (
     <div className="space-y-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">

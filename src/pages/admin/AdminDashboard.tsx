@@ -66,6 +66,7 @@ const AdminDashboard = () => {
   const [lastAnalysis, setLastAnalysis] = useState<any>(null);
   const [deleteAnalysisId, setDeleteAnalysisId] = useState<string | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isGeneratingMonthlyReport, setIsGeneratingMonthlyReport] = useState(false);
   const [editingEmail, setEditingEmail] = useState<any>(null);
   const [isNewPosition, setIsNewPosition] = useState(false);
   const [editingPosition, setEditingPosition] = useState<Partial<CareerPosition> | null>(null);
@@ -244,15 +245,18 @@ const AdminDashboard = () => {
   };
 
   const handleGenerateMonthlyReport = async () => {
-    toast.loading("Generating monthly report...");
+    const toastId = toast.loading("Generating monthly report...");
+    setIsGeneratingMonthlyReport(true);
     try {
       const { data, error } = await supabaseAdmin.functions.invoke('generate-monthly-report', {
         body: { month: new Date().getMonth() + 1, year: new Date().getFullYear() }
       });
       if (error) throw error;
-      toast.success("Monthly report sent to admin email");
+      toast.success("Monthly report sent to admin email", { id: toastId });
     } catch (error) {
-      toast.error("Failed to generate report: " + error.message);
+      toast.error("Failed to generate report: " + error.message, { id: toastId });
+    } finally {
+      setIsGeneratingMonthlyReport(false);
     }
   };
 
@@ -610,8 +614,8 @@ const AdminDashboard = () => {
           <Button onClick={handleRunAnalysis} className="h-14 px-8 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] font-display border border-blue-400">
             <Brain className="w-5 h-5" /> Run Analysis
           </Button>
-          <Button onClick={handleGenerateMonthlyReport} className="h-14 px-8 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] font-display border border-emerald-400">
-            <Mail className="w-5 h-5" /> Monthly Report
+          <Button onClick={handleGenerateMonthlyReport} disabled={isGeneratingMonthlyReport} className="h-14 px-8 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] font-display border border-emerald-400">
+            <Mail className="w-5 h-5" /> {isGeneratingMonthlyReport ? 'Sending...' : 'Monthly Report'}
           </Button>
         </div>
       </div>
@@ -732,11 +736,18 @@ const AdminDashboard = () => {
               <Activity className="w-4 h-4 text-blue-400" /> Recent AI Reports
             </h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-6">
-            {infrastructureData.slice(0, 6).map((analysis) => (
-              <div key={analysis.id} className="p-5 rounded-2xl bg-black/30 border border-white/10 hover:border-blue-500/30 transition-colors">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 p-5">
+            {infrastructureData.slice(0, 6).map((analysis, i) => (
+              <motion.div
+                key={analysis.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05 }}
+                className="p-4 rounded-2xl bg-black/30 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/[0.03] transition-colors"
+              >
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <div>
+                    <div className="text-[11px] font-semibold text-white mb-2">Astraventa Intelligence Snapshot</div>
                     <span className={cn(
                       "text-[8px] font-semibold uppercase tracking-widest px-2 py-1 rounded border font-mono",
                       analysis.system_health?.status === 'healthy' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
@@ -762,8 +773,8 @@ const AdminDashboard = () => {
                     </Button>
                   </div>
                 </div>
-                <p className="text-[11px] text-white/70 leading-relaxed line-clamp-3">{analysis.ai_analysis || 'No analysis'}</p>
-              </div>
+                <p className="text-[10px] text-white/60 leading-relaxed line-clamp-2">{analysis.system_health?.details || analysis.ai_analysis || 'No analysis details available'}</p>
+              </motion.div>
             ))}
           </div>
         </div>

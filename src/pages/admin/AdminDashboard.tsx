@@ -45,7 +45,7 @@ import { toast } from "sonner";
 import { Link, useSearchParams } from "react-router-dom";
 import { AdminLayout, AdminNotification } from "@/components/admin/AdminLayout";
 import { cn } from "@/lib/utils";
-import { supabase, CareerPosition, CareerApplication, ContactSubmission, DemoRequest, NewsletterSubscriber, AdminActivityLog, logActivity } from "@/lib/supabase";
+import { supabase, supabaseAdmin, CareerPosition, CareerApplication, ContactSubmission, DemoRequest, NewsletterSubscriber, AdminActivityLog, logActivity } from "@/lib/supabase";
 
 const ADMIN_KEY = "astra2024";
 
@@ -147,7 +147,7 @@ const AdminDashboard = () => {
   };
 
   const fetchActivityLogs = async () => {
-    const { data } = await supabase
+    const { data } = await supabaseAdmin
       .from('admin_activity_logs')
       .select('*')
       .order('created_at', { ascending: false })
@@ -158,7 +158,7 @@ const AdminDashboard = () => {
   };
 
   const sendBroadcast = async (kind: 'blog' | 'career', item: BlogPost | Partial<CareerPosition>) => {
-    const { data, error } = await supabase.functions.invoke('send-admin-broadcast', {
+    const { data, error } = await supabaseAdmin.functions.invoke('send-admin-broadcast', {
       body: {
         kind,
         audience: notificationAudience,
@@ -171,8 +171,8 @@ const AdminDashboard = () => {
   };
 
   const fetchCareersData = async () => {
-    const { data: posData } = await supabase.from('career_positions').select('*').order('created_at', { ascending: false });
-    const { data: appData } = await supabase.from('career_applications').select('*').order('created_at', { ascending: false });
+    const { data: posData } = await supabaseAdmin.from('career_positions').select('*').order('created_at', { ascending: false });
+    const { data: appData } = await supabaseAdmin.from('career_applications').select('*').order('created_at', { ascending: false });
     if (posData) setPositions(posData);
     if (appData) setApplications(appData);
   };
@@ -180,7 +180,7 @@ const AdminDashboard = () => {
   const fetchLeadsData = async () => {
     try {
       console.log('Starting fetchLeadsData...');
-      const { data: contactData, error: contactError } = await supabase.from('contact_submissions').select('*').order('created_at', { ascending: false });
+      const { data: contactData, error: contactError } = await supabaseAdmin.from('contact_submissions').select('*').order('created_at', { ascending: false });
       if (contactError) {
         console.error('Error fetching contact submissions:', contactError);
         toast.error('Failed to fetch contact submissions: ' + contactError.message);
@@ -190,21 +190,21 @@ const AdminDashboard = () => {
         toast.success(`Loaded ${contactData?.length || 0} contact submissions`);
       }
 
-      const { data: demoData, error: demoError } = await supabase.from('demo_requests').select('*').order('created_at', { ascending: false });
+      const { data: demoData, error: demoError } = await supabaseAdmin.from('demo_requests').select('*').order('created_at', { ascending: false });
       if (demoError) console.error('Error fetching demo requests:', demoError);
       else {
         console.log('Demo requests fetched:', demoData?.length);
         setDemoRequests(demoData || []);
       }
 
-      const { data: newsletterData, error: newsletterError } = await supabase.from('newsletter_subscribers').select('*').order('created_at', { ascending: false });
+      const { data: newsletterData, error: newsletterError } = await supabaseAdmin.from('newsletter_subscribers').select('*').order('created_at', { ascending: false });
       if (newsletterError) console.error('Error fetching newsletter subscribers:', newsletterError);
       else {
         console.log('Newsletter subscribers fetched:', newsletterData?.length);
         setNewsletterSubscribers(newsletterData || []);
       }
 
-      const { data: draftsData, error: draftsError } = await supabase.from('newsletter_drafts').select('*').order('created_at', { ascending: false });
+      const { data: draftsData, error: draftsError } = await supabaseAdmin.from('newsletter_drafts').select('*').order('created_at', { ascending: false });
       if (draftsError) console.error('Error fetching newsletter drafts:', draftsError);
       else {
         console.log('Newsletter drafts fetched:', draftsData?.length);
@@ -218,7 +218,7 @@ const AdminDashboard = () => {
 
   const fetchInfrastructureData = async () => {
     try {
-      const { data, error } = await supabase.from('infrastructure_monitoring').select('*').order('created_at', { ascending: false }).limit(30);
+      const { data, error } = await supabaseAdmin.from('infrastructure_monitoring').select('*').order('created_at', { ascending: false }).limit(30);
       if (error) {
         console.error('Error fetching infrastructure data:', error);
         return;
@@ -234,7 +234,7 @@ const AdminDashboard = () => {
   const handleRunAnalysis = async () => {
     toast.loading("Running AI infrastructure analysis...");
     try {
-      const { data, error } = await supabase.functions.invoke('analyze-infrastructure');
+      const { data, error } = await supabaseAdmin.functions.invoke('analyze-infrastructure');
       if (error) throw error;
       toast.success("Infrastructure analysis completed");
       fetchInfrastructureData();
@@ -246,7 +246,7 @@ const AdminDashboard = () => {
   const handleGenerateMonthlyReport = async () => {
     toast.loading("Generating monthly report...");
     try {
-      const { data, error } = await supabase.functions.invoke('generate-monthly-report', {
+      const { data, error } = await supabaseAdmin.functions.invoke('generate-monthly-report', {
         body: { month: new Date().getMonth() + 1, year: new Date().getFullYear() }
       });
       if (error) throw error;
@@ -276,7 +276,7 @@ const AdminDashboard = () => {
 
   const handleSavePosition = async () => {
     if (editingPosition) {
-      const { error } = await supabase
+      const { error } = await supabaseAdmin
         .from('career_positions')
         .upsert({
           ...editingPosition,
@@ -433,7 +433,7 @@ const AdminDashboard = () => {
                       <Edit2 className="w-3.5 h-3.5" />
                     </Button>
                     <Button variant="ghost" size="icon" className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white hover:text-emerald-500 transition-all" onClick={async () => {
-                      const { error } = await supabase.from('newsletter_drafts').update({ status: 'sent', sent_at: new Date().toISOString() }).eq('id', draft.id);
+                      const { error } = await supabaseAdmin.from('newsletter_drafts').update({ status: 'sent', sent_at: new Date().toISOString() }).eq('id', draft.id);
                       if (error) toast.error("Failed to mark as sent");
                       else {
                         toast.success("Email marked as sent");
@@ -443,7 +443,7 @@ const AdminDashboard = () => {
                       <Send className="w-3.5 h-3.5" />
                     </Button>
                     <Button variant="ghost" size="icon" className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white hover:text-red-500 transition-all" onClick={async () => {
-                      const { error } = await supabase.from('newsletter_drafts').delete().eq('id', draft.id);
+                      const { error } = await supabaseAdmin.from('newsletter_drafts').delete().eq('id', draft.id);
                       if (error) toast.error("Failed to delete draft");
                       else {
                         toast.success("Draft deleted");
@@ -674,7 +674,7 @@ const AdminDashboard = () => {
                 <Button
                   onClick={async () => {
                     if (deleteAnalysisId) {
-                      const { error } = await supabase.from('infrastructure_monitoring').delete().eq('id', deleteAnalysisId);
+                      const { error } = await supabaseAdmin.from('infrastructure_monitoring').delete().eq('id', deleteAnalysisId);
                       if (error) {
                         toast.error("Failed to delete analysis");
                       } else {
@@ -1559,7 +1559,7 @@ const AdminDashboard = () => {
                       <button className="h-16 px-10 rounded-2xl font-semibold uppercase tracking-[0.2em] text-[11px] text-white hover:text-white transition-all font-display" onClick={() => { setIsCreatingEmail(false); setEditingEmail(null); }}>Cancel</button>
                       <Button onClick={async () => {
                         if (editingEmail) {
-                          const { error } = await supabase.from('newsletter_drafts').upsert(editingEmail);
+                          const { error } = await supabaseAdmin.from('newsletter_drafts').upsert(editingEmail);
                           if (error) toast.error("Failed to save email");
                           else {
                             toast.success("Email saved successfully");

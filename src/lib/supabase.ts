@@ -2,12 +2,18 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseServiceRoleKey = import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error('Supabase credentials missing from .env');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Admin client with service role key to bypass RLS for admin operations
+export const supabaseAdmin = supabaseServiceRoleKey 
+  ? createClient(supabaseUrl, supabaseServiceRoleKey)
+  : supabase;
 
 export interface SupabaseBlogPost {
   id: string;

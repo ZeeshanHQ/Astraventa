@@ -131,6 +131,7 @@ const AdminDashboard = () => {
       fetchCareersData();
       fetchLeadsData();
       fetchActivityLogs();
+      fetchInfrastructureData();
     }
   }, [isAuthenticated, activeTab]);
 
@@ -187,7 +188,6 @@ const AdminDashboard = () => {
       } else {
         console.log('Contact submissions fetched:', contactData?.length, contactData);
         setContactSubmissions(contactData || []);
-        toast.success(`Loaded ${contactData?.length || 0} contact submissions`);
       }
 
       const { data: demoData, error: demoError } = await supabaseAdmin.from('demo_requests').select('*').order('created_at', { ascending: false });
@@ -729,33 +729,30 @@ const AdminDashboard = () => {
         <div className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] overflow-hidden backdrop-blur-md">
           <div className="p-8 border-b border-white/5">
             <h3 className="text-[12px] font-semibold text-white uppercase tracking-[0.3em] flex items-center gap-3 font-display">
-              <Activity className="w-4 h-4 text-blue-400" /> Analysis History
+              <Activity className="w-4 h-4 text-blue-400" /> Recent AI Reports
             </h3>
           </div>
-          <div className="divide-y divide-white/5">
-            {infrastructureData.slice(1).map((analysis) => (
-              <div key={analysis.id} className="p-6 hover:bg-white/[0.01] transition-colors">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className={cn(
-                        "text-[8px] font-semibold uppercase tracking-widest px-2 py-1 rounded border font-mono",
-                        analysis.system_health?.status === 'healthy' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
-                        analysis.system_health?.status === 'warning' ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' :
-                        'bg-red-500/10 border-red-500/20 text-red-500'
-                      )}>
-                        {analysis.system_health?.status || 'Unknown'}
-                      </span>
-                      <span className="text-[9px] text-white/40 font-mono">{new Date(analysis.created_at).toLocaleString()}</span>
-                    </div>
-                    <p className="text-[11px] text-white/60 line-clamp-2">{analysis.ai_analysis || 'No analysis'}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-6">
+            {infrastructureData.slice(0, 6).map((analysis) => (
+              <div key={analysis.id} className="p-5 rounded-2xl bg-black/30 border border-white/10 hover:border-blue-500/30 transition-colors">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <span className={cn(
+                      "text-[8px] font-semibold uppercase tracking-widest px-2 py-1 rounded border font-mono",
+                      analysis.system_health?.status === 'healthy' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
+                      analysis.system_health?.status === 'warning' ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' :
+                      'bg-red-500/10 border-red-500/20 text-red-500'
+                    )}>
+                      {analysis.system_health?.status || 'Unknown'}
+                    </span>
+                    <div className="text-[9px] text-white/40 font-mono mt-2">{new Date(analysis.created_at).toLocaleString()}</div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-[20px] font-bold text-white">{analysis.system_health?.score || 0}</div>
+                  <div className="flex items-center gap-2">
+                    <div className="text-[22px] font-bold text-white leading-none">{analysis.system_health?.score || 0}</div>
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 text-white hover:text-red-500 transition-all"
+                      className="w-8 h-8 rounded-lg bg-white/5 border border-white/5 text-white hover:text-red-500 transition-all"
                       onClick={() => {
                         setDeleteAnalysisId(analysis.id);
                         setShowDeleteModal(true);
@@ -765,6 +762,7 @@ const AdminDashboard = () => {
                     </Button>
                   </div>
                 </div>
+                <p className="text-[11px] text-white/70 leading-relaxed line-clamp-3">{analysis.ai_analysis || 'No analysis'}</p>
               </div>
             ))}
           </div>
@@ -1316,7 +1314,14 @@ const AdminDashboard = () => {
                         <a href={`mailto:${submission.email}`} className="text-[11px] font-semibold text-blue-400 hover:text-blue-400/80 transition-colors mb-3 inline-block">
                           {submission.email}
                         </a>
-                        <div className="text-[10px] text-white/50 font-mono uppercase tracking-widest">{submission.service}</div>
+                        <div className="flex flex-wrap gap-2 mt-1">
+                          <div className="text-[10px] text-white/50 font-mono uppercase tracking-widest">{submission.service}</div>
+                          {submission.budget && (
+                            <div className="px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-md text-[9px] text-emerald-400 font-mono uppercase">
+                              Budget: {submission.budget}
+                            </div>
+                          )}
+                        </div>
                       </div>
                       <div className="shrink-0">
                         <span className={cn(

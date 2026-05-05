@@ -48,14 +48,25 @@ const parseEmbeddedAnalysis = (value: unknown) => {
 
 const getReportData = (day: any) => {
   const embedded = parseEmbeddedAnalysis(day.ai_analysis)
+  const categories =
+    typeof embedded?.activity_summary?.categories === 'object' && embedded?.activity_summary?.categories !== null
+      ? embedded.activity_summary.categories
+      : typeof day.activity_summary?.categories === 'object' && day.activity_summary?.categories !== null
+        ? day.activity_summary.categories
+        : {}
+
   return {
-    system_health: day.system_health || embedded?.system_health || {},
-    database_status: day.database_status || embedded?.database_status || {},
-    activity_summary: day.activity_summary || embedded?.activity_summary || {},
+    system_health: embedded?.system_health || day.system_health || {},
+    database_status: embedded?.database_status || day.database_status || {},
+    activity_summary: {
+      ...(day.activity_summary || {}),
+      ...(embedded?.activity_summary || {}),
+      categories,
+    },
     issues_detected: day.issues_detected?.length ? day.issues_detected : embedded?.issues_detected || [],
     recommendations: day.recommendations?.length ? day.recommendations : embedded?.recommendations || [],
     warnings: day.warnings?.length ? day.warnings : embedded?.warnings || [],
-    ai_analysis: embedded?.ai_analysis || day.ai_analysis || '',
+    ai_analysis: embedded?.ai_analysis || (embedded ? '' : day.ai_analysis || ''),
   }
 }
 

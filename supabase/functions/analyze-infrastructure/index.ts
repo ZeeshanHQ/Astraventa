@@ -7,6 +7,23 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
+const extractJson = (value: string) => {
+  const cleaned = value
+    .replace(/```json/gi, '')
+    .replace(/```/g, '')
+    .trim();
+  try {
+    return JSON.parse(cleaned);
+  } catch {
+    const firstBrace = cleaned.indexOf('{');
+    const lastBrace = cleaned.lastIndexOf('}');
+    if (firstBrace >= 0 && lastBrace > firstBrace) {
+      return JSON.parse(cleaned.slice(firstBrace, lastBrace + 1));
+    }
+    throw new Error('AI response did not contain valid JSON');
+  }
+};
+
 serve(async (req) => {
   // Handle CORS preflight request
   if (req.method === 'OPTIONS') {
@@ -116,7 +133,7 @@ Provide analysis in JSON format with these fields:
         body: JSON.stringify({
           model: 'gpt-4o-mini',
           messages: [
-            { role: 'system', content: 'You are an expert infrastructure monitoring AI. Always respond with valid JSON only.' },
+            { role: 'system', content: 'You are an expert infrastructure monitoring AI. Always respond with valid JSON only. Do not use markdown fences.' },
             { role: 'user', content: prompt }
           ],
           temperature: 0.3,
@@ -149,17 +166,31 @@ Provide analysis in JSON format with these fields:
     // Parse AI response
     let analysisResult
     try {
-      analysisResult = JSON.parse(aiResponse)
+      analysisResult = extractJson(aiResponse)
     } catch (e) {
-      // Fallback if AI didn't return valid JSON
+      const cleanText = aiResponse
+        .replace(/```json/gi, '')
+        .replace(/```/g, '')
+        .trim()
       analysisResult = {
-        system_health: { status: 'warning', score: 75, details: aiResponse },
+        system_health: { status: 'warning', score: 75, details: cleanText },
         database_status: { tables: 'Active', connections: 'Normal', performance: 'Good' },
-        activity_summary: { total_events: systemData.recentActivity, categories: 'Mixed', trends: 'Normal' },
+        activity_summary: { 
+          total_events: systemData.recentActivity,
+          categories: {
+            blog_posts: systemData.posts,
+            career_positions: systemData.positions,
+            career_applications: systemData.applications,
+            contact_submissions: systemData.contactSubmissions,
+            demo_requests: systemData.demoRequests,
+            newsletter_subscribers: systemData.newsletterSubscribers,
+          },
+          trends: 'Normal'
+        },
         issues_detected: [],
         recommendations: [],
         warnings: [],
-        ai_analysis: aiResponse
+        ai_analysis: cleanText
       }
     }
 

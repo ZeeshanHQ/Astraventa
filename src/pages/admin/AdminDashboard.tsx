@@ -68,6 +68,7 @@ const AdminDashboard = () => {
   const [deleteAnalysisId, setDeleteAnalysisId] = useState<string | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isGeneratingMonthlyReport, setIsGeneratingMonthlyReport] = useState(false);
+  const [isRunningAnalysis, setIsRunningAnalysis] = useState(false);
   const [selectedAnalysis, setSelectedAnalysis] = useState<any>(null);
   const [editingEmail, setEditingEmail] = useState<any>(null);
   const [isNewPosition, setIsNewPosition] = useState(false);
@@ -87,6 +88,41 @@ const AdminDashboard = () => {
     const hours = Math.floor(minutes / 60);
     if (hours < 24) return `${hours}h ago`;
     return new Date(value).toLocaleDateString();
+  };
+
+  const parseAnalysisJson = (value: unknown) => {
+    if (!value || typeof value !== 'string') return null;
+    const cleaned = value.replace(/```json/gi, '').replace(/```/g, '').trim();
+    try {
+      return JSON.parse(cleaned);
+    } catch {
+      const firstBrace = cleaned.indexOf('{');
+      const lastBrace = cleaned.lastIndexOf('}');
+      if (firstBrace >= 0 && lastBrace > firstBrace) {
+        try {
+          return JSON.parse(cleaned.slice(firstBrace, lastBrace + 1));
+        } catch {
+          return null;
+        }
+      }
+      return null;
+    }
+  };
+
+  const normalizeAnalysis = (analysis: any) => {
+    if (!analysis) return analysis;
+    const embedded = parseAnalysisJson(analysis.ai_analysis);
+    if (!embedded) return analysis;
+    return {
+      ...analysis,
+      system_health: embedded.system_health || analysis.system_health,
+      database_status: embedded.database_status || analysis.database_status,
+      activity_summary: embedded.activity_summary || analysis.activity_summary,
+      issues_detected: embedded.issues_detected || analysis.issues_detected,
+      recommendations: embedded.recommendations || analysis.recommendations,
+      warnings: embedded.warnings || analysis.warnings,
+      ai_analysis: embedded.ai_analysis || '',
+    };
   };
 
   const notifications: AdminNotification[] = [
@@ -227,22 +263,26 @@ const AdminDashboard = () => {
         return;
       }
       console.log('Infrastructure data fetched:', data?.length);
-      setInfrastructureData(data || []);
-      setLastAnalysis(data?.[0] || null);
+      const normalizedData = (data || []).map(normalizeAnalysis);
+      setInfrastructureData(normalizedData);
+      setLastAnalysis(normalizedData?.[0] || null);
     } catch (error) {
       console.error('Error in fetchInfrastructureData:', error);
     }
   };
 
   const handleRunAnalysis = async () => {
-    toast.loading("Running AI infrastructure analysis...");
+    const toastId = toast.loading("Running AI infrastructure analysis...");
+    setIsRunningAnalysis(true);
     try {
       const { data, error } = await supabaseAdmin.functions.invoke('analyze-infrastructure');
       if (error) throw error;
-      toast.success("Infrastructure analysis completed");
+      toast.success("Infrastructure analysis completed", { id: toastId });
       fetchInfrastructureData();
     } catch (error) {
-      toast.error("Failed to run analysis: " + error.message);
+      toast.error("Failed to run analysis: " + error.message, { id: toastId });
+    } finally {
+      setIsRunningAnalysis(false);
     }
   };
 
@@ -613,8 +653,8 @@ const AdminDashboard = () => {
           </div>
         </div>
         <div className="flex gap-4">
-          <Button onClick={handleRunAnalysis} className="h-14 px-8 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] font-display border border-blue-400">
-            <Brain className="w-5 h-5" /> Run Analysis
+          <Button onClick={handleRunAnalysis} disabled={isRunningAnalysis} className="h-14 px-8 bg-blue-500 hover:bg-blue-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] font-display border border-blue-400">
+            <Brain className="w-5 h-5" /> {isRunningAnalysis ? 'Running...' : 'Run Analysis'}
           </Button>
           <Button onClick={handleGenerateMonthlyReport} disabled={isGeneratingMonthlyReport} className="h-14 px-8 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] font-display border border-emerald-400">
             <Mail className="w-5 h-5" /> {isGeneratingMonthlyReport ? 'Sending...' : 'Monthly Report'}
@@ -711,11 +751,12 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {/* AI Analysis Summary */}
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-            <h4 className="text-[12px] font-semibold uppercase tracking-widest text-white mb-4">AI Analysis Summary</h4>
-            <p className="text-[11px] text-white/70 leading-relaxed">{lastAnalysis.ai_analysis || 'No analysis available'}</p>
-          </div>
+          {lastAnalysis.ai_analysis && (
+            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+              <h4 className="text-[12px] font-semibold uppercase tracking-widest text-white mb-4">Intelligence Summary</h4>
+              <p className="text-[11px] text-white/70 leading-relaxed">{lastAnalysis.ai_analysis}</p>
+            </div>
+          )}
         </div>
       ) : (
         <div className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] p-12 text-center">
@@ -724,8 +765,8 @@ const AdminDashboard = () => {
           </div>
           <h3 className="text-[14px] font-semibold text-white uppercase tracking-[0.3em] mb-3 font-display">No analysis yet</h3>
           <p className="text-[11px] text-white/50 max-w-md mx-auto mb-6">Run your first AI infrastructure analysis to monitor system health, detect issues, and get recommendations.</p>
-          <Button onClick={handleRunAnalysis} className="h-12 px-8 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all font-display border border-blue-400">
-            <Brain className="w-5 h-5" /> Run First Analysis
+          <Button onClick={handleRunAnalysis} disabled={isRunningAnalysis} className="h-12 px-8 bg-blue-500 hover:bg-blue-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-2xl uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center gap-3 transition-all font-display border border-blue-400">
+            <Brain className="w-5 h-5" /> {isRunningAnalysis ? 'Running...' : 'Run First Analysis'}
           </Button>
         </div>
       )}

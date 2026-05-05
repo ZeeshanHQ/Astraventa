@@ -16,6 +16,49 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 const toBase64 = (value: string) => btoa(unescape(encodeURIComponent(value)))
 
+const escapeHtml = (value: unknown) =>
+  String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+
+const parseEmbeddedAnalysis = (value: unknown) => {
+  if (!value || typeof value !== 'string') return null
+  const cleaned = value
+    .replace(/```json/gi, '')
+    .replace(/```/g, '')
+    .trim()
+  try {
+    return JSON.parse(cleaned)
+  } catch {
+    const firstBrace = cleaned.indexOf('{')
+    const lastBrace = cleaned.lastIndexOf('}')
+    if (firstBrace >= 0 && lastBrace > firstBrace) {
+      try {
+        return JSON.parse(cleaned.slice(firstBrace, lastBrace + 1))
+      } catch {
+        return null
+      }
+    }
+    return null
+  }
+}
+
+const getReportData = (day: any) => {
+  const embedded = parseEmbeddedAnalysis(day.ai_analysis)
+  return {
+    system_health: day.system_health || embedded?.system_health || {},
+    database_status: day.database_status || embedded?.database_status || {},
+    activity_summary: day.activity_summary || embedded?.activity_summary || {},
+    issues_detected: day.issues_detected?.length ? day.issues_detected : embedded?.issues_detected || [],
+    recommendations: day.recommendations?.length ? day.recommendations : embedded?.recommendations || [],
+    warnings: day.warnings?.length ? day.warnings : embedded?.warnings || [],
+    ai_analysis: embedded?.ai_analysis || day.ai_analysis || '',
+  }
+}
+
 serve(async (req) => {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
@@ -133,10 +176,17 @@ serve(async (req) => {
     .stat-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
     .stat-card h3 { color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 8px 0; font-weight: 600; }
     .stat-card .value { color: #3b82f6; font-size: 36px; font-weight: 700; margin: 0; }
-    .health-status { padding: 20px; border-radius: 12px; margin: 12px 0; border-left: 4px solid; }
+    .health-status { padding: 22px; border-radius: 16px; margin: 18px 0; border-left: 5px solid; }
     .health-healthy { background: #dcfce7; border-color: #22c55e; }
     .health-warning { background: #fef9c3; border-color: #eab308; }
     .health-critical { background: #fee2e2; border-color: #ef4444; }
+    .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 16px; }
+    .mini-card { background: rgba(255,255,255,0.72); border: 1px solid rgba(148,163,184,0.25); padding: 16px; border-radius: 12px; }
+    .mini-card strong { display: block; color: #334155; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+    .pill { display: inline-block; padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+    .pill-healthy { background: #bbf7d0; color: #166534; }
+    .pill-warning { background: #fef08a; color: #854d0e; }
+    .pill-critical { background: #fecaca; color: #991b1b; }
     .issue-card { background: #fef2f2; border: 1px solid #fecaca; padding: 20px; border-radius: 12px; margin: 12px 0; border-left: 4px solid #ef4444; }
     .issue-medium { background: #fffbeb; border-color: #fcd34d; border-left-color: #f59e0b; }
     .issue-low { background: #eff6ff; border-color: #bfdbfe; border-left-color: #3b82f6; }
@@ -184,14 +234,36 @@ serve(async (req) => {
   <div class="section">
     <h2>💓 System Health Analysis</h2>
     ${monitoringData?.map(day => {
-      const health = day.system_health
+      const report = getReportData(day)
+      const health = report.system_health
+      const database = report.database_status
+      const activity = report.activity_summary
       const statusClass = health?.status === 'healthy' ? 'health-healthy' : health?.status === 'warning' ? 'health-warning' : 'health-critical'
+      const pillClass = health?.status === 'healthy' ? 'pill-healthy' : health?.status === 'warning' ? 'pill-warning' : 'pill-critical'
+      const categories = activity?.categories || {}
       return `
         <div class="health-status ${statusClass}">
-          <strong>📅 ${new Date(day.created_at).toLocaleDateString()}</strong><br>
-          <strong>Status:</strong> ${health?.status?.toUpperCase()} | 
-          <strong>Score:</strong> ${health?.score}/100<br>
-          <em>${health?.details || 'No details available'}</em>
+          <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+            <div>
+              <strong style="font-size:18px;">📅 ${new Date(day.created_at).toLocaleDateString()}</strong>
+              <p style="margin:10px 0 0; color:#475569;">${escapeHtml(health?.details || 'No details available')}</p>
+            </div>
+            <div style="text-align:right;">
+              <span class="pill ${pillClass}">${escapeHtml(health?.status || 'unknown')}</span>
+              <div style="font-size:34px; font-weight:800; color:#0f172a; margin-top:8px;">${health?.score ?? 0}<span style="font-size:14px; color:#64748b;">/100</span></div>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card"><strong>Tables</strong>${escapeHtml(database?.tables || 'No table details')}</div>
+            <div class="mini-card"><strong>Connections</strong>${escapeHtml(database?.connections || 'No connection details')}</div>
+            <div class="mini-card"><strong>Performance</strong>${escapeHtml(database?.performance || 'No performance details')}</div>
+            <div class="mini-card"><strong>Total Events</strong>${activity?.total_events ?? 0}</div>
+          </div>
+          <div class="mini-grid">
+            ${Object.entries(categories).map(([key, value]) => `
+              <div class="mini-card"><strong>${escapeHtml(String(key).replace(/_/g, ' '))}</strong>${escapeHtml(value)}</div>
+            `).join('')}
+          </div>
         </div>
       `
     }).join('') || '<p style="color: #64748b;">No monitoring data available for this month.</p>'}
@@ -199,30 +271,30 @@ serve(async (req) => {
 
   <div class="section">
     <h2>⚠️ Issues Detected</h2>
-    ${monitoringData?.flatMap(day => day.issues_detected || []).map((issue: any, i) => `
+    ${monitoringData?.flatMap(day => getReportData(day).issues_detected || []).map((issue: any, i) => `
       <div class="issue-card issue-${issue.severity}">
-        <strong>🔴 ${issue.severity?.toUpperCase()}: ${issue.category}</strong>
-        <p>${issue.description}</p>
+        <strong>🔴 ${escapeHtml(issue.severity?.toUpperCase())}: ${escapeHtml(issue.category)}</strong>
+        <p>${escapeHtml(issue.description)}</p>
       </div>
     `).join('') || '<p style="color: #64748b;">No issues detected this month. 🎉</p>'}
   </div>
 
   <div class="section">
     <h2>💡 Recommendations</h2>
-    ${monitoringData?.flatMap(day => day.recommendations || []).map((rec: any, i) => `
+    ${monitoringData?.flatMap(day => getReportData(day).recommendations || []).map((rec: any, i) => `
       <div class="recommendation">
-        <strong>📌 ${rec.priority?.toUpperCase()} Priority:</strong> ${rec.action}
-        <br><em>${rec.reason}</em>
+        <strong>📌 ${escapeHtml(rec.priority?.toUpperCase())} Priority:</strong> ${escapeHtml(rec.action)}
+        <br><em>${escapeHtml(rec.reason)}</em>
       </div>
     `).join('') || '<p style="color: #64748b;">No recommendations for this month.</p>'}
   </div>
 
   <div class="section">
     <h2>⚡ Warnings</h2>
-    ${monitoringData?.flatMap(day => day.warnings || []).map((warning: any, i) => `
+    ${monitoringData?.flatMap(day => getReportData(day).warnings || []).map((warning: any, i) => `
       <div style="background: #fffbeb; border: 1px solid #fcd34d; padding: 20px; border-radius: 12px; margin: 12px 0; border-left: 4px solid #f59e0b;">
-        <strong>⚡ ${warning.type}:</strong> ${warning.message}
-        <br><em>💡 Suggestion: ${warning.suggestion}</em>
+        <strong>⚡ ${escapeHtml(warning.type)}:</strong> ${escapeHtml(warning.message)}
+        <br><em>💡 Suggestion: ${escapeHtml(warning.suggestion)}</em>
       </div>
     `).join('') || '<p style="color: #64748b;">No warnings this month. ✅</p>'}
   </div>

@@ -35,7 +35,8 @@ import {
   Brain,
   Send,
   Trash2,
-  Radio
+  Radio,
+  FileText
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,6 +68,7 @@ const AdminDashboard = () => {
   const [deleteAnalysisId, setDeleteAnalysisId] = useState<string | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isGeneratingMonthlyReport, setIsGeneratingMonthlyReport] = useState(false);
+  const [selectedAnalysis, setSelectedAnalysis] = useState<any>(null);
   const [editingEmail, setEditingEmail] = useState<any>(null);
   const [isNewPosition, setIsNewPosition] = useState(false);
   const [editingPosition, setEditingPosition] = useState<Partial<CareerPosition> | null>(null);
@@ -733,7 +735,7 @@ const AdminDashboard = () => {
         <div className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] overflow-hidden backdrop-blur-md">
           <div className="p-8 border-b border-white/5">
             <h3 className="text-[12px] font-semibold text-white uppercase tracking-[0.3em] flex items-center gap-3 font-display">
-              <Activity className="w-4 h-4 text-blue-400" /> Recent AI Reports
+              <Activity className="w-4 h-4 text-blue-400" /> Recent Intelligence Reports
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 p-5">
@@ -745,9 +747,12 @@ const AdminDashboard = () => {
                 transition={{ delay: i * 0.05 }}
                 className="p-4 rounded-2xl bg-black/30 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/[0.03] transition-colors"
               >
-                <div className="flex items-start justify-between gap-4 mb-4">
+                <div className="flex items-start justify-between gap-4 mb-3">
                   <div>
-                    <div className="text-[11px] font-semibold text-white mb-2">Astraventa Intelligence Snapshot</div>
+                    <div className="flex items-center gap-2 text-[11px] font-semibold text-white mb-2">
+                      <FileText className="w-3.5 h-3.5 text-blue-400" />
+                      Astraventa Snapshot
+                    </div>
                     <span className={cn(
                       "text-[8px] font-semibold uppercase tracking-widest px-2 py-1 rounded border font-mono",
                       analysis.system_health?.status === 'healthy' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
@@ -773,12 +778,96 @@ const AdminDashboard = () => {
                     </Button>
                   </div>
                 </div>
-                <p className="text-[10px] text-white/60 leading-relaxed line-clamp-2">{analysis.system_health?.details || analysis.ai_analysis || 'No analysis details available'}</p>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-[10px] text-white/50">Minimal summary ready</p>
+                  <Button
+                    variant="ghost"
+                    className="h-8 px-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:text-white hover:bg-blue-500 text-[9px] uppercase tracking-widest"
+                    onClick={() => setSelectedAnalysis(analysis)}
+                  >
+                    <Eye className="w-3 h-3 mr-2" /> Details
+                  </Button>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       )}
+
+      <AnimatePresence>
+        {selectedAnalysis && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-2xl p-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 12 }}
+              className="w-full max-w-3xl max-h-[85vh] overflow-y-auto custom-scrollbar bg-black border border-white/10 rounded-[2rem] p-8 shadow-[0_0_80px_rgba(59,130,246,0.18)]"
+            >
+              <div className="flex items-start justify-between gap-6 mb-8">
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                      <FileText className="w-5 h-5 text-blue-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-[18px] font-semibold text-white">Astraventa Intelligence Details</h3>
+                      <p className="text-[10px] text-white/50 font-mono">{new Date(selectedAnalysis.created_at).toLocaleString()}</p>
+                    </div>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white hover:text-red-400" onClick={() => setSelectedAnalysis(null)}>
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                  <div className="text-[9px] text-white/50 uppercase tracking-widest mb-2">Status</div>
+                  <div className="text-[13px] text-white font-semibold uppercase">{selectedAnalysis.system_health?.status || 'Unknown'}</div>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                  <div className="text-[9px] text-white/50 uppercase tracking-widest mb-2">Score</div>
+                  <div className="text-[24px] text-white font-bold">{selectedAnalysis.system_health?.score || 0}<span className="text-[11px] text-white/50">/100</span></div>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                  <div className="text-[9px] text-white/50 uppercase tracking-widest mb-2">Issues</div>
+                  <div className="text-[24px] text-white font-bold">{selectedAnalysis.issues_detected?.length || 0}</div>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="p-5 rounded-2xl bg-blue-500/5 border border-blue-500/10">
+                  <h4 className="text-[11px] text-white font-semibold uppercase tracking-widest mb-3">Health Details</h4>
+                  <p className="text-[12px] text-white/70 leading-relaxed">{selectedAnalysis.system_health?.details || 'No details available'}</p>
+                </div>
+                {selectedAnalysis.issues_detected?.length > 0 && (
+                  <div className="p-5 rounded-2xl bg-red-500/5 border border-red-500/10">
+                    <h4 className="text-[11px] text-white font-semibold uppercase tracking-widest mb-3">Issues</h4>
+                    <div className="space-y-3">
+                      {selectedAnalysis.issues_detected.map((issue: any, index: number) => (
+                        <div key={index} className="text-[12px] text-white/70 leading-relaxed">
+                          <span className="text-red-400 font-semibold uppercase">{issue.severity}</span> · {issue.category}: {issue.description}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {selectedAnalysis.recommendations?.length > 0 && (
+                  <div className="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
+                    <h4 className="text-[11px] text-white font-semibold uppercase tracking-widest mb-3">Recommendations</h4>
+                    <div className="space-y-3">
+                      {selectedAnalysis.recommendations.map((rec: any, index: number) => (
+                        <div key={index} className="text-[12px] text-white/70 leading-relaxed">
+                          <span className="text-emerald-400 font-semibold uppercase">{rec.priority}</span> · {rec.action}
+                          {rec.reason && <div className="text-[11px] text-white/45 mt-1">{rec.reason}</div>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Delete Confirmation Modal */}
       <AnimatePresence>

@@ -124,9 +124,17 @@ serve(async (req) => {
     const monthName = new Date(targetYear, targetMonth - 1).toLocaleString('default', { month: 'long' })
     
     // Calculate average health score
-    const avgHealthScore = monitoringData?.length > 0 
+    const avgHealthScore = monitoringData?.length > 0
       ? Math.round(monitoringData.reduce((sum, d) => sum + (d.system_health?.score || 0), 0) / monitoringData.length)
       : 0
+
+    // Aggregate all issues, recommendations, and warnings for the month
+    const allIssues = monitoringData?.flatMap(day => getReportData(day).issues_detected || []) || []
+    const allRecommendations = monitoringData?.flatMap(day => getReportData(day).recommendations || []) || []
+    const allWarnings = monitoringData?.flatMap(day => getReportData(day).warnings || []) || []
+
+    // Get the most recent analysis for detailed health info
+    const latestAnalysis = monitoringData?.[0] ? getReportData(monitoringData[0]) : null
 
     // Simple email with basic summary
     const simpleEmail = `
@@ -208,7 +216,13 @@ serve(async (req) => {
 </head>
 <body>
   <div class="header">
-    <h1>🚀 Astraventa Intelligence Report</h1>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px;">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="22" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.1)"/>
+        <path d="M24 12L28 20L36 22L30 28L32 36L24 32L16 36L18 28L12 22L20 20L24 12Z" fill="white"/>
+      </svg>
+    </div>
+    <h1>Astraventa Intelligence Report</h1>
     <p>${monthName} ${targetYear} | Comprehensive Monthly Analysis</p>
   </div>
 
@@ -244,45 +258,31 @@ serve(async (req) => {
 
   <div class="section">
     <h2>💓 System Health Analysis</h2>
-    ${monitoringData?.map(day => {
-      const report = getReportData(day)
-      const health = report.system_health
-      const database = report.database_status
-      const activity = report.activity_summary
-      const statusClass = health?.status === 'healthy' ? 'health-healthy' : health?.status === 'warning' ? 'health-warning' : 'health-critical'
-      const pillClass = health?.status === 'healthy' ? 'pill-healthy' : health?.status === 'warning' ? 'pill-warning' : 'pill-critical'
-      const categories = activity?.categories || {}
-      return `
-        <div class="health-status ${statusClass}">
-          <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start; flex-wrap:wrap;">
-            <div>
-              <strong style="font-size:18px;">📅 ${new Date(day.created_at).toLocaleDateString()}</strong>
-              <p style="margin:10px 0 0; color:#475569;">${escapeHtml(health?.details || 'No details available')}</p>
-            </div>
-            <div style="text-align:right;">
-              <span class="pill ${pillClass}">${escapeHtml(health?.status || 'unknown')}</span>
-              <div style="font-size:34px; font-weight:800; color:#0f172a; margin-top:8px;">${health?.score ?? 0}<span style="font-size:14px; color:#64748b;">/100</span></div>
-            </div>
+    ${latestAnalysis ? `
+      <div class="health-status ${latestAnalysis.system_health?.status === 'healthy' ? 'health-healthy' : latestAnalysis.system_health?.status === 'warning' ? 'health-warning' : 'health-critical'}">
+        <div style="display:flex; justify-content:space-between; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+          <div>
+            <strong style="font-size:18px;">${monthName} ${targetYear} Summary</strong>
+            <p style="margin:10px 0 0; color:#475569;">${escapeHtml(latestAnalysis.system_health?.details || 'No details available')}</p>
           </div>
-          <div class="mini-grid">
-            <div class="mini-card"><strong>Tables</strong>${escapeHtml(database?.tables || 'No table details')}</div>
-            <div class="mini-card"><strong>Connections</strong>${escapeHtml(database?.connections || 'No connection details')}</div>
-            <div class="mini-card"><strong>Performance</strong>${escapeHtml(database?.performance || 'No performance details')}</div>
-            <div class="mini-card"><strong>Total Events</strong>${activity?.total_events ?? 0}</div>
-          </div>
-          <div class="mini-grid">
-            ${Object.entries(categories).map(([key, value]) => `
-              <div class="mini-card"><strong>${escapeHtml(String(key).replace(/_/g, ' '))}</strong>${escapeHtml(value)}</div>
-            `).join('')}
+          <div style="text-align:right;">
+            <span class="pill ${latestAnalysis.system_health?.status === 'healthy' ? 'pill-healthy' : latestAnalysis.system_health?.status === 'warning' ? 'pill-warning' : 'pill-critical'}">${escapeHtml(latestAnalysis.system_health?.status || 'unknown')}</span>
+            <div style="font-size:34px; font-weight:800; color:#0f172a; margin-top:8px;">${avgHealthScore}<span style="font-size:14px; color:#64748b;">/100</span></div>
           </div>
         </div>
-      `
-    }).join('') || '<p style="color: #64748b;">No monitoring data available for this month.</p>'}
+        <div class="mini-grid">
+          <div class="mini-card"><strong>Tables</strong>${escapeHtml(latestAnalysis.database_status?.tables || 'No table details')}</div>
+          <div class="mini-card"><strong>Connections</strong>${escapeHtml(latestAnalysis.database_status?.connections || 'No connection details')}</div>
+          <div class="mini-card"><strong>Performance</strong>${escapeHtml(latestAnalysis.database_status?.performance || 'No performance details')}</div>
+          <div class="mini-card"><strong>Total Analyses</strong>${monitoringData?.length || 0}</div>
+        </div>
+      </div>
+    ` : '<p style="color: #64748b;">No monitoring data available for this month.</p>'}
   </div>
 
   <div class="section">
     <h2>⚠️ Issues Detected</h2>
-    ${monitoringData?.flatMap(day => getReportData(day).issues_detected || []).map((issue: any, i) => `
+    ${allIssues.map((issue: any, i) => `
       <div class="issue-card issue-${issue.severity}">
         <strong>🔴 ${escapeHtml(issue.severity?.toUpperCase())}: ${escapeHtml(issue.category)}</strong>
         <p>${escapeHtml(issue.description)}</p>
@@ -292,7 +292,7 @@ serve(async (req) => {
 
   <div class="section">
     <h2>💡 Recommendations</h2>
-    ${monitoringData?.flatMap(day => getReportData(day).recommendations || []).map((rec: any, i) => `
+    ${allRecommendations.map((rec: any, i) => `
       <div class="recommendation">
         <strong>📌 ${escapeHtml(rec.priority?.toUpperCase())} Priority:</strong> ${escapeHtml(rec.action)}
         <br><em>${escapeHtml(rec.reason)}</em>
@@ -302,7 +302,7 @@ serve(async (req) => {
 
   <div class="section">
     <h2>⚡ Warnings</h2>
-    ${monitoringData?.flatMap(day => getReportData(day).warnings || []).map((warning: any, i) => `
+    ${allWarnings.map((warning: any, i) => `
       <div style="background: #fffbeb; border: 1px solid #fcd34d; padding: 20px; border-radius: 12px; margin: 12px 0; border-left: 4px solid #f59e0b;">
         <strong>⚡ ${escapeHtml(warning.type)}:</strong> ${escapeHtml(warning.message)}
         <br><em>💡 Suggestion: ${escapeHtml(warning.suggestion)}</em>

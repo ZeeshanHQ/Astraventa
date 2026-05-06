@@ -771,69 +771,171 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* Analysis History */}
-      {infrastructureData.length > 0 && (
-        <div className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] overflow-hidden backdrop-blur-md">
-          <div className="p-8 border-b border-white/5">
-            <h3 className="text-[12px] font-semibold text-white uppercase tracking-[0.3em] flex items-center gap-3 font-display">
-              <Activity className="w-4 h-4 text-blue-400" /> Recent Intelligence Reports
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 p-5">
-            {infrastructureData.slice(0, 6).map((analysis, i) => (
-              <motion.div
-                key={analysis.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
-                className="p-4 rounded-2xl bg-black/30 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/[0.03] transition-colors"
-              >
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <div>
-                    <div className="flex items-center gap-2 text-[11px] font-semibold text-white mb-2">
-                      <FileText className="w-3.5 h-3.5 text-blue-400" />
-                      Astraventa Snapshot
-                    </div>
-                    <span className={cn(
-                      "text-[8px] font-semibold uppercase tracking-widest px-2 py-1 rounded border font-mono",
-                      analysis.system_health?.status === 'healthy' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
-                      analysis.system_health?.status === 'warning' ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' :
-                      'bg-red-500/10 border-red-500/20 text-red-500'
-                    )}>
-                      {analysis.system_health?.status || 'Unknown'}
-                    </span>
-                    <div className="text-[9px] text-white/40 font-mono mt-2">{new Date(analysis.created_at).toLocaleString()}</div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-[22px] font-bold text-white leading-none">{analysis.system_health?.score || 0}</div>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="w-8 h-8 rounded-lg bg-white/5 border border-white/5 text-white hover:text-red-500 transition-all"
-                      onClick={() => {
-                        setDeleteAnalysisId(analysis.id);
-                        setShowDeleteModal(true);
-                      }}
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </Button>
-                  </div>
+      {/* Daily Analysis Tree Visualization */}
+      <div className="bg-white/[0.02] border border-white/5 rounded-[3.5rem] overflow-hidden backdrop-blur-md">
+        <div className="p-8 border-b border-white/5">
+          <h3 className="text-[12px] font-semibold text-white uppercase tracking-[0.3em] flex items-center gap-3 font-display">
+            <Activity className="w-4 h-4 text-blue-400" /> Daily Analysis Timeline
+          </h3>
+        </div>
+        <div className="p-8">
+          <div className="flex flex-col items-center">
+            {/* Tree structure with daily dots */}
+            <div className="relative">
+              {/* Tree trunk */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-1 h-32 bg-gradient-to-t from-blue-500/30 to-transparent rounded-full"></div>
+              
+              {/* Tree branches with days */}
+              <div className="grid grid-cols-7 gap-4 mb-8">
+                {(() => {
+                  const now = new Date();
+                  const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+                  const days = [];
+                  
+                  for (let day = 1; day <= daysInMonth; day++) {
+                    const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const hasAnalysis = infrastructureData.some(d => d.created_at.startsWith(dateStr));
+                    const analysisForDay = infrastructureData.find(d => d.created_at.startsWith(dateStr));
+                    const isToday = day === now.getDate();
+                    
+                    days.push(
+                      <motion.div
+                        key={day}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: day * 0.02 }}
+                        className="flex flex-col items-center gap-2"
+                      >
+                        <div className="relative">
+                          {hasAnalysis ? (
+                            <>
+                              <motion.div
+                                animate={{
+                                  boxShadow: [
+                                    "0 0 0 0 rgba(59, 130, 246, 0.7)",
+                                    "0 0 0 10px rgba(59, 130, 246, 0)",
+                                    "0 0 0 0 rgba(59, 130, 246, 0.7)"
+                                  ],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  ease: "easeInOut"
+                                }}
+                                className={cn(
+                                  "w-4 h-4 rounded-full",
+                                  analysisForDay?.system_health?.status === 'healthy' ? 'bg-emerald-400' :
+                                  analysisForDay?.system_health?.status === 'warning' ? 'bg-amber-400' :
+                                  'bg-red-400'
+                                )}
+                              />
+                              <motion.div
+                                animate={{
+                                  scale: [1, 1.2, 1],
+                                  opacity: [0.7, 1, 0.7]
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  ease: "easeInOut"
+                                }}
+                                className={cn(
+                                  "absolute inset-0 rounded-full blur-sm",
+                                  analysisForDay?.system_health?.status === 'healthy' ? 'bg-emerald-400' :
+                                  analysisForDay?.system_health?.status === 'warning' ? 'bg-amber-400' :
+                                  'bg-red-400'
+                                )}
+                              />
+                            </>
+                          ) : (
+                            <div className="w-4 h-4 rounded-full bg-white/10 border border-white/5"></div>
+                          )}
+                          {isToday && (
+                            <motion.div
+                              animate={{ scale: [1, 1.3, 1] }}
+                              transition={{ duration: 1.5, repeat: Infinity }}
+                              className="absolute -inset-2 border-2 border-blue-400 rounded-full"
+                            />
+                          )}
+                        </div>
+                        <span className={cn(
+                          "text-[8px] font-mono",
+                          hasAnalysis ? 'text-white/70' : 'text-white/30',
+                          isToday && 'text-blue-400 font-semibold'
+                        )}>
+                          {day}
+                        </span>
+                      </motion.div>
+                    );
+                  }
+                  return days;
+                })()}
+              </div>
+              
+              {/* Legend */}
+              <div className="flex items-center justify-center gap-6 text-[9px] text-white/50">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
+                  <span>Healthy</span>
                 </div>
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-[10px] text-white/50">Minimal summary ready</p>
-                  <Button
-                    variant="ghost"
-                    className="h-8 px-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:text-white hover:bg-blue-500 text-[9px] uppercase tracking-widest"
-                    onClick={() => setSelectedAnalysis(analysis)}
-                  >
-                    <Eye className="w-3 h-3 mr-2" /> Details
-                  </Button>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                  <span>Warning</span>
                 </div>
-              </motion.div>
-            ))}
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                  <span>Critical</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-white/10 border border-white/5"></div>
+                  <span>No Data</span>
+                </div>
+              </div>
+              
+              {/* Stats */}
+              <div className="mt-8 grid grid-cols-3 gap-4 w-full max-w-md">
+                <div className="text-center">
+                  <div className="text-[24px] font-bold text-white">
+                    {(() => {
+                      const now = new Date();
+                      const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+                      const analyzedDays = infrastructureData.filter(d => d.created_at.startsWith(`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`)).length;
+                      return analyzedDays;
+                    })()}
+                  </div>
+                  <div className="text-[9px] text-white/50 uppercase tracking-widest">Analyzed Days</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[24px] font-bold text-emerald-400">
+                    {(() => {
+                      const now = new Date();
+                      const healthyDays = infrastructureData.filter(d => 
+                        d.created_at.startsWith(`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`) &&
+                        d.system_health?.status === 'healthy'
+                      ).length;
+                      return healthyDays;
+                    })()}
+                  </div>
+                  <div className="text-[9px] text-white/50 uppercase tracking-widest">Healthy Days</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[24px] font-bold text-red-400">
+                    {(() => {
+                      const now = new Date();
+                      const criticalDays = infrastructureData.filter(d => 
+                        d.created_at.startsWith(`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`) &&
+                        d.system_health?.status === 'critical'
+                      ).length;
+                      return criticalDays;
+                    })()}
+                  </div>
+                  <div className="text-[9px] text-white/50 uppercase tracking-widest">Critical Days</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      )}
+      </div>
 
       <AnimatePresence>
         {selectedAnalysis && (

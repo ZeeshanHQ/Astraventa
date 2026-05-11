@@ -83,6 +83,9 @@ export const Contact = () => {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => { const next = { ...prev }; delete next[field]; return next; });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -221,9 +224,10 @@ export const Contact = () => {
                         placeholder="Your full name"
                         value={formData.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
-                        className="rounded-xl border-slate-200 focus:ring-primary"
+                        className={`rounded-xl border-slate-200 focus:ring-primary ${errors.name ? 'border-red-400' : ''}`}
                         required
                       />
+                      {errors.name && <p className="text-xs text-red-500 ml-1">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-slate-700 ml-1">Email Address *</label>
@@ -232,9 +236,10 @@ export const Contact = () => {
                         placeholder="your@email.com"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
-                        className="rounded-xl border-slate-200 focus:ring-primary"
+                        className={`rounded-xl border-slate-200 focus:ring-primary ${errors.email ? 'border-red-400' : ''}`}
                         required
                       />
+                      {errors.email && <p className="text-xs text-red-500 ml-1">{errors.email}</p>}
                     </div>
                   </div>
 
@@ -275,13 +280,14 @@ export const Contact = () => {
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-slate-700 ml-1">Service Needed *</label>
                     <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
-                      <SelectTrigger className="rounded-xl border-slate-200">
+                      <SelectTrigger className={`rounded-xl border-slate-200 ${errors.service ? 'border-red-400' : ''}`}>
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent className="rounded-xl">
                         {services.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
                       </SelectContent>
                     </Select>
+                    {errors.service && <p className="text-xs text-red-500 ml-1">{errors.service}</p>}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -316,9 +322,10 @@ export const Contact = () => {
                       rows={5}
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
-                      className="rounded-xl border-slate-200 resize-none"
+                      className={`rounded-xl border-slate-200 resize-none ${errors.message ? 'border-red-400' : ''}`}
                       required
                     />
+                    {errors.message && <p className="text-xs text-red-500 ml-1">{errors.message}</p>}
                   </div>
 
                   <ShinyButton type="submit" disabled={isSubmitting} className="w-full h-14 rounded-2xl">
